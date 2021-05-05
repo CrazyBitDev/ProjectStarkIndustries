@@ -5,7 +5,5 @@ struct prenotazione{
    char nome[20];
    char cognome[20];
    char email[60];
-   char genere[10];
-   char dataNascita[12];
    struct prenotazione *nextPrenotazione;
 }prenotazione;
