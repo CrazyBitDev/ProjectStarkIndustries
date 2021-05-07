@@ -1,7 +1,7 @@
 //SO - Windows
 #ifdef _WIN32
     #include <windows.h>
-    //PROMEMORIA: SetConsoleTextAttribute(hConsole, 10); colore rosso
+    //PROMEMORIA: SetConsoleTextAttribute(hConsole, 12); colore rosso
 #endif
 
 //SO - MacOS
@@ -13,12 +13,22 @@
 //librerie generali
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <time.h>
+
 #include "utente.h"
 #include "prenotazione.h"
 
 int main() {
+    /*
+    struct utente *testa = NULL;
+    struct utente *nuovoNodo;
     
+    nuovoNodo = (struct utente*)malloc(sizeof(struct utente));
     
+    testa = registrazione(testa);
+    */
     
     printf("\n");
     return 0;
