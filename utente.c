@@ -22,29 +22,30 @@ struct utente* registrazione(struct utente* testa){
     nuovoNodo = (struct utente*)malloc(sizeof(struct utente));
     
     int ultimoID;
-    
-    ultimoID = letturaUltimoID();
+    bool annoBis = false; //flag anno bisestile
+    bool dataCorretta = false; //flag per correttezza verifica data di nascita
+
     FILE *fp;
     fp = fopen("utenti.csv", "a+"); //apertura file
     
     printf("Inserisci Nome: ");
-    fgets(nuovoNodo->nome, 20, stdin);
-    nuovoNodo->nome[strlen(nuovoNodo->nome)-1] = 0;
+    fgets(nuovoNodo -> nome, 20, stdin);
+    nuovoNodo -> nome[strlen(nuovoNodo -> nome)-1] = 0;
     printf("\n");
     
     printf("Inserisci Cognome: ");
-    fgets(nuovoNodo->cognome, 20, stdin);
-    nuovoNodo->cognome[strlen(nuovoNodo->cognome)-1] = 0;
+    fgets(nuovoNodo -> cognome, 20, stdin);
+    nuovoNodo -> cognome[strlen(nuovoNodo -> cognome)-1] = 0;
     printf("\n");
     
     printf("Inserisci Email (non ti dimenticare la @): \n");
-    fgets(nuovoNodo->email, 60, stdin);
-    nuovoNodo->email[strlen(nuovoNodo->email)-1] = 0;
+    fgets(nuovoNodo -> email, 60, stdin);
+    nuovoNodo -> email[strlen(nuovoNodo -> email)-1] = 0;
         
     //verifico che sia stata inserita la @
     char *ptr;
     char *a = "@";
-    ptr = strstr(nuovoNodo->email, a);
+    ptr = strstr(nuovoNodo -> email, a);
         
     while(ptr == NULL) {
         #ifdef _WIN32
@@ -52,16 +53,15 @@ struct utente* registrazione(struct utente* testa){
             SetConsoleTextAttribute(hConsole, 12);
             printf("Attenzione! L'email inserita non e' corretta\n");
             SetConsoleTextAttribute(hConsole, 15);
-        #endif
-            
-        #ifdef __APPLE__
+        #else
             printf(ANSI_COLOR_RED "Attenzione! L'email inserita non e' corretta\n" ANSI_COLOR_RESET "\n");
         #endif
+           
         
         printf("Inserisci Email (non ti dimenticare la @): \n");
-        fgets(nuovoNodo->email, 60, stdin);
-        nuovoNodo->email[strlen(nuovoNodo->email)-1] = 0;
-        ptr = strstr(nuovoNodo->email, a);
+        fgets(nuovoNodo -> email, 60, stdin);
+        nuovoNodo -> email[strlen(nuovoNodo -> email)-1] = 0;
+        ptr = strstr(nuovoNodo -> email, a);
     }
     printf("\n");
     
@@ -71,24 +71,64 @@ struct utente* registrazione(struct utente* testa){
     int etaMinima;
     
     printf("Inserisci data di nascita\n");
+    
+    #ifdef _WIN32
+        HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, 12);
+        printf("---Per potersi registrare bisogna avere almeno 16 anni---\n");
+        SetConsoleTextAttribute(hConsole, 15);
+    #else
+        printf(ANSI_COLOR_RED "---Per potersi registrare bisogna avere almeno 16 anni---\n" ANSI_COLOR_RESET "\n");
+    #endif
+    
     do {
         do {
             printf("Giorno: ");
             scanf("%d", &giorno);
             printf("\n");
-        } while((giorno < 0) || (giorno > 31));
+        } while (giorno < 0 || giorno > 31);
         
-        printf("Mese: ");
-        scanf("%d", &mese);
-        printf("\n");
-    } while ((mese == 2 && giorno > 28) || (mese == 4||mese == 6||mese == 9) || (mese == 11 && giorno == 31));
+        do {
+            printf("Mese: ");
+            scanf("%d", &mese);
+            printf("\n");
+        } while (mese < 1 || mese > 12);
     
-    do {
-        printf("Anno: ");
+        printf("Anno (dal 1900 in poi): ");
         scanf("%d", &anno);
         printf("\n");
         
-        //controllo la data odierna
+        //controllo se l'anno inserito è bisestile o meno
+        if (anno % 4 == 0) {
+            if (anno % 100 == 0) {
+                if (anno % 400 == 0) {
+                    annoBis = true;
+                } else {
+                    annoBis = false;
+                }
+            } else {
+                annoBis = true;
+            }
+        } else {
+            annoBis = false;
+        }
+    
+        //controllo la correttezza di tutta la data inserita
+        if((giorno > 28 && mese == 2 && annoBis == false) || (giorno > 29 && mese == 2 && annoBis == true)) {
+            dataCorretta = false;
+        } else {
+            if (giorno > 31 && (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese == 8 || mese == 10 || mese == 12)) {
+                dataCorretta = false;
+            } else {
+                if (giorno > 30 && (mese == 4 || mese == 6 || mese == 9 || mese == 11 )) {
+                    dataCorretta = false;
+                } else {
+                    dataCorretta = true;
+                }
+            }
+        }
+        
+        //controllo la data odierna, per verificare se l'utente ha l'eta minima richiesta per potersi iscrivere
         time_t now;
         struct tm *ts;
         char annoCorrente[5];
@@ -101,17 +141,15 @@ struct utente* registrazione(struct utente* testa){
         // per potersi registrare al sistema bisogna avere almeno 16 anni
         etaMinima = atoi(annoCorrente) - 16;
         
-    } while((anno < 1900) || (anno > etaMinima));
+    //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
+    } while(anno > etaMinima || dataCorretta == false);
             
     snprintf(data, 10, "%d/%d/%d", giorno, mese, anno);
-    printf("Prova data %s\n", data);
     
-    strcpy(nuovoNodo->dataNascita, data);
+    strcpy(nuovoNodo -> dataNascita, data);
     
-    printf("Inserisci Password: ");
+   // printf("Inserisci Password: ");
 
-    
-    
     
     //verifico se nel file ci sono già utenti registrati o meno
     fseek(fp, 0, SEEK_END);
@@ -119,22 +157,22 @@ struct utente* registrazione(struct utente* testa){
     
     if(size == 0) { //file vuoto. quindi il primo utente registrato avrà i permessi di livello 2
         
-        printf("File vuoto\n");
-        nuovoNodo->id = ID;
-        nuovoNodo->permessi = 2;
+        nuovoNodo -> id = ID;
+        nuovoNodo -> permessi = 2;
         
     } else { //file pieno
         
-        printf("file pieno\n");
         ultimoID = letturaUltimoID();
-        nuovoNodo->id = ultimoID + 1;
+        nuovoNodo -> id = ultimoID + 1;
         
-        nuovoNodo->permessi = 1;
-     }
+        nuovoNodo -> permessi = 1;
+    }
     
-    fprintf(fp, "%d,%s,%s,%s,%s,%d\n", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->email, nuovoNodo->dataNascita, nuovoNodo->permessi);
+    fprintf(fp, "%d,%s,%s,%s,%s,%d\n", nuovoNodo -> id, nuovoNodo -> nome, nuovoNodo -> cognome, nuovoNodo -> email, nuovoNodo -> dataNascita, nuovoNodo -> permessi);
     
-    nuovoNodo->nextUtente = testa;
+    nuovoNodo -> nextUtente = testa;
+    
+    testa = nuovoNodo;
     
     fclose(fp);
     
@@ -157,7 +195,7 @@ int letturaUltimoID() {
         
     if(size != 0) { //file pieno - verifico quindi quale sia l'ultimo ID
             
-        totRighe = contaRighe() -1;
+        totRighe = contaRighe() - 1;
         
         int i=0; //contatore
         
@@ -173,7 +211,6 @@ int letturaUltimoID() {
             } else {
                 i++;
             }
-            
         }
     }
     fclose(fp);

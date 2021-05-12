@@ -21,14 +21,14 @@
 #include "prenotazione.h"
 
 int main() {
-    /*
+    
     struct utente *testa = NULL;
     struct utente *nuovoNodo;
     
     nuovoNodo = (struct utente*)malloc(sizeof(struct utente));
     
     testa = registrazione(testa);
-    */
+    
     
     printf("\n");
     return 0;
