@@ -17,7 +17,8 @@ struct mostre {
     char indirizzo[30];
     char dataInizio[10];
     char dataFine[10];
-    char nOpere[2]; // Numero opere
+    int nOpere; // Numero opere
+    int permessi; //livello 1 = utente normale; livello 2 = direttore generale, ha accesso a tutto;
     struct mostre *nextMostra; //puntatore al prossimo nodo
 }mostre;
 
@@ -94,7 +95,7 @@ struct mostre* aggiungiMostra(struct mostre* testa){
     printf("\n");
 
     printf("Inserisci Il Numero delle Opere: ");
-    fgets(nuovoNodo -> nOpere, 2, stdin);
+    fgets(nuovoNodo -> nOpere,stdin);
     nuovoNodo -> nOpere[strlen(nuovoNodo -> nOpere)-1] = 0;
     printf("\n");
 }
