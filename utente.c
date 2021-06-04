@@ -1,8 +1,6 @@
 //Gestione Utente
 #define ID 1
 #define BUFFER_SIZE 1024
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
 
 //Definizione della struct Utente
 struct utente {
@@ -10,8 +8,8 @@ struct utente {
     char nome[20];
     char cognome[20];
     char email[60];
+    char password[20];
     char dataNascita[10]; // gg/mm/aaaa
-    char telefono[10];
     int permessi; //livello 1 = utente normale; livello 2 = direttore generale, ha accesso a tutto;
     struct utente *nextUtente; //puntatore al prossimo nodo
 }utente;
@@ -25,18 +23,21 @@ struct utente* registrazione(struct utente* testa){
     bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per correttezza verifica data di nascita
 
+    
     FILE *fp;
-    fp = fopen("utenti.csv", "a+"); //apertura file
+    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "a+"); //apertura file
+    
+    while('\n'!=getchar());
     
     printf("Inserisci Nome: ");
     fgets(nuovoNodo -> nome, 20, stdin);
     nuovoNodo -> nome[strlen(nuovoNodo -> nome)-1] = 0;
-    printf("\n");
+    //printf("\n");
     
     printf("Inserisci Cognome: ");
     fgets(nuovoNodo -> cognome, 20, stdin);
     nuovoNodo -> cognome[strlen(nuovoNodo -> cognome)-1] = 0;
-    printf("\n");
+    printf("---------------------------------\n");
     
     printf("Inserisci Email (non ti dimenticare la @): \n");
     fgets(nuovoNodo -> email, 60, stdin);
@@ -63,8 +64,12 @@ struct utente* registrazione(struct utente* testa){
         nuovoNodo -> email[strlen(nuovoNodo -> email)-1] = 0;
         ptr = strstr(nuovoNodo -> email, a);
     }
-    printf("\n");
+    printf("---------------------------------\n");
+    char psw[20];
+    strcpy(psw, getpass("Password: "));
+    strcpy(nuovoNodo -> password, psw);
     
+    printf("---------------------------------\n");
     //controlli sulla data di nascita
     char data[10];
     int giorno, mese, anno;
@@ -85,18 +90,19 @@ struct utente* registrazione(struct utente* testa){
         do {
             printf("Giorno: ");
             scanf("%d", &giorno);
-            printf("\n");
+           // printf("\n");
         } while (giorno < 0 || giorno > 31);
         
         do {
             printf("Mese: ");
             scanf("%d", &mese);
-            printf("\n");
+           // printf("\n");
         } while (mese < 1 || mese > 12);
     
         printf("Anno (dal 1900 in poi): ");
         scanf("%d", &anno);
-        printf("\n");
+        // printf("\n");
+        printf("---------------------------------\n");
         
         //controllo se l'anno inserito è bisestile o meno
         if (anno % 4 == 0) {
@@ -148,9 +154,6 @@ struct utente* registrazione(struct utente* testa){
     
     strcpy(nuovoNodo -> dataNascita, data);
     
-   // printf("Inserisci Password: ");
-
-    
     //verifico se nel file ci sono già utenti registrati o meno
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
@@ -159,16 +162,14 @@ struct utente* registrazione(struct utente* testa){
         
         nuovoNodo -> id = ID;
         nuovoNodo -> permessi = 2;
-        
     } else { //file pieno
         
         ultimoID = letturaUltimoID();
         nuovoNodo -> id = ultimoID + 1;
-        
         nuovoNodo -> permessi = 1;
     }
     
-    fprintf(fp, "%d,%s,%s,%s,%s,%d\n", nuovoNodo -> id, nuovoNodo -> nome, nuovoNodo -> cognome, nuovoNodo -> email, nuovoNodo -> dataNascita, nuovoNodo -> permessi);
+    fprintf(fp, "%d,%s,%s,%s,%s,%s,%d\n", nuovoNodo -> id, nuovoNodo -> nome, nuovoNodo -> cognome, nuovoNodo -> email, nuovoNodo -> password, nuovoNodo -> dataNascita, nuovoNodo -> permessi);
     
     nuovoNodo -> nextUtente = testa;
     
@@ -181,55 +182,105 @@ struct utente* registrazione(struct utente* testa){
 
 int letturaUltimoID() {
     FILE *fp;
-    fp = fopen("utenti.csv", "r"); //apertura file
-    int totRighe = 0;
+    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r"); //apertura file
     
-    //verifico se il file è pieno o vuoto
-    fseek(fp, 0, SEEK_END);
-    long size = ftell(fp);
-        
+    int totRighe = 0;
     int ultimoID = 0;
     char buf[BUFFER_SIZE];
+    char *res;
     
-    fseek(fp, 0, SEEK_SET); //riposiziono il puntatore all'inizio del file
+    totRighe = contaRighe();
+    int i=1; //contatore
+    
+    while(1) {
+        res=fgets(buf, 200, fp);
+        if(res == NULL) {
+            break;
+        }
         
-    if(size != 0) { //file pieno - verifico quindi quale sia l'ultimo ID
-            
-        totRighe = contaRighe() - 1;
-        
-        int i=0; //contatore
-        
-        while(!feof(fp)) {
-            fgets(buf, sizeof(buf), fp);
-            buf[strlen(buf)-1] = 0;
-            
-            if (i == totRighe) {
-                char *tok;
-                tok = strtok(buf, ",");
-                
-                ultimoID = atoi(tok);
-            } else {
-                i++;
-            }
+        if (i == totRighe) {
+            char *tok;
+            tok = strtok(buf, ",");
+            ultimoID = atoi(tok);
+        } else {
+            i++;
         }
     }
+     
     fclose(fp);
-        
     return ultimoID;
 }
 
+
 int contaRighe() {
-    int totRighe = 0;
-    char str[BUFFER_SIZE];
     
     FILE *fp;
-    fp = fopen("utenti.csv", "r"); //apertura file
+    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r"); //apertura file
     
-    while (!feof(fp)) {
-        fgets(str, sizeof(BUFFER_SIZE), fp);
-        str[strlen(str)-1] = 0;
-        totRighe++;
+    int totRighe = 0;
+    char buffer;
+    
+    while (true) {
+        fread((void *)&buffer,sizeof(char),1,fp);
+        if (feof(fp)) {
+            break;
+        }
+        if (buffer == '\n') {
+            totRighe++;
+        }
     }
-        
+    
     return totRighe;
+}
+
+struct utente *accesso(struct utente *testa, char *email){
+    bool flag= false;
+    struct utente *nuovoNodo = NULL;
+    struct utente *temp;
+    
+    char *pass = getpass("Password: ");
+    
+    for(temp = testa; temp != NULL; temp = temp -> nextUtente){
+        
+        if(strcmp(temp->email, email) == 0 && strcmp(temp -> password, pass) == 0){
+            #ifdef _WIN32
+                HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                SetConsoleTextAttribute(hConsole, 10);
+                printf("---Login effettuato!---\n");
+                SetConsoleTextAttribute(hConsole, 15);
+            #else
+                printf(ANSI_COLOR_GREEN "---Login effettuato!---\n" ANSI_COLOR_RESET "\n");
+            #endif
+            nuovoNodo = temp;
+            flag = true;
+            break;
+            
+        }
+     }
+    
+    if(!flag){
+        #ifdef _WIN32
+            HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+            SetConsoleTextAttribute(hConsole, 12);
+            printf("---Email e/o Password errati!---\n");
+            SetConsoleTextAttribute(hConsole, 15);
+        #else
+            printf(ANSI_COLOR_RED "---Email e/o Password errati!---\n" ANSI_COLOR_RESET "\n");
+        #endif
+        
+    }
+    
+    if(flag)
+        return nuovoNodo;
+    else
+        return NULL;
+}
+
+void stampa(struct utente* testa) {
+
+  struct utente* temp=NULL;
+  temp = testa;
+
+    printf(ANSI_COLOR_CYAN "%d,%s,%s,%s,%s,%s,%d\n" ANSI_COLOR_RESET, temp -> id, temp -> nome, temp -> cognome, temp -> email, temp -> password, temp -> dataNascita, temp -> permessi );
+
 }
