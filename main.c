@@ -21,8 +21,12 @@
 #include "utente.h"
 #include "prenotazione.h"
 
+void titolo(void);
 
 int main() {
+    
+    titolo();
+  
     int scelta, colonna = 0;
     char email[60], buf[DIM];
     
@@ -31,9 +35,9 @@ int main() {
     Utente* tempUtente = NULL; //temporanea
     Utente *tempUtente1 = NULL;
     
-    //Lettura utenti dal file - renderla una funzione (?)
+    //Lettura utenti dal file
     FILE *fpU;
-    fpU = fopen("utenti.csv", "r");
+    fpU = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r");
     
     if(fpU == NULL) {
         #ifdef _WIN32
@@ -135,7 +139,32 @@ int main() {
     
     
     
-    
     printf("\n");
     return 0;
+}
+
+void titolo() {
+    
+    printf("\n");
+    
+    #ifdef _WIN32
+        HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, 11);
+        printf("███████╗████████╗ █████╗ ██████╗ ██╗  ██╗    ██╗███╗   ██╗██████╗ ██╗   ██╗███████╗████████╗██████╗ ██╗███████╗███████╗\n");
+        printf("██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║ ██╔╝    ██║████╗  ██║██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝██╔════╝\n");
+        printf("███████╗   ██║   ███████║██████╔╝█████╔╝     ██║██╔██╗ ██║██║  ██║██║   ██║███████╗   ██║   ██████╔╝██║█████╗  ███████╗\n");
+        printf("╚════██║   ██║   ██╔══██║██╔══██╗██╔═██╗     ██║██║╚██╗██║██║  ██║██║   ██║╚════██║   ██║   ██╔══██╗██║██╔══╝  ╚════██║\n");
+        printf("███████║   ██║   ██║  ██║██║  ██║██║  ██╗    ██║██║ ╚████║██████╔╝╚██████╔╝███████║   ██║   ██║  ██║██║███████╗███████║\n");
+        printf("╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝\n");
+        SetConsoleTextAttribute(hConsole, 15);
+    #else
+        printf(ANSI_COLOR_CYAN "███████╗████████╗ █████╗ ██████╗ ██╗  ██╗    ██╗███╗   ██╗██████╗ ██╗   ██╗███████╗████████╗██████╗ ██╗███████╗███████╗\n");
+        printf(ANSI_COLOR_CYAN"██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║ ██╔╝    ██║████╗  ██║██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝██╔════╝\n");
+        printf(ANSI_COLOR_CYAN"███████╗   ██║   ███████║██████╔╝█████╔╝     ██║██╔██╗ ██║██║  ██║██║   ██║███████╗   ██║   ██████╔╝██║█████╗  ███████╗\n");
+        printf(ANSI_COLOR_CYAN"╚════██║   ██║   ██╔══██║██╔══██╗██╔═██╗     ██║██║╚██╗██║██║  ██║██║   ██║╚════██║   ██║   ██╔══██╗██║██╔══╝  ╚════██║\n");
+        printf(ANSI_COLOR_CYAN"███████║   ██║   ██║  ██║██║  ██║██║  ██╗    ██║██║ ╚████║██████╔╝╚██████╔╝███████║   ██║   ██║  ██║██║███████╗███████║\n");
+        printf(ANSI_COLOR_CYAN"╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝\n" ANSI_COLOR_RESET);
+    #endif
+    
+    printf("\n");
 }
