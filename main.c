@@ -33,7 +33,7 @@ int main() {
     
     //Lettura utenti dal file - renderla una funzione (?)
     FILE *fpU;
-    fpU = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r");
+    fpU = fopen("utenti.csv", "r");
     
     if(fpU == NULL) {
         #ifdef _WIN32

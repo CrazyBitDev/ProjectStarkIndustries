@@ -25,7 +25,7 @@ struct utente* registrazione(struct utente* testa){
 
     
     FILE *fp;
-    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "a+"); //apertura file
+    fp = fopen("utenti.csv", "a+"); //apertura file
     
     while('\n'!=getchar());
     
@@ -182,7 +182,7 @@ struct utente* registrazione(struct utente* testa){
 
 int letturaUltimoID() {
     FILE *fp;
-    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r"); //apertura file
+    fp = fopen("utenti.csv", "r"); //apertura file
     
     int totRighe = 0;
     int ultimoID = 0;
@@ -215,7 +215,7 @@ int letturaUltimoID() {
 int contaRighe() {
     
     FILE *fp;
-    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r"); //apertura file
+    fp = fopen("utenti.csv", "r"); //apertura file
     
     int totRighe = 0;
     char buffer;
