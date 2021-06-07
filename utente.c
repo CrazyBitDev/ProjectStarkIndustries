@@ -336,9 +336,10 @@ struct utente* modificaUtente(struct utente* testa) {
                 }
                 break;
 
-            case 4:
-                strcpy(psw, getpass("Inserisci la nuova password: "));
-                strcpy(temp -> password, psw);
+            case 4:;
+                char newPassword[20] = "";
+                readPassword("Inserisci la nuova password: ", newPassword);
+                strcpy(temp -> password, newPassword);
                 break;
 
 
