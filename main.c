@@ -17,6 +17,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
+#include <ctype.h>
 
 #include "utente.h"
 #include "prenotazione.h"
@@ -27,11 +28,11 @@ int main() {
     
     titolo();
   
-    int scelta, colonna = 0;
+    int scelta, scelta2, colonna = 0;
     char email[60], buf[DIM];
     
     Utente *testaUtente = NULL;
-    Utente *testaUtente1 = NULL;
+    Utente *utenteLogin = NULL; //utente che avrà eseguito il login
     Utente* tempUtente = NULL; //temporanea
     Utente *tempUtente1 = NULL;
     
@@ -98,18 +99,26 @@ int main() {
         }
     }
     
-    
     do {
         
-        printf("---MENU' TEMPORANEO---\n");
+        printf("---HOME---\n");
         printf("1: Registrazione\n");
         printf("2: Login\n");
         printf("0: Esci\n");
         scanf("%d", &scelta);
+        printf("\n");
         
         switch (scelta) {
             case 1:
-                testaUtente = registrazione(testaUtente);
+                #ifdef _WIN32
+                    HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                    SetConsoleTextAttribute(hConsole, 11);
+                    printf("Benvenuto! \nCrea il tuo account\n");
+                    SetConsoleTextAttribute(hConsole, 15);
+                #else
+                    printf(ANSI_COLOR_CYAN "Benvenuto! \nCrea il tuo account\n" ANSI_COLOR_RESET "\n");
+                #endif
+                testaUtente = registrazioneUtente(testaUtente);
                 break;
                 
             case 2:
@@ -119,21 +128,65 @@ int main() {
                 fgets(email, 60, stdin);
                 email[strlen(email)-1]=0;
                 
-                testaUtente1 = accesso(testaUtente, email);
-                char *valore = (char *)testaUtente1;
+                utenteLogin = accesso(testaUtente, email);
+                char *valore = (char *)utenteLogin;
                 
                 if(valore != NULL) {
-                    printf("---Informazioni utente prova---\n");
-                    stampa(testaUtente1);
-                    printf("-------------------------------\n");
+                    #ifdef _WIN32
+                        HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                        SetConsoleTextAttribute(hConsole, 11);
+                        printf("Benvenuto nella sezione privata del tuo account\n");
+                        SetConsoleTextAttribute(hConsole, 15);
+                    #else
+                        printf(ANSI_COLOR_CYAN "Benvenuto nella sezione privata del tuo account\n" ANSI_COLOR_RESET);
+                    #endif
+                    //Operazioni che può effettuare l'utente una volta che ha eseguito il login
+                    do {
+                        printf("---MENU'---\n");
+                        printf("1: Visualizza informazioni personali\n");
+                        printf("2: Modifica dati personali\n");
+                        printf("0: Esci\n");
+                        scanf("%d", &scelta2);
+                        printf("\n");
+                        
+                        switch (scelta2) {
+                            case 1:
+                                #ifdef _WIN32
+                                    HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                                    SetConsoleTextAttribute(hConsole, 11);
+                                    printf("Elenco dati personali\n");
+                                    SetConsoleTextAttribute(hConsole, 15);
+                                #else
+                                    printf(ANSI_COLOR_CYAN "Elenco dati personali\n" ANSI_COLOR_RESET);
+                                #endif
+                                
+                                stampaUtente(utenteLogin);
+                                break;
+                                
+                            case 2:
+                                testaUtente = modificaUtente(utenteLogin);
+                                break;
+                                
+                            default:
+                                break;
+                        }
+                        
+                    } while (scelta2 != 0);
                 }
-                
                 break;
                 
             default:
                 break;
         }
         
+        #ifdef _WIN32
+            HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+            SetConsoleTextAttribute(hConsole, 11);
+            printf("-----------------------------\n");
+            SetConsoleTextAttribute(hConsole, 15);
+        #else
+            printf(ANSI_COLOR_CYAN "-----------------------------\n" ANSI_COLOR_RESET "\n");
+        #endif
         
     } while(scelta != 0);
     
