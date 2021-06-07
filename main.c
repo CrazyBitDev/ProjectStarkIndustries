@@ -1,4 +1,14 @@
 #define DIM 50
+//SO - Windows
+#ifdef _WIN32
+    #include <windows.h>
+    //PROMEMORIA: SetConsoleTextAttribute(hConsole, 12); colore rosso
+#else //macOS - Linux
+    #define ANSI_COLOR_RED     "\x1b[91m"
+    #define ANSI_COLOR_GREEN   "\x1b[92m"
+    #define ANSI_COLOR_RESET   "\x1b[0m"
+    #define ANSI_COLOR_CYAN    "\x1b[96m"
+#endif
 
 //librerie generali
 #include <stdio.h>
@@ -6,6 +16,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <time.h>
+#include <ctype.h>
 
 
 #include "functions.h"
@@ -19,11 +30,11 @@ int main() {
     
     titolo();
   
-    int scelta, colonna = 0;
+    int scelta, scelta2, colonna = 0;
     char email[60], buf[DIM];
     
     Utente *testaUtente = NULL;
-    Utente *testaUtente1 = NULL;
+    Utente *utenteLogin = NULL; //utente che avrà eseguito il login
     Utente* tempUtente = NULL; //temporanea
     Utente *tempUtente1 = NULL;
     
@@ -82,18 +93,19 @@ int main() {
             
         }
     }
-    
-    
+
     do {
         
-        printf("---MENU' TEMPORANEO---\n");
+        printf("---HOME---\n");
         printf("1: Registrazione\n");
         printf("2: Login\n");
         printf("0: Esci\n");
         scanf("%d", &scelta);
-        
+        printf("\n");
+
         switch (scelta) {
             case 1:
+                printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
                 testaUtente = registrazione(testaUtente);
                 break;
                 
@@ -104,22 +116,44 @@ int main() {
                 fgets(email, 60, stdin);
                 email[strlen(email)-1]=0;
                 
-                testaUtente1 = accesso(testaUtente, email);
-                char *valore = (char *)testaUtente1;
+                utenteLogin = accesso(testaUtente, email);
+                char *valore = (char *)utenteLogin;
                 
                 if(valore != NULL) {
-                    printf("---Informazioni utente prova---\n");
-                    stampa(testaUtente1);
-                    printf("-------------------------------\n");
+                    printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
+                    //Operazioni che può effettuare l'utente una volta che ha eseguito il login
+                    do {
+                        printf("---MENU'---\n");
+                        printf("1: Visualizza informazioni personali\n");
+                        printf("2: Modifica dati personali\n");
+                        printf("0: Esci\n");
+                        scanf("%d", &scelta2);
+                        printf("\n");
+
+                        switch (scelta2) {
+                            case 1:
+                                printColor("Elenco dati personali\n", COLOR_CYAN);
+                                stampaUtente(utenteLogin);
+                                break;
+
+                            case 2:
+                                testaUtente = modificaUtente(utenteLogin);
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                    } while (scelta2 != 0);
                 }
-                
                 break;
                 
             default:
                 break;
         }
-        
-        
+
+        printColor("-----------------------------\n", COLOR_CYAN);
+
     } while(scelta != 0);
     
     
@@ -131,7 +165,10 @@ int main() {
 void titolo() {
     
     printf("\n");
-    
+    /*
+     * @dani-el92 utilizza questo sito per generare il testo, purtroppo deve essere ASCII per evitare problemi
+     * Nel caso c'è un \ nel testo, utilizza \\
+    */
     consoleColor(COLOR_CYAN);
     /*printf("███████╗████████╗ █████╗ ██████╗ ██╗  ██╗    ██╗███╗   ██╗██████╗ ██╗   ██╗███████╗████████╗██████╗ ██╗███████╗███████╗\n");
     printf("██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║ ██╔╝    ██║████╗  ██║██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝██╔════╝\n");
