@@ -1,14 +1,4 @@
 #define DIM 50
-//SO - Windows
-#ifdef _WIN32
-    #include <windows.h>
-    //PROMEMORIA: SetConsoleTextAttribute(hConsole, 12); colore rosso
-#else //macOS - Linux
-    #define ANSI_COLOR_RED     "\x1b[91m"
-    #define ANSI_COLOR_GREEN   "\x1b[92m"
-    #define ANSI_COLOR_RESET   "\x1b[0m"
-    #define ANSI_COLOR_CYAN    "\x1b[96m"
-#endif
 
 //librerie generali
 #include <stdio.h>
@@ -16,10 +6,12 @@
 #include <string.h>
 #include <stdbool.h>
 #include <time.h>
-#include <unistd.h>
 
+
+#include "functions.h"
 #include "utente.h"
 #include "prenotazione.h"
+/*#include "opera.h"*/
 
 void titolo(void);
 
@@ -40,14 +32,7 @@ int main() {
     fpU = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r");
     
     if(fpU == NULL) {
-        #ifdef _WIN32
-            HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            SetConsoleTextAttribute(hConsole, 12);
-            printf("File \"utenti\" non trovato!\n");
-            SetConsoleTextAttribute(hConsole, 15);
-        #else
-            printf(ANSI_COLOR_RED "File \"utenti\" non trovato!\n" ANSI_COLOR_RESET "\n");
-        #endif
+        printColor("File \"utenti\" non trovato!\n", COLOR_RED);
     } else {
         while (!feof(fpU)) {
             fgets(buf, BUFFER_SIZE, fpU);
@@ -147,24 +132,20 @@ void titolo() {
     
     printf("\n");
     
-    #ifdef _WIN32
-        HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hConsole, 11);
-        printf("███████╗████████╗ █████╗ ██████╗ ██╗  ██╗    ██╗███╗   ██╗██████╗ ██╗   ██╗███████╗████████╗██████╗ ██╗███████╗███████╗\n");
-        printf("██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║ ██╔╝    ██║████╗  ██║██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝██╔════╝\n");
-        printf("███████╗   ██║   ███████║██████╔╝█████╔╝     ██║██╔██╗ ██║██║  ██║██║   ██║███████╗   ██║   ██████╔╝██║█████╗  ███████╗\n");
-        printf("╚════██║   ██║   ██╔══██║██╔══██╗██╔═██╗     ██║██║╚██╗██║██║  ██║██║   ██║╚════██║   ██║   ██╔══██╗██║██╔══╝  ╚════██║\n");
-        printf("███████║   ██║   ██║  ██║██║  ██║██║  ██╗    ██║██║ ╚████║██████╔╝╚██████╔╝███████║   ██║   ██║  ██║██║███████╗███████║\n");
-        printf("╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝\n");
-        SetConsoleTextAttribute(hConsole, 15);
-    #else
-        printf(ANSI_COLOR_CYAN "███████╗████████╗ █████╗ ██████╗ ██╗  ██╗    ██╗███╗   ██╗██████╗ ██╗   ██╗███████╗████████╗██████╗ ██╗███████╗███████╗\n");
-        printf(ANSI_COLOR_CYAN"██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║ ██╔╝    ██║████╗  ██║██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝██╔════╝\n");
-        printf(ANSI_COLOR_CYAN"███████╗   ██║   ███████║██████╔╝█████╔╝     ██║██╔██╗ ██║██║  ██║██║   ██║███████╗   ██║   ██████╔╝██║█████╗  ███████╗\n");
-        printf(ANSI_COLOR_CYAN"╚════██║   ██║   ██╔══██║██╔══██╗██╔═██╗     ██║██║╚██╗██║██║  ██║██║   ██║╚════██║   ██║   ██╔══██╗██║██╔══╝  ╚════██║\n");
-        printf(ANSI_COLOR_CYAN"███████║   ██║   ██║  ██║██║  ██║██║  ██╗    ██║██║ ╚████║██████╔╝╚██████╔╝███████║   ██║   ██║  ██║██║███████╗███████║\n");
-        printf(ANSI_COLOR_CYAN"╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝\n" ANSI_COLOR_RESET);
-    #endif
+    consoleColor(COLOR_CYAN);
+    /*printf("███████╗████████╗ █████╗ ██████╗ ██╗  ██╗    ██╗███╗   ██╗██████╗ ██╗   ██╗███████╗████████╗██████╗ ██╗███████╗███████╗\n");
+    printf("██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║ ██╔╝    ██║████╗  ██║██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝██╔════╝\n");
+    printf("███████╗   ██║   ███████║██████╔╝█████╔╝     ██║██╔██╗ ██║██║  ██║██║   ██║███████╗   ██║   ██████╔╝██║█████╗  ███████╗\n");
+    printf("╚════██║   ██║   ██╔══██║██╔══██╗██╔═██╗     ██║██║╚██╗██║██║  ██║██║   ██║╚════██║   ██║   ██╔══██╗██║██╔══╝  ╚════██║\n");
+    printf("███████║   ██║   ██║  ██║██║  ██║██║  ██╗    ██║██║ ╚████║██████╔╝╚██████╔╝███████║   ██║   ██║  ██║██║███████╗███████║\n");
+    printf("╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝\n");*/
+    printf("   _____ _             _      _____           _           _        _           \n");
+    printf("  / ____| |           | |    |_   _|         | |         | |      (_)          \n");
+    printf(" | (___ | |_ __ _ _ __| | __   | |  _ __   __| |_   _ ___| |_ _ __ _  ___  ___ \n");
+    printf("  \\___ \\| __/ _` | '__| |/ /   | | | '_ \\ / _` | | | / __| __| '__| |/ _ \\/ __|\n");
+    printf("  ____) | || (_| | |  |   <   _| |_| | | | (_| | |_| \\__ \\ |_| |  | |  __/\\__ \\\n");
+    printf(" |_____/ \\__\\__,_|_|  |_|\\_\\ |_____|_| |_|\\__,_|\\__,_|___/\\__|_|  |_|\\___||___/\n");
+    consoleColor(COLOR_RESET);
     
     printf("\n");
 }

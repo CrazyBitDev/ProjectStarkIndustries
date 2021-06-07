@@ -2,13 +2,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include <windows.h>
 
 //Gestione Mostre
 #define ID 1
 #define BUFFER_SIZE 1024
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
 
 //Definizione struct mostre
 struct mostre {
@@ -51,14 +48,7 @@ if(permessi==2){
         ptr = strstr(nuovoNodo -> dataInizio, a);
         
         while(ptr == NULL) {
-            #ifdef _WIN32
-                HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-                SetConsoleTextAttribute(hConsole, 12);
-                printf("Attenzione! L'email inserita non e' corretta\n");
-                SetConsoleTextAttribute(hConsole, 15);
-            #else
-                printf(ANSI_COLOR_RED "Attenzione! L'email inserita non e' corretta\n" ANSI_COLOR_RESET "\n");
-            #endif
+            printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
            
             printf("Inserisci Data Inizio (non ti dimenticare di separarli con /): \n");
             fgets(nuovoNodo -> dataInizio, 60, stdin);
@@ -77,14 +67,8 @@ if(permessi==2){
         ptr = strstr(nuovoNodo -> dataInizio, a);
         
         while(ptr == NULL) {
-            #ifdef _WIN32
-                HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-                SetConsoleTextAttribute(hConsole, 12);
-                printf("Attenzione! L'email inserita non e' corretta\n");
-                SetConsoleTextAttribute(hConsole, 15);
-            #else
-                printf(ANSI_COLOR_RED "Attenzione! L'email inserita non e' corretta\n" ANSI_COLOR_RESET "\n");
-            #endif
+
+            printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
            
             printf("Inserisci Data Fine (non ti dimenticare di separarli con /): \n");
             fgets(nuovoNodo -> dataFine, 60, stdin);

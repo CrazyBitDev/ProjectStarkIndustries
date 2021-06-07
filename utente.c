@@ -49,15 +49,7 @@ struct utente* registrazione(struct utente* testa){
     ptr = strstr(nuovoNodo -> email, a);
         
     while(ptr == NULL) {
-        #ifdef _WIN32
-            HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            SetConsoleTextAttribute(hConsole, 12);
-            printf("Attenzione! L'email inserita non e' corretta\n");
-            SetConsoleTextAttribute(hConsole, 15);
-        #else
-            printf(ANSI_COLOR_RED "Attenzione! L'email inserita non e' corretta\n" ANSI_COLOR_RESET "\n");
-        #endif
-           
+		printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
         
         printf("Inserisci Email (non ti dimenticare la @): \n");
         fgets(nuovoNodo -> email, 60, stdin);
@@ -66,7 +58,7 @@ struct utente* registrazione(struct utente* testa){
     }
     printf("---------------------------------\n");
     char psw[20];
-    strcpy(psw, getpass("Password: "));
+    readPassword("Password: ", psw);
     strcpy(nuovoNodo -> password, psw);
     
     printf("---------------------------------\n");
@@ -76,15 +68,9 @@ struct utente* registrazione(struct utente* testa){
     int etaMinima;
     
     printf("Inserisci data di nascita\n");
-    
-    #ifdef _WIN32
-        HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hConsole, 12);
-        printf("---Per potersi registrare bisogna avere almeno 16 anni---\n");
-        SetConsoleTextAttribute(hConsole, 15);
-    #else
-        printf(ANSI_COLOR_RED "---Per potersi registrare bisogna avere almeno 16 anni---\n" ANSI_COLOR_RESET "\n");
-    #endif
+
+	
+	printColor("---Per potersi registrare bisogna avere almeno 16 anni---\n", COLOR_RED);
     
     do {
         do {
@@ -237,20 +223,15 @@ struct utente *accesso(struct utente *testa, char *email){
     bool flag= false;
     struct utente *nuovoNodo = NULL;
     struct utente *temp;
-    
-    char *pass = getpass("Password: ");
+
+    char pass[20] = "";
+    readPassword("Password: ", pass);
     
     for(temp = testa; temp != NULL; temp = temp -> nextUtente){
         
         if(strcmp(temp->email, email) == 0 && strcmp(temp -> password, pass) == 0){
-            #ifdef _WIN32
-                HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-                SetConsoleTextAttribute(hConsole, 10);
-                printf("---Login effettuato!---\n");
-                SetConsoleTextAttribute(hConsole, 15);
-            #else
-                printf(ANSI_COLOR_GREEN "---Login effettuato!---\n" ANSI_COLOR_RESET "\n");
-            #endif
+
+			printColor("---Email e/o Password errati!---\n", COLOR_GREEN);
             nuovoNodo = temp;
             flag = true;
             break;
@@ -259,15 +240,7 @@ struct utente *accesso(struct utente *testa, char *email){
      }
     
     if(!flag){
-        #ifdef _WIN32
-            HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            SetConsoleTextAttribute(hConsole, 12);
-            printf("---Email e/o Password errati!---\n");
-            SetConsoleTextAttribute(hConsole, 15);
-        #else
-            printf(ANSI_COLOR_RED "---Email e/o Password errati!---\n" ANSI_COLOR_RESET "\n");
-        #endif
-        
+		printColor("---Email e/o Password errati!---\n", COLOR_RED);
     }
     
     if(flag)
@@ -278,9 +251,11 @@ struct utente *accesso(struct utente *testa, char *email){
 
 void stampa(struct utente* testa) {
 
-  struct utente* temp=NULL;
-  temp = testa;
+	struct utente* temp=NULL;
+	temp = testa;
 
-    printf(ANSI_COLOR_CYAN "%d,%s,%s,%s,%s,%s,%d\n" ANSI_COLOR_RESET, temp -> id, temp -> nome, temp -> cognome, temp -> email, temp -> password, temp -> dataNascita, temp -> permessi );
+    consoleColor(COLOR_CYAN);
+    printf("%d,%s,%s,%s,%s,%s,%d\n", temp -> id, temp -> nome, temp -> cognome, temp -> email, temp -> password, temp -> dataNascita, temp -> permessi );
+    consoleColor(COLOR_RESET);
 
 }
