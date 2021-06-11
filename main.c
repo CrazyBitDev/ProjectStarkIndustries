@@ -1,14 +1,4 @@
 #define DIM 50
-//SO - Windows
-#ifdef _WIN32
-    #include <windows.h>
-    //PROMEMORIA: SetConsoleTextAttribute(hConsole, 12); colore rosso
-#else //macOS - Linux
-    #define ANSI_COLOR_RED     "\x1b[91m"
-    #define ANSI_COLOR_GREEN   "\x1b[92m"
-    #define ANSI_COLOR_RESET   "\x1b[0m"
-    #define ANSI_COLOR_CYAN    "\x1b[96m"
-#endif
 
 //librerie generali
 #include <stdio.h>
