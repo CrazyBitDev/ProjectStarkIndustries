@@ -1,3 +1,8 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
 //Gestione Utente
 #define ID 1
 #define BUFFER_SIZE 1024
@@ -15,43 +20,43 @@ struct utente {
 }utente;
 
 struct utente* registrazioneUtente(struct utente* testa){
-    struct utente *nuovoNodo = NULL;
+    struct utente *nuovoNodo = "NULL";
 
     nuovoNodo = (struct utente*)malloc(sizeof(struct utente));
-    
+
     int ultimoID;
     bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per correttezza verifica data di nascita
 
-    
+
     FILE *fp;
-    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "a+"); //apertura file
-    
+    fp = fopen("utenti.csv", "a+"); //apertura file
+
     while('\n'!=getchar());
-    
+
     printf("Inserisci Nome: ");
     fgets(nuovoNodo -> nome, 20, stdin);
     nuovoNodo -> nome[strlen(nuovoNodo -> nome)-1] = 0;
     nuovoNodo -> nome[0] = toupper(nuovoNodo -> nome[0]);
-    
+
     printf("Inserisci Cognome: ");
     fgets(nuovoNodo -> cognome, 20, stdin);
     nuovoNodo -> cognome[strlen(nuovoNodo -> cognome)-1] = 0;
     nuovoNodo -> cognome[0] = toupper(nuovoNodo -> cognome[0]);
     printf("---------------------------------\n");
-    
+
     printf("Inserisci Email (non ti dimenticare la @): \n");
     fgets(nuovoNodo -> email, 60, stdin);
     nuovoNodo -> email[strlen(nuovoNodo -> email)-1] = 0;
-        
+
     //verifico che sia stata inserita la @
     char *ptr;
     char *a = "@";
     ptr = strstr(nuovoNodo -> email, a);
-        
+
     while(ptr == NULL) {
 		printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
-        
+
         printf("Inserisci Email (non ti dimenticare la @): \n");
         fgets(nuovoNodo -> email, 60, stdin);
         nuovoNodo -> email[strlen(nuovoNodo -> email)-1] = 0;
@@ -61,36 +66,36 @@ struct utente* registrazioneUtente(struct utente* testa){
     char psw[20];
     readPassword("Password: ", psw);
     strcpy(nuovoNodo -> password, psw);
-    
+
     printf("---------------------------------\n");
     //controlli sulla data di nascita
     char data[10];
     int giorno, mese, anno;
     int etaMinima;
-    
+
     printf("Inserisci data di nascita\n");
 
 
 	printColor("---Per potersi registrare bisogna avere almeno 16 anni---\n", COLOR_RED);
-    
+
     do {
         do {
             printf("Giorno: ");
             scanf("%d", &giorno);
            // printf("\n");
         } while (giorno < 0 || giorno > 31);
-        
+
         do {
             printf("Mese: ");
             scanf("%d", &mese);
            // printf("\n");
         } while (mese < 1 || mese > 12);
-    
+
         printf("Anno (dal 1900 in poi): ");
         scanf("%d", &anno);
         // printf("\n");
         printf("---------------------------------\n");
-        
+
         //controllo se l'anno inserito è bisestile o meno
         if (anno % 4 == 0) {
             if (anno % 100 == 0) {
@@ -105,7 +110,7 @@ struct utente* registrazioneUtente(struct utente* testa){
         } else {
             annoBis = false;
         }
-    
+
         //controllo la correttezza di tutta la data inserita
         if((giorno > 28 && mese == 2 && annoBis == false) || (giorno > 29 && mese == 2 && annoBis == true)) {
             dataCorretta = false;
@@ -120,7 +125,7 @@ struct utente* registrazioneUtente(struct utente* testa){
                 }
             }
         }
-        
+
         //controllo la data odierna, per verificare se l'utente ha l'eta minima richiesta per potersi iscrivere
         time_t now;
         struct tm *ts;
@@ -130,61 +135,61 @@ struct utente* registrazioneUtente(struct utente* testa){
 
         ts = localtime(&now);
         strftime(annoCorrente, sizeof(annoCorrente), "%Y", ts);
-        
+
         // per potersi registrare al sistema bisogna avere almeno 16 anni
         etaMinima = atoi(annoCorrente) - 16;
-        
+
     //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
     } while(anno > etaMinima || dataCorretta == false);
-            
+
     snprintf(data, 10, "%d/%d/%d", giorno, mese, anno);
     //data = dataNascita();
     strcpy(nuovoNodo -> dataNascita, data);
-    
+
     //verifico se nel file ci sono già utenti registrati o meno
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
-    
+
     if(size == 0) { //file vuoto. quindi il primo utente registrato avrà i permessi di livello 2
-        
+
         nuovoNodo -> id = ID;
         nuovoNodo -> permessi = 2;
     } else { //file pieno
-        
+
         ultimoID = letturaUltimoID();
         nuovoNodo -> id = ultimoID + 1;
         nuovoNodo -> permessi = 1;
     }
-    
+
     fprintf(fp, "%d,%s,%s,%s,%s,%s,%d\n", nuovoNodo -> id, nuovoNodo -> nome, nuovoNodo -> cognome, nuovoNodo -> email, nuovoNodo -> password, nuovoNodo -> dataNascita, nuovoNodo -> permessi);
-    
+
     nuovoNodo -> nextUtente = testa;
-    
+
     testa = nuovoNodo;
-    
+
     fclose(fp);
-    
+
     return nuovoNodo;
 }
 
 int letturaUltimoID() {
     FILE *fp;
-    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r"); //apertura file
-    
+    fp = fopen("utenti.csv", "r"); //apertura file
+
     int totRighe = 0;
     int ultimoID = 0;
     char buf[BUFFER_SIZE];
     char *res;
-    
+
     totRighe = contaRighe();
     int i=1; //contatore
-    
+
     while(1) {
         res=fgets(buf, 200, fp);
         if(res == NULL) {
             break;
         }
-        
+
         if (i == totRighe) {
             char *tok;
             tok = strtok(buf, ",");
@@ -193,20 +198,20 @@ int letturaUltimoID() {
             i++;
         }
     }
-     
+
     fclose(fp);
     return ultimoID;
 }
 
 
 int contaRighe() {
-    
+
     FILE *fp;
-    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r"); //apertura file
-    
+    fp = fopen("utenti.csv", "r"); //apertura file
+
     int totRighe = 0;
     char buffer;
-    
+
     while (true) {
         fread((void *)&buffer,sizeof(char),1,fp);
         if (feof(fp)) {
@@ -216,7 +221,7 @@ int contaRighe() {
             totRighe++;
         }
     }
-    
+
     return totRighe;
 }
 
@@ -227,23 +232,23 @@ struct utente *accesso(struct utente *testa, char *email){
 
     char pass[20] = "";
     readPassword("Password: ", pass);
-    
+
     for(temp = testa; temp != NULL; temp = temp -> nextUtente){
-        
+
         if(strcmp(temp->email, email) == 0 && strcmp(temp -> password, pass) == 0){
 
 			printColor("---Email e/o Password errati!---\n", COLOR_GREEN);
             nuovoNodo = temp;
             flag = true;
             break;
-            
+
         }
     }
-    
+
     if(!flag){
 		printColor("---Email e/o Password errati!---\n", COLOR_RED);
     }
-    
+
     if(flag)
         return nuovoNodo;
     else
@@ -281,7 +286,7 @@ struct utente* modificaUtente(struct utente* testa) {
     bool dataCorretta = false; //flag per correttezza verifica data di nascita
 
     FILE *fp;
-    fp = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "a+"); //apertura file
+    fp = fopen("utenti.csv", "a+"); //apertura file
 
     struct utente* temp = NULL;
 
