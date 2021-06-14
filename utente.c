@@ -1,8 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-
 //Gestione Utente
 #define ID 1
 #define BUFFER_SIZE 1024
@@ -20,7 +15,7 @@ struct utente {
 }utente;
 
 struct utente* registrazioneUtente(struct utente* testa){
-    struct utente *nuovoNodo = "NULL";
+    struct utente *nuovoNodo = NULL;
 
     nuovoNodo = (struct utente*)malloc(sizeof(struct utente));
 

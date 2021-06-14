@@ -17,37 +17,37 @@
 void titolo(void);
 
 int main() {
-    
+
     titolo();
-  
+
     int scelta, scelta2, colonna = 0;
     char email[60], buf[DIM];
-    
+
     Utente *testaUtente = NULL;
     Utente *utenteLogin = NULL; //utente che avrà eseguito il login
     Utente* tempUtente = NULL; //temporanea
     Utente *tempUtente1 = NULL;
-    
+
     //Lettura utenti dal file
     FILE *fpU;
-    fpU = fopen("/Users/dan/Documents/OneDrive - Università degli Studi di Bari/I anno/Secondo Semestre/Laboratorio/Caso di studio/home/utenti.csv", "r");
-    
+    fpU = fopen("utenti.csv", "r");
+
     if(fpU == NULL) {
         printColor("File \"utenti\" non trovato!\n", COLOR_RED);
     } else {
         while (!feof(fpU)) {
             fgets(buf, BUFFER_SIZE, fpU);
             tempUtente = (struct utente*)malloc(sizeof(struct utente));
-            
+
             if(tempUtente1 != NULL) {
                 tempUtente1 -> nextUtente = tempUtente;
             } else {
                 testaUtente = tempUtente;
             }
-            
+
             char *tok;
             tok = strtok(buf, ",");
-            
+
             while(tok) {
                 if(colonna == 0){
                     tempUtente -> id = atoi(tok);
@@ -80,12 +80,12 @@ int main() {
             }
             colonna = 0;
             tempUtente1 = tempUtente;
-            
+
         }
     }
 
     do {
-        
+
         printf("---HOME---\n");
         printf("1: Registrazione\n");
         printf("2: Login\n");
@@ -98,17 +98,17 @@ int main() {
                 printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
                 testaUtente = registrazioneUtente(testaUtente);
                 break;
-                
+
             case 2:
                 while('\n'!=getchar());
-                
+
                 printf("Email: ");
                 fgets(email, 60, stdin);
                 email[strlen(email)-1]=0;
-                
+
                 utenteLogin = accesso(testaUtente, email);
                 char *valore = (char *)utenteLogin;
-                
+
                 if(valore != NULL) {
                     printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
                     //Operazioni che può effettuare l'utente una volta che ha eseguito il login
@@ -137,7 +137,7 @@ int main() {
                     } while (scelta2 != 0);
                 }
                 break;
-                
+
             default:
                 break;
         }
@@ -145,15 +145,15 @@ int main() {
         printColor("-----------------------------\n", COLOR_CYAN);
 
     } while(scelta != 0);
-    
-    
-    
+
+
+
     printf("\n");
     return 0;
 }
 
 void titolo() {
-    
+
     printf("\n");
     /*
      * @dani-el92 utilizza questo sito per generare il testo, purtroppo deve essere ASCII per evitare problemi
@@ -172,6 +172,6 @@ void titolo() {
     printf(" ___/ / /_/ /_/ / /  / ,<    _/ // / / / /_/ / /_/ (__  ) /_/ /  / /  __(__  ) \n");
     printf("/____/\\__/\\__,_/_/  /_/|_|  /___/_/ /_/\\__,_/\\__,_/____/\\__/_/  /_/\\___/____/  \n");
     consoleColor(COLOR_RESET);
-    
+
     printf("\n");
 }
