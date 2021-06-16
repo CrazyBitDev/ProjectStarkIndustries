@@ -12,11 +12,13 @@
 #include "functions.h"
 #include "utente.h"
 #include "prenotazione.h"
+/*#include "mostra.h"*/
 /*#include "opera.h"*/
 
 void titolo(void);
 
-int main() {
+int main()
+{
 
     titolo();
 
@@ -32,47 +34,62 @@ int main() {
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
 
-    if(fpU == NULL) {
+    if(fpU == NULL)
+    {
         printColor("File \"utenti\" non trovato!\n", COLOR_RED);
-    } else {
-        while (!feof(fpU)) {
+    }
+    else
+    {
+        while (!feof(fpU))
+        {
             fgets(buf, BUFFER_SIZE, fpU);
             tempUtente = (struct utente*)malloc(sizeof(struct utente));
 
-            if(tempUtente1 != NULL) {
+            if(tempUtente1 != NULL)
+            {
                 tempUtente1 -> nextUtente = tempUtente;
-            } else {
+            }
+            else
+            {
                 testaUtente = tempUtente;
             }
 
             char *tok;
             tok = strtok(buf, ",");
 
-            while(tok) {
-                if(colonna == 0){
+            while(tok)
+            {
+                if(colonna == 0)
+                {
                     tempUtente -> id = atoi(tok);
                 }
-                if(colonna == 1){
+                if(colonna == 1)
+                {
                     strcpy(tempUtente -> nome, tok);
                     tempUtente -> nome[strlen(tempUtente -> nome)] = 0;
                 }
-                if(colonna == 2){
+                if(colonna == 2)
+                {
                     strcpy(tempUtente -> cognome, tok);
                     tempUtente -> cognome[strlen(tempUtente -> cognome)] = 0;
                 }
-                if(colonna == 3){
+                if(colonna == 3)
+                {
                     strcpy(tempUtente -> email, tok);
                     tempUtente -> email[strlen(tempUtente -> email)] = 0;
                 }
-                if(colonna == 4){
+                if(colonna == 4)
+                {
                     strcpy(tempUtente -> password, tok);
                     tempUtente -> password[strlen(tempUtente -> password)] = 0;
                 }
-                if(colonna == 5){
+                if(colonna == 5)
+                {
                     strcpy(tempUtente -> dataNascita, tok);
                     tempUtente -> dataNascita[strlen(tempUtente -> dataNascita)] = 0;
                 }
-                if(colonna == 6){
+                if(colonna == 6)
+                {
                     tempUtente -> permessi = atoi(tok);
                 }
                 tok = strtok(NULL, ",");
@@ -84,67 +101,82 @@ int main() {
         }
     }
 
-    do {
+    do
+    {
 
         printf("---HOME---\n");
         printf("1: Registrazione\n");
         printf("2: Login\n");
         printf("0: Esci\n");
+        printf("---HOME---\n");
+        printf("-> ");
         scanf("%d", &scelta);
         printf("\n");
 
-        switch (scelta) {
-            case 1:
-                printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
-                testaUtente = registrazioneUtente(testaUtente);
-                break;
+        switch (scelta)
+        {
+        case 1:
+            printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
+            testaUtente = registrazioneUtente(testaUtente);
+            break;
 
-            case 2:
-                while('\n'!=getchar());
+        case 2:
+            while('\n'!=getchar());
 
-                printf("Email: ");
-                fgets(email, 60, stdin);
-                email[strlen(email)-1]=0;
+            printf("Email: ");
+            fgets(email, 60, stdin);
+            email[strlen(email)-1]=0;
 
-                utenteLogin = accesso(testaUtente, email);
-                char *valore = (char *)utenteLogin;
+            utenteLogin = accesso(testaUtente, email);
+            char *valore = (char *)utenteLogin;
 
-                if(valore != NULL) {
-                    printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
-                    //Operazioni che può effettuare l'utente una volta che ha eseguito il login
-                    do {
+            if(valore != NULL)
+            {
+                printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
+                //Operazioni che può effettuare l'utente una volta che ha eseguito il login
+                    do
+                    {
                         printf("---MENU'---\n");
                         printf("1: Visualizza informazioni personali\n");
                         printf("2: Modifica dati personali\n");
+                        /*printf("3: Aggiungi dati mostra\n");
+                        printf("4: Modifica dati mostra\n");
+                        printf("5: Cancella dati mostra\n");*/
                         printf("0: Esci\n");
                         scanf("%d", &scelta2);
                         printf("\n");
 
-                        switch (scelta2) {
-                            case 1:
-                                printColor("Elenco dati personali\n", COLOR_CYAN);
-                                stampaUtente(utenteLogin);
-                                break;
+                        switch (scelta2)
+                        {
+                        case 1:
+                            printColor("Elenco dati personali\n", COLOR_CYAN);
+                            stampaUtente(utenteLogin);
+                            break;
 
-                            case 2:
-                                testaUtente = modificaUtente(utenteLogin);
-                                break;
+                        case 2:
+                            testaUtente = modificaUtente(utenteLogin);
+                            break;
 
-                            default:
-                                break;
+                        default:
+                            break;
+                        /*case 3:
+                            aggiungiMostra(testaUtente,utenteLogin);
+                            break;*/
                         }
 
-                    } while (scelta2 != 0);
-                }
-                break;
+                    }
+                    while (scelta2 != 0);
+            }
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
 
         printColor("-----------------------------\n", COLOR_CYAN);
 
-    } while(scelta != 0);
+    }
+    while(scelta != 0);
 
 
 
@@ -152,7 +184,8 @@ int main() {
     return 0;
 }
 
-void titolo() {
+void titolo()
+{
 
     printf("\n");
     /*

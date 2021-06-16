@@ -18,7 +18,7 @@ struct mostre* aggiungiMostra(struct mostre* testa,struct utente* utenteLogin)
 {
     struct utente* temp = NULL;
     temp = utenteLogin;
-    if(temp-> permessi == 2)
+    if(temp -> permessi == 2)
     {
         struct mostre* nuovoNodo=NULL;
         nuovoNodo = (struct mostre*)malloc(sizeof(struct mostre));
@@ -47,7 +47,7 @@ struct mostre* aggiungiMostra(struct mostre* testa,struct utente* utenteLogin)
 
         while(ptr == NULL)
         {
-            printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
+            printColor("Attenzione! La data inserita non e' corretta\n", COLOR_RED);
 
             printf("Inserisci Data Inizio (non ti dimenticare di separarli con /): \n");
             fgets(nuovoNodo -> dataInizio, 60, stdin);
@@ -62,18 +62,18 @@ struct mostre* aggiungiMostra(struct mostre* testa,struct utente* utenteLogin)
 
         //verifico che sia stata inserita la /
         char *ptr2;
-        char *a = "/";
-        ptr = strstr(nuovoNodo -> dataInizio, a);
+        char *a2 = "/";
+        ptr = strstr(nuovoNodo -> dataInizio, a2);
 
         while(ptr2 == NULL)
         {
 
-            printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
+            printColor("Attenzione! La data inserita non e' corretta\n", COLOR_RED);
 
             printf("Inserisci Data Fine (non ti dimenticare di separarli con /): \n");
             fgets(nuovoNodo -> dataFine, 60, stdin);
             nuovoNodo -> dataFine[strlen(nuovoNodo -> dataFine)-1] = 0;
-            ptr2 = strstr(nuovoNodo -> dataFine, a);
+            ptr2 = strstr(nuovoNodo -> dataFine, a2);
         }
         printf("\n");
 
@@ -81,7 +81,7 @@ struct mostre* aggiungiMostra(struct mostre* testa,struct utente* utenteLogin)
         fgets(nuovoNodo -> nOpere,stdin);
         nuovoNodo -> nOpere[strlen(nuovoNodo -> nOpere)-1] = 0;
         printf("\n");
-        fprintf(fp, "%d,%s,%s,%s,%s,%d\n", nuovoNodo -> id, nuovoNodo -> nome, nuovoNodo -> cognome, nuovoNodo -> email, nuovoNodo -> dataNascita, nuovoNodo -> permessi);
+        fprintf(fp, "%s,%s,%s,%s,%d\n", nuovoNodo ->citta, nuovoNodo -> indirizzo, nuovoNodo -> dataInizio, nuovoNodo -> dataFine, nuovoNodo -> nOpere);
 
         nuovoNodo -> nextMostra = testa;
 
