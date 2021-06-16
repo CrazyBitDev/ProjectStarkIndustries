@@ -107,7 +107,7 @@ int main()
         printf("---HOME---\n");
         printf("1: Registrazione\n");
         printf("2: Login\n");
-        printf("0: Esci\n");
+        printf("0: Chiudi applicazione\n");
         printf("---HOME---\n");
         printf("-> ");
         scanf("%d", &scelta);
@@ -142,7 +142,7 @@ int main()
                         /*printf("3: Aggiungi dati mostra\n");
                         printf("4: Modifica dati mostra\n");
                         printf("5: Cancella dati mostra\n");*/
-                        printf("0: Esci\n");
+                        printf("0: Logout\n");
                         scanf("%d", &scelta2);
                         printf("\n");
 

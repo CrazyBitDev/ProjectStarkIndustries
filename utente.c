@@ -232,7 +232,7 @@ struct utente *accesso(struct utente *testa, char *email){
 
         if(strcmp(temp->email, email) == 0 && strcmp(temp -> password, pass) == 0){
 
-			printColor("---Email e/o Password errati!---\n", COLOR_GREEN);
+			printColor("---Login effettuato---\n", COLOR_GREEN);
             nuovoNodo = temp;
             flag = true;
             break;
@@ -272,7 +272,7 @@ void stampaUtente(struct utente* utenteLogin) {
 
 struct utente* modificaUtente(struct utente* testa) {
     int scelta;
-    char risposta[3], psw[20];
+    char risposta[3];
 
     char data[10];
     int giorno, mese, anno;
