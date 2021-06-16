@@ -41,7 +41,7 @@ void printColor(char text[], int color) {
         }
     #endif
     
-    printf(text);
+    printf("%s", text);
 
     #ifdef _WIN32
         SetConsoleTextAttribute(hConsole, 15);
