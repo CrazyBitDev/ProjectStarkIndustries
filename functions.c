@@ -40,7 +40,7 @@ void printColor(char text[], int color) {
                 break;
         }
     #endif
-    
+
     printf("%s", text);
 
     #ifdef _WIN32
@@ -83,7 +83,7 @@ void readPassword() {
 */
 void readPassword(char prompt[], char *password) {
     #ifdef _WIN32
-        HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE); 
+        HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
         DWORD mode = 0;
         GetConsoleMode(hStdin, &mode);
         SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));

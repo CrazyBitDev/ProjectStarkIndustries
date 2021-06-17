@@ -12,12 +12,12 @@ struct utente {
     char dataNascita[10]; // gg/mm/aaaa
     int permessi; //livello 1 = utente normale; livello 2 = direttore generale, ha accesso a tutto;
     struct utente *nextUtente; //puntatore al prossimo nodo
-}utente;
+} utente;
 
-struct utente* registrazioneUtente(struct utente* testa){
+struct utente *registrazioneUtente(struct utente *testa) {
     struct utente *nuovoNodo = NULL;
 
-    nuovoNodo = (struct utente*)malloc(sizeof(struct utente));
+    nuovoNodo = (struct utente *) malloc(sizeof(struct utente));
 
     int ultimoID;
     bool annoBis = false; //flag anno bisestile
@@ -27,40 +27,40 @@ struct utente* registrazioneUtente(struct utente* testa){
     FILE *fp;
     fp = fopen("utenti.csv", "a+"); //apertura file
 
-    while('\n'!=getchar());
+    while ('\n' != getchar());
 
     printf("Inserisci Nome: ");
-    fgets(nuovoNodo -> nome, 20, stdin);
-    nuovoNodo -> nome[strlen(nuovoNodo -> nome)-1] = 0;
-    nuovoNodo -> nome[0] = toupper(nuovoNodo -> nome[0]);
+    fgets(nuovoNodo->nome, 20, stdin);
+    nuovoNodo->nome[strlen(nuovoNodo->nome) - 1] = 0;
+    nuovoNodo->nome[0] = toupper(nuovoNodo->nome[0]);
 
     printf("Inserisci Cognome: ");
-    fgets(nuovoNodo -> cognome, 20, stdin);
-    nuovoNodo -> cognome[strlen(nuovoNodo -> cognome)-1] = 0;
-    nuovoNodo -> cognome[0] = toupper(nuovoNodo -> cognome[0]);
+    fgets(nuovoNodo->cognome, 20, stdin);
+    nuovoNodo->cognome[strlen(nuovoNodo->cognome) - 1] = 0;
+    nuovoNodo->cognome[0] = toupper(nuovoNodo->cognome[0]);
     printf("---------------------------------\n");
 
     printf("Inserisci Email (non ti dimenticare la @): \n");
-    fgets(nuovoNodo -> email, 60, stdin);
-    nuovoNodo -> email[strlen(nuovoNodo -> email)-1] = 0;
+    fgets(nuovoNodo->email, 60, stdin);
+    nuovoNodo->email[strlen(nuovoNodo->email) - 1] = 0;
 
     //verifico che sia stata inserita la @
     char *ptr;
     char *a = "@";
-    ptr = strstr(nuovoNodo -> email, a);
+    ptr = strstr(nuovoNodo->email, a);
 
-    while(ptr == NULL) {
-		printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
+    while (ptr == NULL) {
+        printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
 
         printf("Inserisci Email (non ti dimenticare la @): \n");
-        fgets(nuovoNodo -> email, 60, stdin);
-        nuovoNodo -> email[strlen(nuovoNodo -> email)-1] = 0;
-        ptr = strstr(nuovoNodo -> email, a);
+        fgets(nuovoNodo->email, 60, stdin);
+        nuovoNodo->email[strlen(nuovoNodo->email) - 1] = 0;
+        ptr = strstr(nuovoNodo->email, a);
     }
     printf("---------------------------------\n");
     char psw[20];
     readPassword("Password: ", psw);
-    strcpy(nuovoNodo -> password, psw);
+    strcpy(nuovoNodo->password, psw);
 
     printf("---------------------------------\n");
     //controlli sulla data di nascita
@@ -71,19 +71,19 @@ struct utente* registrazioneUtente(struct utente* testa){
     printf("Inserisci data di nascita\n");
 
 
-	printColor("---Per potersi registrare bisogna avere almeno 16 anni---\n", COLOR_RED);
+    printColor("---Per potersi registrare bisogna avere almeno 16 anni---\n", COLOR_RED);
 
     do {
         do {
             printf("Giorno: ");
             scanf("%d", &giorno);
-           // printf("\n");
+            // printf("\n");
         } while (giorno < 0 || giorno > 31);
 
         do {
             printf("Mese: ");
             scanf("%d", &mese);
-           // printf("\n");
+            // printf("\n");
         } while (mese < 1 || mese > 12);
 
         printf("Anno (dal 1900 in poi): ");
@@ -107,13 +107,14 @@ struct utente* registrazioneUtente(struct utente* testa){
         }
 
         //controllo la correttezza di tutta la data inserita
-        if((giorno > 28 && mese == 2 && annoBis == false) || (giorno > 29 && mese == 2 && annoBis == true)) {
+        if ((giorno > 28 && mese == 2 && annoBis == false) || (giorno > 29 && mese == 2 && annoBis == true)) {
             dataCorretta = false;
         } else {
-            if (giorno > 31 && (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese == 8 || mese == 10 || mese == 12)) {
+            if (giorno > 31 &&
+                (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese == 8 || mese == 10 || mese == 12)) {
                 dataCorretta = false;
             } else {
-                if (giorno > 30 && (mese == 4 || mese == 6 || mese == 9 || mese == 11 )) {
+                if (giorno > 30 && (mese == 4 || mese == 6 || mese == 9 || mese == 11)) {
                     dataCorretta = false;
                 } else {
                     dataCorretta = true;
@@ -134,31 +135,32 @@ struct utente* registrazioneUtente(struct utente* testa){
         // per potersi registrare al sistema bisogna avere almeno 16 anni
         etaMinima = atoi(annoCorrente) - 16;
 
-    //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
-    } while(anno > etaMinima || dataCorretta == false);
+        //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
+    } while (anno > etaMinima || dataCorretta == false);
 
     snprintf(data, 10, "%d/%d/%d", giorno, mese, anno);
     //data = dataNascita();
-    strcpy(nuovoNodo -> dataNascita, data);
+    strcpy(nuovoNodo->dataNascita, data);
 
     //verifico se nel file ci sono già utenti registrati o meno
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
 
-    if(size == 0) { //file vuoto. quindi il primo utente registrato avrà i permessi di livello 2
+    if (size == 0) { //file vuoto. quindi il primo utente registrato avrà i permessi di livello 2
 
-        nuovoNodo -> id = ID;
-        nuovoNodo -> permessi = 2;
+        nuovoNodo->id = ID;
+        nuovoNodo->permessi = 2;
     } else { //file pieno
 
         ultimoID = letturaUltimoID();
-        nuovoNodo -> id = ultimoID + 1;
-        nuovoNodo -> permessi = 1;
+        nuovoNodo->id = ultimoID + 1;
+        nuovoNodo->permessi = 1;
     }
 
-    fprintf(fp, "%d,%s,%s,%s,%s,%s,%d\n", nuovoNodo -> id, nuovoNodo -> nome, nuovoNodo -> cognome, nuovoNodo -> email, nuovoNodo -> password, nuovoNodo -> dataNascita, nuovoNodo -> permessi);
+    fprintf(fp, "%d,%s,%s,%s,%s,%s,%d\n", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->email,
+            nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
 
-    nuovoNodo -> nextUtente = testa;
+    nuovoNodo->nextUtente = testa;
 
     testa = nuovoNodo;
 
@@ -177,11 +179,11 @@ int letturaUltimoID() {
     char *res;
 
     totRighe = contaRighe();
-    int i=1; //contatore
+    int i = 1; //contatore
 
-    while(1) {
-        res=fgets(buf, 200, fp);
-        if(res == NULL) {
+    while (1) {
+        res = fgets(buf, 200, fp);
+        if (res == NULL) {
             break;
         }
 
@@ -208,7 +210,7 @@ int contaRighe() {
     char buffer;
 
     while (true) {
-        fread((void *)&buffer,sizeof(char),1,fp);
+        fread((void *) &buffer, sizeof(char), 1, fp);
         if (feof(fp)) {
             break;
         }
@@ -220,19 +222,19 @@ int contaRighe() {
     return totRighe;
 }
 
-struct utente *accesso(struct utente *testa, char *email){
-    bool flag= false;
+struct utente *accesso(struct utente *testa, char *email) {
+    bool flag = false;
     struct utente *nuovoNodo = NULL;
     struct utente *temp;
 
     char pass[20] = "";
     readPassword("Password: ", pass);
 
-    for(temp = testa; temp != NULL; temp = temp -> nextUtente){
+    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 
-        if(strcmp(temp->email, email) == 0 && strcmp(temp -> password, pass) == 0){
+        if (strcmp(temp->email, email) == 0 && strcmp(temp->password, pass) == 0) {
 
-			printColor("---Login effettuato---\n", COLOR_GREEN);
+            printColor("---Login effettuato---\n", COLOR_GREEN);
             nuovoNodo = temp;
             flag = true;
             break;
@@ -240,27 +242,27 @@ struct utente *accesso(struct utente *testa, char *email){
         }
     }
 
-    if(!flag){
-		printColor("---Email e/o Password errati!---\n", COLOR_RED);
+    if (!flag) {
+        printColor("---Email e/o Password errati!---\n", COLOR_RED);
     }
 
-    if(flag)
+    if (flag)
         return nuovoNodo;
     else
         return NULL;
 }
 
-void stampaUtente(struct utente* utenteLogin) {
-    struct utente* temp = NULL;
+void stampaUtente(struct utente *utenteLogin) {
+    struct utente *temp = NULL;
     temp = utenteLogin;
 
-    printf("Id: %d\n", temp -> id);
-    printf("Nome: %s\n", temp -> nome);
-    printf("Cognome: %s\n", temp -> cognome);
-    printf("Email: %s\n", temp -> email);
-    printf("Data di nascita: %s\n", temp -> dataNascita);
+    printf("Id: %d\n", temp->id);
+    printf("Nome: %s\n", temp->nome);
+    printf("Cognome: %s\n", temp->cognome);
+    printf("Email: %s\n", temp->email);
+    printf("Data di nascita: %s\n", temp->dataNascita);
 
-    if(temp -> permessi == 1) {
+    if (temp->permessi == 1) {
         printf("Permessi: utente\n");
     } else {
         printf("Permessi: direttore\n");
@@ -270,7 +272,7 @@ void stampaUtente(struct utente* utenteLogin) {
 
 }
 
-struct utente* modificaUtente(struct utente* testa) {
+struct utente *modificaUtente(struct utente *testa) {
     int scelta;
     char risposta[3];
 
@@ -283,12 +285,12 @@ struct utente* modificaUtente(struct utente* testa) {
     FILE *fp;
     fp = fopen("utenti.csv", "a+"); //apertura file
 
-    struct utente* temp = NULL;
+    struct utente *temp = NULL;
 
     temp = testa;
 
     do {
-        while('\n'!=getchar());
+        while ('\n' != getchar());
 
         //elenco campi modificabili
         printf("1: Nome\n");
@@ -298,48 +300,48 @@ struct utente* modificaUtente(struct utente* testa) {
         printf("5: Data di nascita\n");
         scanf("%d", &scelta);
         printf("\n");
-        while('\n'!=getchar());
+        while ('\n' != getchar());
 
         switch (scelta) {
             case 1:
                 printf("Inserisci il nuovo nome: ");
-                fgets(temp -> nome, 20, stdin);
-                temp -> nome[strlen(temp -> nome)-1] = 0;
-                temp -> nome[0] = toupper(temp -> nome[0]);
+                fgets(temp->nome, 20, stdin);
+                temp->nome[strlen(temp->nome) - 1] = 0;
+                temp->nome[0] = toupper(temp->nome[0]);
                 break;
 
             case 2:
                 printf("Inserisci il nuovo cognome: ");
-                fgets(temp -> cognome, 20, stdin);
-                temp -> cognome[strlen(temp -> cognome)-1] = 0;
-                temp -> cognome[0] = toupper(temp -> cognome[0]);
+                fgets(temp->cognome, 20, stdin);
+                temp->cognome[strlen(temp->cognome) - 1] = 0;
+                temp->cognome[0] = toupper(temp->cognome[0]);
                 break;
 
             case 3:
                 printf("Inserisci la nuova Email (non ti dimenticare la @): \n");
-                fgets(temp -> email, 60, stdin);
-                temp -> email[strlen(temp -> email)-1] = 0;
+                fgets(temp->email, 60, stdin);
+                temp->email[strlen(temp->email) - 1] = 0;
 
                 //verifico che sia stata inserita la @
                 char *ptr;
                 char *a = "@";
-                ptr = strstr(temp -> email, a);
+                ptr = strstr(temp->email, a);
 
-                while(ptr == NULL) {
+                while (ptr == NULL) {
 
                     printColor("Attenzione! L'email inserita non e' corretta", COLOR_RED);
 
                     printf("Inserisci Email (non ti dimenticare la @): \n");
-                    fgets(temp -> email, 60, stdin);
-                    temp -> email[strlen(temp -> email)-1] = 0;
-                    ptr = strstr(temp -> email, a);
+                    fgets(temp->email, 60, stdin);
+                    temp->email[strlen(temp->email) - 1] = 0;
+                    ptr = strstr(temp->email, a);
                 }
                 break;
 
             case 4:;
                 char newPassword[20] = "";
                 readPassword("Inserisci la nuova password: ", newPassword);
-                strcpy(temp -> password, newPassword);
+                strcpy(temp->password, newPassword);
                 break;
 
 
@@ -354,13 +356,13 @@ struct utente* modificaUtente(struct utente* testa) {
                     do {
                         printf("Giorno: ");
                         scanf("%d", &giorno);
-                       // printf("\n");
+                        // printf("\n");
                     } while (giorno < 0 || giorno > 31);
 
                     do {
                         printf("Mese: ");
                         scanf("%d", &mese);
-                       // printf("\n");
+                        // printf("\n");
                     } while (mese < 1 || mese > 12);
 
                     printf("Anno (dal 1900 in poi): ");
@@ -384,13 +386,16 @@ struct utente* modificaUtente(struct utente* testa) {
                     }
 
                     //controllo la correttezza di tutta la data inserita
-                    if((giorno > 28 && mese == 2 && annoBis == false) || (giorno > 29 && mese == 2 && annoBis == true)) {
+                    if ((giorno > 28 && mese == 2 && annoBis == false) ||
+                        (giorno > 29 && mese == 2 && annoBis == true)) {
                         dataCorretta = false;
                     } else {
-                        if (giorno > 31 && (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese == 8 || mese == 10 || mese == 12)) {
+                        if (giorno > 31 &&
+                            (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese == 8 || mese == 10 ||
+                             mese == 12)) {
                             dataCorretta = false;
                         } else {
-                            if (giorno > 30 && (mese == 4 || mese == 6 || mese == 9 || mese == 11 )) {
+                            if (giorno > 30 && (mese == 4 || mese == 6 || mese == 9 || mese == 11)) {
                                 dataCorretta = false;
                             } else {
                                 dataCorretta = true;
@@ -411,12 +416,12 @@ struct utente* modificaUtente(struct utente* testa) {
                     // per potersi registrare al sistema bisogna avere almeno 16 anni
                     etaMinima = atoi(annoCorrente) - 16;
 
-                //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
-                } while(anno > etaMinima || dataCorretta == false);
+                    //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
+                } while (anno > etaMinima || dataCorretta == false);
 
                 snprintf(data, 10, "%d/%d/%d", giorno, mese, anno);
                 //data = dataNascita();
-                strcpy(temp -> dataNascita, data);
+                strcpy(temp->dataNascita, data);
                 break;
 
             default:
@@ -427,16 +432,17 @@ struct utente* modificaUtente(struct utente* testa) {
         fgets(risposta, 3, stdin);
 
         //rendo la risposta tutta maiuscola per evitare errori
-        for(int i=0; i<strlen(risposta); i++) {
+        for (int i = 0; i < strlen(risposta); i++) {
             risposta[i] = toupper(risposta[i]);
         }
 
 
-        if(strcmp(risposta, "NO") == 0) {
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%d\n", temp -> id, temp -> nome, temp -> cognome, temp -> email, temp -> password, temp -> dataNascita, temp -> permessi);
+        if (strcmp(risposta, "NO") == 0) {
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%d\n", temp->id, temp->nome, temp->cognome, temp->email, temp->password,
+                    temp->dataNascita, temp->permessi);
         }
 
-    } while(strcmp(risposta, "SI") == 0);
+    } while (strcmp(risposta, "SI") == 0);
 
     return testa;
 }
