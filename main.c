@@ -22,13 +22,13 @@ int main() {
     titolo();
 
     int scelta, scelta2, colonna = 0;
-    char email[60], buf[DIM];
+    char email[60], buf[BUFFER_SIZE];
 
     Utente *testaUtente = NULL;
     Utente *utenteLogin = NULL; //utente che avrà eseguito il login
     Utente *tempUtente = NULL; //temporanea
     Utente *tempUtente1 = NULL;
-
+    
     //Lettura utenti dal file
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
@@ -62,18 +62,22 @@ int main() {
                     tempUtente->cognome[strlen(tempUtente->cognome)] = 0;
                 }
                 if (colonna == 3) {
+                    strcpy(tempUtente->nick, tok);
+                    tempUtente->nick[strlen(tempUtente->nick)] = 0;
+                }
+                if (colonna == 4) {
                     strcpy(tempUtente->email, tok);
                     tempUtente->email[strlen(tempUtente->email)] = 0;
                 }
-                if (colonna == 4) {
+                if (colonna == 5) {
                     strcpy(tempUtente->password, tok);
                     tempUtente->password[strlen(tempUtente->password)] = 0;
                 }
-                if (colonna == 5) {
+                if (colonna == 6) {
                     strcpy(tempUtente->dataNascita, tok);
                     tempUtente->dataNascita[strlen(tempUtente->dataNascita)] = 0;
                 }
-                if (colonna == 6) {
+                if (colonna == 7) {
                     tempUtente->permessi = atoi(tok);
                 }
                 tok = strtok(NULL, ",");
@@ -84,14 +88,14 @@ int main() {
 
         }
     }
-
+    
     do {
 
         printf("---HOME---\n");
         printf("1: Registrazione\n");
         printf("2: Login\n");
         printf("0: Chiudi applicazione\n");
-        printf("---HOME---\n");
+        printf("----------\n");
         printf("-> ");
         scanf("%d", &scelta);
         printf("\n");

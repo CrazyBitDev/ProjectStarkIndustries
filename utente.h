@@ -1,12 +1,14 @@
 struct utente *registrazioneUtente(struct utente *testa);
 
-struct utente *accesso(struct utente *testa, char *email);
-
 int letturaUltimoID(void);
 
 int contaRighe(void);
 
+struct utente *accesso(struct utente *testa, char *email);
+
 void stampaUtente(struct utente *testa);
+
+void scriviUtenti(struct utente *testa);
 
 struct utente *modificaUtente(struct utente *utenteLogin);
 

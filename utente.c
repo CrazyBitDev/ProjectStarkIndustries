@@ -7,22 +7,24 @@ struct utente {
     int id;
     char nome[20];
     char cognome[20];
+    char nick[20];
     char email[60];
     char password[20];
-    char dataNascita[10]; // gg/mm/aaaa
+    char dataNascita[11]; // gg/mm/aaaa
     int permessi; //livello 1 = utente normale; livello 2 = direttore generale, ha accesso a tutto;
     struct utente *nextUtente; //puntatore al prossimo nodo
 } utente;
 
 struct utente *registrazioneUtente(struct utente *testa) {
     struct utente *nuovoNodo = NULL;
-
+    struct utente *temp;
+    
     nuovoNodo = (struct utente *) malloc(sizeof(struct utente));
 
     int ultimoID;
     bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per correttezza verifica data di nascita
-
+    bool flag = false; //flag per controllare univocità del campo email e nickname
 
     FILE *fp;
     fp = fopen("utenti.csv", "a+"); //apertura file
@@ -38,11 +40,51 @@ struct utente *registrazioneUtente(struct utente *testa) {
     fgets(nuovoNodo->cognome, 20, stdin);
     nuovoNodo->cognome[strlen(nuovoNodo->cognome) - 1] = 0;
     nuovoNodo->cognome[0] = toupper(nuovoNodo->cognome[0]);
-    printf("---------------------------------\n");
+    printf("-----------------------------\n");
+    
+    do {
+        flag = false;
+        printf("Inserisci Nickname: ");
+        fgets(nuovoNodo->nick, 20, stdin);
+        nuovoNodo->nick[strlen(nuovoNodo->nick) - 1] = 0;
+        
+        for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 
-    printf("Inserisci Email (non ti dimenticare la @): \n");
-    fgets(nuovoNodo->email, 60, stdin);
-    nuovoNodo->email[strlen(nuovoNodo->email) - 1] = 0;
+            if (strcmp(temp->nick, nuovoNodo->nick) == 0) {
+                flag = true;
+                break;
+            }
+        }
+        
+        if (flag) {
+            printColor("---Nickname gia' in uso!---\n", COLOR_RED);
+            printColor("---Si prega di sceglierne un altro---\n", COLOR_RED);
+        }
+        
+    } while(flag);
+    
+    printf("-----------------------------\n");
+    
+    do {
+        flag = false;
+        printf("Inserisci Email (non ti dimenticare la @): \n");
+        fgets(nuovoNodo->email, 60, stdin);
+        nuovoNodo->email[strlen(nuovoNodo->email) - 1] = 0;
+        
+        for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+
+            if (strcmp(temp->email, nuovoNodo->email) == 0) {
+                flag = true;
+                break;
+            }
+        }
+        
+        if (flag) {
+            printColor("---Email gia' in uso!---\n", COLOR_RED);
+            printColor("---Si prega di sceglierne un'altra---\n", COLOR_RED);
+        }
+        
+    } while (flag);
 
     //verifico che sia stata inserita la @
     char *ptr;
@@ -57,40 +99,36 @@ struct utente *registrazioneUtente(struct utente *testa) {
         nuovoNodo->email[strlen(nuovoNodo->email) - 1] = 0;
         ptr = strstr(nuovoNodo->email, a);
     }
-    printf("---------------------------------\n");
+    
+    printf("-----------------------------\n");
     char psw[20];
     readPassword("Password: ", psw);
     strcpy(nuovoNodo->password, psw);
 
-    printf("---------------------------------\n");
+    printf("-----------------------------\n");
     //controlli sulla data di nascita
-    char data[10];
+    char data[11];
     int giorno, mese, anno;
     int etaMinima;
 
     printf("Inserisci data di nascita\n");
 
-
     printColor("---Per potersi registrare bisogna avere almeno 16 anni---\n", COLOR_RED);
-
+    
     do {
         do {
             printf("Giorno: ");
             scanf("%d", &giorno);
-            // printf("\n");
         } while (giorno < 0 || giorno > 31);
 
         do {
             printf("Mese: ");
             scanf("%d", &mese);
-            // printf("\n");
         } while (mese < 1 || mese > 12);
 
         printf("Anno (dal 1900 in poi): ");
         scanf("%d", &anno);
-        // printf("\n");
-        printf("---------------------------------\n");
-
+        
         //controllo se l'anno inserito è bisestile o meno
         if (anno % 4 == 0) {
             if (anno % 100 == 0) {
@@ -138,7 +176,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
         //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
     } while (anno > etaMinima || dataCorretta == false);
 
-    snprintf(data, 10, "%d/%d/%d", giorno, mese, anno);
+    snprintf(data, 11, "%d/%d/%d", giorno, mese, anno);
     //data = dataNascita();
     strcpy(nuovoNodo->dataNascita, data);
 
@@ -147,18 +185,19 @@ struct utente *registrazioneUtente(struct utente *testa) {
     long size = ftell(fp);
 
     if (size == 0) { //file vuoto. quindi il primo utente registrato avrà i permessi di livello 2
-
+        
         nuovoNodo->id = ID;
         nuovoNodo->permessi = 2;
+        
     } else { //file pieno
 
         ultimoID = letturaUltimoID();
         nuovoNodo->id = ultimoID + 1;
         nuovoNodo->permessi = 1;
+        
     }
 
-    fprintf(fp, "%d,%s,%s,%s,%s,%s,%d\n", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->email,
-            nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
+    fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->nick, nuovoNodo->cognome, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
 
     nuovoNodo->nextUtente = testa;
 
@@ -259,6 +298,7 @@ void stampaUtente(struct utente *utenteLogin) {
     printf("Id: %d\n", temp->id);
     printf("Nome: %s\n", temp->nome);
     printf("Cognome: %s\n", temp->cognome);
+    printf("Nickname: %s\n", temp->nick);
     printf("Email: %s\n", temp->email);
     printf("Data di nascita: %s\n", temp->dataNascita);
 
@@ -282,9 +322,6 @@ struct utente *modificaUtente(struct utente *testa) {
     bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per correttezza verifica data di nascita
 
-    FILE *fp;
-    fp = fopen("utenti.csv", "a+"); //apertura file
-
     struct utente *temp = NULL;
 
     temp = testa;
@@ -293,11 +330,13 @@ struct utente *modificaUtente(struct utente *testa) {
         while ('\n' != getchar());
 
         //elenco campi modificabili
+        printf("----------\n");
         printf("1: Nome\n");
-        printf("2: Cogome\n");
+        printf("2: Cognome\n");
         printf("3: Email\n");
         printf("4: Password\n");
         printf("5: Data di nascita\n");
+        printf("-> ");
         scanf("%d", &scelta);
         printf("\n");
         while ('\n' != getchar());
@@ -436,10 +475,8 @@ struct utente *modificaUtente(struct utente *testa) {
             risposta[i] = toupper(risposta[i]);
         }
 
-
         if (strcmp(risposta, "NO") == 0) {
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%d\n", temp->id, temp->nome, temp->cognome, temp->email, temp->password,
-                    temp->dataNascita, temp->permessi);
+            scriviUtenti(testa);
         }
 
     } while (strcmp(risposta, "SI") == 0);
@@ -479,3 +516,16 @@ struct utente *eliminaUtente(struct utente *utenteLogin) {
     return utenteLogin;
 }
 
+void scriviUtenti(struct utente *testa) {
+    struct utente *temp;
+    
+    FILE *fp;
+    fp = fopen("utentiTemp.csv", "w"); //apertura file
+    
+    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+        fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d\n", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->password, temp->dataNascita, temp->permessi);
+    }
+    remove("utenti.csv");
+    rename("utentiTemp.csv", "utenti.csv");
+    fclose(fp);
+}
