@@ -34,7 +34,11 @@ int main() {
     fpU = fopen("utenti.csv", "r");
 
     if (fpU == NULL) {
-        printColor("File \"utenti\" non trovato!\n", COLOR_RED);
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+        printColor("\t\t\t|File \"utenti\" non trovato!   |\n", COLOR_RED);
+        printColor("\t\t\t|\t...                   |\n", COLOR_RED);
+        printColor("\t\t\t|File in creazione            |\n", COLOR_RED);
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
     } else {
         while (!feof(fpU)) {
             fgets(buf, BUFFER_SIZE, fpU);
@@ -117,18 +121,23 @@ int main() {
                 char *valore = (char *) utenteLogin;
 
                 if (valore != NULL) {
+                    
                     printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
                     //Operazioni che può effettuare l'utente una volta che ha eseguito il login
                     do {
-                        printf("---MENU'---\n");
+                        printf("\n---MENU'---\n");
                         printf("1: Visualizza informazioni personali\n");
                         printf("2: Modifica dati personali\n");
+                        printf("3: Elimina account\n");
                         /*printf("3: Aggiungi dati mostra\n");
                         printf("4: Modifica dati mostra\n");
                         printf("5: Cancella dati mostra\n");*/
                         printf("0: Logout\n");
+                        printf("----------\n");
+                        printf("-> ");
                         scanf("%d", &scelta2);
                         printf("\n");
+                        
 
                         switch (scelta2) {
                             case 1:
@@ -137,7 +146,11 @@ int main() {
                                 break;
 
                             case 2:
-                                testaUtente = modificaUtente(utenteLogin);
+                                testaUtente = modificaUtente(utenteLogin, testaUtente);
+                                break;
+                                
+                            case 3:
+                                testaUtente = eliminaUtente(utenteLogin, testaUtente);
                                 break;
 
                             default:
@@ -147,7 +160,7 @@ int main() {
                                     break;*/
                         }
 
-                    } while (scelta2 != 0);
+                    } while (scelta2 != 0 && scelta2 != 3);
                 }
                 break;
 

@@ -10,11 +10,11 @@ void stampaUtente(struct utente *testa);
 
 void scriviUtenti(struct utente *testa);
 
-struct utente *modificaUtente(struct utente *utenteLogin);
+struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa);
 
 struct utente *ordinamento(struct utente *testa);
 
-struct utente *eliminaUtente(struct utente *utenteLogin);
+struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa);
 
 typedef struct utente Utente;
 

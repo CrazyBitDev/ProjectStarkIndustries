@@ -1,5 +1,4 @@
 //Gestione Utente
-#define ID 1
 #define BUFFER_SIZE 1024
 
 //Definizione della struct Utente
@@ -186,18 +185,20 @@ struct utente *registrazioneUtente(struct utente *testa) {
 
     if (size == 0) { //file vuoto. quindi il primo utente registrato avrà i permessi di livello 2
         
-        nuovoNodo->id = ID;
+        nuovoNodo->id = 0;
         nuovoNodo->permessi = 2;
         
-    } else { //file pieno
+        fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
+          
+     } else { //file pieno
 
         ultimoID = letturaUltimoID();
         nuovoNodo->id = ultimoID + 1;
         nuovoNodo->permessi = 1;
         
+        fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
+        
     }
-
-    fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->nick, nuovoNodo->cognome, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
 
     nuovoNodo->nextUtente = testa;
 
@@ -257,7 +258,8 @@ int contaRighe() {
             totRighe++;
         }
     }
-
+    
+    fclose(fp);
     return totRighe;
 }
 
@@ -312,7 +314,7 @@ void stampaUtente(struct utente *utenteLogin) {
 
 }
 
-struct utente *modificaUtente(struct utente *testa) {
+struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) {
     int scelta;
     char risposta[3];
 
@@ -324,7 +326,7 @@ struct utente *modificaUtente(struct utente *testa) {
 
     struct utente *temp = NULL;
 
-    temp = testa;
+    temp = utenteLogin;
 
     do {
         while ('\n' != getchar());
@@ -389,7 +391,7 @@ struct utente *modificaUtente(struct utente *testa) {
                 //controlli sulla data di nascita
                 printf("Inserisci data di nascita\n");
 
-                printColor("---Per potersi registrare bisogna avere almeno 16 anni---", COLOR_RED);
+                printColor("---Per potersi registrare bisogna avere almeno 16 anni---\n", COLOR_RED);
 
                 do {
                     do {
@@ -461,12 +463,14 @@ struct utente *modificaUtente(struct utente *testa) {
                 snprintf(data, 10, "%d/%d/%d", giorno, mese, anno);
                 //data = dataNascita();
                 strcpy(temp->dataNascita, data);
+                
+                while ('\n' != getchar());
                 break;
 
             default:
                 break;
         }
-
+        
         printf("Vuoi modificare un altro campo? (si/no): ");
         fgets(risposta, 3, stdin);
 
@@ -484,12 +488,85 @@ struct utente *modificaUtente(struct utente *testa) {
     return testa;
 }
 
-//ordinamento lista - Bubble sort
-//forse non serve, per ora lo lascio
+struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa) {
+    char risposta[3];
+    struct utente *curr, *prec;
+    struct utente *temp = NULL;
+
+    temp = utenteLogin;
+    prec = NULL;
+    curr = testa;
+    
+    do {
+        while ('\n' != getchar());
+        printColor("ATTENZIONE!\n", COLOR_RED);
+        printf("Sei sicuro/a di voler eliminare il tuo account?\n");
+        printf("Per poter riaccedere dovrai creare un nuovo account\n");
+        printf("Risposta (si/no): ");
+        fgets(risposta, 3, stdin);
+        printf("\n");
+        
+        //rendo la risposta tutta maiuscola per evitare errori
+        for (int i = 0; i < strlen(risposta); i++) {
+            risposta[i] = toupper(risposta[i]);
+        }
+        
+    }while(strcmp(risposta, "SI") != 0 && strcmp(risposta, "NO") != 0);
+    
+    if (strcmp(risposta, "SI") == 0) {
+        
+        while (curr != NULL && temp->id != curr->id) {
+            prec = curr;
+            curr = curr->nextUtente;
+        }
+        
+        if(temp->id == curr->id) {
+            if(prec == NULL) { //elemento trovato in testa
+                testa = curr->nextUtente;
+            } else { //elemento al centro della lista
+                prec->nextUtente = curr->nextUtente;
+            }
+            free(curr);
+        }
+        
+        scriviUtenti(testa);
+    } else {
+        printColor("-----------------------------\n", COLOR_CYAN);
+        printf("%s siamo contenti che tu abbia deciso di rimanere con noi!\n", temp->nome);
+    }
+    
+    return testa;
+}
+
+void scriviUtenti(struct utente *testa) {
+    struct utente *temp;
+
+    FILE *fp;
+    fp = fopen("utentiTemp.csv", "w"); //apertura file
+    
+    ordinamento(testa);
+    
+    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+        long size = ftell(fp);
+
+        if (size == 0) { //file vuoto.
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->password, temp->dataNascita, temp->permessi);
+        } else { //file pieno
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->password, temp->dataNascita, temp->permessi);
+        }
+    }
+    
+    remove("utenti.csv");
+    rename("utentiTemp.csv", "utenti.csv");
+    fclose(fp);
+}
+
+//ordinamento lista
 struct utente *ordinamento(struct utente *testa) {
     Utente *p, *ultimo;
-    int flag, temp;
-
+    int flag, tempId, tempPermessi;
+    char tempNome[20], tempCognome[20], tempNick[20], tempEmail[60], tempPassword[20], tempDataNascita[11];
+    
     ultimo = NULL;
 
     flag = 1;
@@ -498,9 +575,39 @@ struct utente *ordinamento(struct utente *testa) {
         flag = 0;
         while (p->nextUtente != ultimo) {
             if (p->id > (p->nextUtente)->id) {
-                temp = p->id;
+                
+                tempId = p->id;
                 p->id = (p->nextUtente)->id;
-                (p->nextUtente)->id = temp;
+                (p->nextUtente)->id = tempId;
+                
+                strcpy(tempNome, p->nome);
+                strcpy(p->nome, (p->nextUtente)->nome);
+                strcpy((p->nextUtente)->nome, tempNome);
+                
+                strcpy(tempCognome, p->cognome);
+                strcpy(p->cognome, (p->nextUtente)->cognome);
+                strcpy((p->nextUtente)->cognome, tempCognome);
+                
+                strcpy(tempNick, p->nick);
+                strcpy(p->nick, (p->nextUtente)->nick);
+                strcpy((p->nextUtente)->nick, tempNick);
+                
+                strcpy(tempEmail, p->email);
+                strcpy(p->email, (p->nextUtente)->email);
+                strcpy((p->nextUtente)->email, tempEmail);
+                
+                strcpy(tempPassword, p->password);
+                strcpy(p->password, (p->nextUtente)->password);
+                strcpy((p->nextUtente)->password, tempPassword);
+                
+                strcpy(tempDataNascita, p->dataNascita);
+                strcpy(p->dataNascita, (p->nextUtente)->dataNascita);
+                strcpy((p->nextUtente)->dataNascita, tempDataNascita);
+                
+                tempPermessi = p->permessi;
+                p->permessi = (p->nextUtente)->permessi;
+                (p->nextUtente)->permessi = tempPermessi;
+                
                 flag = 1;
             }
             p = p->nextUtente;
@@ -509,23 +616,4 @@ struct utente *ordinamento(struct utente *testa) {
     }
 
     return testa;
-}
-
-struct utente *eliminaUtente(struct utente *utenteLogin) {
-
-    return utenteLogin;
-}
-
-void scriviUtenti(struct utente *testa) {
-    struct utente *temp;
-    
-    FILE *fp;
-    fp = fopen("utentiTemp.csv", "w"); //apertura file
-    
-    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
-        fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d\n", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->password, temp->dataNascita, temp->permessi);
-    }
-    remove("utenti.csv");
-    rename("utentiTemp.csv", "utenti.csv");
-    fclose(fp);
 }
