@@ -28,7 +28,7 @@ int main() {
     Utente *utenteLogin = NULL; //utente che avrà eseguito il login
     Utente *tempUtente = NULL; //temporanea
     Utente *tempUtente1 = NULL;
-    
+
     //Lettura utenti dal file
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
@@ -92,7 +92,7 @@ int main() {
 
         }
     }
-    
+
     do {
 
         printf("---HOME---\n");
@@ -121,7 +121,7 @@ int main() {
                 char *valore = (char *) utenteLogin;
 
                 if (valore != NULL) {
-                    
+
                     printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
                     //Operazioni che può effettuare l'utente una volta che ha eseguito il login
                     do {
@@ -129,15 +129,15 @@ int main() {
                         printf("1: Visualizza informazioni personali\n");
                         printf("2: Modifica dati personali\n");
                         printf("3: Elimina account\n");
-                        /*printf("3: Aggiungi dati mostra\n");
-                        printf("4: Modifica dati mostra\n");
-                        printf("5: Cancella dati mostra\n");*/
+                        /*printf("4: Aggiungi dati mostra\n");
+                        printf("5: Modifica dati mostra\n");
+                        printf("6: Cancella dati mostra\n");*/
                         printf("0: Logout\n");
                         printf("----------\n");
                         printf("-> ");
                         scanf("%d", &scelta2);
                         printf("\n");
-                        
+
 
                         switch (scelta2) {
                             case 1:
@@ -148,7 +148,7 @@ int main() {
                             case 2:
                                 testaUtente = modificaUtente(utenteLogin, testaUtente);
                                 break;
-                                
+
                             case 3:
                                 testaUtente = eliminaUtente(utenteLogin, testaUtente);
                                 break;
