@@ -154,6 +154,7 @@ int main() {
                                 break;
 
                             case 4:
+                                while ('\n' != getchar());
                                 aggiungiMostra(testaUtente,utenteLogin);
                                 break;
 

@@ -6,7 +6,7 @@ struct mostre *eliminaMostra(struct mostre *testa, struct utente *utenteLogin);
 
 void scriviMostre(struct mostre *testa);
 
-struct mostre *ordinamento(struct mostre *testa);
+//struct mostre *ordinamento(struct mostre *testa);
 
 typedef struct mostre Mostre;
 

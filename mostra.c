@@ -16,6 +16,15 @@ struct mostre
 
 struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 {
+    bool flagDate = false;
+    char dataIn[11];
+    bool dataCorrettaIn = true;
+    int giornoIn, meseIn, annoIn;
+
+    char dataFin[11];
+    bool dataCorrettaFin = true;
+    int giornoFin, meseFin, annoFin;
+
     struct utente *temp = NULL;
     temp = utenteLogin;
     if (temp->permessi == 2)
@@ -38,10 +47,6 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
         do
         {
-            char dataIn[11];
-            bool dataCorrettaIn = true;
-            int giornoIn, meseIn, annoIn;
-
             printf("Inserisci data d'inizio mostra\n");
 
             do
@@ -76,14 +81,10 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
             while ('\n' != getchar());
 
-            snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIN, annoIn);
+            snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
 
 
             printf("\n");
-
-            char dataFin[11];
-            bool dataCorrettaFin = true;
-            int giornoFin, meseFin, annoFin;
 
             printf("Inserisci data di fine mostra\n");
 
@@ -123,13 +124,12 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
 
             printf("\n");
-            bool flagDate = false;
             if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
             {
                 //La mostra dura solo un giorno di conseguenza le date coincidono
                 flagDate = true;
             }
-            else if(annoIn < annoFin || (annoIn == annoFin && meseIn < meseFin) || (annoIn == annoFin && meseIn = meseFin && giornoIn < giornoFin))
+            else if(annoIn < annoFin || (annoIn == annoFin && meseIn < meseFin) || (annoIn == annoFin && meseIn == meseFin && giornoIn < giornoFin))
             {
                 //La data d'inizio precede quella di fine
                 flagDate = true;
@@ -140,7 +140,7 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
                 flagDate = false;
                 printColor("Attenzione!\n", COLOR_RED);
                 printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                printf("Si prega di inserire nuovamente le date.\n");
+                printf("Si prega di inserire nuovamente le date.\n\n");
 
             }
         }
@@ -149,8 +149,7 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
         strcpy(nuovoNodo->dataFine, dataFin);
 
         printf("Inserisci Il Numero delle Opere: ");
-        fgets(nuovoNodo->nOpere, stdin);
-        nuovoNodo->nOpere[strlen(nuovoNodo->nOpere) - 1] = 0;
+        scanf("%d",&nuovoNodo->nOpere);
         printf("\n");
 
 
@@ -173,7 +172,7 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
             ultimoID = letturaUltimoID(nomeFile);
             nuovoNodo->id = ultimoID + 1;
 
-            fprintf(fp, "%d,%s,%s,%s,%s,%d", nuovoNodo->id,nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%d", nuovoNodo->id,nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
 
         }
 
@@ -184,14 +183,16 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
         fclose(fp);
 
         return nuovoNodo;
-    } else {
+    }
+    else
+    {
         printColor("Attenzione!\n", COLOR_RED);
         printf("%s non hai i permessi per poter accedere a questa funzione.\n", temp->nome);
     }
 
 }
 
-struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
+/*struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
 {
     struct utente *temp = NULL;
     temp = utenteLogin;
@@ -491,4 +492,4 @@ struct mostre *ordinamento(struct mostre *testa)
     }
 
     return testa;
-};
+};*/
