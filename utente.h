@@ -1,9 +1,5 @@
 struct utente *registrazioneUtente(struct utente *testa);
 
-int letturaUltimoID(void);
-
-int contaRighe(void);
-
 struct utente *accesso(struct utente *testa, char *email);
 
 void stampaUtente(struct utente *testa);

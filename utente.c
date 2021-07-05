@@ -1,5 +1,6 @@
 //Gestione Utente
 #define BUFFER_SIZE 1024
+#define nomeFile "utenti.csv"
 
 //Definizione della struct Utente
 struct utente {
@@ -45,7 +46,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
         printf("Inserisci Nickname: ");
         fgets(nuovoNodo->nick, 20, stdin);
         nuovoNodo->nick[strlen(nuovoNodo->nick) - 1] = 0;
-        
+        /*
         for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 
             if (strcmp(temp->nick, nuovoNodo->nick) == 0) {
@@ -57,7 +58,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
         if (flag) {
             printColor("---Nickname gia' in uso!---\n", COLOR_RED);
             printColor("---Si prega di sceglierne un altro---\n", COLOR_RED);
-        }
+        } */
         
     } while(flag);
     
@@ -152,9 +153,9 @@ struct utente *registrazioneUtente(struct utente *testa) {
         
         fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
           
-     } else { //file pieno
-
-        ultimoID = letturaUltimoID();
+    } else { //file pieno
+        
+        ultimoID = letturaUltimoID(nomeFile);
         nuovoNodo->id = ultimoID + 1;
         nuovoNodo->permessi = 1;
         
@@ -171,59 +172,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
     return nuovoNodo;
 }
 
-int letturaUltimoID() {
-    FILE *fp;
-    fp = fopen("utenti.csv", "r"); //apertura file
 
-    int totRighe = 0;
-    int ultimoID = 0;
-    char buf[BUFFER_SIZE];
-    char *res;
-
-    totRighe = contaRighe();
-    int i = 1; //contatore
-
-    while (1) {
-        res = fgets(buf, 200, fp);
-        if (res == NULL) {
-            break;
-        }
-
-        if (i == totRighe) {
-            char *tok;
-            tok = strtok(buf, ",");
-            ultimoID = atoi(tok);
-        } else {
-            i++;
-        }
-    }
-
-    fclose(fp);
-    return ultimoID;
-}
-
-
-int contaRighe() {
-
-    FILE *fp;
-    fp = fopen("utenti.csv", "r"); //apertura file
-
-    int totRighe = 0;
-    char buffer;
-
-    while (true) {
-        fread((void *) &buffer, sizeof(char), 1, fp);
-        if (feof(fp)) {
-            break;
-        }
-        if (buffer == '\n') {
-            totRighe++;
-        }
-    }
-    
-    fclose(fp);
-    return totRighe;
-}
 
 struct utente *accesso(struct utente *testa, char *email) {
     bool flag = false;
@@ -474,7 +423,7 @@ struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa) {
 }
 
 void scriviUtenti(struct utente *testa) {
-    struct utente *temp;
+    struct utente *temp =  NULL;
 
     FILE *fp;
     fp = fopen("utentiTemp.csv", "w"); //apertura file

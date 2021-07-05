@@ -3,6 +3,7 @@
 #define COLOR_RED     12
 #define COLOR_MAGENTA 13
 #define COLOR_RESET   15
+#define BUFFER_SIZE 1024
 
 #ifdef _WIN32
 
@@ -166,4 +167,58 @@ bool verificaData(int giorno, int mese, int anno) {
     }
     
     return dataCorretta;
+}
+
+int letturaUltimoID(char *nomeFile) {
+    FILE *fp;
+    fp = fopen(nomeFile, "r"); //apertura file
+
+    int totRighe = 0;
+    int ultimoID = 0;
+    char buf[BUFFER_SIZE];
+    char *res;
+
+    totRighe = contaRighe(nomeFile);
+    int i = 1; //contatore
+
+    while (1) {
+        res = fgets(buf, 200, fp);
+        if (res == NULL) {
+            break;
+        }
+
+        if (i == totRighe) {
+            char *tok;
+            tok = strtok(buf, ",");
+            ultimoID = atoi(tok);
+        } else {
+            i++;
+        }
+    }
+
+    fclose(fp);
+    return ultimoID;
+}
+
+
+int contaRighe(char *nomeFile) {
+
+    FILE *fp;
+    fp = fopen(nomeFile, "r"); //apertura file
+
+    int totRighe = 0;
+    char buffer;
+
+    while (true) {
+        fread((void *) &buffer, sizeof(char), 1, fp);
+        if (feof(fp)) {
+            break;
+        }
+        if (buffer == '\n') {
+            totRighe++;
+        }
+    }
+    
+    fclose(fp);
+    return totRighe;
 }
