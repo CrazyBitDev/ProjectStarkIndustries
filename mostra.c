@@ -1,5 +1,6 @@
 //Gestione Mostre
 #define BUFFER_SIZE 1024
+#define nomeFile "mostre.csv"
 
 //Definizione struct mostre
 struct mostre
@@ -7,8 +8,8 @@ struct mostre
     int id;
     char citta[20];
     char indirizzo[30];
-    char dataInizio[10];
-    char dataFine[10];
+    char dataInizio[11];
+    char dataFine[11];
     int nOpere; // Numero opere
     struct mostre *nextMostra; //puntatore al prossimo nodo
 } mostre;
@@ -35,53 +36,146 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
         nuovoNodo->indirizzo[strlen(nuovoNodo->indirizzo) - 1] = 0;
         printf("\n");
 
-        printf("Inserisci Data Inizio (non ti dimenticare di separarli con /): \n");
-        fgets(nuovoNodo->dataInizio, 60, stdin);
-        nuovoNodo->dataInizio[strlen(nuovoNodo->dataInizio) - 1] = 0;
-
-        //verifico che sia stata inserita la /
-        char *ptr;
-        char *a = "/";
-        ptr = strstr(nuovoNodo->dataInizio, a);
-
-        while (ptr == NULL)
+        do
         {
-            printColor("Attenzione! La data inserita non e' corretta\n", COLOR_RED);
+            char dataIn[11];
+            bool dataCorrettaIn = true;
+            int giornoIn, meseIn, annoIn;
 
-            printf("Inserisci Data Inizio (non ti dimenticare di separarli con /): \n");
-            fgets(nuovoNodo->dataInizio, 60, stdin);
-            nuovoNodo->dataInizio[strlen(nuovoNodo->dataInizio) - 1] = 0;
-            ptr = strstr(nuovoNodo->dataInizio, a);
+            printf("Inserisci data d'inizio mostra\n");
+
+            do
+            {
+                if(!dataCorrettaIn)
+                {
+                    printColor("\nAttenzione!\n", COLOR_RED);
+                    printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                }
+
+                do
+                {
+                    printf("Giorno: ");
+                    scanf("%d", &giornoIn);
+                }
+                while (giornoIn < 0 || giornoIn > 31);
+
+                do
+                {
+                    printf("Mese: ");
+                    scanf("%d", &meseIn);
+                }
+                while (meseIn < 1 || meseIn > 12);
+
+                printf("Anno: ");
+                scanf("%d", &annoIn);
+
+                dataCorrettaIn = verificaData(giornoIn, meseIn, annoIn);
+
+            }
+            while (!dataCorrettaIn);
+
+            while ('\n' != getchar());
+
+            snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIN, annoIn);
+
+
+            printf("\n");
+
+            char dataFin[11];
+            bool dataCorrettaFin = true;
+            int giornoFin, meseFin, annoFin;
+
+            printf("Inserisci data di fine mostra\n");
+
+            do
+            {
+                if(!dataCorrettaFin)
+                {
+                    printColor("\nAttenzione!\n", COLOR_RED);
+                    printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                }
+
+                do
+                {
+                    printf("Giorno: ");
+                    scanf("%d", &giornoFin);
+                }
+                while (giornoFin< 0 || giornoFin > 31);
+
+                do
+                {
+                    printf("Mese: ");
+                    scanf("%d", &meseFin);
+                }
+                while (meseFin < 1 || meseFin > 12);
+
+                printf("Anno: ");
+                scanf("%d", &annoFin);
+
+                dataCorrettaFin = verificaData(giornoFin, meseFin, annoFin);
+
+            }
+            while (!dataCorrettaFin);
+
+            while ('\n' != getchar());
+
+            snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
+
+
+            printf("\n");
+            bool flagDate = false;
+            if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
+            {
+                //La mostra dura solo un giorno di conseguenza le date coincidono
+                flagDate = true;
+            }
+            else if(annoIn < annoFin || (annoIn == annoFin && meseIn < meseFin) || (annoIn == annoFin && meseIn = meseFin && giornoIn < giornoFin))
+            {
+                //La data d'inizio precede quella di fine
+                flagDate = true;
+            }
+            else
+            {
+                //La data di fine precede quella d'inizio
+                flagDate = false;
+                printColor("Attenzione!\n", COLOR_RED);
+                printf("La data di fine mostra deve susseguire la data d'inizio.\n");
+                printf("Si prega di inserire nuovamente le date.\n");
+
+            }
         }
-        printf("\n");
-
-        printf("Inserisci Data Fine (non ti dimenticare di separarli con /): \n");
-        fgets(nuovoNodo->dataFine, 60, stdin);
-        nuovoNodo->dataFine[strlen(nuovoNodo->dataFine) - 1] = 0;
-
-        //verifico che sia stata inserita la /
-        char *ptr2;
-        char *a2 = "/";
-        ptr = strstr(nuovoNodo->dataInizio, a2);
-
-        while (ptr2 == NULL)
-        {
-
-            printColor("Attenzione! La data inserita non e' corretta\n", COLOR_RED);
-
-            printf("Inserisci Data Fine (non ti dimenticare di separarli con /): \n");
-            fgets(nuovoNodo->dataFine, 60, stdin);
-            nuovoNodo->dataFine[strlen(nuovoNodo->dataFine) - 1] = 0;
-            ptr2 = strstr(nuovoNodo->dataFine, a2);
-        }
-        printf("\n");
+        while(!flagDate);
+        strcpy(nuovoNodo->dataInizio, dataIn);
+        strcpy(nuovoNodo->dataFine, dataFin);
 
         printf("Inserisci Il Numero delle Opere: ");
         fgets(nuovoNodo->nOpere, stdin);
         nuovoNodo->nOpere[strlen(nuovoNodo->nOpere) - 1] = 0;
         printf("\n");
-        fprintf(fp, "%s,%s,%s,%s,%d\n", nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio,
-                nuovoNodo->dataFine, nuovoNodo->nOpere);
+
+
+        //verifico se nel file ci sono già utenti registrati o meno
+        int ultimoID;
+        fseek(fp, 0, SEEK_END);
+        long size = ftell(fp);
+
+        if (size == 0)   //file vuoto.
+        {
+
+            nuovoNodo->id = 0;
+
+            fprintf(fp, "%d,%s,%s,%s,%s,%d", nuovoNodo->id,nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+
+        }
+        else     //file pieno
+        {
+
+            ultimoID = letturaUltimoID(nomeFile);
+            nuovoNodo->id = ultimoID + 1;
+
+            fprintf(fp, "%d,%s,%s,%s,%s,%d", nuovoNodo->id,nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+
+        }
 
         nuovoNodo->nextMostra = testa;
 
@@ -90,6 +184,9 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
         fclose(fp);
 
         return nuovoNodo;
+    } else {
+        printColor("Attenzione!\n", COLOR_RED);
+        printf("%s non hai i permessi per poter accedere a questa funzione.\n", temp->nome);
     }
 
 }
@@ -140,50 +237,87 @@ struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
                 break;
 
             case 3:
-                printf("Inserisci la data d'inizio(non ti dimenticare di separarli con /): ");
-                fgets(nuovoNodo->dataInizio, 20, stdin);
-                nuovoNodo->dataInizio[strlen(nuovoNodo->dataInizio) - 1] = 0;
-                nuovoNodo->dataInizio[0] = toupper(nuovoNodo->dataInizio[0]);
+                char dataIn[11];
+                bool dataCorrettaIn = true;
+                int giornoIn, meseIn, annoIn;
 
-                //verifico che sia stata inserita la /
-                char *ptr;
-                char *a = "/";
-                ptr = strstr(nuovoNodo->dataInizio, a);
+                printf("Inserisci data d'inizio mostra\n");
 
-                while (ptr == NULL)
+                do
                 {
-                    printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
+                    if(!dataCorrettaIn)
+                    {
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                    }
 
-                    printf("Inserisci Data Inizio (non ti dimenticare di separarli con /): \n");
-                    fgets(nuovoNodo->dataInizio, 20, stdin);
-                    nuovoNodo->dataInizio[strlen(nuovoNodo->dataInizio) - 1] = 0;
-                    ptr = strstr(nuovoNodo->dataInizio, a);
+                    do
+                    {
+                        printf("Giorno: ");
+                        scanf("%d", &giornoIn);
+                    }
+                    while (giornoIn < 0 || giornoIn > 31);
+
+                    do
+                    {
+                        printf("Mese: ");
+                        scanf("%d", &meseIn);
+                    }
+                    while (meseIn < 1 || meseIn > 12);
+
+                    printf("Anno: ");
+                    scanf("%d", &annoIn);
+
+                    dataCorrettaIn = verificaData(giornoIn, meseIn, annoIn);
+
                 }
-                printf("\n");
+                while (!dataCorrettaIn);
+
+                while ('\n' != getchar());
+
+                snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIN, annoIn);
                 break;
 
             case 4:
-                printf("Inserisci la data di fine(non ti dimenticare di separarli con /): ");
-                fgets(nuovoNodo->dataFine, 20, stdin);
-                nuovoNodo->dataFine[strlen(nuovoNodo->dataFine) - 1] = 0;
-                nuovoNodo->dataFine[0] = toupper(nuovoNodo->dataFine[0]);
+                char dataFin[11];
+                bool dataCorrettaFin = true;
+                int giornoFin, meseFin, annoFin;
 
-                //verifico che sia stata inserita la /
-                char *ptr2;
-                char *a = "/";
-                ptr = strstr(nuovoNodo->dataFine, a);
+                printf("Inserisci data di fine mostra\n");
 
-                while (ptr2 == NULL)
+                do
                 {
+                    if(!dataCorrettaFin)
+                    {
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                    }
 
-                    printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
+                    do
+                    {
+                        printf("Giorno: ");
+                        scanf("%d", &giornoFin);
+                    }
+                    while (giornoFin< 0 || giornoFin > 31);
 
-                    printf("Inserisci Data Fine (non ti dimenticare di separarli con /): \n");
-                    fgets(nuovoNodo->dataFine, 20, stdin);
-                    nuovoNodo->dataFine[strlen(nuovoNodo->dataFine) - 1] = 0;
-                    ptr2 = strstr(nuovoNodo->dataFine, a);
+                    do
+                    {
+                        printf("Mese: ");
+                        scanf("%d", &meseFin);
+                    }
+                    while (meseFin < 1 || meseFin > 12);
+
+                    printf("Anno: ");
+                    scanf("%d", &annoFin);
+
+                    dataCorrettaFin = verificaData(giornoFin, meseFin, annoFin);
+
                 }
-                printf("\n");
+                while (!dataCorrettaFin);
+
+                while ('\n' != getchar());
+
+                snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
                 break;
 
             case 5:
@@ -279,7 +413,8 @@ struct mostre *eliminaMostra(struct mostre *testa, struct utente *utenteLogin)
     }
 };
 
-void scriviMostre(struct mostre *testa) {
+void scriviMostre(struct mostre *testa)
+{
     struct mostre *temp;
 
     FILE *fp;
@@ -287,12 +422,16 @@ void scriviMostre(struct mostre *testa) {
 
     ordinamento(testa);
 
-    for (temp = testa; temp != NULL; temp = temp->nextMostra) {
+    for (temp = testa; temp != NULL; temp = temp->nextMostra)
+    {
         long size = ftell(fp);
 
-        if (size == 0) { //file vuoto.
+        if (size == 0)   //file vuoto.
+        {
             fprintf(fp, "%d,%s,%s,%s,%s,%s", temp->id, temp->citta, temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
-        } else { //file pieno
+        }
+        else     //file pieno
+        {
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s", temp->id, temp->citta, temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
         }
     }
@@ -302,7 +441,8 @@ void scriviMostre(struct mostre *testa) {
     fclose(fp);
 }
 
-struct mostre *ordinamento(struct mostre *testa){
+struct mostre *ordinamento(struct mostre *testa)
+{
     Mostre *p, *ultimo;
     int flag, tempId, tempPermessi;
     char tempCitta[20], tempIndirizzo[20], tempDataInizio[20], tempDataFine[60], tempnOpere[20];
@@ -310,11 +450,14 @@ struct mostre *ordinamento(struct mostre *testa){
     ultimo = NULL;
 
     flag = 1;
-    while (flag == 1) {
+    while (flag == 1)
+    {
         p = testa;
         flag = 0;
-        while (p->nextMostra != ultimo) {
-            if (p->id > (p->nextMostra)->id) {
+        while (p->nextMostra != ultimo)
+        {
+            if (p->id > (p->nextMostra)->id)
+            {
 
                 tempId = p->id;
                 p->id = (p->nextMostra)->id;

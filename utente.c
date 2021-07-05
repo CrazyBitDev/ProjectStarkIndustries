@@ -46,11 +46,8 @@ struct utente *registrazioneUtente(struct utente *testa) {
         printf("Inserisci Nickname: ");
         fgets(nuovoNodo->nick, 20, stdin);
         nuovoNodo->nick[strlen(nuovoNodo->nick) - 1] = 0;
-<<<<<<< .mine
-||||||| .r42
-        
+/*
         for (temp = testa; temp != NULL; temp = temp->nextUtente) {
-=======
         /*
         for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 >>>>>>> .r43
@@ -69,13 +66,6 @@ struct utente *registrazioneUtente(struct utente *testa) {
 <<<<<<< .mine
         } */
 
-||||||| .r42
-        }
-        
-=======
-        } */
-        
->>>>>>> .r43
     } while(flag);
 
     printf("-----------------------------\n");
@@ -170,7 +160,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
         fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
 
     } else { //file pieno
-        
+
         ultimoID = letturaUltimoID(nomeFile);
         nuovoNodo->id = ultimoID + 1;
         nuovoNodo->permessi = 1;
@@ -188,9 +178,52 @@ struct utente *registrazioneUtente(struct utente *testa) {
     return nuovoNodo;
 }
 
+    //totRighe = contaRighe(nomeFile);
+    int i = 1; //contatore
+
+    while (1) {
+        res = fgets(buf, 200, fp);
+        if (res == NULL) {
+            break;
+        }
+
+        if (i == totRighe) {
+            char *tok;
+            tok = strtok(buf, ",");
+            ultimoID = atoi(tok);
+        } else {
+            i++;
+        }
+    }
+
+    fclose(fp);
+    return ultimoID;
+}
 
 
-<<<<<<< .mine
+int contaRighe() {
+
+    FILE *fp;
+    fp = fopen("utenti.csv", "r"); //apertura file
+
+    int totRighe = 0;
+    char buffer;
+
+    while (true) {
+        fread((void *) &buffer, sizeof(char), 1, fp);
+        if (feof(fp)) {
+            break;
+        }
+        if (buffer == '\n') {
+            totRighe++;
+        }
+    }
+
+    fclose(fp);
+    return totRighe;
+}
+
+
     totRighe = contaRighe();
     int i = 1; //contatore
 
@@ -236,54 +269,6 @@ int contaRighe() {
     return totRighe;
 }
 
-||||||| .r42
-    totRighe = contaRighe();
-    int i = 1; //contatore
-
-    while (1) {
-        res = fgets(buf, 200, fp);
-        if (res == NULL) {
-            break;
-        }
-
-        if (i == totRighe) {
-            char *tok;
-            tok = strtok(buf, ",");
-            ultimoID = atoi(tok);
-        } else {
-            i++;
-        }
-    }
-
-    fclose(fp);
-    return ultimoID;
-}
-
-
-int contaRighe() {
-
-    FILE *fp;
-    fp = fopen("utenti.csv", "r"); //apertura file
-
-    int totRighe = 0;
-    char buffer;
-
-    while (true) {
-        fread((void *) &buffer, sizeof(char), 1, fp);
-        if (feof(fp)) {
-            break;
-        }
-        if (buffer == '\n') {
-            totRighe++;
-        }
-    }
-    
-    fclose(fp);
-    return totRighe;
-}
-
-=======
->>>>>>> .r43
 struct utente *accesso(struct utente *testa, char *email) {
     bool flag = false;
     struct utente *nuovoNodo = NULL;
@@ -534,13 +519,9 @@ struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa) {
 }
 
 void scriviUtenti(struct utente *testa) {
-<<<<<<< .mine
     struct utente *temp = NULL;
-||||||| .r42
     struct utente *temp;
-=======
     struct utente *temp =  NULL;
->>>>>>> .r43
 
     FILE *fp;
     fp = fopen("utentiTemp.csv", "w"); //apertura file

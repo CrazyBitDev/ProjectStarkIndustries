@@ -12,7 +12,7 @@
 #include "functions.h"
 #include "utente.h"
 #include "prenotazione.h"
-/*#include "mostra.h"*/
+#include "mostra.h"
 /*#include "opera.h"*/
 
 void titolo(void);
@@ -129,9 +129,9 @@ int main() {
                         printf("1: Visualizza informazioni personali\n");
                         printf("2: Modifica dati personali\n");
                         printf("3: Elimina account\n");
-                        /*printf("4: Aggiungi dati mostra\n");
+                        printf("4: Aggiungi dati mostra\n");
                         printf("5: Modifica dati mostra\n");
-                        printf("6: Cancella dati mostra\n");*/
+                        printf("6: Cancella dati mostra\n");
                         printf("0: Logout\n");
                         printf("----------\n");
                         printf("-> ");
@@ -153,11 +153,12 @@ int main() {
                                 testaUtente = eliminaUtente(utenteLogin, testaUtente);
                                 break;
 
+                            case 4:
+                                aggiungiMostra(testaUtente,utenteLogin);
+                                break;
+
                             default:
                                 break;
-                                /*case 3:
-                                    aggiungiMostra(testaUtente,utenteLogin);
-                                    break;*/
                         }
 
                     } while (scelta2 != 0 && scelta2 != 3);
