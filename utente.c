@@ -18,10 +18,13 @@ struct utente {
 struct utente *registrazioneUtente(struct utente *testa) {
     struct utente *nuovoNodo = NULL;
     struct utente *temp;
+    struct utente *curr, *prec;
+    prec = NULL;
+    curr = testa;
     
     nuovoNodo = (struct utente *) malloc(sizeof(struct utente));
 
-    int ultimoID;
+    int ultimoID = 0;
     bool dataCorretta = true; //flag per verificare la correttezza della data di nascita
     bool flag = false; //flag per controllare univocità del campo email e nickname
 
@@ -145,6 +148,14 @@ struct utente *registrazioneUtente(struct utente *testa) {
     //verifico se nel file ci sono già utenti registrati o meno
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
+    
+    ultimoID = letturaUltimoID(nomeFile) + 1;
+    
+    //ricerca della posizione di inserimento
+    while(curr != NULL && ultimoID > curr->id) {
+        prec = curr;
+        curr = curr->nextUtente;
+    }
 
     if (size == 0) { //file vuoto. quindi il primo utente registrato avrà i permessi di livello 2
         
@@ -155,21 +166,26 @@ struct utente *registrazioneUtente(struct utente *testa) {
           
     } else { //file pieno
         
-        ultimoID = letturaUltimoID(nomeFile);
-        nuovoNodo->id = ultimoID + 1;
+        nuovoNodo->id = ultimoID;
         nuovoNodo->permessi = 1;
         
         fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
         
     }
-
-    nuovoNodo->nextUtente = testa;
-
-    testa = nuovoNodo;
-
+    
     fclose(fp);
-
-    return nuovoNodo;
+    
+    //aggiornamento dei collegamenti
+    if(prec == NULL) {
+        nuovoNodo->nextUtente = testa;
+        testa = nuovoNodo;
+        return testa;
+    } else {
+        prec->nextUtente = nuovoNodo;
+        nuovoNodo->nextUtente = curr;
+        return testa;
+    }
+    
 }
 
 
@@ -395,8 +411,6 @@ struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa) {
         
     }while(risposta != 'S' && risposta != 'N');
     
-    
-    
     if (risposta == 'S') {
         
         while (curr != NULL && temp->id != curr->id) {
@@ -428,9 +442,9 @@ void scriviUtenti(struct utente *testa) {
     FILE *fp;
     fp = fopen("utentiTemp.csv", "w"); //apertura file
     
-    ordinamento(testa);
-    
     for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+        
+        
         long size = ftell(fp);
 
         if (size == 0) { //file vuoto.
@@ -443,6 +457,7 @@ void scriviUtenti(struct utente *testa) {
     fclose(fp);
     remove("utenti.csv");
     rename("utentiTemp.csv", "utenti.csv");
+     
 }
 
 //ordinamento lista
