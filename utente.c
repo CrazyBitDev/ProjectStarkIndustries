@@ -442,11 +442,9 @@ void scriviUtenti(struct utente *testa) {
     FILE *fp;
     fp = fopen("utentiTemp.csv", "w"); //apertura file
     
-    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
-        
-        
-        long size = ftell(fp);
+    long size = ftell(fp);
 
+    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
         if (size == 0) { //file vuoto.
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->password, temp->dataNascita, temp->permessi);
         } else { //file pieno
@@ -458,61 +456,4 @@ void scriviUtenti(struct utente *testa) {
     remove("utenti.csv");
     rename("utentiTemp.csv", "utenti.csv");
      
-}
-
-//ordinamento lista
-struct utente *ordinamento(struct utente *testa) {
-    Utente *p, *ultimo;
-    int flag, tempId, tempPermessi;
-    char tempNome[20], tempCognome[20], tempNick[20], tempEmail[60], tempPassword[20], tempDataNascita[11];
-    
-    ultimo = NULL;
-
-    flag = 1;
-    while (flag == 1) {
-        p = testa;
-        flag = 0;
-        while (p->nextUtente != ultimo) {
-            if (p->id > (p->nextUtente)->id) {
-                
-                tempId = p->id;
-                p->id = (p->nextUtente)->id;
-                (p->nextUtente)->id = tempId;
-                
-                strcpy(tempNome, p->nome);
-                strcpy(p->nome, (p->nextUtente)->nome);
-                strcpy((p->nextUtente)->nome, tempNome);
-                
-                strcpy(tempCognome, p->cognome);
-                strcpy(p->cognome, (p->nextUtente)->cognome);
-                strcpy((p->nextUtente)->cognome, tempCognome);
-                
-                strcpy(tempNick, p->nick);
-                strcpy(p->nick, (p->nextUtente)->nick);
-                strcpy((p->nextUtente)->nick, tempNick);
-                
-                strcpy(tempEmail, p->email);
-                strcpy(p->email, (p->nextUtente)->email);
-                strcpy((p->nextUtente)->email, tempEmail);
-                
-                strcpy(tempPassword, p->password);
-                strcpy(p->password, (p->nextUtente)->password);
-                strcpy((p->nextUtente)->password, tempPassword);
-                
-                strcpy(tempDataNascita, p->dataNascita);
-                strcpy(p->dataNascita, (p->nextUtente)->dataNascita);
-                strcpy((p->nextUtente)->dataNascita, tempDataNascita);
-                
-                tempPermessi = p->permessi;
-                p->permessi = (p->nextUtente)->permessi;
-                (p->nextUtente)->permessi = tempPermessi;
-                
-                flag = 1;
-            }
-            p = p->nextUtente;
-        }
-        ultimo = p;
-    }
-
-    return testa;
 }
