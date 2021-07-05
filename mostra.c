@@ -192,7 +192,8 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
 }
 
-void stampaMostre(struct mostre *testa) {
+void stampaMostre(struct mostre *testa)
+{
     struct mostre *temp = NULL;
     temp = testa;
 
@@ -365,6 +366,33 @@ struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
         return testa;
     }
 }
+
+void scriviMostre(struct mostre *testa)
+{
+    struct mostre *temp = NULL;
+    temp = testa;
+
+    while(temp != NULL)
+    {
+        printf("Mostra %d: \n", temp->id);
+        printf("Luogo: %s - %s\n", temp->citta, temp->indirizzo);
+        printf("Inizio/Fine: %s - %s\n",  temp->dataInizio, temp->dataFine);
+        printf("------\n");
+        printColor("DENTRO\n", COLOR_MAGENTA);
+        temp = temp->nextMostra;
+    }
+
+    /*for (temp = testa; temp != NULL; temp = temp->nextMostra)
+    {
+        printf("Mostra %d: \n", temp->id);
+        printf("Luogo: %s - %s\n", temp->citta, temp->indirizzo);
+        printf("Inizio/Fine: %s - %s\n",  temp->dataInizio, temp->dataFine);
+        printf("------\n");
+        printColor("DENTRO\n", COLOR_MAGENTA);
+    }*/
+    printColor("FUORI\n", COLOR_MAGENTA);
+}
+
 /*
 struct mostre *eliminaMostra(struct mostre *testa, struct utente *utenteLogin)
 {
@@ -425,37 +453,11 @@ struct mostre *eliminaMostra(struct mostre *testa, struct utente *utenteLogin)
             return testa;
         }
     }
-};
+};*/
 
-void scriviMostre(struct mostre *testa)
-{
-    struct mostre *temp;
 
-    FILE *fp;
-    fp = fopen("mostreTemp.csv", "w"); //apertura file
 
-    ordinamento(testa);
-
-    for (temp = testa; temp != NULL; temp = temp->nextMostra)
-    {
-        long size = ftell(fp);
-
-        if (size == 0)   //file vuoto.
-        {
-            fprintf(fp, "%d,%s,%s,%s,%s,%s", temp->id, temp->citta, temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
-        }
-        else     //file pieno
-        {
-            fprintf(fp, "\n%d,%s,%s,%s,%s,%s", temp->id, temp->citta, temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
-        }
-    }
-
-    remove("mostre.csv");
-    rename("mostreTemp.csv", "mostre.csv");
-    fclose(fp);
-}
-
-struct mostre *ordinamento(struct mostre *testa)
+/* struct mostre *ordinamento(struct mostre *testa)
 {
     Mostre *p, *ultimo;
     int flag, tempId, tempPermessi;

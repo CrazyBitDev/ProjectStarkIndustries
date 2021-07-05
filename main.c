@@ -92,7 +92,7 @@ int main() {
 
         }
     }
-    
+
     //Lettura mostre dal file
     int colonna1 = 0;
     char buf2[BUFFER_SIZE];
@@ -113,7 +113,7 @@ int main() {
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
     } else {
         while (!feof(fpM)) {
-            fgets(buf, BUFFER_SIZE, fpM);
+            fgets(buf2, BUFFER_SIZE, fpM);
             tempMostre = (struct mostre *) malloc(sizeof(struct mostre));
 
             if (tempMostre1 != NULL) {
@@ -155,8 +155,6 @@ int main() {
             tempMostre1 = tempMostre;
         }
     }
-
-
     do {
 		printf("---HOME---\n");
         printf("1: Registrazione\n");
@@ -222,10 +220,10 @@ int main() {
                                 break;
                             case 5:
                                 printColor("Elenco delle Mostre\n", COLOR_CYAN);
-                                stampaMostre(testaMostre);
-                                modificaMostra(testaUtente,utenteLogin);
+                                scriviMostre(testaMostre);
+                                //modificaMostra(testaUtente,utenteLogin);
                                 break;
-                                
+
                             default:
                                 break;
                         }
