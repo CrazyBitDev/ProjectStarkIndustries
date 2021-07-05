@@ -440,11 +440,11 @@ void scriviUtenti(struct utente *testa) {
     struct utente *temp =  NULL;
 
     FILE *fp;
-    fp = fopen("utentiTemp.csv", "w"); //apertura file
+    fp = fopen("utenti.csv", "w"); //apertura file
     
-    long size = ftell(fp);
-
     for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+        long size = ftell(fp);
+        
         if (size == 0) { //file vuoto.
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->password, temp->dataNascita, temp->permessi);
         } else { //file pieno
@@ -453,7 +453,4 @@ void scriviUtenti(struct utente *testa) {
     }
     
     fclose(fp);
-    remove("utenti.csv");
-    rename("utentiTemp.csv", "utenti.csv");
-     
 }
