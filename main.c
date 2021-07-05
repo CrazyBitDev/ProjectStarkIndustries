@@ -221,6 +221,8 @@ int main() {
                                 aggiungiMostra(testaUtente,utenteLogin);
                                 break;
                             case 5:
+                                printColor("Elenco delle Mostre\n", COLOR_CYAN);
+                                stampaMostre(testaMostre);
                                 modificaMostra(testaUtente,utenteLogin);
                                 break;
                                 

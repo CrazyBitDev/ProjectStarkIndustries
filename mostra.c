@@ -192,6 +192,19 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
 }
 
+void stampaMostre(struct mostre *testa) {
+    struct mostre *temp = NULL;
+    temp = testa;
+
+    printf("Id: %d\n", temp->id);
+    printf("Citta': %s\n", temp->citta);
+    printf("Data Inizio: %s\n", temp->dataInizio);
+    printf("Data Fine: %s\n", temp->dataFine);
+    printf("Numero Opere: %s\n", temp->nOpere);
+    printColor("-----------------------------\n", COLOR_CYAN);
+
+}
+
 struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
 {
     char dataIn[11];
