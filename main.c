@@ -98,7 +98,7 @@ int main() {
     char buf2[BUFFER_SIZE];
 
     Mostre *testaMostre = NULL;
-    Mostre *utenteMostre = NULL; //utente che avrà eseguito il login
+   // Mostre *utenteMostre = NULL; //utente che avrà eseguito il login
     Mostre *tempMostre = NULL; //temporanea
     Mostre *tempMostre1 = NULL;
 
@@ -156,7 +156,7 @@ int main() {
         }
     }
     do {
-		printf("---HOME---\n");
+        printf("---HOME---\n");
         printf("1: Registrazione\n");
         printf("2: Login\n");
         printf("0: Chiudi applicazione\n");
@@ -216,7 +216,7 @@ int main() {
 
                             case 4:
                                 while ('\n' != getchar());
-                                aggiungiMostra(testaUtente,utenteLogin);
+                                aggiungiMostra(testaMostre, utenteLogin);
                                 break;
                             case 5:
                                 printColor("Elenco delle Mostre\n", COLOR_CYAN);

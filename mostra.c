@@ -1,6 +1,6 @@
 //Gestione Mostre
 #define BUFFER_SIZE 1024
-#define nomeFile "mostre.csv"
+#define nomeFile2 "mostre.csv"
 
 //Definizione struct mostre
 struct mostre
@@ -16,10 +16,16 @@ struct mostre
 
 struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 {
+    
+    struct mostre *curr, *prec;
+    prec = NULL;
+    curr = testa;
+    
     bool flagDate = false;
     char dataIn[11];
     bool dataCorrettaIn = true;
     int giornoIn, meseIn, annoIn;
+    int ultimoID = 0;
 
     char dataFin[11];
     bool dataCorrettaFin = true;
@@ -27,9 +33,12 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
     struct utente *temp = NULL;
     temp = utenteLogin;
+    
+    struct mostre *nuovoNodo = NULL;
+    
     if (temp->permessi == 2)
     {
-        struct mostre *nuovoNodo = NULL;
+        
         nuovoNodo = (struct mostre *) malloc(sizeof(struct mostre));
 
         FILE *fp;
@@ -154,9 +163,18 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
 
         //verifico se nel file ci sono già utenti registrati o meno
-        int ultimoID;
+        
         fseek(fp, 0, SEEK_END);
         long size = ftell(fp);
+        
+        ultimoID = letturaUltimoID(nomeFile) + 1;
+        
+        //ricerca della posizione di inserimento
+        while(curr != NULL && ultimoID > curr->id) {
+            prec = curr;
+            curr = curr->nextMostra;
+        }
+
 
         if (size == 0)   //file vuoto.
         {
@@ -176,13 +194,11 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
         }
 
-        nuovoNodo->nextMostra = testa;
-
-        testa = nuovoNodo;
+        
+        
 
         fclose(fp);
 
-        return nuovoNodo;
     }
     else
     {
@@ -190,6 +206,17 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
         printf("%s non hai i permessi per poter accedere a questa funzione.\n", temp->nome);
     }
 
+    //aggiornamento dei collegamenti
+    if(prec == NULL) {
+        nuovoNodo->nextMostra = testa;
+        testa = nuovoNodo;
+        return testa;
+    } else {
+        prec->nextMostra = nuovoNodo;
+        nuovoNodo->nextMostra = curr;
+        return testa;
+    }
+    
 }
 
 void stampaMostre(struct mostre *testa)
@@ -201,7 +228,7 @@ void stampaMostre(struct mostre *testa)
     printf("Citta': %s\n", temp->citta);
     printf("Data Inizio: %s\n", temp->dataInizio);
     printf("Data Fine: %s\n", temp->dataFine);
-    printf("Numero Opere: %s\n", temp->nOpere);
+    printf("Numero Opere: %d\n", temp->nOpere);
     printColor("-----------------------------\n", COLOR_CYAN);
 
 }
@@ -221,7 +248,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
     if (temp->permessi == 2)
     {
         int scelta;
-        char risposta[3], psw[20];
+        char risposta[3];
 
         FILE *fp;
         fp = fopen("mostre.csv", "a+"); //apertura file
@@ -365,6 +392,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
 
         return testa;
     }
+    return testa;
 }
 
 void scriviMostre(struct mostre *testa)
