@@ -192,8 +192,16 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
 }
 
-/*struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
+struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
 {
+    char dataIn[11];
+    bool dataCorrettaIn = true;
+    int giornoIn, meseIn, annoIn;
+
+    char dataFin[11];
+    bool dataCorrettaFin = true;
+    int giornoFin, meseFin, annoFin;
+
     struct utente *temp = NULL;
     temp = utenteLogin;
     if (temp->permessi == 2)
@@ -212,11 +220,13 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
             while ('\n' != getchar());
 
             //elenco campi modificabili
-            printf("1: Città");
-            printf("2: Indirizzo");
-            printf("3: Data Inizio");
-            printf("4: Data Fine");
-            printf("5: Numero Opere");
+            printf("1: Citta'\n");
+            printf("2: Indirizzo\n");
+            printf("3: Data Inizio\n");
+            printf("4: Data Fine\n");
+            printf("5: Numero Opere\n");
+            printf("----------\n");
+            printf("-> ");
             scanf("%d", &scelta);
             printf("\n");
             while ('\n' != getchar());
@@ -238,10 +248,6 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
                 break;
 
             case 3:
-                char dataIn[11];
-                bool dataCorrettaIn = true;
-                int giornoIn, meseIn, annoIn;
-
                 printf("Inserisci data d'inizio mostra\n");
 
                 do
@@ -276,14 +282,10 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
                 while ('\n' != getchar());
 
-                snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIN, annoIn);
+                snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
                 break;
 
             case 4:
-                char dataFin[11];
-                bool dataCorrettaFin = true;
-                int giornoFin, meseFin, annoFin;
-
                 printf("Inserisci data di fine mostra\n");
 
                 do
@@ -323,9 +325,7 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
             case 5:
                 printf("Inserisci il numero delle opere: ");
-                fgets(nuovoNodo->nOpere, stdin);
-                nuovoNodo->nOpere[strlen(nuovoNodo->nOpere) - 1] = 0;
-                nuovoNodo->nOpere[0] = toupper(nuovoNodo->nOpere[0]);
+                scanf("%d",&nuovoNodo->nOpere);
                 break;
 
             default:
@@ -352,7 +352,7 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
         return testa;
     }
 }
-
+/*
 struct mostre *eliminaMostra(struct mostre *testa, struct utente *utenteLogin)
 {
     struct utente *temp = NULL;

@@ -92,6 +92,69 @@ int main() {
 
         }
     }
+    //Lettura mostre dal file
+    int colonna1 = 0;
+    char buf2[BUFFER_SIZE];
+
+    Mostre *testaMostre = NULL;
+    Mostre *utenteMostre = NULL; //utente che avrà eseguito il login
+    Mostre *tempMostre = NULL; //temporanea
+    Mostre *tempMostre1 = NULL;
+
+    FILE *fpM;
+    fpM = fopen("mostre.csv", "r");
+
+    if (fpU == NULL) {
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+        printColor("\t\t\t|File \"mostre\" non trovato!   |\n", COLOR_RED);
+        printColor("\t\t\t|\t...                   |\n", COLOR_RED);
+        printColor("\t\t\t|File in creazione            |\n", COLOR_RED);
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+    } else {
+        while (!feof(fpM)) {
+            fgets(buf, BUFFER_SIZE, fpM);
+            tempMostre = (struct mostre *) malloc(sizeof(struct mostre));
+
+            if (tempMostre1 != NULL) {
+                tempMostre1->nextMostra = tempMostre;
+            } else {
+                testaMostre = tempMostre;
+            }
+
+            char *tik;
+            tik = strtok(buf2, ",");
+
+            while (tik) {
+                if (colonna1 == 0) {
+                    tempMostre->id = atoi(tik);
+                }
+                if (colonna1 == 1) {
+                    strcpy(tempMostre->citta, tik);
+                    tempMostre->citta[strlen(tempMostre->citta)] = 0;
+                }
+                if (colonna1 == 2) {
+                    strcpy(tempMostre->indirizzo, tik);
+                    tempMostre->indirizzo[strlen(tempMostre->indirizzo)] = 0;
+                }
+                if (colonna1 == 3) {
+                    strcpy(tempMostre->dataInizio, tik);
+                    tempMostre->dataInizio[strlen(tempMostre->dataInizio)] = 0;
+                }
+                if (colonna1 == 4) {
+                    strcpy(tempMostre->dataFine, tik);
+                    tempMostre->dataFine[strlen(tempMostre->dataFine)] = 0;
+                }
+                if (colonna1 == 5) {
+                    tempMostre->nOpere = atoi(tik);
+                }
+                tik = strtok(NULL, ",");
+                colonna1++;
+            }
+            colonna1 = 0;
+            tempMostre1 = tempMostre;
+        }
+    }
+
 
     do {
 
@@ -157,12 +220,14 @@ int main() {
                                 while ('\n' != getchar());
                                 aggiungiMostra(testaUtente,utenteLogin);
                                 break;
-
+                            case 5:
+                                modificaMostra(testaUtente,utenteLogin);
+                                break;
                             default:
                                 break;
                         }
 
-                    } while (scelta2 != 0 && scelta2 != 3);
+                    } while (scelta2 != 0 && scelta2 != 5);
                 }
                 break;
 
