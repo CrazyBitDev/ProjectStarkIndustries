@@ -16,11 +16,11 @@ struct mostre
 
 struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 {
-    
+
     struct mostre *curr, *prec;
     prec = NULL;
     curr = testa;
-    
+
     bool flagDate = false;
     char dataIn[11];
     bool dataCorrettaIn = true;
@@ -33,12 +33,12 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
     struct utente *temp = NULL;
     temp = utenteLogin;
-    
+
     struct mostre *nuovoNodo = NULL;
-    
+
     if (temp->permessi == 2)
     {
-        
+
         nuovoNodo = (struct mostre *) malloc(sizeof(struct mostre));
 
         FILE *fp;
@@ -163,12 +163,12 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
 
         //verifico se nel file ci sono già utenti registrati o meno
-        
+
         fseek(fp, 0, SEEK_END);
         long size = ftell(fp);
-        
+
         ultimoID = letturaUltimoID(nomeFile) + 1;
-        
+
         //ricerca della posizione di inserimento
         while(curr != NULL && ultimoID > curr->id) {
             prec = curr;
@@ -194,8 +194,8 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
 
         }
 
-        
-        
+
+
 
         fclose(fp);
 
@@ -216,7 +216,7 @@ struct mostre *aggiungiMostra(struct mostre *testa, struct utente *utenteLogin)
         nuovoNodo->nextMostra = curr;
         return testa;
     }
-    
+
 }
 
 void stampaMostre(struct mostre *testa)
@@ -233,7 +233,7 @@ void stampaMostre(struct mostre *testa)
 
 }
 
-struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin)
+struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin, int sceltaMostra)
 {
     char dataIn[11];
     bool dataCorrettaIn = true;

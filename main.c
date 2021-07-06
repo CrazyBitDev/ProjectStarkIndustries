@@ -94,7 +94,7 @@ int main() {
     }
 
     //Lettura mostre dal file
-    int colonna1 = 0;
+    int sceltaMostra, colonna1 = 0;
     char buf2[BUFFER_SIZE];
 
     Mostre *testaMostre = NULL;
@@ -221,7 +221,10 @@ int main() {
                             case 5:
                                 printColor("Elenco delle Mostre\n", COLOR_CYAN);
                                 scriviMostre(testaMostre);
-                                //modificaMostra(testaUtente,utenteLogin);
+                                printf("\n");
+                                printf("Scegli la mostra da modificare: ");
+                                scanf("%d", &sceltaMostra);
+                                modificaMostra(testaUtente,utenteLogin,sceltaMostra);
                                 break;
 
                             default:
