@@ -156,8 +156,6 @@ int main() {
         }
     }
     
-    scriviMostre(testaMostre);
-    
     do {
         printf("---HOME---\n");
         printf("1: Registrazione\n");
@@ -229,18 +227,22 @@ int main() {
                                 while ('\n' != getchar());
                                 
                                 if(utenteLogin->permessi == 2) {
-                                    aggiungiMostra(testaMostre, utenteLogin);
+                                    aggiungiMostra(testaMostre);
                                 } else {
-                                    scriviMostre(testaMostre);
+                                    stampaMostre(testaMostre);
                                 }
                                 break;
+                                
                             case 5:
-                                printColor("Elenco delle Mostre\n", COLOR_CYAN);
-                                scriviMostre(testaMostre);
-                                printf("\n");
-                                printf("Scegli la mostra da modificare: ");
-                                scanf("%d", &sceltaMostra);
-                               // modificaMostra(testaUtente,utenteLogin,sceltaMostra);
+                                if(utenteLogin->permessi == 2) {
+                                    printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
+                                    stampaMostre(testaMostre);
+                                    printf("\n");
+                                    printf("Inserire il numero della mostra da modificare: ");
+                                    scanf("%d", &sceltaMostra);
+                                    modificaMostra(testaMostre, sceltaMostra);
+                                    while ('\n' != getchar());
+                                }
                                 break;
 
                                 
@@ -248,8 +250,6 @@ int main() {
                                 break;
                         }
                         
-                        
-
                     } while (scelta2 != 0 && scelta2 != 3);
                 }
                 break;
