@@ -92,13 +92,13 @@ int main() {
 
         }
     }
+    
 
     //Lettura mostre dal file
     int sceltaMostra, colonna1 = 0;
     char buf2[BUFFER_SIZE];
 
     Mostre *testaMostre = NULL;
-   // Mostre *utenteMostre = NULL; //utente che avrà eseguito il login
     Mostre *tempMostre = NULL; //temporanea
     Mostre *tempMostre1 = NULL;
 
@@ -122,39 +122,42 @@ int main() {
                 testaMostre = tempMostre;
             }
 
-            char *tik;
-            tik = strtok(buf2, ",");
+            char *tok2;
+            tok2 = strtok(buf2, ",");
 
-            while (tik) {
+            while (tok2) {
                 if (colonna1 == 0) {
-                    tempMostre->id = atoi(tik);
+                    tempMostre->id = atoi(tok2);
                 }
                 if (colonna1 == 1) {
-                    strcpy(tempMostre->citta, tik);
+                    strcpy(tempMostre->citta, tok2);
                     tempMostre->citta[strlen(tempMostre->citta)] = 0;
                 }
                 if (colonna1 == 2) {
-                    strcpy(tempMostre->indirizzo, tik);
+                    strcpy(tempMostre->indirizzo, tok2);
                     tempMostre->indirizzo[strlen(tempMostre->indirizzo)] = 0;
                 }
                 if (colonna1 == 3) {
-                    strcpy(tempMostre->dataInizio, tik);
+                    strcpy(tempMostre->dataInizio, tok2);
                     tempMostre->dataInizio[strlen(tempMostre->dataInizio)] = 0;
                 }
                 if (colonna1 == 4) {
-                    strcpy(tempMostre->dataFine, tik);
+                    strcpy(tempMostre->dataFine, tok2);
                     tempMostre->dataFine[strlen(tempMostre->dataFine)] = 0;
                 }
                 if (colonna1 == 5) {
-                    tempMostre->nOpere = atoi(tik);
+                    tempMostre->nOpere = atoi(tok2);
                 }
-                tik = strtok(NULL, ",");
+                tok2 = strtok(NULL, ",");
                 colonna1++;
             }
             colonna1 = 0;
             tempMostre1 = tempMostre;
         }
     }
+    
+    scriviMostre(testaMostre);
+    
     do {
         printf("---HOME---\n");
         printf("1: Registrazione\n");
@@ -190,9 +193,17 @@ int main() {
                         printf("1: Visualizza informazioni personali\n");
                         printf("2: Modifica dati personali\n");
                         printf("3: Elimina account\n");
-                        printf("4: Aggiungi dati mostra\n");
-                        printf("5: Modifica dati mostra\n");
-                        printf("6: Cancella dati mostra\n");
+                        
+                        if(utenteLogin->permessi == 2) {
+                            //operazioni che può effettuare il dirigente
+                            printf("4: Aggiungi dati mostra\n");
+                            printf("5: Modifica dati mostra\n");
+                            printf("6: Cancella dati mostra\n");
+                        } else {
+                            //operazioni che può effettuare l'utente
+                            printf("4: Visualizza mostre\n");
+                        }
+                        
                         printf("0: Logout\n");
                         printf("----------\n");
                         printf("-> ");
@@ -216,7 +227,12 @@ int main() {
 
                             case 4:
                                 while ('\n' != getchar());
-                                aggiungiMostra(testaMostre, utenteLogin);
+                                
+                                if(utenteLogin->permessi == 2) {
+                                    aggiungiMostra(testaMostre, utenteLogin);
+                                } else {
+                                    scriviMostre(testaMostre);
+                                }
                                 break;
                             case 5:
                                 printColor("Elenco delle Mostre\n", COLOR_CYAN);
@@ -224,12 +240,15 @@ int main() {
                                 printf("\n");
                                 printf("Scegli la mostra da modificare: ");
                                 scanf("%d", &sceltaMostra);
-                                modificaMostra(testaUtente,utenteLogin,sceltaMostra);
+                               // modificaMostra(testaUtente,utenteLogin,sceltaMostra);
                                 break;
 
+                                
                             default:
                                 break;
                         }
+                        
+                        
 
                     } while (scelta2 != 0 && scelta2 != 3);
                 }

@@ -232,7 +232,7 @@ void stampaMostre(struct mostre *testa)
     printColor("-----------------------------\n", COLOR_CYAN);
 
 }
-
+/*
 struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin, int sceltaMostra)
 {
     char dataIn[11];
@@ -394,12 +394,13 @@ struct mostre *modificaMostra(struct mostre *testa, struct utente *utenteLogin, 
     }
     return testa;
 }
-
+*/
 void scriviMostre(struct mostre *testa)
 {
     struct mostre *temp = NULL;
     temp = testa;
 
+    /*
     while(temp != NULL)
     {
         printf("Mostra %d: \n", temp->id);
@@ -409,16 +410,17 @@ void scriviMostre(struct mostre *testa)
         printColor("DENTRO\n", COLOR_MAGENTA);
         temp = temp->nextMostra;
     }
+    */
 
-    /*for (temp = testa; temp != NULL; temp = temp->nextMostra)
+    for (temp = testa; temp != NULL; temp = temp->nextMostra)
     {
         printf("Mostra %d: \n", temp->id);
         printf("Luogo: %s - %s\n", temp->citta, temp->indirizzo);
         printf("Inizio/Fine: %s - %s\n",  temp->dataInizio, temp->dataFine);
         printf("------\n");
         printColor("DENTRO\n", COLOR_MAGENTA);
-    }*/
-    printColor("FUORI\n", COLOR_MAGENTA);
+    }
+    printColor("FUORI\n\n", COLOR_MAGENTA);
 }
 
 /*
