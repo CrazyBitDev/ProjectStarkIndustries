@@ -631,7 +631,7 @@ struct mostre *eliminaMostra(struct mostre *testa, int sceltaMostra)
                 }
                 scriviMostre(testa);
             }
-            return testa;
         }
     }
+    return testa;
 }
