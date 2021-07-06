@@ -92,7 +92,7 @@ int main() {
 
         }
     }
-    
+
 
     //Lettura mostre dal file
     int sceltaMostra, colonna1 = 0;
@@ -130,22 +130,26 @@ int main() {
                     tempMostre->id = atoi(tok2);
                 }
                 if (colonna1 == 1) {
+                    strcpy(tempMostre->responsabile, tok2);
+                    tempMostre->responsabile[strlen(tempMostre->responsabile)] = 0;
+                }
+                if (colonna1 == 2) {
                     strcpy(tempMostre->citta, tok2);
                     tempMostre->citta[strlen(tempMostre->citta)] = 0;
                 }
-                if (colonna1 == 2) {
+                if (colonna1 == 3) {
                     strcpy(tempMostre->indirizzo, tok2);
                     tempMostre->indirizzo[strlen(tempMostre->indirizzo)] = 0;
                 }
-                if (colonna1 == 3) {
+                if (colonna1 == 4) {
                     strcpy(tempMostre->dataInizio, tok2);
                     tempMostre->dataInizio[strlen(tempMostre->dataInizio)] = 0;
                 }
-                if (colonna1 == 4) {
+                if (colonna1 == 5) {
                     strcpy(tempMostre->dataFine, tok2);
                     tempMostre->dataFine[strlen(tempMostre->dataFine)] = 0;
                 }
-                if (colonna1 == 5) {
+                if (colonna1 == 6) {
                     tempMostre->nOpere = atoi(tok2);
                 }
                 tok2 = strtok(NULL, ",");
@@ -155,7 +159,7 @@ int main() {
             tempMostre1 = tempMostre;
         }
     }
-    
+
     do {
         printf("---HOME---\n");
         printf("1: Registrazione\n");
@@ -191,7 +195,7 @@ int main() {
                         printf("1: Visualizza informazioni personali\n");
                         printf("2: Modifica dati personali\n");
                         printf("3: Elimina account\n");
-                        
+
                         if(utenteLogin->permessi == 2) {
                             //operazioni che può effettuare il dirigente
                             printf("4: Aggiungi dati mostra\n");
@@ -201,7 +205,7 @@ int main() {
                             //operazioni che può effettuare l'utente
                             printf("4: Visualizza mostre\n");
                         }
-                        
+
                         printf("0: Logout\n");
                         printf("----------\n");
                         printf("-> ");
@@ -225,14 +229,14 @@ int main() {
 
                             case 4:
                                 while ('\n' != getchar());
-                                
+
                                 if(utenteLogin->permessi == 2) {
                                     aggiungiMostra(testaMostre);
                                 } else {
                                     stampaMostre(testaMostre);
                                 }
                                 break;
-                                
+
                             case 5:
                                 if(utenteLogin->permessi == 2) {
                                     printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
@@ -244,12 +248,21 @@ int main() {
                                     while ('\n' != getchar());
                                 }
                                 break;
-
-                                
+                            case 6:
+                                if(utenteLogin->permessi == 2) {
+                                    printColor("Elenco delle Mostre\n", COLOR_CYAN);
+                                    stampaMostre(testaMostre);
+                                    printf("\n");
+                                    printf("Inserire il numero della mostra da eliminare: ");
+                                    scanf("%d", &sceltaMostra);
+                                    eliminaMostra(testaMostre, sceltaMostra);
+                                    while ('\n' != getchar());
+                                }
+                                break;
                             default:
                                 break;
                         }
-                        
+
                     } while (scelta2 != 0 && scelta2 != 3);
                 }
                 break;
@@ -266,7 +279,7 @@ int main() {
     return 0;
 }
 
-void titolo() {
+void titolo(void) {
 
     printf("\n");
     consoleColor(COLOR_CYAN);
