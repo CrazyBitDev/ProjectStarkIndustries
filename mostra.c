@@ -43,16 +43,19 @@ struct mostre *aggiungiMostra(struct mostre *testa)
     printf("Inserisci il responsabile: ");
     fgets(nuovoNodo->responsabile, 30, stdin);
     nuovoNodo->responsabile[strlen(nuovoNodo->responsabile) - 1] = 0;
+    nuovoNodo->responsabile[0] = toupper(nuovoNodo->responsabile[0]);
     printf("\n");
 
     printf("Inserisci Città: ");
     fgets(nuovoNodo->citta, 20, stdin);
     nuovoNodo->citta[strlen(nuovoNodo->citta) - 1] = 0;
+    nuovoNodo->responsabile[0] = toupper(nuovoNodo->responsabile[0]);
     printf("\n");
 
     printf("Inserisci Indirizzo: ");
     fgets(nuovoNodo->indirizzo, 20, stdin);
     nuovoNodo->indirizzo[strlen(nuovoNodo->indirizzo) - 1] = 0;
+    nuovoNodo->indirizzo[0] = toupper(nuovoNodo->indirizzo[0]);
     printf("\n");
 
     do
@@ -131,7 +134,6 @@ struct mostre *aggiungiMostra(struct mostre *testa)
 
         snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
 
-
         printf("\n");
         if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
         {
@@ -162,13 +164,12 @@ struct mostre *aggiungiMostra(struct mostre *testa)
     printf("\n");
 
 
-    //verifico se nel file ci sono già utenti registrati o meno
-
+    //verifico se nel file ci sono già delle mmostre registrate o meno
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
 
-    ultimoID = letturaUltimoID(nomeFile) + 1;
-
+    ultimoID = letturaUltimoID(nomeFile2) + 1;
+    
     //ricerca della posizione di inserimento
     while(curr != NULL && ultimoID > curr->id)
     {
@@ -182,16 +183,15 @@ struct mostre *aggiungiMostra(struct mostre *testa)
 
         nuovoNodo->id = 0;
 
-        fprintf(fp, "%d,%s,%s,%s,%s,%d", nuovoNodo->id,nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+        fprintf(fp, "%d,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
 
     }
     else     //file pieno
     {
 
-        ultimoID = letturaUltimoID(nomeFile);
-        nuovoNodo->id = ultimoID + 1;
+        nuovoNodo->id = ultimoID;
 
-        fprintf(fp, "\n%d,%s,%s,%s,%s,%d", nuovoNodo->id,nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+        fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
 
     }
 
@@ -230,6 +230,7 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
 
     struct mostre *temp = NULL;
     struct mostre *tempM = NULL;
+    
 
     for (temp = testa; temp != NULL; temp = temp->nextMostra)
     {
@@ -243,6 +244,7 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
 
         }
     }
+    
 
     if(!flag)
     {
@@ -251,11 +253,23 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
     }
     else
     {
+        printColor("Dati relativi alla mostra scelta:\n", COLOR_CYAN);
+        printf("Id: %d\n", tempM->id);
+        printf("Responsabile: %s\n", tempM->responsabile);
+        printf("Citta': %s\n", tempM->citta);
+        printf("Indirizzo: %s\n", tempM->indirizzo);
+        printf("Data inizio mostra: %s\n", tempM->dataInizio);
+        printf("Data fine mostra: %s\n", tempM->dataFine);
+        printf("Numero opere esposte: %d\n", tempM->nOpere);
+        printColor("----------\n", COLOR_CYAN);
+        
         do
         {
             while ('\n' != getchar());
 
             //elenco campi modificabili
+            printf("Scegliere il campo da modificare\n");
+            printf("----------\n");
             printf("1: Responsabile\n");
             printf("2: Citta'\n");
             printf("3: Indirizzo\n");
@@ -326,8 +340,6 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
 
                     snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
 
-                    //while ('\n' != getchar());
-
                     char *tok;
                     tok = strtok(tempM->dataFine, "/");
 
@@ -345,6 +357,8 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
                         {
                             annoFin = atoi(tok);
                         }
+                        tok = strtok(NULL, "/");
+                        colonna++;
                     }
 
                     if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
@@ -367,26 +381,6 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
 
                     }
 
-                    printf("\n");
-                    if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
-                    {
-                        //La mostra dura solo un giorno di conseguenza le date coincidono
-                        flagDate = true;
-                    }
-                    else if(annoIn < annoFin || (annoIn == annoFin && meseIn < meseFin) || (annoIn == annoFin && meseIn == meseFin && giornoIn < giornoFin))
-                    {
-                        //La data d'inizio precede quella di fine
-                        flagDate = true;
-                    }
-                    else
-                    {
-                        //La data di fine precede quella d'inizio
-                        flagDate = false;
-                        printColor("Attenzione!\n", COLOR_RED);
-                        printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                        printf("Si prega di inserire nuovamente le date.\n\n");
-
-                    }
                 }
                 while(!flagDate);
                 strcpy(tempM->dataInizio, dataIn);
@@ -429,8 +423,6 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
 
                     snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
 
-                    //while ('\n' != getchar());
-
                     char *tok;
                     tok = strtok(tempM->dataInizio, "/");
 
@@ -448,29 +440,9 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
                         {
                             annoIn = atoi(tok);
                         }
+                        tok = strtok(NULL, "/");
+                        colonna++;
                     }
-
-                    if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
-                    {
-                        //La mostra dura solo un giorno di conseguenza le date coincidono
-                        flagDate = true;
-                    }
-                    else if(annoIn < annoFin || (annoIn == annoFin && meseIn < meseFin) || (annoIn == annoFin && meseIn == meseFin && giornoIn < giornoFin))
-                    {
-                        //La data d'inizio precede quella di fine
-                        flagDate = true;
-                    }
-                    else
-                    {
-                        //La data di fine precede quella d'inizio
-                        flagDate = false;
-                        printColor("Attenzione!\n", COLOR_RED);
-                        printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                        printf("Si prega di inserire nuovamente le date.\n\n");
-
-                    }
-
-                    printf("\n");
 
                     if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
                     {
@@ -528,15 +500,14 @@ struct mostre *modificaMostra(struct mostre *testa, int sceltaMostra)
 void stampaMostre(struct mostre *testa)
 {
     struct mostre *temp = NULL;
-    temp = testa;
-
+    
     for (temp = testa; temp != NULL; temp = temp->nextMostra)
     {
         printf("Mostra numero: %d \n", temp->id);
         printf("Responsabile: %s \n", temp->responsabile);
         printf("Luogo: %s - %s\n", temp->citta, temp->indirizzo);
         printf("Durata: dal %s al %s\n",  temp->dataInizio, temp->dataFine);
-        printf("------\n");
+        printf("----------\n");
     }
 }
 
@@ -612,7 +583,7 @@ struct mostre *eliminaMostra(struct mostre *testa, int sceltaMostra)
 
         if (risposta == 'S')
         {
-            while (curr != NULL && temp->id != curr->id)
+            while (curr != NULL && tempM->id != curr->id)
             {
                 prec = curr;
                 curr = curr->nextMostra;
@@ -631,6 +602,7 @@ struct mostre *eliminaMostra(struct mostre *testa, int sceltaMostra)
                 }
                 scriviMostre(testa);
             }
+           
         }
     }
     return testa;
