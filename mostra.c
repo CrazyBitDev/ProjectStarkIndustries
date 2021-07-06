@@ -473,6 +473,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
     return testa;
 }
 
+//stampa a video
 void stampaMostre(struct mostre *testa)
 {
     struct mostre *temp = NULL;
@@ -487,6 +488,7 @@ void stampaMostre(struct mostre *testa)
     }
 }
 
+//scrittura su file
 void scriviMostre(struct mostre *testa)
 {
     struct mostre *temp =  NULL;

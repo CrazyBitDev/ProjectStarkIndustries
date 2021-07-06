@@ -95,10 +95,11 @@ int main() {
 
 
     //Lettura mostre dal file
-    int sceltaMostra, colonna1 = 0;
+    int nMostra, colonna1 = 0;
     char buf2[BUFFER_SIZE];
 
     Mostre *testaMostre = NULL;
+    Mostre *mostraScelta = NULL;
     Mostre *tempMostre = NULL; //temporanea
     Mostre *tempMostre1 = NULL;
 
@@ -243,8 +244,13 @@ int main() {
                                     stampaMostre(testaMostre);
                                     printf("\n");
                                     printf("Inserire il numero della mostra da modificare: ");
-                                    scanf("%d", &sceltaMostra);
-                                    modificaMostra(testaMostre, sceltaMostra);
+                                    scanf("%d", &nMostra);
+                                    mostraScelta = ricercaMostra(testaMostre, nMostra);
+                                    
+                                    char *valore2 = (char *) mostraScelta;
+                                    if(valore2 != NULL) {
+                                        modificaMostra(testaMostre, mostraScelta);
+                                    }
                                     while ('\n' != getchar());
                                 }
                                 break;
@@ -254,8 +260,13 @@ int main() {
                                     stampaMostre(testaMostre);
                                     printf("\n");
                                     printf("Inserire il numero della mostra da eliminare: ");
-                                    scanf("%d", &sceltaMostra);
-                                    eliminaMostra(testaMostre, sceltaMostra);
+                                    scanf("%d", &nMostra);
+                                    mostraScelta = ricercaMostra(testaMostre, nMostra);
+                                    
+                                    char *valore2 = (char *) mostraScelta;
+                                    if(valore2 != NULL) {
+                                        eliminaMostra(testaMostre, mostraScelta);
+                                    }
                                     while ('\n' != getchar());
                                 }
                                 break;
