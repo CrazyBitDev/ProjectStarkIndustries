@@ -17,7 +17,7 @@ struct utente {
 
 struct utente *registrazioneUtente(struct utente *testa) {
     struct utente *nuovoNodo = NULL;
-    struct utente *temp;
+    //struct utente *temp;
     struct utente *curr, *prec;
     prec = NULL;
     curr = testa;
@@ -25,6 +25,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
     nuovoNodo = (struct utente *) malloc(sizeof(struct utente));
 
     int ultimoID = 0;
+    int etaMinima;
     bool dataCorretta = true; //flag per verificare la correttezza della data di nascita
     bool flag = false; //flag per controllare univocità del campo email e nickname
 
@@ -72,7 +73,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
         printf("Inserisci Email (non ti dimenticare la @): \n");
         fgets(nuovoNodo->email, 60, stdin);
         nuovoNodo->email[strlen(nuovoNodo->email) - 1] = 0;
-        
+        /*
         for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 
             if (strcmp(temp->email, nuovoNodo->email) == 0) {
@@ -85,6 +86,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
             printColor("---Email gia' in uso!---\n", COLOR_RED);
             printColor("---Si prega di sceglierne un'altra---\n", COLOR_RED);
         }
+         */
         
     } while (flag);
 
@@ -137,6 +139,26 @@ struct utente *registrazioneUtente(struct utente *testa) {
         scanf("%d", &anno);
         
         dataCorretta = verificaData(giorno, mese, anno);
+        
+        //controllo la data odierna, per verificare se l'utente ha l'eta minima richiesta per potersi iscrivere
+        time_t now;
+        struct tm *ts;
+        char annoCorrente[5];
+
+        now = time(NULL);
+
+        ts = localtime(&now);
+        strftime(annoCorrente, sizeof(annoCorrente), "%Y", ts);
+
+        // per potersi registrare al sistema bisogna avere almeno 16 anni
+        etaMinima = atoi(annoCorrente) - 16;
+
+        //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
+        if(anno > etaMinima || dataCorretta == false) {
+            dataCorretta = false;
+        } else {
+            dataCorretta = true;
+        }
         
     } while (!dataCorretta);
     
@@ -257,12 +279,14 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
     do {
         
         //elenco campi modificabili
+        printf("Scegliere il campo da modificare\n");
         printf("----------\n");
         printf("1: Nome\n");
         printf("2: Cognome\n");
         printf("3: Email\n");
         printf("4: Password\n");
         printf("5: Data di nascita\n");
+        printf("----------\n");
         printf("-> ");
         scanf("%d", &scelta);
         printf("\n");

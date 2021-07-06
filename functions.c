@@ -109,12 +109,9 @@ void readPassword(char prompt[], char *password) {
 }
 
 bool verificaData(int giorno, int mese, int anno) {
-    int etaMinima;
-
     bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per verificare la correttezza della data di nascita
-
-
+    
     //controllo se l'anno inserito è bisestile o meno
     if (anno % 4 == 0) {
         if (anno % 100 == 0) {
@@ -146,27 +143,6 @@ bool verificaData(int giorno, int mese, int anno) {
         }
     }
 
-    //controllo la data odierna, per verificare se l'utente ha l'eta minima richiesta per potersi iscrivere
-    time_t now;
-    struct tm *ts;
-    char annoCorrente[5];
-
-    now = time(NULL);
-
-    ts = localtime(&now);
-    strftime(annoCorrente, sizeof(annoCorrente), "%Y", ts);
-
-    // per potersi registrare al sistema bisogna avere almeno 16 anni
-    etaMinima = atoi(annoCorrente) - 16;
-
-    //se l'età è minore a quella richiesta, oppure, se la data di nascita inserita è errata verrà richiesto l'inserimento
-    //if(anno > etaMinima || dataCorretta == false) {
-    if(dataCorretta == false) {
-        dataCorretta = false;
-    } else {
-        dataCorretta = true;
-    }
-
     return dataCorretta;
 }
 
@@ -182,7 +158,7 @@ int letturaUltimoID(char *nomeFile) {
     totRighe = contaRighe(nomeFile);
     int i = 1; //contatore
 
-    while (1) {
+    while(1) {
         res = fgets(buf, 200, fp);
         if (res == NULL) {
             break;
@@ -219,7 +195,7 @@ int contaRighe(char *nomeFile) {
             totRighe++;
         }
     }
-
+    
     fclose(fp);
     return totRighe;
 }
