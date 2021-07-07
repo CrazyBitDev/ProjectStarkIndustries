@@ -168,7 +168,7 @@ struct mostre *aggiungiMostra(struct mostre *testa)
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
     
-    ultimoID = letturaUltimoID(file2) + 1;
+    ultimoID = letturaUltimoID("mostre.csv") + 1;
     
     //ricerca della posizione di inserimento
     while(curr != NULL && ultimoID > curr->id)
