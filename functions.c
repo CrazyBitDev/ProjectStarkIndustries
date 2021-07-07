@@ -149,6 +149,8 @@ bool verificaData(int giorno, int mese, int anno) {
 int letturaUltimoID(char *file) {
     FILE *fp = NULL;
     
+    printf("TEST FILE: %s\n", file);
+    
     fp = fopen(file, "r"); //apertura file
     
     int totRighe = 0;

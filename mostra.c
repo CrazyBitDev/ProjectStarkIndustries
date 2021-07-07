@@ -1,6 +1,5 @@
 //Gestione Mostre
 #define BUFFER_SIZE 1024
-#define file2 2
 
 //Definizione struct mostre
 struct mostre
@@ -471,6 +470,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
         
         //rendo la risposta in maiuscolo
         risposta = toupper(risposta);
+        printColor("fuori", COLOR_MAGENTA);
         if (risposta == 'N')
         {
             scriviMostre(testa);
