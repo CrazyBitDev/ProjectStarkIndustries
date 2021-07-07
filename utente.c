@@ -163,42 +163,30 @@ struct utente *registrazioneUtente(struct utente *testa) {
     } while (!dataCorretta);
     
     while ('\n' != getchar());
-
     snprintf(data, 11, "%d/%d/%d", giorno, mese, anno);
     strcpy(nuovoNodo->dataNascita, data);
 
     //verifico se nel file ci sono già utenti registrati o meno
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
-    
-    ultimoID = letturaUltimoID(file) + 1;
-    
+    ultimoID = letturaUltimoID() + 1;
     //ricerca della posizione di inserimento
-    while(curr != NULL && ultimoID > curr->id) {
+   /* while(curr != NULL && ultimoID > curr->id) {
         prec = curr;
         curr = curr->nextUtente;
-    }
-
+    }*/
     if (size == 0) { //file vuoto. quindi il primo utente registrato avrà i permessi di livello 2
-        
         nuovoNodo->id = 0;
         nuovoNodo->permessi = 2;
-        
         fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
-          
     } else { //file pieno
-        
         nuovoNodo->id = ultimoID;
         nuovoNodo->permessi = 1;
-        
         fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
-        
     }
-    
     fclose(fp);
-    
     //aggiornamento dei collegamenti
-    if(prec == NULL) {
+    /*if(prec == NULL) {
         nuovoNodo->nextUtente = testa;
         testa = nuovoNodo;
         return testa;
@@ -206,8 +194,10 @@ struct utente *registrazioneUtente(struct utente *testa) {
         prec->nextUtente = nuovoNodo;
         nuovoNodo->nextUtente = curr;
         return testa;
-    }
-    
+    }*/
+    nuovoNodo->nextUtente = testa;
+    testa = nuovoNodo;
+    return testa;
 }
 
 
@@ -401,7 +391,8 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
             risposta = toupper(risposta);
             
             if (risposta == 'N') {
-                scriviUtenti(testa);
+            	printf("dentro\n");
+				scriviUtenti(testa);
             }
             
         } while(risposta != 'S' && risposta != 'N');
@@ -461,19 +452,75 @@ struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa) {
 
 void scriviUtenti(struct utente *testa) {
     struct utente *temp =  NULL;
-
+	printf("scrivi\n");
     FILE *fp;
     fp = fopen("utenti.csv", "w"); //apertura file
     
     for (temp = testa; temp != NULL; temp = temp->nextUtente) {
         long size = ftell(fp);
-        
+        printf("scrivi dentro for\n");
         if (size == 0) { //file vuoto.
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->password, temp->dataNascita, temp->permessi);
         } else { //file pieno
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->password, temp->dataNascita, temp->permessi);
         }
+        printf("test null %d\n", temp);
     }
     
     fclose(fp);
 }
+
+int letturaUltimoID() {
+    FILE *fp;
+    fp = fopen("utenti.csv", "r"); //apertura file
+        
+    int totRighe = 0;
+    int ultimoID = 0;
+    char buf[BUFFER_SIZE];
+    char *res;
+
+    totRighe = contaRighe();
+    
+    int i = 1; //contatore
+
+    while(1) {
+        res = fgets(buf, 200, fp);
+        if (res == NULL) {
+            break;
+        }
+
+        if (i == totRighe) {
+            char *tok;
+            tok = strtok(buf, ",");
+            ultimoID = atoi(tok);
+        } else {
+            i++;
+        }
+    }
+
+    fclose(fp);
+    return ultimoID;
+}
+
+
+int contaRighe() {
+    FILE *fp;
+
+    fp = fopen("utenti.csv", "r"); //apertura file
+    
+    int totRighe = 0;
+    char buffer;
+
+    while (true) {
+        fread((void *) &buffer, sizeof(char), 1, fp);
+        if (feof(fp)) {
+            break;
+        }
+        if (buffer == '\n') {
+            totRighe++;
+        }
+    }
+    fclose(fp);
+    return totRighe;
+}
+

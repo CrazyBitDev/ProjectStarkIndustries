@@ -145,7 +145,7 @@ bool verificaData(int giorno, int mese, int anno) {
     return dataCorretta;
 }
 
-int letturaUltimoID(int file) {
+/*int letturaUltimoID(int file) {
     FILE *fp = NULL;
     
     if(file == 1) {
@@ -215,4 +215,4 @@ int contaRighe(int file) {
     
     fclose(fp);
     return totRighe;
-}
+}	*/
