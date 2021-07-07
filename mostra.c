@@ -1,6 +1,6 @@
 //Gestione Mostre
 #define BUFFER_SIZE 1024
-#define nomeFile2 "mostre.csv"
+#define file2 2
 
 //Definizione struct mostre
 struct mostre
@@ -168,7 +168,7 @@ struct mostre *aggiungiMostra(struct mostre *testa)
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
     
-    ultimoID = letturaUltimoID(nomeFile2) + 1;
+    ultimoID = letturaUltimoID(file2) + 1;
     
     //ricerca della posizione di inserimento
     while(curr != NULL && ultimoID > curr->id)
@@ -289,9 +289,10 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                 break;
                 
             case 4:
-                printf("Inserisci data d'inizio mostra\n");
+                
                 do
                 {
+                    printf("Inserisci data d'inizio mostra\n");
                     do
                     {
                         if(!dataCorrettaIn)
@@ -372,9 +373,10 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                 break;
                 
             case 5:
-                printf("Inserisci data di fine mostra\n");
+                
                 do
                 {
+                    printf("Inserisci data di fine mostra\n");
                     do
                     {
                         if(!dataCorrettaFin)

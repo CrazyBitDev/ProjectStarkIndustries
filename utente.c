@@ -1,6 +1,6 @@
 //Gestione Utente
 #define BUFFER_SIZE 1024
-#define nomeFile "utenti.csv"
+#define file 1
 
 //Definizione della struct Utente
 struct utente {
@@ -171,7 +171,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
     
-    ultimoID = letturaUltimoID(nomeFile) + 1;
+    ultimoID = letturaUltimoID(file) + 1;
     
     //ricerca della posizione di inserimento
     while(curr != NULL && ultimoID > curr->id) {

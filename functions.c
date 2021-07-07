@@ -146,16 +146,29 @@ bool verificaData(int giorno, int mese, int anno) {
     return dataCorretta;
 }
 
-int letturaUltimoID(char *nomeFile) {
-    FILE *fp;
-    fp = fopen(nomeFile, "r"); //apertura file
-
+int letturaUltimoID(int file) {
+    FILE *fp = NULL;
+    
+    if(file == 1) {
+        fp = fopen("utenti.csv", "r"); //apertura file
+    }
+    if(file == 2) {
+        fp = fopen("mostre.csv", "r");
+    }
+        
     int totRighe = 0;
     int ultimoID = 0;
     char buf[BUFFER_SIZE];
     char *res;
 
-    totRighe = contaRighe(nomeFile);
+    if(file == 1) {
+        totRighe = contaRighe(1);
+    }
+    if(file == 2) {
+        totRighe = contaRighe(2);
+    }
+    
+    
     int i = 1; //contatore
 
     while(1) {
@@ -178,11 +191,16 @@ int letturaUltimoID(char *nomeFile) {
 }
 
 
-int contaRighe(char *nomeFile) {
-
-    FILE *fp;
-    fp = fopen(nomeFile, "r"); //apertura file
-
+int contaRighe(int file) {
+    FILE *fp = NULL;
+    
+    if(file == 1) {
+        fp = fopen("utenti.csv", "r"); //apertura file
+    }
+    if(file == 2) {
+        fp = fopen("mostre.csv", "r");
+    }
+    
     int totRighe = 0;
     char buffer;
 

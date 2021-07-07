@@ -6,8 +6,8 @@ void readPassword(char prompt[], char *password);
 
 bool verificaData(int giorno, int mese, int anno);
 
-int letturaUltimoID(char *nomeFile);
+int letturaUltimoID(int file);
 
-int contaRighe(char *nomeFile);
+int contaRighe(int file);
 
 #include "functions.c"
