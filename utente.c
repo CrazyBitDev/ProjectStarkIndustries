@@ -197,22 +197,25 @@ struct utente *registrazioneUtente(struct utente *testa) {
     }
     
     fclose(fp);
-    
+    printf("Test 1\n");
     nuovoNodo->nextUtente = NULL;
     curr = testa;
-    
+    printf("Test 2\n");
     if(curr == NULL) { //lista vuota
+    printf("Test 3\n");
         testa = nuovoNodo; //aggiornamento del puntatore alla testa della lista
         return testa;
     }
+    printf("Test 4\n");
     //scansione della lista fino all'ultimo nodo
     while(curr->nextUtente != NULL) {
+    	printf("Test 5\n");
         curr = curr->nextUtente;
     }
-    
+    printf("Test 6\n");
     curr->nextUtente = nuovoNodo;
-    
-    return testa;
+    printf("Test 7\n");
+    return curr;
 }
 
 

@@ -471,7 +471,6 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
         
         //rendo la risposta in maiuscolo
         risposta = toupper(risposta);
-        printColor("fuori", COLOR_MAGENTA);
         if (risposta == 'N')
         {
             scriviMostre(testa);
