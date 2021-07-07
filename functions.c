@@ -142,7 +142,6 @@ bool verificaData(int giorno, int mese, int anno) {
             }
         }
     }
-
     return dataCorretta;
 }
 
