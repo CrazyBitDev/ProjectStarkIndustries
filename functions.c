@@ -142,31 +142,23 @@ bool verificaData(int giorno, int mese, int anno) {
             }
         }
     }
+
     return dataCorretta;
 }
 
-/*int letturaUltimoID(int file) {
+int letturaUltimoID(char *file) {
     FILE *fp = NULL;
     
-    if(file == 1) {
-        fp = fopen("utenti.csv", "r"); //apertura file
-    }
-    if(file == 2) {
-        fp = fopen("mostre.csv", "r");
-    }
-        
+    printf("TEST FILE: %s\n", file);
+    
+    fp = fopen(file, "r"); //apertura file
+    
     int totRighe = 0;
     int ultimoID = 0;
     char buf[BUFFER_SIZE];
     char *res;
 
-    if(file == 1) {
-        totRighe = contaRighe(1);
-    }
-    if(file == 2) {
-        totRighe = contaRighe(2);
-    }
-    
+    totRighe = contaRighe(file);
     
     int i = 1; //contatore
 
@@ -190,15 +182,9 @@ bool verificaData(int giorno, int mese, int anno) {
 }
 
 
-int contaRighe(int file) {
+int contaRighe(char *file) {
     FILE *fp = NULL;
-    
-    if(file == 1) {
-        fp = fopen("utenti.csv", "r"); //apertura file
-    }
-    if(file == 2) {
-        fp = fopen("mostre.csv", "r");
-    }
+    fp = fopen(file, "r"); //apertura file
     
     int totRighe = 0;
     char buffer;
@@ -215,4 +201,4 @@ int contaRighe(int file) {
     
     fclose(fp);
     return totRighe;
-}	*/
+}
