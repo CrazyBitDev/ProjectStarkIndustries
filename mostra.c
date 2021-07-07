@@ -48,7 +48,7 @@ struct mostre *aggiungiMostra(struct mostre *testa)
     printf("Inserisci Città: ");
     fgets(nuovoNodo->citta, 20, stdin);
     nuovoNodo->citta[strlen(nuovoNodo->citta) - 1] = 0;
-    nuovoNodo->responsabile[0] = toupper(nuovoNodo->responsabile[0]);
+    nuovoNodo->citta[0] = toupper(nuovoNodo->citta[0]);
     printf("\n");
     
     printf("Inserisci Indirizzo: ");
