@@ -395,7 +395,7 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
             
             printf("Vuoi modificare un altro campo? (s/n): ");
             scanf("%c", &risposta);
-            while ('\n' != getchar());
+            //while ('\n' != getchar());
             
             //rendo la risposta in maiuscolo per evitare errori
             risposta = toupper(risposta);
@@ -421,14 +421,13 @@ struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa) {
     curr = testa;
     
     do {
-        //while ('\n' != getchar());
+        while ('\n' != getchar());
         printColor("ATTENZIONE!\n", COLOR_RED);
         printf("Sei sicuro/a di voler eliminare il tuo account?\n");
         printf("Per poter riaccedere dovrai creare un nuovo account\n");
         printf("Risposta (s/n): ");
         scanf("%c", &risposta);
         printf("\n");
-        while ('\n' != getchar());
         
         //rendo la risposta in maiuscolo per evitare errori
         risposta = toupper(risposta);
