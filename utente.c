@@ -171,7 +171,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
     long size = ftell(fp);
     
     ultimoID = letturaUltimoID("utenti.csv") + 1;
-    
+
     //ricerca della posizione di inserimento
     while(curr != NULL && ultimoID > curr->id) {
         prec = curr;

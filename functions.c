@@ -108,6 +108,14 @@ void readPassword(char prompt[], char *password) {
     #endif
 }
 
+void clearConsole() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
 bool verificaData(int giorno, int mese, int anno) {
     bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per verificare la correttezza della data di nascita

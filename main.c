@@ -15,11 +15,17 @@
 #include "mostra.h"
 /*#include "opera.h"*/
 
-void titolo(void);
-
 int main() {
 
-    titolo();
+    printf("\n");
+    consoleColor(COLOR_CYAN);
+    printf("   _____ __             __      ____          __           __       _          \n");
+    printf("  / ___// /_____ ______/ /__   /  _/___  ____/ /_  _______/ /______(_)__  _____\n");
+    printf("  \\__ \\/ __/ __ `/ ___/ //_/   / // __ \\/ __  / / / / ___/ __/ ___/ / _ \\/ ___/\n");
+    printf(" ___/ / /_/ /_/ / /  / ,<    _/ // / / / /_/ / /_/ (__  ) /_/ /  / /  __(__  ) \n");
+    printf("/____/\\__/\\__,_/_/  /_/|_|  /___/_/ /_/\\__,_/\\__,_/____/\\__/_/  /_/\\___/____/  \n");
+    consoleColor(COLOR_RESET);
+    printf("\n");
 
     int scelta, scelta2, colonna = 0;
     char email[60], buf[BUFFER_SIZE];
@@ -27,7 +33,7 @@ int main() {
     Utente *testaUtente = NULL;
     Utente *utenteLogin = NULL; //utente che avrà eseguito il login
     Utente *tempUtente = NULL; //temporanea
-    Utente *tempUtente1 = NULL;
+    Utente *precUtente = NULL;
 
     //Lettura utenti dal file
     FILE *fpU;
@@ -43,9 +49,10 @@ int main() {
         while (!feof(fpU)) {
             fgets(buf, BUFFER_SIZE, fpU);
             tempUtente = (struct utente *) malloc(sizeof(struct utente));
+            tempUtente->nextUtente = NULL;
 
-            if (tempUtente1 != NULL) {
-                tempUtente1->nextUtente = tempUtente;
+            if (precUtente != NULL) {
+                precUtente->nextUtente = tempUtente;
             } else {
                 testaUtente = tempUtente;
             }
@@ -88,11 +95,10 @@ int main() {
                 colonna++;
             }
             colonna = 0;
-            tempUtente1 = tempUtente;
+            precUtente = tempUtente;
 
         }
     }
-
 
     //Lettura mostre dal file
     int nMostra, colonna1 = 0;
@@ -116,6 +122,7 @@ int main() {
         while (!feof(fpM)) {
             fgets(buf2, BUFFER_SIZE, fpM);
             tempMostre = (struct mostre *) malloc(sizeof(struct mostre));
+            tempMostre->nextMostra = NULL;
 
             if (tempMostre1 != NULL) {
                 tempMostre1->nextMostra = tempMostre;
@@ -172,11 +179,7 @@ int main() {
         printf("\n");
         
         //ripulisco la schermata
-        #ifdef _WIN32
-            system("cls");
-        #else
-            system("clear");
-        #endif
+        clearConsole();
 
         switch (scelta) {
             case 1:
@@ -296,18 +299,4 @@ int main() {
 
     printf("\n");
     return 0;
-}
-
-void titolo(void) {
-
-    printf("\n");
-    consoleColor(COLOR_CYAN);
-    printf("   _____ __             __      ____          __           __       _          \n");
-    printf("  / ___// /_____ ______/ /__   /  _/___  ____/ /_  _______/ /______(_)__  _____\n");
-    printf("  \\__ \\/ __/ __ `/ ___/ //_/   / // __ \\/ __  / / / / ___/ __/ ___/ / _ \\/ ___/\n");
-    printf(" ___/ / /_/ /_/ / /  / ,<    _/ // / / / /_/ / /_/ (__  ) /_/ /  / /  __(__  ) \n");
-    printf("/____/\\__/\\__,_/_/  /_/|_|  /___/_/ /_/\\__,_/\\__,_/____/\\__/_/  /_/\\___/____/  \n");
-    consoleColor(COLOR_RESET);
-
-    printf("\n");
 }

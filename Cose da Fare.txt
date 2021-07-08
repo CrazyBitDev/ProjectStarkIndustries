@@ -8,12 +8,12 @@ Elenco cose da fare/problemi:
 
 - aggiustare i caratteri speciali
 
-- sistemare il Crash in fase di registrazione -> crasha nell’ultimo while
-
-- controllare bug vari presenti nella gestione dell’utente 
-
 - controllare ed aggiustare tutti i messaggi 
 
 - controlli vari sugli input -> correttezza email, caratteri minimi password 
 
 - fare in modo che si possa fare il login sia con nickname che con email
+
+- rimuovere testo in magenta
+
+- exit programma da utente loggato (9 logout, 0 exit)

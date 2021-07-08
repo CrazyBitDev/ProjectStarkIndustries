@@ -168,14 +168,14 @@ struct mostre *aggiungiMostra(struct mostre *testa)
     long size = ftell(fp);
     
     ultimoID = letturaUltimoID("mostre.csv") + 1;
-    
+
     //ricerca della posizione di inserimento
     while(curr != NULL && ultimoID > curr->id)
     {
         prec = curr;
         curr = curr->nextMostra;
+        printf("%s\n", curr != NULL ? "true" : "false");
     }
-    
     
     if (size == 0)   //file vuoto
     {
@@ -499,7 +499,7 @@ void stampaMostre(struct mostre *testa)
 //scrittura su file
 void scriviMostre(struct mostre *testa)
 {
-    struct mostre *temp =  NULL;
+    struct mostre *temp = NULL;
     
     FILE *fp;
     fp = fopen("mostre.csv", "w"); //apertura file
