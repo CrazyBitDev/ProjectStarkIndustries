@@ -170,6 +170,13 @@ int main() {
         printf("-> ");
         scanf("%d", &scelta);
         printf("\n");
+        
+        //ripulisco la schermata
+        #ifdef _WIN32
+            system("cls");
+        #else
+            system("clear");
+        #endif
 
         switch (scelta) {
             case 1:
