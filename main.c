@@ -205,6 +205,7 @@ int main() {
                         } else {
                             //operazioni che può effettuare l'utente
                             printf("4: Visualizza mostre\n");
+							//printf("5: Prenotati ad una mostra\n");
                         }
 
                         printf("0: Logout\n");

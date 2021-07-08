@@ -1,4 +1,7 @@
-struct prenotazione* aggiungiPrenotazione(char n[],struct prenotazione* testa);
-struct prenotazione* modificaPrenotazione(char n[],struct prenotazione* testa);
-struct prenotazione* cancellaPrenotazione(char n[], struct prenotazione* testa);
+struct prenotazioni* aggiungiPrenotazione(struct prenotazioni* testa);
+
+struct prenotazioni* modificaPrenotazione(struct prenotazioni *prenotazione, struct prenotazione *testa);
+
+struct prenotazioni* cancellaPrenotazione(struct prenotazioni *prenotazione, struct prenotazioni *testa);
+
 #include "prenotazione.c"
