@@ -3,7 +3,6 @@
 #define COLOR_RED     12
 #define COLOR_MAGENTA 13
 #define COLOR_RESET   15
-#define BUFFER_SIZE 1024
 
 #ifdef _WIN32
 
@@ -18,7 +17,6 @@
     #define ANSI_COLOR_RED     "\x1b[91m"
     #define ANSI_COLOR_MAGENTA "\x1b[95m"
     #define ANSI_COLOR_RESET   "\x1b[0m"
-
 
 #endif
 

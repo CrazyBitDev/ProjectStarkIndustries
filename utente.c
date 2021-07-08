@@ -1,6 +1,3 @@
-//Gestione Utente
-#define BUFFER_SIZE 1024
-
 //Definizione della struct Utente
 struct utente {
     int id;

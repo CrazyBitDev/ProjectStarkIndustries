@@ -1,4 +1,4 @@
-#define DIM 50
+#define BUFFER_SIZE 1024
 
 //librerie generali
 #include <stdio.h>

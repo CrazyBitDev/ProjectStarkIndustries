@@ -17,3 +17,5 @@ Elenco cose da fare/problemi:
 - rimuovere testo in magenta
 
 - exit programma da utente loggato (9 logout, 0 exit)
+
+- doppia verifica password registrazione utente

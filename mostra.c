@@ -1,6 +1,3 @@
-//Gestione Mostre
-#define BUFFER_SIZE 1024
-
 //Definizione struct mostre
 struct mostre
 {
