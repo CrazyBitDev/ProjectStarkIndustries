@@ -1,0 +1,19 @@
+Elenco cose da fare/problemi:
+
+- fare in modo che nickname ed email siano univoci
+
+- controlli sulle date delle mostre -> devono essere successive alla data odierna. Magari aggiungere anche il fatto che se la data di fine mostra viene superata quella determinata mostra viene eliminata dal file
+
+- le modifiche delle mostre non vengono salvate nel file, in particolar modo il n. Opere
+
+- aggiustare i caratteri speciali
+
+- sistemare il Crash in fase di registrazione -> crasha nell’ultimo while
+
+- controllare bug vari presenti nella gestione dell’utente 
+
+- controllare ed aggiustare tutti i messaggi 
+
+- controlli vari sugli input -> correttezza email, caratteri minimi password 
+
+- fare in modo che si possa fare il login sia con nickname che con email
