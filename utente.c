@@ -13,7 +13,7 @@ struct utente {
 
 struct utente *registrazioneUtente(struct utente *testa) {
     struct utente *nuovoNodo = NULL;
-    //struct utente *temp;
+    struct utente *temp;
     struct utente *curr, *prec;
     prec = NULL;
     curr = testa;
@@ -46,7 +46,6 @@ struct utente *registrazioneUtente(struct utente *testa) {
         printf("Inserisci Nickname: ");
         fgets(nuovoNodo->nick, 20, stdin);
         nuovoNodo->nick[strlen(nuovoNodo->nick) - 1] = 0;
-        /*
         for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 
             if (strcmp(temp->nick, nuovoNodo->nick) == 0) {
@@ -58,7 +57,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
         if (flag) {
             printColor("---Nickname gia' in uso!---\n", COLOR_RED);
             printColor("---Si prega di sceglierne un altro---\n", COLOR_RED);
-        } */
+        }
         
     } while(flag);
     
