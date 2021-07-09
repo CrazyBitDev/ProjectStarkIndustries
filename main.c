@@ -8,7 +8,6 @@
 #include <time.h>
 #include <ctype.h>
 
-
 #include "functions.h"
 #include "utente.h"
 #include "prenotazione.h"
@@ -17,15 +16,7 @@
 
 int main() {
 
-    printf("\n");
-    consoleColor(COLOR_CYAN);
-    printf("   _____ __             __      ____          __           __       _          \n");
-    printf("  / ___// /_____ ______/ /__   /  _/___  ____/ /_  _______/ /______(_)__  _____\n");
-    printf("  \\__ \\/ __/ __ `/ ___/ //_/   / // __ \\/ __  / / / / ___/ __/ ___/ / _ \\/ ___/\n");
-    printf(" ___/ / /_/ /_/ / /  / ,<    _/ // / / / /_/ / /_/ (__  ) /_/ /  / /  __(__  ) \n");
-    printf("/____/\\__/\\__,_/_/  /_/|_|  /___/_/ /_/\\__,_/\\__,_/____/\\__/_/  /_/\\___/____/  \n");
-    consoleColor(COLOR_RESET);
-    printf("\n");
+    titolo();
 
     int scelta, scelta2, colonna = 0;
     char email[60], buf[BUFFER_SIZE];
@@ -142,22 +133,26 @@ int main() {
                     tempMostre->responsabile[strlen(tempMostre->responsabile)] = 0;
                 }
                 if (colonna1 == 2) {
+                    strcpy(tempMostre->luogo, tok2);
+                    tempMostre->luogo[strlen(tempMostre->luogo)] = 0;
+                }
+                if (colonna1 == 3) {
                     strcpy(tempMostre->citta, tok2);
                     tempMostre->citta[strlen(tempMostre->citta)] = 0;
                 }
-                if (colonna1 == 3) {
+                if (colonna1 == 4) {
                     strcpy(tempMostre->indirizzo, tok2);
                     tempMostre->indirizzo[strlen(tempMostre->indirizzo)] = 0;
                 }
-                if (colonna1 == 4) {
+                if (colonna1 == 5) {
                     strcpy(tempMostre->dataInizio, tok2);
                     tempMostre->dataInizio[strlen(tempMostre->dataInizio)] = 0;
                 }
-                if (colonna1 == 5) {
+                if (colonna1 == 6) {
                     strcpy(tempMostre->dataFine, tok2);
                     tempMostre->dataFine[strlen(tempMostre->dataFine)] = 0;
                 }
-                if (colonna1 == 6) {
+                if (colonna1 == 7) {
                     tempMostre->nOpere = atoi(tok2);
                 }
                 tok2 = strtok(NULL, ",");
@@ -227,11 +222,12 @@ int main() {
 
                         switch (scelta2) {
                             case 1:
-                                printColor("Elenco dati personali\n", COLOR_CYAN);
                                 stampaUtente(utenteLogin);
                                 break;
 
                             case 2:
+                                while ('\n' != getchar());
+                                stampaUtente(utenteLogin);
                                 testaUtente = modificaUtente(utenteLogin, testaUtente);
                                 break;
 

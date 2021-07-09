@@ -2,11 +2,7 @@ Elenco cose da fare/problemi:
 
 - fare in modo che nickname ed email siano univoci
 
-- controlli sulle date delle mostre -> devono essere successive alla data odierna. Magari aggiungere anche il fatto che se la data di fine mostra viene superata quella determinata mostra viene eliminata dal file
-
-- le modifiche delle mostre non vengono salvate nel file, in particolar modo il n. Opere
-
-- aggiustare i caratteri speciali
+- controlli sulle date delle mostre -> devono essere successive alla data odierna. 
 
 - controllare ed aggiustare tutti i messaggi 
 
@@ -14,8 +10,32 @@ Elenco cose da fare/problemi:
 
 - fare in modo che si possa fare il login sia con nickname che con email
 
-- rimuovere testo in magenta
-
 - exit programma da utente loggato (9 logout, 0 exit)
 
 - doppia verifica password registrazione utente
+
+- usare funzione difftime per confrontare due date (nelle mostre)
+ --https://www.tutorialspoint.com/c_standard_library/time_h.htm
+
+- l'amministratore può modificare i permessi degli altri utenti 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cose extra che si possono aggiungere ma non necessarie: 
+
+-Magari aggiungere anche il fatto che se la data di fine mostra viene superata quella determinata mostra viene eliminata dal file

@@ -155,8 +155,6 @@ bool verificaData(int giorno, int mese, int anno) {
 int letturaUltimoID(char *file) {
     FILE *fp = NULL;
     
-    printf("TEST FILE: %s\n", file);
-    
     fp = fopen(file, "r"); //apertura file
     
     int totRighe = 0;
@@ -207,4 +205,35 @@ int contaRighe(char *file) {
     
     fclose(fp);
     return totRighe;
+}
+
+void titolo() {
+    printf("\n");
+    consoleColor(COLOR_CYAN);
+    printf("   _____ __             __      ____          __           __       _          \n");
+    printf("  / ___// /_____ ______/ /__   /  _/___  ____/ /_  _______/ /______(_)__  _____\n");
+    printf("  \\__ \\/ __/ __ `/ ___/ //_/   / // __ \\/ __  / / / / ___/ __/ ___/ / _ \\/ ___/\n");
+    printf(" ___/ / /_/ /_/ / /  / ,<    _/ // / / / /_/ / /_/ (__  ) /_/ /  / /  __(__  ) \n");
+    printf("/____/\\__/\\__,_/_/  /_/|_|  /___/_/ /_/\\__,_/\\__,_/____/\\__/_/  /_/\\___/____/  \n");
+    consoleColor(COLOR_RESET);
+    printf("\n");
+}
+
+int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2) {
+    double differenza = 0;
+    if (verificaData(giorno1, mese1, anno1) && verificaData(giorno2, mese2, anno2)) {
+        struct tm data1;
+        struct tm data2;
+
+        data1.tm_mday = giorno1;
+        data1.tm_mon = mese1 - 1;
+        data1.tm_year = anno1 - 1900;
+
+        data2.tm_mday = giorno2;
+        data2.tm_mon = mese2 - 1;
+        data2.tm_year = anno2 - 1900;
+
+        differenza = difftime(mktime(&data1), mktime(&data2));
+    }
+    return differenza;
 }

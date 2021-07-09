@@ -118,7 +118,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
     do {
         if(!dataCorretta) {
             printColor("\nAttenzione!\n", COLOR_RED);
-            printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+            printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
         }
         
         do {
@@ -242,6 +242,8 @@ void stampaUtente(struct utente *utenteLogin) {
     struct utente *temp = NULL;
     temp = utenteLogin;
 
+    
+    printColor("Elenco dati personali\n", COLOR_CYAN);
     printf("Id: %d\n", temp->id);
     printf("Nome: %s\n", temp->nome);
     printf("Cognome: %s\n", temp->cognome);
@@ -357,7 +359,7 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
                 do {
                     if(!dataCorretta) {
                         printColor("\nAttenzione!\n", COLOR_RED);
-                        printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                        printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
                     }
                     
                     do {
@@ -391,7 +393,7 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
             
             printf("Vuoi modificare un altro campo? (s/n): ");
             scanf("%c", &risposta);
-            //while ('\n' != getchar());
+            while ('\n' != getchar());
             
             //rendo la risposta in maiuscolo per evitare errori
             risposta = toupper(risposta);

@@ -3,6 +3,7 @@ struct mostre
 {
     int id;
     char responsabile[30];
+    char luogo[25];
     char citta[20];
     char indirizzo[30];
     char dataInizio[11];
@@ -41,8 +42,14 @@ struct mostre *aggiungiMostra(struct mostre *testa)
     nuovoNodo->responsabile[strlen(nuovoNodo->responsabile) - 1] = 0;
     nuovoNodo->responsabile[0] = toupper(nuovoNodo->responsabile[0]);
     printf("\n");
+
+    printf("Inserisci il luogo: ");
+    fgets(nuovoNodo->luogo, 25, stdin);
+    nuovoNodo->luogo[strlen(nuovoNodo->luogo) - 1] = 0;
+    nuovoNodo->luogo[0] = toupper(nuovoNodo->luogo[0]);
+    printf("\n");
     
-    printf("Inserisci Città: ");
+    printf("Inserisci Citta': ");
     fgets(nuovoNodo->citta, 20, stdin);
     nuovoNodo->citta[strlen(nuovoNodo->citta) - 1] = 0;
     nuovoNodo->citta[0] = toupper(nuovoNodo->citta[0]);
@@ -63,7 +70,7 @@ struct mostre *aggiungiMostra(struct mostre *testa)
             if(!dataCorrettaIn)
             {
                 printColor("\nAttenzione!\n", COLOR_RED);
-                printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
             }
             
             do
@@ -101,7 +108,7 @@ struct mostre *aggiungiMostra(struct mostre *testa)
             if(!dataCorrettaFin)
             {
                 printColor("\nAttenzione!\n", COLOR_RED);
-                printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
             }
             
             do
@@ -131,24 +138,12 @@ struct mostre *aggiungiMostra(struct mostre *testa)
         snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
         
         printf("\n");
-        if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
-        {
-            //La mostra dura solo un giorno di conseguenza le date coincidono
+        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) { 
             flagDate = true;
-        }
-        else if(annoIn < annoFin || (annoIn == annoFin && meseIn < meseFin) || (annoIn == annoFin && meseIn == meseFin && giornoIn < giornoFin))
-        {
-            //La data d'inizio precede quella di fine
-            flagDate = true;
-        }
-        else
-        {
-            //La data di fine precede quella d'inizio
-            flagDate = false;
+        } else {
             printColor("Attenzione!\n", COLOR_RED);
             printf("La data di fine mostra deve susseguire la data d'inizio.\n");
             printf("Si prega di inserire nuovamente le date.\n\n");
-            
         }
     }
     while(!flagDate);
@@ -179,7 +174,7 @@ struct mostre *aggiungiMostra(struct mostre *testa)
         
         nuovoNodo->id = 0;
         
-        fprintf(fp, "%d,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+        fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->luogo, nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
         
     }
     else     //file pieno
@@ -187,8 +182,8 @@ struct mostre *aggiungiMostra(struct mostre *testa)
         
         nuovoNodo->id = ultimoID;
         
-        fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
-        
+        fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->luogo, nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+
     }
     
     fclose(fp);
@@ -215,7 +210,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
     int scelta, colonna = 0;
     char risposta;
     bool flagDate = false;
-    
+
     char dataIn[11];
     bool dataCorrettaIn = true;
     int giornoIn = 0, meseIn = 0, annoIn = 0;
@@ -231,6 +226,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
     printColor("\nDati relativi alla mostra scelta:\n", COLOR_CYAN);
     printf("Id: %d\n", temp->id);
     printf("Responsabile: %s\n", temp->responsabile);
+    printf("Luogo di esposizione: %s\n", temp->luogo);
     printf("Citta': %s\n", temp->citta);
     printf("Indirizzo: %s\n", temp->indirizzo);
     printf("Data inizio mostra: %s\n", temp->dataInizio);
@@ -246,11 +242,12 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
         printf("Scegliere il campo da modificare\n");
         printf("----------\n");
         printf("1: Responsabile\n");
-        printf("2: Citta'\n");
-        printf("3: Indirizzo\n");
-        printf("4: Data Inizio\n");
-        printf("5: Data Fine\n");
-        printf("6: Numero Opere\n");
+        printf("2: Luogo\n");
+        printf("3: Citta'\n");
+        printf("4: Indirizzo\n");
+        printf("5: Data Inizio\n");
+        printf("6: Data Fine\n");
+        printf("7: Numero Opere\n");
         printf("0: Annulla\n");
         printf("----------\n");
         printf("-> ");
@@ -269,23 +266,30 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                 temp->responsabile[strlen(temp->responsabile) - 1] = 0;
                 temp->responsabile[0] = toupper(temp->responsabile[0]);
                 break;
-                
+
             case 2:
-                printf("Inserisci la città: ");
+                printf("Inserisci il luogo: ");
+                fgets(temp->luogo, 25, stdin);
+                temp->responsabile[strlen(temp->responsabile) - 1] = 0;
+                temp->responsabile[0] = toupper(temp->responsabile[0]);
+                break;
+                
+            case 3:
+                printf("Inserisci la citta': ");
                 fgets(temp->citta, 20, stdin);
                 temp->citta[strlen(temp->citta) - 1] = 0;
                 temp->citta[0] = toupper(temp->citta[0]);
                 break;
                 
-            case 3:
+            case 4:
                 printf("Inserisci l'indirizzo: ");
                 fgets(temp->indirizzo, 20, stdin);
                 temp->indirizzo[strlen(temp->indirizzo) - 1] = 0;
                 temp->indirizzo[0] = toupper(temp->indirizzo[0]);
                 break;
                 
-            case 4:
-                
+            case 5:
+                flagDate = false;
                 do
                 {
                     printf("Inserisci data d'inizio mostra\n");
@@ -294,7 +298,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                         if(!dataCorrettaIn)
                         {
                             printColor("\nAttenzione!\n", COLOR_RED);
-                            printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                            printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
                         }
                         
                         do
@@ -342,24 +346,12 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                         colonna++;
                     }
                     
-                    if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
-                    {
-                        //La mostra dura solo un giorno di conseguenza le date coincidono
+                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) { 
                         flagDate = true;
-                    }
-                    else if(annoIn < annoFin || (annoIn == annoFin && meseIn < meseFin) || (annoIn == annoFin && meseIn == meseFin && giornoIn < giornoFin))
-                    {
-                        //La data d'inizio precede quella di fine
-                        flagDate = true;
-                    }
-                    else
-                    {
-                        //La data di fine precede quella d'inizio
-                        flagDate = false;
+                    } else {
                         printColor("Attenzione!\n", COLOR_RED);
                         printf("La data di fine mostra deve susseguire la data d'inizio.\n");
                         printf("Si prega di inserire nuovamente le date.\n\n");
-                        
                     }
                     
                 }
@@ -368,8 +360,8 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                 
                 break;
                 
-            case 5:
-                
+            case 6:
+                flagDate = false;
                 do
                 {
                     printf("Inserisci data di fine mostra\n");
@@ -378,7 +370,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                         if(!dataCorrettaFin)
                         {
                             printColor("\nAttenzione!\n", COLOR_RED);
-                            printf("La data inserita non è corretta.\nSi prega di inserirla nuovamente\n\n");
+                            printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
                         }
                         
                         do
@@ -426,32 +418,21 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                         colonna++;
                     }
                     
-                    if((giornoIn == giornoFin) && (meseIn == meseFin) && (annoIn == annoFin))
-                    {
-                        //La mostra dura solo un giorno di conseguenza le date coincidono
+                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) { 
                         flagDate = true;
-                    }
-                    else if(annoIn < annoFin || (annoIn == annoFin && meseIn < meseFin) || (annoIn == annoFin && meseIn == meseFin && giornoIn < giornoFin))
-                    {
-                        //La data d'inizio precede quella di fine
-                        flagDate = true;
-                    }
-                    else
-                    {
-                        //La data di fine precede quella d'inizio
-                        flagDate = false;
+                    } else {
                         printColor("Attenzione!\n", COLOR_RED);
                         printf("La data di fine mostra deve susseguire la data d'inizio.\n");
                         printf("Si prega di inserire nuovamente le date.\n\n");
-                        
                     }
+
                 }
                 while(!flagDate);
                 strcpy(temp->dataFine, dataFin);
                 
                 break;
                 
-            case 6:
+            case 7:
                 printf("Inserisci il numero delle opere: ");
                 scanf("%d", &nOpere);
                 temp->nOpere = nOpere;
@@ -462,13 +443,11 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
         }
         
         
+        while ('\n' != getchar());
         printf("Vuoi modificare un altro campo? (s/n): ");
-        scanf("%c", &risposta);
+        risposta = getchar();
         
-        //rendo la risposta in maiuscolo
-        risposta = toupper(risposta);
-        printColor("fuori", COLOR_MAGENTA);
-        if (risposta == 'N')
+        if (toupper(risposta) == 'N')
         {
             scriviMostre(testa);
         }
@@ -487,6 +466,7 @@ void stampaMostre(struct mostre *testa)
     {
         printf("Mostra numero: %d \n", temp->id);
         printf("Responsabile: %s \n", temp->responsabile);
+        printf("Luogo di esposizione: %s \n", temp->luogo);
         printf("Luogo: %s - %s\n", temp->citta, temp->indirizzo);
         printf("Durata: dal %s al %s\n",  temp->dataInizio, temp->dataFine);
         printf("----------\n");
@@ -496,8 +476,7 @@ void stampaMostre(struct mostre *testa)
 //scrittura su file
 void scriviMostre(struct mostre *testa)
 {
-    struct mostre *temp = NULL;
-    
+    struct mostre *temp = NULL;    
     FILE *fp;
     fp = fopen("mostre.csv", "w"); //apertura file
     
@@ -507,11 +486,11 @@ void scriviMostre(struct mostre *testa)
         
         if (size == 0)   //file vuoto.
         {
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->citta, temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->luogo, temp->citta, temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
         }
         else     //file pieno
         {
-            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->citta, temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->luogo, temp->citta, temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
         }
     }
     fclose(fp);
@@ -541,7 +520,6 @@ struct mostre *eliminaMostra(struct mostre *testa, struct mostre *mostra)
         
         //rendo la risposta tutta maiuscola per evitare errori
         risposta = toupper(risposta);
-        printf("test: %c\n", risposta);
     }
     while(risposta != 'S' && risposta != 'N');
     
