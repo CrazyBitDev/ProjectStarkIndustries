@@ -4,7 +4,7 @@ Elenco cose da fare/problemi:
 
 - controlli sulle date delle mostre -> devono essere successive alla data odierna. Magari aggiungere anche il fatto che se la data di fine mostra viene superata quella determinata mostra viene eliminata dal file
 
-- le modifiche delle mostre non vengono salvate nel file, in particolar modo il n. Opere
+- le modifiche delle mostre non vengono salvate nel file e nemmeno l'eliminazione, in particolar modo il n. Opere
 
 - aggiustare i caratteri speciali
 
