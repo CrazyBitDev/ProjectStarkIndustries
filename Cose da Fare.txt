@@ -16,8 +16,6 @@ Elenco cose da fare/problemi:
 
 Promemoria per DAN: 
 - rimuovere i void dalle funzioni prima di consegnare 
-- controllare modifica email 
-
 
 
 

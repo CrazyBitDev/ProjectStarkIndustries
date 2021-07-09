@@ -343,17 +343,17 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
                 temp->cognome[0] = toupper(temp->cognome[0]);
                 break;
 
-            case 3:
+            case 3:;
+                char email[60];
                 
                 do {
                     flag = false;
                     printf("Inserisci Email (non ti dimenticare la @): \n");
-                    fgets(temp->email, 60, stdin);
-                    temp->email[strlen(temp->email) - 1] = 0;
+                    fgets(email, 60, stdin);
+                    email[strlen(email) - 1] = 0;
                     
                     for (temp2 = testa; temp2 != NULL; temp2 = temp2->nextUtente) {
-
-                        if (strcmp(temp->email, temp2->email) == 0) {
+                        if (strcmp(temp2->email, email) == 0) {
                             flag = true;
                             break;
                         }
@@ -365,7 +365,10 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
                         printColor("Attenzione!\n", COLOR_RED);
                         printColor("Email gia' in uso!\n", COLOR_RED);
                         printf("Si prega di sceglierne un'altra\n");
-                        printf("----------\n\n");                    }
+                        printf("----------\n\n");
+                    } else {
+                        strcpy(temp->email, email);
+                    }
                     
                 } while (flag);
                 
