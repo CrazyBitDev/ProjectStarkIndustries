@@ -1,7 +1,5 @@
 Elenco cose da fare/problemi:
 
-- fare in modo che nickname ed email siano univoci
-
 - controlli sulle date delle mostre -> devono essere successive alla data odierna. 
 
 - aggiustare i caratteri speciali
