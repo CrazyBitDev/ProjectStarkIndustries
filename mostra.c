@@ -87,8 +87,10 @@ struct mostre *aggiungiMostra(struct mostre *testa)
             }
             while (meseIn < 1 || meseIn > 12);
             
-            printf("Anno: ");
-            scanf("%d", &annoIn);
+            do {
+                printf("Anno (dal 1900 in poi): ");
+                scanf("%d", &annoIn);
+            } while(annoIn < 1900);
             
             dataCorrettaIn = verificaData(giornoIn, meseIn, annoIn);
             
@@ -125,8 +127,10 @@ struct mostre *aggiungiMostra(struct mostre *testa)
             }
             while (meseFin < 1 || meseFin > 12);
             
-            printf("Anno: ");
-            scanf("%d", &annoFin);
+            do {
+                printf("Anno (dal 1900 in poi): ");
+                scanf("%d", &annoFin);
+            } while(annoFin < 1900);
             
             dataCorrettaFin = verificaData(giornoFin, meseFin, annoFin);
             
@@ -138,7 +142,7 @@ struct mostre *aggiungiMostra(struct mostre *testa)
         snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
         
         printf("\n");
-        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) { 
+        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) {
             flagDate = true;
         } else {
             printColor("Attenzione!\n", COLOR_RED);
@@ -346,7 +350,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                         colonna++;
                     }
                     
-                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) { 
+                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) {
                         flagDate = true;
                     } else {
                         printColor("Attenzione!\n", COLOR_RED);
@@ -418,7 +422,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra)
                         colonna++;
                     }
                     
-                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) { 
+                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) {
                         flagDate = true;
                     } else {
                         printColor("Attenzione!\n", COLOR_RED);
@@ -476,7 +480,7 @@ void stampaMostre(struct mostre *testa)
 //scrittura su file
 void scriviMostre(struct mostre *testa)
 {
-    struct mostre *temp = NULL;    
+    struct mostre *temp = NULL;
     FILE *fp;
     fp = fopen("mostre.csv", "w"); //apertura file
     

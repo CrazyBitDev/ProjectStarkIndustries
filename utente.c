@@ -46,6 +46,8 @@ struct utente *registrazioneUtente(struct utente *testa) {
         printf("Inserisci Nickname: ");
         fgets(nuovoNodo->nick, 20, stdin);
         nuovoNodo->nick[strlen(nuovoNodo->nick) - 1] = 0;
+        
+        //verifica univocita' nickname
         for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 
             if (strcmp(temp->nick, nuovoNodo->nick) == 0) {
@@ -55,8 +57,12 @@ struct utente *registrazioneUtente(struct utente *testa) {
         }
         
         if (flag) {
-            printColor("---Nickname gia' in uso!---\n", COLOR_RED);
-            printColor("---Si prega di sceglierne un altro---\n", COLOR_RED);
+            clearConsole();
+            printf("\n----------");
+            printColor("\nAttenzione!\n", COLOR_RED);
+            printColor("Nickname gia' in uso!\n", COLOR_RED);
+            printf("Si prega di sceglierne un altro\n");
+            printf("----------\n\n");
         }
         
     } while(flag);
@@ -68,7 +74,8 @@ struct utente *registrazioneUtente(struct utente *testa) {
         printf("Inserisci Email (non ti dimenticare la @): \n");
         fgets(nuovoNodo->email, 60, stdin);
         nuovoNodo->email[strlen(nuovoNodo->email) - 1] = 0;
-        /*
+        
+        //verifica univocita' email
         for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 
             if (strcmp(temp->email, nuovoNodo->email) == 0) {
@@ -78,10 +85,14 @@ struct utente *registrazioneUtente(struct utente *testa) {
         }
         
         if (flag) {
-            printColor("---Email gia' in uso!---\n", COLOR_RED);
-            printColor("---Si prega di sceglierne un'altra---\n", COLOR_RED);
+            clearConsole();
+            printf("\n----------\n");
+            printColor("Attenzione!\n", COLOR_RED);
+            printColor("Email gia' in uso!\n", COLOR_RED);
+            printf("Si prega di sceglierne un'altra\n");
+            printf("----------\n\n");
         }
-         */
+         
         
     } while (flag);
 
@@ -91,6 +102,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
     ptr = strstr(nuovoNodo->email, a);
 
     while (ptr == NULL) {
+        clearConsole();
         printColor("Attenzione! L'email inserita non e' corretta\n", COLOR_RED);
 
         printf("Inserisci Email (non ti dimenticare la @): \n");
@@ -100,8 +112,28 @@ struct utente *registrazioneUtente(struct utente *testa) {
     }
     
     printf("-----------------------------\n");
-    char psw[20];
-    readPassword("Password: ", psw);
+    char psw[20], psw2[20];
+    
+    //controllo su correttezza password
+    do {
+        
+        do {
+            readPassword("Password (minimo 6 caratteri): ", psw);
+        } while(strlen(psw) < 6);
+        
+        do {
+            readPassword("Conferma password: ", psw2);
+        } while(strlen(psw2) < 6);
+        
+        if(strcmp(psw, psw2) != 0) {
+            clearConsole();
+            printColor("\nAttenzione!\n", COLOR_RED);
+            printf("Le password non coincidono fra loro\n");
+            printf("Effettuare nuovamente l'inserimento\n\n");
+        }
+        
+    } while(strcmp(psw, psw2) != 0);
+    
     strcpy(nuovoNodo->password, psw);
 
     printf("-----------------------------\n");
@@ -112,10 +144,12 @@ struct utente *registrazioneUtente(struct utente *testa) {
 
     printf("Inserisci data di nascita\n");
 
-    printColor("---Per potersi registrare bisogna avere almeno 16 anni---\n\n", COLOR_RED);
+    printColor("Attenzione!\n", COLOR_RED);
+    printf("Per potersi registrare bisogna avere almeno 16 anni\n\n");
     
     do {
         if(!dataCorretta) {
+            clearConsole();
             printColor("\nAttenzione!\n", COLOR_RED);
             printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
         }
@@ -130,8 +164,10 @@ struct utente *registrazioneUtente(struct utente *testa) {
             scanf("%d", &mese);
         } while (mese < 1 || mese > 12);
 
-        printf("Anno (dal 1900 in poi): ");
-        scanf("%d", &anno);
+        do {
+            printf("Anno (dal 1900 in poi): ");
+            scanf("%d", &anno);
+        } while(anno < 1900);
         
         dataCorretta = verificaData(giorno, mese, anno);
         
@@ -205,9 +241,7 @@ struct utente *registrazioneUtente(struct utente *testa) {
     
 }
 
-
-
-struct utente *accesso(struct utente *testa, char *email) {
+struct utente *accesso(struct utente *testa, char *text) {
     bool flag = false;
     struct utente *nuovoNodo = NULL;
     struct utente *temp;
@@ -217,9 +251,8 @@ struct utente *accesso(struct utente *testa, char *email) {
 
     for (temp = testa; temp != NULL; temp = temp->nextUtente) {
 
-        if (strcmp(temp->email, email) == 0 && strcmp(temp->password, pass) == 0) {
+        if ((strcmp(temp->email, text) == 0 || strcmp(temp->nick, text) == 0) && strcmp(temp->password, pass) == 0) {
 
-            printColor("---Login effettuato---\n", COLOR_GREEN);
             nuovoNodo = temp;
             flag = true;
             break;
@@ -228,7 +261,7 @@ struct utente *accesso(struct utente *testa, char *email) {
     }
 
     if (!flag) {
-        printColor("---Email e/o Password errati!---\n", COLOR_RED);
+        printColor("Email/Nickname e/o Password errati!\n", COLOR_RED);
     }
 
     if (flag)
@@ -262,7 +295,7 @@ void stampaUtente(struct utente *utenteLogin) {
 
 struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) {
     int scelta;
-    char risposta;
+    char risposta = '\0';
 
     char data[11];
     int giorno, mese, anno;
@@ -270,6 +303,7 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
     bool flag = false;
     
     struct utente *temp = NULL;
+    struct utente *temp2 = NULL;
 
     temp = utenteLogin;
 
@@ -283,6 +317,7 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
         printf("3: Email\n");
         printf("4: Password\n");
         printf("5: Data di nascita\n");
+        printf("0: Annulla\n");
         printf("----------\n");
         printf("-> ");
         scanf("%d", &scelta);
@@ -290,6 +325,10 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
         while ('\n' != getchar());
 
         switch (scelta) {
+                
+            case 0:
+                break;
+                
             case 1:
                 printf("Inserisci il nuovo nome: ");
                 fgets(temp->nome, 20, stdin);
@@ -312,18 +351,21 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
                     fgets(temp->email, 60, stdin);
                     temp->email[strlen(temp->email) - 1] = 0;
                     
-                    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+                    for (temp2 = testa; temp2 != NULL; temp2 = temp2->nextUtente) {
 
-                        if (strcmp(temp->email, temp->email) == 0) {
+                        if (strcmp(temp->email, temp2->email) == 0) {
                             flag = true;
                             break;
                         }
                     }
                     
                     if (flag) {
-                        printColor("---Email gia' in uso!---\n", COLOR_RED);
-                        printColor("---Si prega di sceglierne un'altra---\n", COLOR_RED);
-                    }
+                        clearConsole();
+                        printf("\n----------\n");
+                        printColor("Attenzione!\n", COLOR_RED);
+                        printColor("Email gia' in uso!\n", COLOR_RED);
+                        printf("Si prega di sceglierne un'altra\n");
+                        printf("----------\n\n");                    }
                     
                 } while (flag);
                 
@@ -333,7 +375,7 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
                 ptr = strstr(temp->email, a);
 
                 while (ptr == NULL) {
-
+                    clearConsole();
                     printColor("Attenzione! L'email inserita non e' corretta", COLOR_RED);
 
                     printf("Inserisci Email (non ti dimenticare la @): \n");
@@ -344,19 +386,40 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
                 break;
 
             case 4:;
-                char newPassword[20] = "";
-                readPassword("Inserisci la nuova password: ", newPassword);
-                strcpy(temp->password, newPassword);
+                char psw[20], psw2[20];
+                
+                do {
+                    
+                    do {
+                        readPassword("Inserisci la nuova password (minimo 6 caratteri): ", psw);
+                    } while(strlen(psw) < 6);
+                    
+                    do {
+                        readPassword("Conferma password: ", psw2);
+                    } while(strlen(psw2) < 6);
+                    
+                    if(strcmp(psw, psw2) != 0) {
+                        clearConsole();
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("Le password non coincidono fra loro\n");
+                        printf("Effettuare nuovamente l'inserimento\n\n");
+                    }
+                    
+                } while(strcmp(psw, psw2) != 0);
+                
+                strcpy(temp->password, psw);
                 break;
 
 
             case 5:
                 printf("Inserisci data di nascita\n");
 
-                printColor("---Per potersi registrare bisogna avere almeno 16 anni---\n\n", COLOR_RED);
+                printColor("Attenzione!\n", COLOR_RED);
+                printf("Per potersi registrare bisogna avere almeno 16 anni\n\n");
                 
                 do {
                     if(!dataCorretta) {
+                        clearConsole();
                         printColor("\nAttenzione!\n", COLOR_RED);
                         printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
                     }
@@ -371,8 +434,10 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
                         scanf("%d", &mese);
                     } while (mese < 1 || mese > 12);
 
-                    printf("Anno (dal 1900 in poi): ");
-                    scanf("%d", &anno);
+                    do {
+                        printf("Anno (dal 1900 in poi): ");
+                        scanf("%d", &anno);
+                    } while (anno < 1900);
                     
                     dataCorretta = verificaData(giorno, mese, anno);
                     
@@ -388,22 +453,27 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
                 break;
         }
         
-        do {
-            
-            printf("Vuoi modificare un altro campo? (s/n): ");
-            scanf("%c", &risposta);
-            while ('\n' != getchar());
-            
-            //rendo la risposta in maiuscolo per evitare errori
-            risposta = toupper(risposta);
-            
-            if (risposta == 'N') {
-                scriviUtenti(testa);
-            }
-            
-        } while(risposta != 'S' && risposta != 'N');
+        if(scelta != 0) {
+            do {
+                
+                printf("Vuoi modificare un altro campo? (s/n): ");
+                risposta = getchar();
+                while ('\n' != getchar());
+                
+                //rendo la risposta in maiuscolo per evitare errori
+                risposta = toupper(risposta);
+                
+                if (risposta == 'N') {
+                    scriviUtenti(testa);
+                }
+                
+            } while(risposta != 'S' && risposta != 'N');
+        } else {
+            scriviUtenti(testa);
+        }
         
-    } while (risposta == 'S');
+        clearConsole();
+    } while (risposta == 'S' && scelta != 0);
 
     return testa;
 }

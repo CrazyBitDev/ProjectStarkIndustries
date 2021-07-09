@@ -1,6 +1,6 @@
 struct utente *registrazioneUtente(struct utente *testa);
 
-struct utente *accesso(struct utente *testa, char *email);
+struct utente *accesso(struct utente *testa, char *text);
 
 void stampaUtente(struct utente *testa);
 
