@@ -85,19 +85,21 @@ void registrazioneUtente(Utente *testa) {
     bool dataCorretta = true; //flag per verificare la correttezza della data di nascita
     bool flag = false; //flag per controllare univocità del campo email e nickname
     bool testInput = false; //flag per controllare i vari input
-    bool flagPresenza = false; //flag per controllare se i campi sono pieni o meno
+    bool continuaInserimento = true; //flag per controllare se i campi sono pieni o meno
     
     FILE *fp;
     fp = fopen("utenti.csv", "a+"); //apertura file
     
     while ('\n' != getchar());
     
-    printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
-    printColor("\t\t\t|         Attenzione!         |\n", COLOR_RED);
-    printColor("\t\t\t|Se hai sbagliato e non vuoi  |\n", COLOR_RED);
-    printColor("\t\t\t|registrarti ma tornare alla  |\n", COLOR_RED);
-    printColor("\t\t\t|home, premere il tasto invio |\n", COLOR_RED);
-    printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+    consoleColor(COLOR_RED);
+    printf("\t\t\t|-----------------------------|\n");
+    printf("\t\t\t|         Attenzione!         |\n");
+    printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
+    printf("\t\t\t|     tornare alla  home      |\n");
+    printf("\t\t\t|   premere il tasto invio    |\n");
+    printf("\t\t\t|-----------------------------|\n");
+    consoleColor(COLOR_RESET);
     
     do {
         printf("Inserisci Nome: ");
@@ -106,7 +108,7 @@ void registrazioneUtente(Utente *testa) {
         nuovoNodo->nome[0] = toupper(nuovoNodo->nome[0]);
         
         if(strlen(nuovoNodo->nome) == 0) {
-            flagPresenza = true;
+            continuaInserimento = false;
             break;
         }
         
@@ -128,17 +130,12 @@ void registrazioneUtente(Utente *testa) {
         }
     } while (testInput);
     
-    if(!flagPresenza) {
+    if(continuaInserimento) {
         do {
             printf("Inserisci Cognome: ");
             fgets(nuovoNodo->cognome, 20, stdin);
             nuovoNodo->cognome[strlen(nuovoNodo->cognome) - 1] = 0;
             nuovoNodo->cognome[0] = toupper(nuovoNodo->cognome[0]);
-            
-            if(strlen(nuovoNodo->cognome) == 0) {
-                flagPresenza = true;
-                break;
-            }
             
             for(i=0; i<strlen(nuovoNodo->cognome); i++) {
                 if(isalpha(nuovoNodo->cognome[i]) == 0) {
@@ -161,17 +158,11 @@ void registrazioneUtente(Utente *testa) {
         
         printf("-----------------------------\n");
         
-        // if(!flagPresenza) {
         do {
             flag = false;
             printf("Inserisci Nickname: ");
             fgets(nuovoNodo->nick, 20, stdin);
             nuovoNodo->nick[strlen(nuovoNodo->nick) - 1] = 0;
-            
-            if(strlen(nuovoNodo->nick) == 0) {
-                flagPresenza = true;
-                break;
-            }
             
             //verifica univocita' nickname
             for (temp = testa; temp != NULL; temp = temp->nextUtente) {
@@ -195,17 +186,12 @@ void registrazioneUtente(Utente *testa) {
         } while (flag);
         
         printf("-----------------------------\n");
-        // if(!flagPresenza) {
+        
         do {
             flag = false;
             printf("Inserisci Email (non ti dimenticare la @): \n");
             fgets(nuovoNodo->email, 60, stdin);
             nuovoNodo->email[strlen(nuovoNodo->email) - 1] = 0;
-            
-            if(strlen(nuovoNodo->email) == 0) {
-                flagPresenza = true;
-                break;
-            }
             
             //verifica univocita' email
             for (temp = testa; temp != NULL; temp = temp->nextUtente) {
@@ -253,11 +239,6 @@ void registrazioneUtente(Utente *testa) {
                 readPassword("Password (minimo 6 caratteri): ", psw);
             } while (strlen(psw) < 6);
             
-            if(strlen(psw) == 0) {
-                flagPresenza = true;
-                break;
-            }
-            
             do {
                 readPassword("Conferma password: ", psw2);
             } while (strlen(psw2) < 6);
@@ -272,10 +253,8 @@ void registrazioneUtente(Utente *testa) {
             
         } while (strcmp(psw, psw2) != 0);
         
-        //  if(!flagPresenza) {
         strcpy(nuovoNodo->password, psw);
-        //  }
-        
+             
         printf("-----------------------------\n");
         
         
@@ -397,10 +376,6 @@ void registrazioneUtente(Utente *testa) {
             prec->nextUtente = nuovoNodo;
             nuovoNodo->nextUtente = curr;
         }
-        // }
-        
-        
-        // }
     }
 }
 
