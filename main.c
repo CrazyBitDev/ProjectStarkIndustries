@@ -12,6 +12,7 @@
 #include "utente.h"
 #include "prenotazione.h"
 #include "mostra.h"
+
 /*#include "opera.h"*/
 
 int main() {
@@ -172,7 +173,7 @@ int main() {
         printf("-> ");
         scanf("%d", &scelta);
         printf("\n");
-        
+
         //ripulisco la schermata
         clearConsole();
         titolo();
@@ -198,7 +199,7 @@ int main() {
                 if (valore != NULL) {
                     clearConsole();
                     titolo();
-                    
+
                     printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
                     //Operazioni che può effettuare l'utente una volta che ha eseguito il login
                     do {
@@ -207,7 +208,7 @@ int main() {
                         printf("2: Modifica dati personali\n");
                         printf("3: Elimina account\n");
 
-                        if(utenteLogin->permessi == 2) {
+                        if (utenteLogin->permessi == 2) {
                             //operazioni che può effettuare il dirigente
                             printf("4: Aggiungi dati mostra\n");
                             printf("5: Modifica dati mostra\n");
@@ -230,14 +231,14 @@ int main() {
                             case 1:
                                 clearConsole();
                                 titolo();
-                                
+
                                 stampaUtente(utenteLogin);
                                 break;
 
                             case 2:
                                 clearConsole();
                                 titolo();
-                                
+
                                 while ('\n' != getchar());
                                 stampaUtente(utenteLogin);
                                 testaUtente = modificaUtente(utenteLogin, testaUtente);
@@ -246,17 +247,17 @@ int main() {
                             case 3:
                                 clearConsole();
                                 titolo();
-                                
+
                                 testaUtente = eliminaUtente(utenteLogin, testaUtente);
                                 break;
 
                             case 4:
                                 clearConsole();
                                 titolo();
-                                
+
                                 while ('\n' != getchar());
 
-                                if(utenteLogin->permessi == 2) {
+                                if (utenteLogin->permessi == 2) {
                                     aggiungiMostra(testaMostre);
                                 } else {
                                     stampaMostre(testaMostre);
@@ -266,21 +267,21 @@ int main() {
                             case 5:
                                 clearConsole();
                                 titolo();
-                                
-                                if(utenteLogin->permessi == 2) {
+
+                                if (utenteLogin->permessi == 2) {
                                     printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
                                     stampaMostre(testaMostre);
                                     printf("\n");
                                     printf("Inserire il numero della mostra da modificare: ");
                                     scanf("%d", &nMostra);
-                                    
+
                                     clearConsole();
                                     titolo();
-                                    
+
                                     mostraScelta = ricercaMostra(testaMostre, nMostra);
-                                    
+
                                     char *valore2 = (char *) mostraScelta;
-                                    if(valore2 != NULL) {
+                                    if (valore2 != NULL) {
                                         modificaMostra(testaMostre, mostraScelta);
                                     }
                                     while ('\n' != getchar());
@@ -289,21 +290,21 @@ int main() {
                             case 6:
                                 clearConsole();
                                 titolo();
-                                
-                                if(utenteLogin->permessi == 2) {
+
+                                if (utenteLogin->permessi == 2) {
                                     printColor("Elenco delle Mostre\n", COLOR_CYAN);
                                     stampaMostre(testaMostre);
                                     printf("\n");
                                     printf("Inserire il numero della mostra da eliminare: ");
                                     scanf("%d", &nMostra);
-                                    
+
                                     clearConsole();
                                     titolo();
-                                    
+
                                     mostraScelta = ricercaMostra(testaMostre, nMostra);
-                                    
+
                                     char *valore2 = (char *) mostraScelta;
-                                    if(valore2 != NULL) {
+                                    if (valore2 != NULL) {
                                         eliminaMostra(testaMostre, mostraScelta);
                                     }
                                     while ('\n' != getchar());
@@ -313,10 +314,10 @@ int main() {
                                 break;
                         }
                         titolo();
-                        if(scelta2 == 0) {
+                        if (scelta2 == 0) {
                             scelta = 0;
                         }
-                        
+
                     } while (scelta2 != 9 && scelta2 != 3 && scelta2 != 0);
                 }
                 break;

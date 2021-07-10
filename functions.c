@@ -6,80 +6,80 @@
 
 #ifdef _WIN32
 
-    #include <windows.h>
+#include <windows.h>
 
 #else //UNIX
 
-    #include <unistd.h>
+#include <unistd.h>
 
-    #define ANSI_COLOR_GREEN   "\x1b[92m"
-    #define ANSI_COLOR_CYAN    "\x1b[96m"
-    #define ANSI_COLOR_RED     "\x1b[91m"
-    #define ANSI_COLOR_MAGENTA "\x1b[95m"
-    #define ANSI_COLOR_RESET   "\x1b[0m"
+#define ANSI_COLOR_GREEN   "\x1b[92m"
+#define ANSI_COLOR_CYAN    "\x1b[96m"
+#define ANSI_COLOR_RED     "\x1b[91m"
+#define ANSI_COLOR_MAGENTA "\x1b[95m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
 
 #endif
 
 void printColor(char text[], int color) {
-    #ifdef _WIN32
-        HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hConsole, color);
-    #else
-        switch (color) {
-            case COLOR_GREEN:
-                printf(ANSI_COLOR_GREEN);
-                break;
-            case COLOR_CYAN:
-                printf(ANSI_COLOR_CYAN);
-                break;
-            case COLOR_RED:
-                printf(ANSI_COLOR_RED);
-                break;
-            case COLOR_MAGENTA:
-                printf(ANSI_COLOR_MAGENTA);
-                break;
-            case COLOR_RESET:
-                printf(ANSI_COLOR_RESET);
-                break;
-            default:
-                break;
-        }
-    #endif
+#ifdef _WIN32
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+#else
+    switch (color) {
+        case COLOR_GREEN:
+            printf(ANSI_COLOR_GREEN);
+            break;
+        case COLOR_CYAN:
+            printf(ANSI_COLOR_CYAN);
+            break;
+        case COLOR_RED:
+            printf(ANSI_COLOR_RED);
+            break;
+        case COLOR_MAGENTA:
+            printf(ANSI_COLOR_MAGENTA);
+            break;
+        case COLOR_RESET:
+            printf(ANSI_COLOR_RESET);
+            break;
+        default:
+            break;
+    }
+#endif
 
     printf("%s", text);
 
-    #ifdef _WIN32
-        SetConsoleTextAttribute(hConsole, 15);
-    #else
-        printf(ANSI_COLOR_RESET);
-    #endif
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, 15);
+#else
+    printf(ANSI_COLOR_RESET);
+#endif
 }
 
 void consoleColor(int color) {
-    #ifdef _WIN32
-        HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hConsole, color);
-    #else
-        switch (color) {
-            case COLOR_GREEN:
-                printf(ANSI_COLOR_GREEN);
-                break;
-            case COLOR_CYAN:
-                printf(ANSI_COLOR_CYAN);
-                break;
-            case COLOR_RED:
-                printf(ANSI_COLOR_RED);
-                break;
-            case COLOR_MAGENTA:
-                printf(ANSI_COLOR_MAGENTA);
-                break;
-            case COLOR_RESET:
-                printf(ANSI_COLOR_RESET);
-                break;
-            default:
-                break;
-        }
-    #endif
+#ifdef _WIN32
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+#else
+    switch (color) {
+        case COLOR_GREEN:
+            printf(ANSI_COLOR_GREEN);
+            break;
+        case COLOR_CYAN:
+            printf(ANSI_COLOR_CYAN);
+            break;
+        case COLOR_RED:
+            printf(ANSI_COLOR_RED);
+            break;
+        case COLOR_MAGENTA:
+            printf(ANSI_COLOR_MAGENTA);
+            break;
+        case COLOR_RESET:
+            printf(ANSI_COLOR_RESET);
+            break;
+        default:
+            break;
+    }
+#endif
 }
 
 /*
@@ -90,34 +90,34 @@ void readPassword() {
 }
 */
 void readPassword(char prompt[], char *password) {
-    #ifdef _WIN32
-        HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
-        DWORD mode = 0;
-        GetConsoleMode(hStdin, &mode);
-        SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
-        printf("%s", prompt);
-        scanf("%s",password);
-        printf("\n");
-        SetConsoleMode(hStdin, mode);
-    #else
-        char *tempPassword="";
-        tempPassword = getpass(prompt);
-        strcpy(password, tempPassword);
-    #endif
+#ifdef _WIN32
+    HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+    DWORD mode = 0;
+    GetConsoleMode(hStdin, &mode);
+    SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
+    printf("%s", prompt);
+    scanf("%s", password);
+    printf("\n");
+    SetConsoleMode(hStdin, mode);
+#else
+    char *tempPassword="";
+    tempPassword = getpass(prompt);
+    strcpy(password, tempPassword);
+#endif
 }
 
 void clearConsole() {
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
 
 bool verificaData(int giorno, int mese, int anno) {
     bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per verificare la correttezza della data di nascita
-    
+
     //controllo se l'anno inserito è bisestile o meno
     if (anno % 4 == 0) {
         if (anno % 100 == 0) {
@@ -154,19 +154,19 @@ bool verificaData(int giorno, int mese, int anno) {
 
 int letturaUltimoID(char *file) {
     FILE *fp = NULL;
-    
+
     fp = fopen(file, "r"); //apertura file
-    
+
     int totRighe = 0;
     int ultimoID = 0;
     char buf[BUFFER_SIZE];
     char *res;
 
     totRighe = contaRighe(file);
-    
+
     int i = 1; //contatore
 
-    while(1) {
+    while (1) {
         res = fgets(buf, 200, fp);
         if (res == NULL) {
             break;
@@ -189,7 +189,7 @@ int letturaUltimoID(char *file) {
 int contaRighe(char *file) {
     FILE *fp = NULL;
     fp = fopen(file, "r"); //apertura file
-    
+
     int totRighe = 0;
     char buffer;
 
@@ -202,7 +202,7 @@ int contaRighe(char *file) {
             totRighe++;
         }
     }
-    
+
     fclose(fp);
     return totRighe;
 }
