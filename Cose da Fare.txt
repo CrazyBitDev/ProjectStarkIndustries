@@ -15,10 +15,11 @@ Elenco cose da fare/problemi:
 
 - l'amministratore può modificare i permessi degli altri utenti 
 
+- fare i sottomenù
 
 Promemoria per DAN: 
 - rimuovere i void dalle funzioni prima di consegnare 
-- file opere.c rigo 66, rimettere come stava
+- file opere.c rigo 256, main.c rigo 34 rimettere come stava
 - fare il coso dei commenti per le funzioni
 
 
