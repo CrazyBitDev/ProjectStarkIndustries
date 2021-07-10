@@ -8,12 +8,14 @@
 #include <time.h>
 #include <ctype.h>
 
+//NOME DIVERSO? O LASCIARE IN MAIN.C? DOBBIAMO CREARE UN DATA.H? @dany-el92
+#include "data.c"
+
 #include "functions.h"
 #include "utente.h"
 #include "prenotazione.h"
 #include "mostra.h"
-
-/*#include "opera.h"*/
+#include "opera.h"
 
 int main() {
 
@@ -40,7 +42,7 @@ int main() {
     } else {
         while (!feof(fpU)) {
             fgets(buf, BUFFER_SIZE, fpU);
-            tempUtente = (struct utente *) malloc(sizeof(struct utente));
+            tempUtente = (Utente *) malloc(sizeof(Utente));
             tempUtente->nextUtente = NULL;
 
             if (precUtente != NULL) {
@@ -96,10 +98,10 @@ int main() {
     int nMostra, colonna1 = 0;
     char buf2[BUFFER_SIZE];
 
-    Mostre *testaMostre = NULL;
-    Mostre *mostraScelta = NULL;
-    Mostre *tempMostre = NULL; //temporanea
-    Mostre *tempMostre1 = NULL;
+    Mostra *testaMostra = NULL;
+    Mostra *mostraScelta = NULL;
+    Mostra *tempMostra = NULL; //temporanea
+    Mostra *tempMostra1 = NULL;
 
     FILE *fpM;
     fpM = fopen("mostre.csv", "r");
@@ -113,13 +115,13 @@ int main() {
     } else {
         while (!feof(fpM)) {
             fgets(buf2, BUFFER_SIZE, fpM);
-            tempMostre = (struct mostre *) malloc(sizeof(struct mostre));
-            tempMostre->nextMostra = NULL;
+            tempMostra = (Mostra *) malloc(sizeof(Mostra));
+            tempMostra->nextMostra = NULL;
 
-            if (tempMostre1 != NULL) {
-                tempMostre1->nextMostra = tempMostre;
+            if (tempMostra1 != NULL) {
+                tempMostra1->nextMostra = tempMostra;
             } else {
-                testaMostre = tempMostre;
+                testaMostra = tempMostra;
             }
 
             char *tok2;
@@ -127,40 +129,40 @@ int main() {
 
             while (tok2) {
                 if (colonna1 == 0) {
-                    tempMostre->id = atoi(tok2);
+                    tempMostra->id = atoi(tok2);
                 }
                 if (colonna1 == 1) {
-                    strcpy(tempMostre->responsabile, tok2);
-                    tempMostre->responsabile[strlen(tempMostre->responsabile)] = 0;
+                    strcpy(tempMostra->responsabile, tok2);
+                    tempMostra->responsabile[strlen(tempMostra->responsabile)] = 0;
                 }
                 if (colonna1 == 2) {
-                    strcpy(tempMostre->luogo, tok2);
-                    tempMostre->luogo[strlen(tempMostre->luogo)] = 0;
+                    strcpy(tempMostra->luogo, tok2);
+                    tempMostra->luogo[strlen(tempMostra->luogo)] = 0;
                 }
                 if (colonna1 == 3) {
-                    strcpy(tempMostre->citta, tok2);
-                    tempMostre->citta[strlen(tempMostre->citta)] = 0;
+                    strcpy(tempMostra->citta, tok2);
+                    tempMostra->citta[strlen(tempMostra->citta)] = 0;
                 }
                 if (colonna1 == 4) {
-                    strcpy(tempMostre->indirizzo, tok2);
-                    tempMostre->indirizzo[strlen(tempMostre->indirizzo)] = 0;
+                    strcpy(tempMostra->indirizzo, tok2);
+                    tempMostra->indirizzo[strlen(tempMostra->indirizzo)] = 0;
                 }
                 if (colonna1 == 5) {
-                    strcpy(tempMostre->dataInizio, tok2);
-                    tempMostre->dataInizio[strlen(tempMostre->dataInizio)] = 0;
+                    strcpy(tempMostra->dataInizio, tok2);
+                    tempMostra->dataInizio[strlen(tempMostra->dataInizio)] = 0;
                 }
                 if (colonna1 == 6) {
-                    strcpy(tempMostre->dataFine, tok2);
-                    tempMostre->dataFine[strlen(tempMostre->dataFine)] = 0;
+                    strcpy(tempMostra->dataFine, tok2);
+                    tempMostra->dataFine[strlen(tempMostra->dataFine)] = 0;
                 }
                 if (colonna1 == 7) {
-                    tempMostre->nOpere = atoi(tok2);
+                    tempMostra->nOpere = atoi(tok2);
                 }
                 tok2 = strtok(NULL, ",");
                 colonna1++;
             }
             colonna1 = 0;
-            tempMostre1 = tempMostre;
+            tempMostra1 = tempMostra;
         }
     }
 
@@ -258,9 +260,9 @@ int main() {
                                 while ('\n' != getchar());
 
                                 if (utenteLogin->permessi == 2) {
-                                    aggiungiMostra(testaMostre);
+                                    aggiungiMostra(testaMostra);
                                 } else {
-                                    stampaMostre(testaMostre);
+                                    stampaMostre(testaMostra);
                                 }
                                 break;
 
@@ -270,7 +272,7 @@ int main() {
 
                                 if (utenteLogin->permessi == 2) {
                                     printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
-                                    stampaMostre(testaMostre);
+                                    stampaMostre(testaMostra);
                                     printf("\n");
                                     printf("Inserire il numero della mostra da modificare: ");
                                     scanf("%d", &nMostra);
@@ -278,11 +280,11 @@ int main() {
                                     clearConsole();
                                     titolo();
 
-                                    mostraScelta = ricercaMostra(testaMostre, nMostra);
+                                    mostraScelta = ricercaMostra(testaMostra, nMostra);
 
                                     char *valore2 = (char *) mostraScelta;
                                     if (valore2 != NULL) {
-                                        modificaMostra(testaMostre, mostraScelta);
+                                        modificaMostra(testaMostra, mostraScelta);
                                     }
                                     while ('\n' != getchar());
                                 }
@@ -293,7 +295,7 @@ int main() {
 
                                 if (utenteLogin->permessi == 2) {
                                     printColor("Elenco delle Mostre\n", COLOR_CYAN);
-                                    stampaMostre(testaMostre);
+                                    stampaMostre(testaMostra);
                                     printf("\n");
                                     printf("Inserire il numero della mostra da eliminare: ");
                                     scanf("%d", &nMostra);
@@ -301,11 +303,11 @@ int main() {
                                     clearConsole();
                                     titolo();
 
-                                    mostraScelta = ricercaMostra(testaMostre, nMostra);
+                                    mostraScelta = ricercaMostra(testaMostra, nMostra);
 
                                     char *valore2 = (char *) mostraScelta;
                                     if (valore2 != NULL) {
-                                        eliminaMostra(testaMostre, mostraScelta);
+                                        eliminaMostra(testaMostra, mostraScelta);
                                     }
                                     while ('\n' != getchar());
                                 }

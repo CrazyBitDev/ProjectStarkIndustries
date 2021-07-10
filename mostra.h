@@ -1,15 +1,13 @@
-struct mostre *aggiungiMostra(struct mostre *testa);
+Mostra *aggiungiMostra(Mostra *testa);
 
-struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra);
+Mostra *modificaMostra(Mostra *testa, Mostra *mostra);
 
-struct mostre *eliminaMostra(struct mostre *testa, struct mostre *mostra);
+Mostra *eliminaMostra(Mostra *testa, Mostra *mostra);
 
-void scriviMostre(struct mostre *testa);
+void scriviMostre(Mostra *testa);
 
-void stampaMostre(struct mostre *testa);
+void stampaMostre(Mostra *testa);
 
-struct mostre *ricercaMostra(struct mostre *testa, int id);
-
-typedef struct mostre Mostre;
+Mostra *ricercaMostra(Mostra *testa, int id);
 
 #include "mostra.c"

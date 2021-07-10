@@ -1,24 +1,11 @@
-//Definizione della struct Utente
-struct utente {
-    int id;
-    char nome[20];
-    char cognome[20];
-    char nick[20];
-    char email[60];
-    char password[20];
-    char dataNascita[11]; // gg/mm/aaaa
-    int permessi; //livello 1 = utente normale; livello 2 = direttore generale, ha accesso a tutto;
-    struct utente *nextUtente; //puntatore al prossimo nodo
-} utente;
-
-struct utente *registrazioneUtente(struct utente *testa) {
-    struct utente *nuovoNodo = NULL;
-    struct utente *temp;
-    struct utente *curr, *prec;
+Utente *registrazioneUtente(Utente *testa) {
+    Utente *nuovoNodo = NULL;
+    Utente *temp;
+    Utente *curr, *prec;
     prec = NULL;
     curr = testa;
 
-    nuovoNodo = (struct utente *) malloc(sizeof(struct utente));
+    nuovoNodo = (Utente *) malloc(sizeof(Utente));
 
     int ultimoID = 0;
     int etaMinima;
@@ -243,10 +230,10 @@ struct utente *registrazioneUtente(struct utente *testa) {
 
 }
 
-struct utente *accesso(struct utente *testa, char *text) {
+Utente *accesso(Utente *testa, char *text) {
     bool flag = false;
-    struct utente *nuovoNodo = NULL;
-    struct utente *temp;
+    Utente *nuovoNodo = NULL;
+    Utente *temp;
 
     char pass[20] = "";
     readPassword("Password: ", pass);
@@ -272,8 +259,8 @@ struct utente *accesso(struct utente *testa, char *text) {
         return NULL;
 }
 
-void stampaUtente(struct utente *utenteLogin) {
-    struct utente *temp = NULL;
+void stampaUtente(Utente *utenteLogin) {
+    Utente *temp = NULL;
     temp = utenteLogin;
 
 
@@ -295,7 +282,7 @@ void stampaUtente(struct utente *utenteLogin) {
 
 }
 
-struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) {
+Utente *modificaUtente(Utente *utenteLogin, Utente *testa) {
     int scelta;
     char risposta = '\0';
 
@@ -304,8 +291,8 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
     bool dataCorretta = true; //flag per verificare la correttezza della data di nascita
     bool flag = false;
 
-    struct utente *temp = NULL;
-    struct utente *temp2 = NULL;
+    Utente *temp = NULL;
+    Utente *temp2 = NULL;
 
     temp = utenteLogin;
 
@@ -483,10 +470,10 @@ struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa) 
     return testa;
 }
 
-struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa) {
+Utente *eliminaUtente(Utente *utenteLogin, Utente *testa) {
     char risposta;
-    struct utente *curr, *prec;
-    struct utente *temp = NULL;
+    Utente *curr, *prec;
+    Utente *temp = NULL;
 
     temp = utenteLogin;
     prec = NULL;
@@ -531,8 +518,8 @@ struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa) {
     return testa;
 }
 
-void scriviUtenti(struct utente *testa) {
-    struct utente *temp = NULL;
+void scriviUtenti(Utente *testa) {
+    Utente *temp = NULL;
 
     FILE *fp;
     fp = fopen("utenti.csv", "w"); //apertura file

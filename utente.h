@@ -1,17 +1,15 @@
-struct utente *registrazioneUtente(struct utente *testa);
+Utente *registrazioneUtente(Utente *testa);
 
-struct utente *accesso(struct utente *testa, char *text);
+Utente *accesso(Utente *testa, char *text);
 
-void stampaUtente(struct utente *testa);
+void stampaUtente(Utente *testa);
 
-void scriviUtenti(struct utente *testa);
+void scriviUtenti(Utente *testa);
 
-struct utente *modificaUtente(struct utente *utenteLogin, struct utente *testa);
+Utente *modificaUtente(Utente *utenteLogin, Utente *testa);
 
-struct utente *ordinamento(struct utente *testa);
+Utente *ordinamento(Utente *testa);
 
-struct utente *eliminaUtente(struct utente *utenteLogin, struct utente *testa);
-
-typedef struct utente Utente;
+Utente *eliminaUtente(Utente *utenteLogin, Utente *testa);
 
 #include "utente.c"

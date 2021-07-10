@@ -1,19 +1,6 @@
-//Definizione struct mostre
-struct mostre {
-    int id;
-    char responsabile[30];
-    char luogo[25];
-    char citta[20];
-    char indirizzo[30];
-    char dataInizio[11];
-    char dataFine[11];
-    int nOpere; // Numero opere
-    struct mostre *nextMostra; //puntatore al prossimo nodo
-} mostre;
+Mostra *aggiungiMostra(Mostra *testa) {
 
-struct mostre *aggiungiMostra(struct mostre *testa) {
-
-    struct mostre *curr, *prec;
+    Mostra *curr, *prec;
     prec = NULL;
     curr = testa;
 
@@ -27,10 +14,10 @@ struct mostre *aggiungiMostra(struct mostre *testa) {
     bool dataCorrettaFin = true;
     int giornoFin, meseFin, annoFin;
 
-    struct mostre *nuovoNodo = NULL;
+    Mostra *nuovoNodo = NULL;
 
 
-    nuovoNodo = (struct mostre *) malloc(sizeof(struct mostre));
+    nuovoNodo = (Mostra *) malloc(sizeof(Mostra));
 
     FILE *fp;
     fp = fopen("mostre.csv", "a+"); //apertura file
@@ -187,7 +174,7 @@ struct mostre *aggiungiMostra(struct mostre *testa) {
 
 }
 
-struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra) {
+Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
     int nOpere = 0;
     int scelta, colonna = 0;
     char risposta;
@@ -201,7 +188,7 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra) {
     bool dataCorrettaFin = true;
     int giornoFin = 0, meseFin = 0, annoFin = 0;
 
-    struct mostre *temp = NULL;
+    Mostra *temp = NULL;
 
     temp = mostra;
 
@@ -410,8 +397,8 @@ struct mostre *modificaMostra(struct mostre *testa, struct mostre *mostra) {
 }
 
 //stampa a video
-void stampaMostre(struct mostre *testa) {
-    struct mostre *temp = NULL;
+void stampaMostre(Mostra *testa) {
+    Mostra *temp = NULL;
 
     for (temp = testa; temp != NULL; temp = temp->nextMostra) {
         printf("Mostra numero: %d \n", temp->id);
@@ -424,8 +411,8 @@ void stampaMostre(struct mostre *testa) {
 }
 
 //scrittura su file
-void scriviMostre(struct mostre *testa) {
-    struct mostre *temp = NULL;
+void scriviMostre(Mostra *testa) {
+    Mostra *temp = NULL;
     FILE *fp;
     fp = fopen("mostre.csv", "w"); //apertura file
 
@@ -446,10 +433,10 @@ void scriviMostre(struct mostre *testa) {
 }
 
 
-struct mostre *eliminaMostra(struct mostre *testa, struct mostre *mostra) {
+Mostra *eliminaMostra(Mostra *testa, Mostra *mostra) {
     char risposta;
-    struct mostre *curr, *prec;
-    struct mostre *temp;
+    Mostra *curr, *prec;
+    Mostra *temp;
 
     temp = mostra;
     prec = NULL;
@@ -489,10 +476,10 @@ struct mostre *eliminaMostra(struct mostre *testa, struct mostre *mostra) {
 }
 
 
-struct mostre *ricercaMostra(struct mostre *testa, int id) {
+Mostra *ricercaMostra(Mostra *testa, int id) {
     bool flag = false;
-    struct mostre *nuovoNodo = NULL;
-    struct mostre *temp;
+    Mostra *nuovoNodo = NULL;
+    Mostra *temp;
 
     for (temp = testa; temp != NULL; temp = temp->nextMostra) {
 
