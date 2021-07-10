@@ -1,3 +1,5 @@
+Mostra *letturaMostre(FILE *fp);
+
 void aggiungiMostra(Mostra *testa);
 
 void modificaMostra(Mostra *testa, Mostra *mostra);
