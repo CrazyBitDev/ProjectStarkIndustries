@@ -1,4 +1,4 @@
-void *aggiungiMostra(Mostra *testa) {
+Mostra *aggiungiMostra(Mostra *testa) {
 
     Mostra *curr, *prec;
     prec = NULL;
@@ -170,9 +170,10 @@ void *aggiungiMostra(Mostra *testa) {
         nuovoNodo->nextMostra = curr;
     }
 
+    return testa;
 }
 
-void *modificaMostra(Mostra *testa, Mostra *mostra) {
+Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
     int nOpere = 0;
     int scelta, colonna = 0;
     char risposta;
@@ -390,6 +391,8 @@ void *modificaMostra(Mostra *testa, Mostra *mostra) {
             scriviMostre(testa);
         }
     } while (risposta == 'S');
+    
+    return testa;
 }
 
 //stampa a video
@@ -428,8 +431,7 @@ void scriviMostre(Mostra *testa) {
     fclose(fp);
 }
 
-
-void *eliminaMostra(Mostra *testa, Mostra *mostra) {
+Mostra *eliminaMostra(Mostra *testa, Mostra *mostra) {
     char risposta;
     Mostra *curr, *prec;
     Mostra *temp;
@@ -471,6 +473,7 @@ void *eliminaMostra(Mostra *testa, Mostra *mostra) {
             printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
         }
     }
+    return testa;
 }
 
 

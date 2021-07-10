@@ -188,136 +188,170 @@ int main() {
                 titolo();
                 break;
 
-            case 2:
+            case 2:;
                 while ('\n' != getchar());
 
-                printf("Email o nickname: ");
-                fgets(email, 60, stdin);
-                email[strlen(email) - 1] = 0;
+                fseek(fpU, 0, SEEK_END);
+                long sizeU = ftell(fpU);
 
-                utenteLogin = accesso(testaUtente, email);
-                char *valore = (char *) utenteLogin;
+                if(sizeU == 0) { //file vuoto - nessun utente registrato
+                    
+                    printColor("Attenzione!\n", COLOR_RED);
+                    printf("Non ci sono utenti registrati.\n");
+                
+                } else { //file pieno - utenti registrati presenti
+                
+                    printf("Email o nickname: ");
+                    fgets(email, 60, stdin);
+                    email[strlen(email) - 1] = 0;
 
-                if (valore != NULL) {
-                    clearConsole();
-                    titolo();
+                    utenteLogin = accesso(testaUtente, email);
+                    char *valore = (char *) utenteLogin;
 
-                    printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
-                    //Operazioni che può effettuare l'utente una volta che ha eseguito il login
-                    do {
-                        printf("\n---MENU'---\n");
-                        printf("1: Visualizza informazioni personali\n");
-                        printf("2: Modifica dati personali\n");
-                        printf("3: Elimina account\n");
-
-                        if (utenteLogin->permessi == 2) {
-                            //operazioni che può effettuare il dirigente
-                            printf("4: Aggiungi dati mostra\n");
-                            printf("5: Modifica dati mostra\n");
-                            printf("6: Cancella dati mostra\n");
-                        } else {
-                            //operazioni che può effettuare l'utente
-                            printf("4: Visualizza mostre\n");
-                            //printf("5: Prenotati ad una mostra\n");
-                        }
-
-                        printf("9: Logout\n");
-                        printf("0: Chiudi Applicazione\n");
-                        printf("----------\n");
-                        printf("-> ");
-                        scanf("%d", &scelta2);
-                        printf("\n");
-
-
-                        switch (scelta2) {
-                            case 1:
-                                clearConsole();
-                                titolo();
-                                stampaUtente(utenteLogin);
-                                break;
-
-                            case 2:
-                                clearConsole();
-                                titolo();
-                                while ('\n' != getchar());
-                                stampaUtente(utenteLogin);
-                                modificaUtente(utenteLogin, testaUtente);
-                                break;
-
-                            case 3:
-                                clearConsole();
-                                titolo();
-                                eliminaUtente(utenteLogin, testaUtente);
-                                break;
-
-                            case 4:
-                                clearConsole();
-                                titolo();
-
-                                while ('\n' != getchar());
-
-                                if (utenteLogin->permessi == 2) {
-                                    aggiungiMostra(testaMostra);
-                                } else {
-                                    stampaMostre(testaMostra);
-                                }
-                                break;
-
-                            case 5:
-                                clearConsole();
-                                titolo();
-
-                                if (utenteLogin->permessi == 2) {
-                                    printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
-                                    stampaMostre(testaMostra);
-                                    printf("\n");
-                                    printf("Inserire il numero della mostra da modificare: ");
-                                    scanf("%d", &nMostra);
-
-                                    clearConsole();
-                                    titolo();
-
-                                    mostraScelta = ricercaMostra(testaMostra, nMostra);
-
-                                    char *valore2 = (char *) mostraScelta;
-                                    if (valore2 != NULL) {
-                                        modificaMostra(testaMostra, mostraScelta);
-                                    }
-                                    while ('\n' != getchar());
-                                }
-                                break;
-                            case 6:
-                                clearConsole();
-                                titolo();
-
-                                if (utenteLogin->permessi == 2) {
-                                    printColor("Elenco delle Mostre\n", COLOR_CYAN);
-                                    stampaMostre(testaMostra);
-                                    printf("\n");
-                                    printf("Inserire il numero della mostra da eliminare: ");
-                                    scanf("%d", &nMostra);
-
-                                    clearConsole();
-                                    titolo();
-
-                                    mostraScelta = ricercaMostra(testaMostra, nMostra);
-
-                                    char *valore2 = (char *) mostraScelta;
-                                    if (valore2 != NULL) {
-                                        eliminaMostra(testaMostra, mostraScelta);
-                                    }
-                                    while ('\n' != getchar());
-                                }
-                                break;
-                            default:
-                                break;
-                        }
+                    if (valore != NULL) {
+                        clearConsole();
                         titolo();
-                        if (scelta2 == 0) {
-                            scelta = 0;
-                        }
 
-                    } while (scelta2 != 9 && scelta2 != 3 && scelta2 != 0);
+                        printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
+                        //Operazioni che può effettuare l'utente una volta che ha eseguito il login
+                        do {
+                            printf("\n---MENU'---\n");
+                            printf("1: Visualizza informazioni personali\n");
+                            printf("2: Modifica dati personali\n");
+                            printf("3: Elimina account\n");
+
+                            if (utenteLogin->permessi == 2) {
+                                //operazioni che può effettuare il dirigente
+                                printf("4: Aggiungi dati mostra\n");
+                                printf("5: Modifica dati mostra\n");
+                                printf("6: Cancella dati mostra\n");
+                            } else {
+                                //operazioni che può effettuare l'utente
+                                printf("4: Visualizza mostre\n");
+                                //printf("5: Prenotati ad una mostra\n");
+                            }
+
+                            printf("9: Logout\n");
+                            printf("0: Chiudi Applicazione\n");
+                            printf("----------\n");
+                            printf("-> ");
+                            scanf("%d", &scelta2);
+                            printf("\n");
+
+
+                            switch (scelta2) {
+                                case 1:
+                                    clearConsole();
+                                    titolo();
+                                    stampaUtente(utenteLogin);
+                                    break;
+
+                                case 2:
+                                    clearConsole();
+                                    titolo();
+                                    while ('\n' != getchar());
+                                    stampaUtente(utenteLogin);
+                                    testaUtente = modificaUtente(utenteLogin, testaUtente);
+                                    break;
+
+                                case 3:
+                                    clearConsole();
+                                    titolo();
+                                    testaUtente = eliminaUtente(utenteLogin, testaUtente);
+                                    break;
+
+                                case 4:
+                                    clearConsole();
+                                    titolo();
+
+                                    while ('\n' != getchar());
+
+                                    if (utenteLogin->permessi == 2) {
+                                       testaMostra = aggiungiMostra(testaMostra);
+                                    } else {
+                                        stampaMostre(testaMostra);
+                                    }
+                                    break;
+
+                                case 5:;
+                                    clearConsole();
+                                    titolo();
+
+                                    if (utenteLogin->permessi == 2) {
+                                        
+                                        fseek(fpM, 0, SEEK_END);
+                                        long sizeM = ftell(fpM);
+                                        
+                                        if(sizeM == 0) { //non ci sono mostre registrate
+                                            printColor("Attenzione!\n", COLOR_RED);
+                                            printf("Non ci sono mostre registrate.\n");
+                                        } else {
+                                            printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
+                                            stampaMostre(testaMostra);
+                                            printf("\n");
+                                            printf("Inserire il numero della mostra da modificare: ");
+                                            scanf("%d", &nMostra);
+
+                                            clearConsole();
+                                            titolo();
+
+                                            mostraScelta = ricercaMostra(testaMostra, nMostra);
+
+                                            char *valore2 = (char *) mostraScelta;
+                                            if (valore2 != NULL) {
+                                                testaMostra = modificaMostra(testaMostra, mostraScelta);
+                                            }
+                                            while ('\n' != getchar());
+                                        }
+                                        
+                                    }
+                                    break;
+                                case 6:
+                                    clearConsole();
+                                    titolo();
+
+                                    if (utenteLogin->permessi == 2) {
+                                        fseek(fpM, 0, SEEK_END);
+                                        long sizeM = ftell(fpM);
+                                        
+                                        if(sizeM == 0) { //non ci sono mostre registrate
+                                            
+                                            printColor("Attenzione!\n", COLOR_RED);
+                                            printf("Non ci sono mostre registrate.\n");
+                                            
+                                        } else {
+                                            
+                                            printColor("Elenco delle Mostre\n", COLOR_CYAN);
+                                            stampaMostre(testaMostra);
+                                            printf("\n");
+                                            printf("Inserire il numero della mostra da eliminare: ");
+                                            scanf("%d", &nMostra);
+
+                                            clearConsole();
+                                            titolo();
+
+                                            mostraScelta = ricercaMostra(testaMostra, nMostra);
+
+                                            char *valore2 = (char *) mostraScelta;
+                                            if (valore2 != NULL) {
+                                                testaMostra = eliminaMostra(testaMostra, mostraScelta);
+                                            }
+                                            while ('\n' != getchar());
+                                        }
+                                        
+                                    }
+                                    break;
+                                default:
+                                    clearConsole();
+                                    titolo();
+                                    break;
+                            }
+                            if (scelta2 == 0) {
+                                scelta = 0;
+                            }
+
+                        } while (scelta2 != 9 && scelta2 != 3 && scelta2 != 0);
+                    }
                 }
                 break;
 

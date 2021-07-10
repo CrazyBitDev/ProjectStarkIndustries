@@ -1,4 +1,4 @@
-void *registrazioneUtente(Utente *testa) {
+Utente *registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
     Utente *temp;
     Utente *curr, *prec;
@@ -7,25 +7,67 @@ void *registrazioneUtente(Utente *testa) {
 
     nuovoNodo = (Utente *) malloc(sizeof(Utente));
 
-    int ultimoID = 0;
+    int ultimoID = 0, i;
     int etaMinima;
     bool dataCorretta = true; //flag per verificare la correttezza della data di nascita
     bool flag = false; //flag per controllare univocità del campo email e nickname
+    bool testInput = false; //flag per controllare i vari input
 
     FILE *fp;
     fp = fopen("utenti.csv", "a+"); //apertura file
 
     while ('\n' != getchar());
 
-    printf("Inserisci Nome: ");
-    fgets(nuovoNodo->nome, 20, stdin);
-    nuovoNodo->nome[strlen(nuovoNodo->nome) - 1] = 0;
-    nuovoNodo->nome[0] = toupper(nuovoNodo->nome[0]);
+    do {
+        printf("Inserisci Nome: ");
+        fgets(nuovoNodo->nome, 20, stdin);
+        nuovoNodo->nome[strlen(nuovoNodo->nome) - 1] = 0;
+        nuovoNodo->nome[0] = toupper(nuovoNodo->nome[0]);
+        
+        for(i=0; i<strlen(nuovoNodo->nome); i++) {
+            if(isalpha(nuovoNodo->nome[i]) == 0) {
+                testInput = true; //carattere non alfabetico
+            } else {
+                testInput = false;
+            }
+        }
+        
+        if(testInput) {
+            clearConsole();
+            titolo();
+            printf("\n----------");
+            printColor("\nAttenzione!\n", COLOR_RED);
+            printf("Nome non valido.\n");
+            printf("----------\n\n");
+        }
+    } while (testInput);
+    
 
-    printf("Inserisci Cognome: ");
-    fgets(nuovoNodo->cognome, 20, stdin);
-    nuovoNodo->cognome[strlen(nuovoNodo->cognome) - 1] = 0;
-    nuovoNodo->cognome[0] = toupper(nuovoNodo->cognome[0]);
+    do {
+        printf("Inserisci Cognome: ");
+        fgets(nuovoNodo->cognome, 20, stdin);
+        nuovoNodo->cognome[strlen(nuovoNodo->cognome) - 1] = 0;
+        nuovoNodo->cognome[0] = toupper(nuovoNodo->cognome[0]);
+        
+        for(i=0; i<strlen(nuovoNodo->cognome); i++) {
+            if(isalpha(nuovoNodo->cognome[i]) == 0) {
+                testInput = true; //carattere non alfabetico
+            } else {
+                testInput = false;
+            }
+        }
+        
+        if(testInput) {
+            clearConsole();
+            titolo();
+            printf("\n----------");
+            printColor("\nAttenzione!\n", COLOR_RED);
+            printf("Cognome non valido.\n");
+            printf("----------\n\n");
+        }
+        
+    }  while (testInput);
+    
     printf("-----------------------------\n");
 
     do {
@@ -45,6 +87,7 @@ void *registrazioneUtente(Utente *testa) {
 
         if (flag) {
             clearConsole();
+            titolo();
             printf("\n----------");
             printColor("\nAttenzione!\n", COLOR_RED);
             printColor("Nickname gia' in uso!\n", COLOR_RED);
@@ -73,6 +116,7 @@ void *registrazioneUtente(Utente *testa) {
 
         if (flag) {
             clearConsole();
+            titolo();
             printf("\n----------\n");
             printColor("Attenzione!\n", COLOR_RED);
             printColor("Email gia' in uso!\n", COLOR_RED);
@@ -114,6 +158,7 @@ void *registrazioneUtente(Utente *testa) {
 
         if (strcmp(psw, psw2) != 0) {
             clearConsole();
+            titolo();
             printColor("\nAttenzione!\n", COLOR_RED);
             printf("Le password non coincidono fra loro\n");
             printf("Effettuare nuovamente l'inserimento\n\n");
@@ -127,7 +172,8 @@ void *registrazioneUtente(Utente *testa) {
 
     //controlli sulla data di nascita
     char data[11];
-    int giorno, mese, anno;
+    char g[3], m[3], an[5];
+    int giorno = 0, mese = 0, anno = 0;
 
     printf("Inserisci data di nascita\n");
 
@@ -137,24 +183,88 @@ void *registrazioneUtente(Utente *testa) {
     do {
         if (!dataCorretta) {
             clearConsole();
+            titolo();
             printColor("\nAttenzione!\n", COLOR_RED);
             printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
         }
 
         do {
             printf("Giorno: ");
-            scanf("%d", &giorno);
-        } while (giorno < 0 || giorno > 31);
+            fgets(g, 3, stdin);
+            g[strlen(g) - 1] = 0;
+            
+            for(i=0; i<strlen(g); i++){
+                if(isalpha(g[i]) != 0) {
+                    testInput = true; //carattere
+                } else {
+                    testInput = false;
+                }
+            }
+            
+            if(testInput) {
+                clearConsole();
+                titolo();
+                printf("\n----------");
+                printColor("\nAttenzione!\n", COLOR_RED);
+                printf("Giorno non valido.\n");
+                printf("----------\n\n");
+            } else {
+                giorno = atoi(g);
+            }
+            
+        } while (giorno < 0 || giorno > 31 || testInput);
 
         do {
+            while ('\n' != getchar());
             printf("Mese: ");
-            scanf("%d", &mese);
-        } while (mese < 1 || mese > 12);
+            fgets(m, 3, stdin);
+            m[strlen(m) - 1] = 0;
+            
+            for(i=0; i<strlen(m); i++){
+                if(isalpha(m[i]) != 0) {
+                    testInput = true; //carattere
+                } else {
+                    testInput = false;
+                }
+            }
+            
+            if(testInput) {
+                clearConsole();
+                titolo();
+                printf("\n----------");
+                printColor("\nAttenzione!\n", COLOR_RED);
+                printf("Mese non valido.\n");
+                printf("----------\n\n");
+            } else {
+                mese = atoi(m);
+            }
+        } while (mese < 1 || mese > 12 || testInput);
 
         do {
+           // while ('\n' != getchar());
             printf("Anno (dal 1900 in poi): ");
-            scanf("%d", &anno);
-        } while (anno < 1900);
+            fgets(an, 5, stdin);
+            
+            for(i=0; i<strlen(an); i++){
+                if(isalpha(an[i]) != 0) {
+                    testInput = true; //carattere
+                    printf("dentro\n");
+                } else {
+                    testInput = false;
+                }
+            }
+            printf("test: %d\n", testInput);
+            if(testInput) {
+                clearConsole();
+                titolo();
+                printf("\n----------");
+                printColor("\nAttenzione!\n", COLOR_RED);
+                printf("Anno non valido.\n");
+                printf("----------\n\n");
+            } else {
+                anno = atoi(an);
+            }
+        } while (anno < 1900 || testInput);
 
         dataCorretta = verificaData(giorno, mese, anno);
 
@@ -225,7 +335,7 @@ void *registrazioneUtente(Utente *testa) {
         prec->nextUtente = nuovoNodo;
         nuovoNodo->nextUtente = curr;
     }
-
+    return testa;
 }
 
 Utente *accesso(Utente *testa, char *text) {
@@ -279,7 +389,7 @@ void stampaUtente(Utente *utenteLogin) {
 
 }
 
-void *modificaUtente(Utente *utenteLogin, Utente *testa) {
+Utente *modificaUtente(Utente *utenteLogin, Utente *testa) {
     int scelta;
     char risposta = '\0';
 
@@ -463,9 +573,11 @@ void *modificaUtente(Utente *utenteLogin, Utente *testa) {
 
         clearConsole();
     } while (risposta == 'S' && scelta != 0);
+    
+    return testa;
 }
 
-void *eliminaUtente(Utente *utenteLogin, Utente *testa) {
+Utente *eliminaUtente(Utente *utenteLogin, Utente *testa) {
     char risposta;
     Utente *curr, *prec;
     Utente *temp = NULL;
@@ -505,10 +617,14 @@ void *eliminaUtente(Utente *utenteLogin, Utente *testa) {
         }
 
         scriviUtenti(testa);
+        
+        clearConsole();
+        printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
     } else {
         printColor("-----------------------------\n", COLOR_CYAN);
         printf("%s siamo contenti che tu abbia deciso di rimanere con noi!\n", temp->nome);
     }
+    return testa;
 }
 
 void scriviUtenti(Utente *testa) {
