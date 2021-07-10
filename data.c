@@ -16,6 +16,12 @@ struct utente {
 typedef struct opera Opera;
 struct opera {
     int id;
+    char nome[30];
+    char autore[30];
+    char tipo[20];
+    char genere[20];
+    char periodo[20];
+    int anno;
     Opera *nextOpera; //puntatore al prossimo nodo
 };
 

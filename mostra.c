@@ -138,7 +138,6 @@ Mostra *aggiungiMostra(Mostra *testa) {
     while (curr != NULL && ultimoID > curr->id) {
         prec = curr;
         curr = curr->nextMostra;
-        printf("%s\n", curr != NULL ? "true" : "false");
     }
 
     if (size == 0)   //file vuoto
@@ -174,10 +173,14 @@ Mostra *aggiungiMostra(Mostra *testa) {
 }
 
 Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
-    int nOpere = 0;
     int scelta, colonna = 0;
     char risposta;
     bool flagDate = false;
+
+    Mostra *temp = NULL;
+    temp = mostra;
+
+    int nOpere = 0;
 
     char dataIn[11];
     bool dataCorrettaIn = true;
@@ -186,10 +189,6 @@ Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
     char dataFin[11];
     bool dataCorrettaFin = true;
     int giornoFin = 0, meseFin = 0, annoFin = 0;
-
-    Mostra *temp = NULL;
-
-    temp = mostra;
 
     printColor("\nDati relativi alla mostra scelta:\n", COLOR_CYAN);
     printf("Id: %d\n", temp->id);
@@ -397,9 +396,8 @@ Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
 
 //stampa a video
 void stampaMostre(Mostra *testa) {
-    Mostra *temp = NULL;
 
-    for (temp = testa; temp != NULL; temp = temp->nextMostra) {
+    for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
         printf("Mostra numero: %d \n", temp->id);
         printf("Responsabile: %s \n", temp->responsabile);
         printf("Luogo di esposizione: %s \n", temp->luogo);

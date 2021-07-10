@@ -168,8 +168,8 @@ int main() {
 
     do {
         printf("---HOME---\n");
-        printf("1: Registrazione\n");
-        printf("2: Login\n");
+        printf("1: Login\n");
+        printf("2: Registrazione\n");
         printf("0: Chiudi applicazione\n");
         printf("----------\n");
         printf("-> ");
@@ -181,14 +181,7 @@ int main() {
         titolo();
 
         switch (scelta) {
-            case 1:
-                printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
-                testaUtente = registrazioneUtente(testaUtente);
-                clearConsole();
-                titolo();
-                break;
-
-            case 2:;
+            case 1:;
                 while ('\n' != getchar());
 
                 fseek(fpU, 0, SEEK_END);
@@ -353,6 +346,13 @@ int main() {
                         } while (scelta2 != 9 && scelta2 != 3 && scelta2 != 0);
                     }
                 }
+                break;
+
+            case 2:
+                printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
+                testaUtente = registrazioneUtente(testaUtente);
+                clearConsole();
+                titolo();
                 break;
 
             default:

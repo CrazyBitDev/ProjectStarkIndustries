@@ -1,6 +1,6 @@
-Opera *aggiungiOpera(Opera *testa);
+void aggiungiOpera(Opera *testa);
 
-Opera *modificaOpera(Opera *testa, Opera *opera);
+void modificaOpera(Opera *testa, Opera *opera);
 
 Opera *eliminaOpera(Opera *testa, Opera *opera);
 
