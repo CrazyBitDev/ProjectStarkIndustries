@@ -183,7 +183,7 @@ int main() {
         switch (scelta) {
             case 1:
                 printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
-                testaUtente = registrazioneUtente(testaUtente);
+                registrazioneUtente(testaUtente);
                 clearConsole();
                 titolo();
                 break;

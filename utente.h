@@ -1,4 +1,4 @@
-Utente *registrazioneUtente(Utente *testa);
+void registrazioneUtente(Utente *testa);
 
 Utente *accesso(Utente *testa, char *text);
 
