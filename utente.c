@@ -263,7 +263,7 @@ struct utente *accesso(struct utente *testa, char *text) {
     }
 
     if (!flag) {
-        printColor("Email/Nickname e/o Password errati!\n", COLOR_RED);
+        printColor("\nEmail/Nickname e/o Password errati!\n\n", COLOR_RED);
     }
 
     if (flag)
