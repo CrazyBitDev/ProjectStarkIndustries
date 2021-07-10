@@ -182,13 +182,6 @@ int main() {
 
         switch (scelta) {
             case 1:
-                printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
-                registrazioneUtente(testaUtente);
-                clearConsole();
-                titolo();
-                break;
-
-            case 2:;
                 while ('\n' != getchar());
 
                 fseek(fpU, 0, SEEK_END);
