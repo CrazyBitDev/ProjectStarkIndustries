@@ -25,11 +25,13 @@ int main() {
     char email[60];
     int nMostra;
 
-    Utente *testaUtente = NULL;
-    Mostra *testaMostra = NULL;
+    Utente *testaUtente  = NULL;
+    Mostra *testaMostra  = NULL;
+    Opera  *testaOpera   = NULL;
 
-    Utente *utenteLogin = NULL; //utente che avrà eseguito il login
+    Utente *utenteLogin  = NULL; //utente che avrà eseguito il login
     Mostra *mostraScelta = NULL;
+    Opera  *operaScelta  = NULL;
 
     //Lettura utenti dal file
     FILE *fpU;
@@ -38,9 +40,14 @@ int main() {
     //Lettura utenti dal file
     FILE *fpM;
     fpM = fopen("mostre.csv", "r");
+    
+    //Lettura utenti dal file
+    FILE *fpO;
+    fpO = fopen("opere.csv", "r");
 
     testaUtente = letturaUtenti(fpU);
     testaMostra = letturaMostre(fpM);
+    testaOpera  = letturaOpere(fpO);
 
     do {
         printf("---HOME---\n");
@@ -50,7 +57,7 @@ int main() {
         printf("----------\n");
         printf("-> ");
         scanf("%d", &scelta);
-        printf("\n");
+        //printf("\n"); TODO: RIMUOVERE?
 
         //ripulisco la schermata
         clearConsole();

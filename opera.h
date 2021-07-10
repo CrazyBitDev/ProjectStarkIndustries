@@ -1,3 +1,5 @@
+Opera *letturaOpere(FILE *fp);
+
 void aggiungiOpera(Opera *testa);
 
 void modificaOpera(Opera *testa, Opera *opera);

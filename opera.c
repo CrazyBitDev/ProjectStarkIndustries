@@ -1,3 +1,69 @@
+Opera *letturaOpere(FILE *fp) {
+    int colonna = 0;
+    char buf[BUFFER_SIZE];
+
+    Opera *testaOpera = NULL;
+    Opera *tempOpera  = NULL; //temporanea
+    Opera *precOpera  = NULL;
+
+    if (fp == NULL) {
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+        printColor("\t\t\t|File \"opere\" non trovato!   |\n", COLOR_RED);
+        printColor("\t\t\t|\t...                   |\n", COLOR_RED);
+        printColor("\t\t\t|File in creazione            |\n", COLOR_RED);
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+    } else {
+        while (!feof(fp)) {
+            fgets(buf, BUFFER_SIZE, fp);
+            tempOpera = (Opera *) malloc(sizeof(Opera));
+            tempOpera->nextOpera = NULL;
+
+            if (precOpera != NULL) {
+                precOpera->nextOpera = tempOpera;
+            } else {
+                testaOpera = tempOpera;
+            }
+
+            char *tok;
+            tok = strtok(buf, ",");
+
+            while (tok) {
+                if (colonna == 0) {
+                    tempOpera->id = atoi(tok);
+                }
+                if (colonna == 1) {
+                    strcpy(tempOpera->nome, tok);
+                    tempOpera->nome[strlen(tempOpera->nome)] = 0;
+                }
+                if (colonna == 2) {
+                    strcpy(tempOpera->autore, tok);
+                    tempOpera->autore[strlen(tempOpera->autore)] = 0;
+                }
+                if (colonna == 3) {
+                    strcpy(tempOpera->tipo, tok);
+                    tempOpera->tipo[strlen(tempOpera->tipo)] = 0;
+                }
+                if (colonna == 4) {
+                    strcpy(tempOpera->genere, tok);
+                    tempOpera->genere[strlen(tempOpera->genere)] = 0;
+                }
+                if (colonna == 5) {
+                    strcpy(tempOpera->periodo, tok);
+                    tempOpera->periodo[strlen(tempOpera->periodo)] = 0;
+                }
+                if (colonna == 7) {
+                    tempOpera->anno = atoi(tok);
+                }
+                tok = strtok(NULL, ",");
+                colonna++;
+            }
+            colonna = 0;
+            precOpera = tempOpera;
+        }
+    }
+    return testaOpera;
+}
+
 void aggiungiOpera(Opera *testa) {
 
     Opera *curr, *prec;
