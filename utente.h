@@ -1,4 +1,4 @@
-Utente *registrazioneUtente(Utente *testa);
+void *registrazioneUtente(Utente *testa);
 
 Utente *accesso(Utente *testa, char *text);
 
@@ -6,10 +6,11 @@ void stampaUtente(Utente *testa);
 
 void scriviUtenti(Utente *testa);
 
-Utente *modificaUtente(Utente *utenteLogin, Utente *testa);
+void *modificaUtente(Utente *utenteLogin, Utente *testa);
 
-Utente *ordinamento(Utente *testa);
+//TODO: Inutile, si puo' togliere?
+//Utente *ordinamento(Utente *testa);
 
-Utente *eliminaUtente(Utente *utenteLogin, Utente *testa);
+void *eliminaUtente(Utente *utenteLogin, Utente *testa);
 
 #include "utente.c"

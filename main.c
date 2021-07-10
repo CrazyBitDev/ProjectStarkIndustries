@@ -233,24 +233,21 @@ int main() {
                             case 1:
                                 clearConsole();
                                 titolo();
-
                                 stampaUtente(utenteLogin);
                                 break;
 
                             case 2:
                                 clearConsole();
                                 titolo();
-
                                 while ('\n' != getchar());
                                 stampaUtente(utenteLogin);
-                                testaUtente = modificaUtente(utenteLogin, testaUtente);
+                                modificaUtente(utenteLogin, testaUtente);
                                 break;
 
                             case 3:
                                 clearConsole();
                                 titolo();
-
-                                testaUtente = eliminaUtente(utenteLogin, testaUtente);
+                                eliminaUtente(utenteLogin, testaUtente);
                                 break;
 
                             case 4:

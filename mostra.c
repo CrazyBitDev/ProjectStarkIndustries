@@ -1,4 +1,4 @@
-Mostra *aggiungiMostra(Mostra *testa) {
+void *aggiungiMostra(Mostra *testa) {
 
     Mostra *curr, *prec;
     prec = NULL;
@@ -165,16 +165,14 @@ Mostra *aggiungiMostra(Mostra *testa) {
     if (prec == NULL) {
         nuovoNodo->nextMostra = testa;
         testa = nuovoNodo;
-        return testa;
     } else {
         prec->nextMostra = nuovoNodo;
         nuovoNodo->nextMostra = curr;
-        return testa;
     }
 
 }
 
-Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
+void *modificaMostra(Mostra *testa, Mostra *mostra) {
     int nOpere = 0;
     int scelta, colonna = 0;
     char risposta;
@@ -392,8 +390,6 @@ Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
             scriviMostre(testa);
         }
     } while (risposta == 'S');
-
-    return testa;
 }
 
 //stampa a video
@@ -419,12 +415,12 @@ void scriviMostre(Mostra *testa) {
     for (temp = testa; temp != NULL; temp = temp->nextMostra) {
         long size = ftell(fp);
 
-        if (size == 0)   //file vuoto.
-        {
+        if (size == 0) {
+            //file vuoto.
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->luogo, temp->citta,
                     temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
-        } else     //file pieno
-        {
+        } else {
+            //file pieno
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->luogo, temp->citta,
                     temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
         }
@@ -433,7 +429,7 @@ void scriviMostre(Mostra *testa) {
 }
 
 
-Mostra *eliminaMostra(Mostra *testa, Mostra *mostra) {
+void *eliminaMostra(Mostra *testa, Mostra *mostra) {
     char risposta;
     Mostra *curr, *prec;
     Mostra *temp;
@@ -470,9 +466,11 @@ Mostra *eliminaMostra(Mostra *testa, Mostra *mostra) {
                 free(curr);
             }
             scriviMostre(testa);
+
+            clearConsole();
+            printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
         }
     }
-    return testa;
 }
 
 

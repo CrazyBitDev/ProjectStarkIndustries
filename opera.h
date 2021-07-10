@@ -1,15 +1,13 @@
-struct opera *aggiungiOpera(struct opera *testa);
+Opera *aggiungiOpera(Opera *testa);
 
-struct opera *modificaOpera(struct opera *testa, struct opera *opera);
+Opera *modificaOpera(Opera *testa, Opera *opera);
 
-struct opera *eliminaOpera(struct opera *testa, struct opera *opera);
+Opera *eliminaOpera(Opera *testa, Opera *opera);
 
-void scriviOpere(struct opera *testa);
+void scriviOpere(Opera *testa);
 
-void stampaOpere(struct opera *testa);
+void stampaOpere(Opera *testa);
 
-struct opera *ricercaOpera(struct opera *testa, int id);
-
-typedef struct opera Opera;
+Opera *ricercaOpera(Opera *testa, int id);
 
 #include "opera.c"

@@ -1,4 +1,4 @@
-Utente *registrazioneUtente(Utente *testa) {
+void *registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
     Utente *temp;
     Utente *curr, *prec;
@@ -221,40 +221,37 @@ Utente *registrazioneUtente(Utente *testa) {
     if (prec == NULL) {
         nuovoNodo->nextUtente = testa;
         testa = nuovoNodo;
-        return testa;
     } else {
         prec->nextUtente = nuovoNodo;
         nuovoNodo->nextUtente = curr;
-        return testa;
     }
 
 }
 
 Utente *accesso(Utente *testa, char *text) {
-    bool flag = false;
-    Utente *nuovoNodo = NULL;
-    Utente *temp;
+    bool utenteTrovato = false;
+    Utente *utente = NULL;
 
     char pass[20] = "";
     readPassword("Password: ", pass);
 
-    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+    for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
 
         if ((strcmp(temp->email, text) == 0 || strcmp(temp->nick, text) == 0) && strcmp(temp->password, pass) == 0) {
 
-            nuovoNodo = temp;
-            flag = true;
+            utente = temp;
+            utenteTrovato = true;
             break;
 
         }
     }
 
-    if (!flag) {
+    if (!utenteTrovato) {
         printColor("\nEmail/Nickname e/o Password errati!\n\n", COLOR_RED);
     }
 
-    if (flag)
-        return nuovoNodo;
+    if (utenteTrovato)
+        return utente;
     else
         return NULL;
 }
@@ -282,7 +279,7 @@ void stampaUtente(Utente *utenteLogin) {
 
 }
 
-Utente *modificaUtente(Utente *utenteLogin, Utente *testa) {
+void *modificaUtente(Utente *utenteLogin, Utente *testa) {
     int scelta;
     char risposta = '\0';
 
@@ -466,11 +463,9 @@ Utente *modificaUtente(Utente *utenteLogin, Utente *testa) {
 
         clearConsole();
     } while (risposta == 'S' && scelta != 0);
-
-    return testa;
 }
 
-Utente *eliminaUtente(Utente *utenteLogin, Utente *testa) {
+void *eliminaUtente(Utente *utenteLogin, Utente *testa) {
     char risposta;
     Utente *curr, *prec;
     Utente *temp = NULL;
@@ -514,8 +509,6 @@ Utente *eliminaUtente(Utente *utenteLogin, Utente *testa) {
         printColor("-----------------------------\n", COLOR_CYAN);
         printf("%s siamo contenti che tu abbia deciso di rimanere con noi!\n", temp->nome);
     }
-
-    return testa;
 }
 
 void scriviUtenti(Utente *testa) {
