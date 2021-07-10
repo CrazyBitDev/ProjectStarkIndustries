@@ -1,4 +1,4 @@
-Utente *registrazioneUtente(Utente *testa) {
+void registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
     Utente *temp;
     Utente *curr, *prec;
@@ -23,6 +23,10 @@ Utente *registrazioneUtente(Utente *testa) {
         fgets(nuovoNodo->nome, 20, stdin);
         nuovoNodo->nome[strlen(nuovoNodo->nome) - 1] = 0;
         nuovoNodo->nome[0] = toupper(nuovoNodo->nome[0]);
+    
+        if(strlen(nuovoNodo->nome) == 0) {
+            break;
+        }
         
         for(i=0; i<strlen(nuovoNodo->nome); i++) {
             if(isalpha(nuovoNodo->nome[i]) == 0) {
@@ -169,11 +173,12 @@ Utente *registrazioneUtente(Utente *testa) {
     strcpy(nuovoNodo->password, psw);
 
     printf("-----------------------------\n");
+    
 
     //controlli sulla data di nascita
     char data[11];
-    char g[3], m[3], an[5];
-    int giorno = 0, mese = 0, anno = 0;
+    int giorno, mese, anno;
+    bool controllo = true;
 
     printf("Inserisci data di nascita\n");
 
@@ -189,82 +194,35 @@ Utente *registrazioneUtente(Utente *testa) {
         }
 
         do {
-            printf("Giorno: ");
-            fgets(g, 3, stdin);
-            g[strlen(g) - 1] = 0;
-            
-            for(i=0; i<strlen(g); i++){
-                if(isalpha(g[i]) != 0) {
-                    testInput = true; //carattere
-                } else {
-                    testInput = false;
-                }
-            }
-            
-            if(testInput) {
+            if(!controllo) {
                 clearConsole();
                 titolo();
                 printf("\n----------");
                 printColor("\nAttenzione!\n", COLOR_RED);
                 printf("Giorno non valido.\n");
                 printf("----------\n\n");
-            } else {
-                giorno = atoi(g);
             }
+            
+            do {
+                printf("Giorno: ");
+                scanf("%d", &giorno);
+            } while (giorno < 0 || giorno > 31);
+            
+            
             
         } while (giorno < 0 || giorno > 31 || testInput);
 
         do {
             while ('\n' != getchar());
             printf("Mese: ");
-            fgets(m, 3, stdin);
-            m[strlen(m) - 1] = 0;
-            
-            for(i=0; i<strlen(m); i++){
-                if(isalpha(m[i]) != 0) {
-                    testInput = true; //carattere
-                } else {
-                    testInput = false;
-                }
-            }
-            
-            if(testInput) {
-                clearConsole();
-                titolo();
-                printf("\n----------");
-                printColor("\nAttenzione!\n", COLOR_RED);
-                printf("Mese non valido.\n");
-                printf("----------\n\n");
-            } else {
-                mese = atoi(m);
-            }
-        } while (mese < 1 || mese > 12 || testInput);
+            scanf("%d", &mese);
+        } while (mese < 1 || mese > 12);
 
         do {
            // while ('\n' != getchar());
             printf("Anno (dal 1900 in poi): ");
-            fgets(an, 5, stdin);
-            
-            for(i=0; i<strlen(an); i++){
-                if(isalpha(an[i]) != 0) {
-                    testInput = true; //carattere
-                    printf("dentro\n");
-                } else {
-                    testInput = false;
-                }
-            }
-            printf("test: %d\n", testInput);
-            if(testInput) {
-                clearConsole();
-                titolo();
-                printf("\n----------");
-                printColor("\nAttenzione!\n", COLOR_RED);
-                printf("Anno non valido.\n");
-                printf("----------\n\n");
-            } else {
-                anno = atoi(an);
-            }
-        } while (anno < 1900 || testInput);
+            scanf("%d", &anno);
+        } while (anno < 1900);
 
         dataCorretta = verificaData(giorno, mese, anno);
 
@@ -335,7 +293,6 @@ Utente *registrazioneUtente(Utente *testa) {
         prec->nextUtente = nuovoNodo;
         nuovoNodo->nextUtente = curr;
     }
-    return testa;
 }
 
 Utente *accesso(Utente *testa, char *text) {
