@@ -21,150 +21,26 @@ int main() {
 
     titolo();
 
-    int scelta, scelta2 = 0, colonna = 0;
-    char email[60], buf[BUFFER_SIZE];
+    int scelta, scelta2 = 0;
+    char email[60];
+    int nMostra;
 
     Utente *testaUtente = NULL;
+    Mostra *testaMostra = NULL;
+
     Utente *utenteLogin = NULL; //utente che avrà eseguito il login
-    Utente *tempUtente = NULL; //temporanea
-    Utente *precUtente = NULL;
+    Mostra *mostraScelta = NULL;
 
     //Lettura utenti dal file
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
 
-    if (fpU == NULL) {
-        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
-        printColor("\t\t\t|File \"utenti\" non trovato!   |\n", COLOR_RED);
-        printColor("\t\t\t|\t...                   |\n", COLOR_RED);
-        printColor("\t\t\t|File in creazione            |\n", COLOR_RED);
-        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
-    } else {
-        while (!feof(fpU)) {
-            fgets(buf, BUFFER_SIZE, fpU);
-            tempUtente = (Utente *) malloc(sizeof(Utente));
-            tempUtente->nextUtente = NULL;
-
-            if (precUtente != NULL) {
-                precUtente->nextUtente = tempUtente;
-            } else {
-                testaUtente = tempUtente;
-            }
-
-            char *tok;
-            tok = strtok(buf, ",");
-
-            while (tok) {
-                if (colonna == 0) {
-                    tempUtente->id = atoi(tok);
-                }
-                if (colonna == 1) {
-                    strcpy(tempUtente->nome, tok);
-                    tempUtente->nome[strlen(tempUtente->nome)] = 0;
-                }
-                if (colonna == 2) {
-                    strcpy(tempUtente->cognome, tok);
-                    tempUtente->cognome[strlen(tempUtente->cognome)] = 0;
-                }
-                if (colonna == 3) {
-                    strcpy(tempUtente->nick, tok);
-                    tempUtente->nick[strlen(tempUtente->nick)] = 0;
-                }
-                if (colonna == 4) {
-                    strcpy(tempUtente->email, tok);
-                    tempUtente->email[strlen(tempUtente->email)] = 0;
-                }
-                if (colonna == 5) {
-                    strcpy(tempUtente->password, tok);
-                    tempUtente->password[strlen(tempUtente->password)] = 0;
-                }
-                if (colonna == 6) {
-                    strcpy(tempUtente->dataNascita, tok);
-                    tempUtente->dataNascita[strlen(tempUtente->dataNascita)] = 0;
-                }
-                if (colonna == 7) {
-                    tempUtente->permessi = atoi(tok);
-                }
-                tok = strtok(NULL, ",");
-                colonna++;
-            }
-            colonna = 0;
-            precUtente = tempUtente;
-
-        }
-    }
-
-    //Lettura mostre dal file
-    int nMostra, colonna1 = 0;
-    char buf2[BUFFER_SIZE];
-
-    Mostra *testaMostra = NULL;
-    Mostra *mostraScelta = NULL;
-    Mostra *tempMostra = NULL; //temporanea
-    Mostra *tempMostra1 = NULL;
-
+    //Lettura utenti dal file
     FILE *fpM;
     fpM = fopen("mostre.csv", "r");
 
-    if (fpU == NULL) {
-        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
-        printColor("\t\t\t|File \"mostre\" non trovato!   |\n", COLOR_RED);
-        printColor("\t\t\t|\t...                   |\n", COLOR_RED);
-        printColor("\t\t\t|File in creazione            |\n", COLOR_RED);
-        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
-    } else {
-        while (!feof(fpM)) {
-            fgets(buf2, BUFFER_SIZE, fpM);
-            tempMostra = (Mostra *) malloc(sizeof(Mostra));
-            tempMostra->nextMostra = NULL;
-
-            if (tempMostra1 != NULL) {
-                tempMostra1->nextMostra = tempMostra;
-            } else {
-                testaMostra = tempMostra;
-            }
-
-            char *tok2;
-            tok2 = strtok(buf2, ",");
-
-            while (tok2) {
-                if (colonna1 == 0) {
-                    tempMostra->id = atoi(tok2);
-                }
-                if (colonna1 == 1) {
-                    strcpy(tempMostra->responsabile, tok2);
-                    tempMostra->responsabile[strlen(tempMostra->responsabile)] = 0;
-                }
-                if (colonna1 == 2) {
-                    strcpy(tempMostra->luogo, tok2);
-                    tempMostra->luogo[strlen(tempMostra->luogo)] = 0;
-                }
-                if (colonna1 == 3) {
-                    strcpy(tempMostra->citta, tok2);
-                    tempMostra->citta[strlen(tempMostra->citta)] = 0;
-                }
-                if (colonna1 == 4) {
-                    strcpy(tempMostra->indirizzo, tok2);
-                    tempMostra->indirizzo[strlen(tempMostra->indirizzo)] = 0;
-                }
-                if (colonna1 == 5) {
-                    strcpy(tempMostra->dataInizio, tok2);
-                    tempMostra->dataInizio[strlen(tempMostra->dataInizio)] = 0;
-                }
-                if (colonna1 == 6) {
-                    strcpy(tempMostra->dataFine, tok2);
-                    tempMostra->dataFine[strlen(tempMostra->dataFine)] = 0;
-                }
-                if (colonna1 == 7) {
-                    tempMostra->nOpere = atoi(tok2);
-                }
-                tok2 = strtok(NULL, ",");
-                colonna1++;
-            }
-            colonna1 = 0;
-            tempMostra1 = tempMostra;
-        }
-    }
+    testaUtente = letturaUtenti(fpU);
+    testaMostra = letturaMostre(fpM);
 
     do {
         printf("---HOME---\n");
@@ -244,13 +120,13 @@ int main() {
                                     titolo();
                                     while ('\n' != getchar());
                                     stampaUtente(utenteLogin);
-                                    testaUtente = modificaUtente(utenteLogin, testaUtente);
+                                    modificaUtente(utenteLogin, testaUtente);
                                     break;
 
                                 case 3:
                                     clearConsole();
                                     titolo();
-                                    testaUtente = eliminaUtente(utenteLogin, testaUtente);
+                                    eliminaUtente(utenteLogin, testaUtente);
                                     break;
 
                                 case 4:
@@ -260,7 +136,7 @@ int main() {
                                     while ('\n' != getchar());
 
                                     if (utenteLogin->permessi == 2) {
-                                       testaMostra = aggiungiMostra(testaMostra);
+                                        aggiungiMostra(testaMostra);
                                     } else {
                                         stampaMostre(testaMostra);
                                     }
@@ -292,7 +168,7 @@ int main() {
 
                                             char *valore2 = (char *) mostraScelta;
                                             if (valore2 != NULL) {
-                                                testaMostra = modificaMostra(testaMostra, mostraScelta);
+                                                modificaMostra(testaMostra, mostraScelta);
                                             }
                                             while ('\n' != getchar());
                                         }
@@ -327,7 +203,7 @@ int main() {
 
                                             char *valore2 = (char *) mostraScelta;
                                             if (valore2 != NULL) {
-                                                testaMostra = eliminaMostra(testaMostra, mostraScelta);
+                                                eliminaMostra(testaMostra, mostraScelta);
                                             }
                                             while ('\n' != getchar());
                                         }

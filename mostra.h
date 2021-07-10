@@ -1,8 +1,8 @@
-Mostra *aggiungiMostra(Mostra *testa);
+void aggiungiMostra(Mostra *testa);
 
-Mostra *modificaMostra(Mostra *testa, Mostra *mostra);
+void modificaMostra(Mostra *testa, Mostra *mostra);
 
-Mostra *eliminaMostra(Mostra *testa, Mostra *mostra);
+void eliminaMostra(Mostra *testa, Mostra *mostra);
 
 void scriviMostre(Mostra *testa);
 

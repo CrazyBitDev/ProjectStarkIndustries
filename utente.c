@@ -1,3 +1,76 @@
+Utente *letturaUtenti(FILE *fp) {
+    
+    int colonna = 0;
+    char buf[BUFFER_SIZE];
+
+    Utente *testaUtente= NULL;
+    Utente *tempUtente = NULL; //temporanea
+    Utente *precUtente = NULL;
+
+    if (fp == NULL) {
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+        printColor("\t\t\t|File \"utenti\" non trovato!   |\n", COLOR_RED);
+        printColor("\t\t\t|\t...                   |\n", COLOR_RED);
+        printColor("\t\t\t|File in creazione            |\n", COLOR_RED);
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+    } else {
+        while (!feof(fp)) {
+            fgets(buf, BUFFER_SIZE, fp);
+            tempUtente = (Utente *) malloc(sizeof(Utente));
+            tempUtente->nextUtente = NULL;
+
+            if (precUtente != NULL) {
+                precUtente->nextUtente = tempUtente;
+            } else {
+                testaUtente = tempUtente;
+            }
+
+            char *tok;
+            tok = strtok(buf, ",");
+
+            while (tok) {
+                if (colonna == 0) {
+                    tempUtente->id = atoi(tok);
+                }
+                if (colonna == 1) {
+                    strcpy(tempUtente->nome, tok);
+                    tempUtente->nome[strlen(tempUtente->nome)] = 0;
+                }
+                if (colonna == 2) {
+                    strcpy(tempUtente->cognome, tok);
+                    tempUtente->cognome[strlen(tempUtente->cognome)] = 0;
+                }
+                if (colonna == 3) {
+                    strcpy(tempUtente->nick, tok);
+                    tempUtente->nick[strlen(tempUtente->nick)] = 0;
+                }
+                if (colonna == 4) {
+                    strcpy(tempUtente->email, tok);
+                    tempUtente->email[strlen(tempUtente->email)] = 0;
+                }
+                if (colonna == 5) {
+                    strcpy(tempUtente->password, tok);
+                    tempUtente->password[strlen(tempUtente->password)] = 0;
+                }
+                if (colonna == 6) {
+                    strcpy(tempUtente->dataNascita, tok);
+                    tempUtente->dataNascita[strlen(tempUtente->dataNascita)] = 0;
+                }
+                if (colonna == 7) {
+                    tempUtente->permessi = atoi(tok);
+                }
+                tok = strtok(NULL, ",");
+                colonna++;
+            }
+            colonna = 0;
+            precUtente = tempUtente;
+
+        }
+    }
+
+    return testaUtente;
+}
+
 void registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
     Utente *temp;
@@ -309,7 +382,7 @@ Utente *accesso(Utente *testa, char *text) {
             utente = temp;
             utenteTrovato = true;
             break;
-
+            
         }
     }
 
@@ -346,7 +419,7 @@ void stampaUtente(Utente *utenteLogin) {
 
 }
 
-Utente *modificaUtente(Utente *utenteLogin, Utente *testa) {
+void modificaUtente(Utente *utenteLogin, Utente *testa) {
     int scelta;
     char risposta = '\0';
 
@@ -530,11 +603,9 @@ Utente *modificaUtente(Utente *utenteLogin, Utente *testa) {
 
         clearConsole();
     } while (risposta == 'S' && scelta != 0);
-    
-    return testa;
 }
 
-Utente *eliminaUtente(Utente *utenteLogin, Utente *testa) {
+void eliminaUtente(Utente *utenteLogin, Utente *testa) {
     char risposta;
     Utente *curr, *prec;
     Utente *temp = NULL;
@@ -581,7 +652,6 @@ Utente *eliminaUtente(Utente *utenteLogin, Utente *testa) {
         printColor("-----------------------------\n", COLOR_CYAN);
         printf("%s siamo contenti che tu abbia deciso di rimanere con noi!\n", temp->nome);
     }
-    return testa;
 }
 
 void scriviUtenti(Utente *testa) {

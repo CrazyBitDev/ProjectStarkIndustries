@@ -1,4 +1,78 @@
-Mostra *aggiungiMostra(Mostra *testa) {
+Mostra *letturaMostre(FILE *fp) {
+    
+    //Lettura mostre dal file
+    int colonna1 = 0;
+    char buf[BUFFER_SIZE];
+
+    Mostra *testaMostra = NULL;
+    Mostra *tempMostra  = NULL; //temporanea
+    Mostra *tempMostra1 = NULL;
+
+    if (fp == NULL) {
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+        printColor("\t\t\t|File \"mostre\" non trovato!   |\n", COLOR_RED);
+        printColor("\t\t\t|\t...                   |\n", COLOR_RED);
+        printColor("\t\t\t|File in creazione            |\n", COLOR_RED);
+        printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
+    } else {
+        while (!feof(fp)) {
+            fgets(buf, BUFFER_SIZE, fp);
+            tempMostra = (Mostra *) malloc(sizeof(Mostra));
+            tempMostra->nextMostra = NULL;
+
+            if (tempMostra1 != NULL) {
+                tempMostra1->nextMostra = tempMostra;
+            } else {
+                testaMostra = tempMostra;
+            }
+
+            char *tok2;
+            tok2 = strtok(buf, ",");
+
+            while (tok2) {
+                if (colonna1 == 0) {
+                    tempMostra->id = atoi(tok2);
+                }
+                if (colonna1 == 1) {
+                    strcpy(tempMostra->responsabile, tok2);
+                    tempMostra->responsabile[strlen(tempMostra->responsabile)] = 0;
+                }
+                if (colonna1 == 2) {
+                    strcpy(tempMostra->luogo, tok2);
+                    tempMostra->luogo[strlen(tempMostra->luogo)] = 0;
+                }
+                if (colonna1 == 3) {
+                    strcpy(tempMostra->citta, tok2);
+                    tempMostra->citta[strlen(tempMostra->citta)] = 0;
+                }
+                if (colonna1 == 4) {
+                    strcpy(tempMostra->indirizzo, tok2);
+                    tempMostra->indirizzo[strlen(tempMostra->indirizzo)] = 0;
+                }
+                if (colonna1 == 5) {
+                    strcpy(tempMostra->dataInizio, tok2);
+                    tempMostra->dataInizio[strlen(tempMostra->dataInizio)] = 0;
+                }
+                if (colonna1 == 6) {
+                    strcpy(tempMostra->dataFine, tok2);
+                    tempMostra->dataFine[strlen(tempMostra->dataFine)] = 0;
+                }
+                if (colonna1 == 7) {
+                    tempMostra->nOpere = atoi(tok2);
+                }
+                tok2 = strtok(NULL, ",");
+                colonna1++;
+            }
+            colonna1 = 0;
+            tempMostra1 = tempMostra;
+        }
+    }
+
+    return testaMostra;
+
+}
+
+void aggiungiMostra(Mostra *testa) {
 
     Mostra *curr, *prec;
     prec = NULL;
@@ -168,11 +242,9 @@ Mostra *aggiungiMostra(Mostra *testa) {
         prec->nextMostra = nuovoNodo;
         nuovoNodo->nextMostra = curr;
     }
-
-    return testa;
 }
 
-Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
+void modificaMostra(Mostra *testa, Mostra *mostra) {
     int scelta, colonna = 0;
     char risposta;
     bool flagDate = false;
@@ -390,8 +462,6 @@ Mostra *modificaMostra(Mostra *testa, Mostra *mostra) {
             scriviMostre(testa);
         }
     } while (risposta == 'S');
-    
-    return testa;
 }
 
 //stampa a video
@@ -429,10 +499,10 @@ void scriviMostre(Mostra *testa) {
     fclose(fp);
 }
 
-Mostra *eliminaMostra(Mostra *testa, Mostra *mostra) {
+void eliminaMostra(Mostra *testa, Mostra *mostra) {
     char risposta;
     Mostra *curr, *prec;
-    Mostra *temp;
+    Mostra *temp = NULL;
 
     temp = mostra;
     prec = NULL;
@@ -448,30 +518,31 @@ Mostra *eliminaMostra(Mostra *testa, Mostra *mostra) {
 
         //rendo la risposta tutta maiuscola per evitare errori
         risposta = toupper(risposta);
+
     } while (risposta != 'S' && risposta != 'N');
 
     if (risposta == 'S') {
         while (curr != NULL && temp->id != curr->id) {
             prec = curr;
             curr = curr->nextMostra;
-
-            if (temp->id == curr->id) {
-                if (prec == NULL)   //elemento trovato in testa
-                {
-                    testa = curr->nextMostra;
-                } else     //elemento al centro della lista
-                {
-                    prec->nextMostra = curr->nextMostra;
-                }
-                free(curr);
-            }
-            scriviMostre(testa);
-
-            clearConsole();
-            printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
         }
+
+        if (temp->id == curr->id) {
+            if (prec == NULL)   //elemento trovato in testa
+            {
+                testa = curr->nextMostra;
+            } else     //elemento al centro della lista
+            {
+                prec->nextMostra = curr->nextMostra;
+            }
+            free(curr);
+        }
+        
+        scriviMostre(testa);
+
+        clearConsole();
+        printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
     }
-    return testa;
 }
 
 
