@@ -500,6 +500,7 @@ Opera *opereBrowser(Opera *testa, bool selezione) {
                     //TODO: annullare ricerca e tornare al menu "selezionare tipo di ricerca"
                     scanf("%d", &scelta);
                     operaSelezionata = ricercaOpera(testa, scelta);
+                    ricercaInCorso = false;
                 } else {
                     pause();
                 }
