@@ -334,13 +334,21 @@ void aggiungiMostra(Mostra *testa) {
 
 void modificaMostra(Mostra *testa, Mostra *mostra) {
     int scelta, colonna = 0;
-    char risposta;
+    char risposta = '\0';
     bool flagDate = false;
+    bool continuaModifica = true;
     
     Mostra *temp = NULL;
     temp = mostra;
     
-    int nOpere = 0;
+    char responsabile[30];
+    char luogo[25];
+    char citta[20];
+    char indirizzo[30];
+    
+    
+    
+    //int nOpere = 0;
     
     char dataIn[11];
     bool dataCorrettaIn = true;
@@ -358,7 +366,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
     printf("Indirizzo: %s\n", temp->indirizzo);
     printf("Data inizio mostra: %s\n", temp->dataInizio);
     printf("Data fine mostra: %s\n", temp->dataFine);
-    printf("Numero opere esposte: %d\n", temp->nOpere);
+    //printf("Numero opere esposte: %d\n", temp->nOpere);
     printColor("----------\n\n", COLOR_CYAN);
     
     do {
@@ -373,7 +381,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
         printf("4: Indirizzo\n");
         printf("5: Data Inizio\n");
         printf("6: Data Fine\n");
-        printf("7: Numero Opere\n");
+       // printf("7: Numero Opere\n");
         printf("0: Annulla\n");
         printf("----------\n");
         printf("-> ");
@@ -386,37 +394,97 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 break;
                 
             case 1:
+                clearConsole();
+                titolo();
+                notificaAnnulla();
+                
                 printf("Inserisci il responsabile: ");
-                fgets(temp->responsabile, 30, stdin);
-                temp->responsabile[strlen(temp->responsabile) - 1] = 0;
-                temp->responsabile[0] = toupper(temp->responsabile[0]);
+                fgets(responsabile, 30, stdin);
+                responsabile[strlen(responsabile) - 1] = 0;
+                responsabile[0] = toupper(responsabile[0]);
+                
+                if(strlen(responsabile) == 0) {
+                    continuaModifica = false;
+                    break;
+                } else {
+                    strcpy(temp->responsabile, responsabile);
+                }
                 break;
                 
             case 2:
+                clearConsole();
+                titolo();
+                notificaAnnulla();
+                
                 printf("Inserisci il luogo: ");
-                fgets(temp->luogo, 25, stdin);
-                temp->responsabile[strlen(temp->responsabile) - 1] = 0;
-                temp->responsabile[0] = toupper(temp->responsabile[0]);
+                fgets(luogo, 25, stdin);
+                responsabile[strlen(responsabile) - 1] = 0;
+                responsabile[0] = toupper(responsabile[0]);
+                
+                if(strlen(luogo) == 0) {
+                    continuaModifica = false;
+                    break;
+                } else {
+                    strcpy(temp->luogo, luogo);
+                }
                 break;
                 
             case 3:
+                clearConsole();
+                titolo();
+                notificaAnnulla();
+                
                 printf("Inserisci la citta': ");
-                fgets(temp->citta, 20, stdin);
-                temp->citta[strlen(temp->citta) - 1] = 0;
-                temp->citta[0] = toupper(temp->citta[0]);
+                fgets(citta, 20, stdin);
+                citta[strlen(citta) - 1] = 0;
+                citta[0] = toupper(citta[0]);
+                
+                if(strlen(citta) == 0) {
+                    continuaModifica = false;
+                    break;
+                } else {
+                    strcpy(temp->citta, citta);
+                }
                 break;
                 
             case 4:
+                clearConsole();
+                titolo();
+                notificaAnnulla();
+                
                 printf("Inserisci l'indirizzo: ");
-                fgets(temp->indirizzo, 20, stdin);
-                temp->indirizzo[strlen(temp->indirizzo) - 1] = 0;
-                temp->indirizzo[0] = toupper(temp->indirizzo[0]);
+                fgets(indirizzo, 20, stdin);
+                indirizzo[strlen(indirizzo) - 1] = 0;
+                indirizzo[0] = toupper(indirizzo[0]);
+                
+                if(strlen(indirizzo) == 0) {
+                    continuaModifica = false;
+                    break;
+                } else {
+                    strcpy(temp->indirizzo, indirizzo);
+                }
                 break;
                 
             case 5:
                 flagDate = false;
+                
+                clearConsole();
+                titolo();
+                
+                consoleColor(COLOR_RED);
+                printf("\t\t\t|-----------------------------|\n");
+                printf("\t\t\t|         Attenzione!         |\n");
+                printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
+                printf("\t\t\t|       tornare al menu'      |\n");
+                printf("\t\t\t|      premere il tasto 0     |\n");
+                printf("\t\t\t|-----------------------------|\n");
+                consoleColor(COLOR_RESET);
+                
                 do {
-                    printf("Inserisci data d'inizio mostra\n");
+                    printf("Inserisci data d'");
+                    printColor("inizio ", COLOR_CYAN);
+                    printf("mostra\n");
+                    
                     do {
                         if (!dataCorrettaIn) {
                             printColor("\nAttenzione!\n", COLOR_RED);
@@ -426,45 +494,57 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         do {
                             printf("Giorno: ");
                             scanf("%d", &giornoIn);
-                        } while (giornoIn < 0 || giornoIn > 31);
+                            
+                            if(giornoIn == 0) {
+                                continuaModifica = false;
+                                flagDate = true;
+                                break;
+                            }
+                            
+                        } while (giornoIn < 1 || giornoIn > 31);
                         
-                        do {
-                            printf("Mese: ");
-                            scanf("%d", &meseIn);
-                        } while (meseIn < 1 || meseIn > 12);
-                        
-                        printf("Anno: ");
-                        scanf("%d", &annoIn);
-                        
-                        dataCorrettaIn = verificaData(giornoIn, meseIn, annoIn);
+                        if(continuaModifica) {
+                            
+                            do {
+                                printf("Mese: ");
+                                scanf("%d", &meseIn);
+                            } while (meseIn < 1 || meseIn > 12);
+                            
+                            printf("Anno: ");
+                            scanf("%d", &annoIn);
+                            
+                            dataCorrettaIn = verificaData(giornoIn, meseIn, annoIn);
+                        }
                         
                     } while (!dataCorrettaIn);
                     
-                    snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
-                    
-                    char *tok;
-                    tok = strtok(temp->dataFine, "/");
-                    
-                    while (tok) {
-                        if (colonna == 0) {
-                            giornoFin = atoi(tok);
+                    if(continuaModifica) {
+                        snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
+                        
+                        char *tok;
+                        tok = strtok(temp->dataFine, "/");
+                        
+                        while (tok) {
+                            if (colonna == 0) {
+                                giornoFin = atoi(tok);
+                            }
+                            if (colonna == 1) {
+                                meseFin = atoi(tok);
+                            }
+                            if (colonna == 2) {
+                                annoFin = atoi(tok);
+                            }
+                            tok = strtok(NULL, "/");
+                            colonna++;
                         }
-                        if (colonna == 1) {
-                            meseFin = atoi(tok);
+                        
+                        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
+                            flagDate = true;
+                        } else {
+                            printColor("Attenzione!\n", COLOR_RED);
+                            printf("La data di fine mostra deve susseguire la data d'inizio.\n");
+                            printf("Si prega di inserire nuovamente le date.\n\n");
                         }
-                        if (colonna == 2) {
-                            annoFin = atoi(tok);
-                        }
-                        tok = strtok(NULL, "/");
-                        colonna++;
-                    }
-                    
-                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
-                        flagDate = true;
-                    } else {
-                        printColor("Attenzione!\n", COLOR_RED);
-                        printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                        printf("Si prega di inserire nuovamente le date.\n\n");
                     }
                     
                 } while (!flagDate);
@@ -484,72 +564,99 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         
                         do {
                             printf("Giorno: ");
-                            scanf("%d", &giornoFin);
-                        } while (giornoFin < 0 || giornoFin > 31);
+                            scanf("%d", &giornoIn);
+                            
+                            if(giornoIn == 0) {
+                                continuaModifica = false;
+                                flagDate = true;
+                                break;
+                            }
+                            
+                        } while (giornoIn < 1 || giornoIn > 31);
                         
-                        do {
-                            printf("Mese: ");
-                            scanf("%d", &meseFin);
-                        } while (meseFin < 1 || meseFin > 12);
-                        
-                        printf("Anno: ");
-                        scanf("%d", &annoFin);
-                        
-                        dataCorrettaFin = verificaData(giornoFin, meseFin, annoFin);
+                        if(continuaModifica) {
+                            do {
+                                printf("Mese: ");
+                                scanf("%d", &meseFin);
+                            } while (meseFin < 1 || meseFin > 12);
+                            
+                            printf("Anno: ");
+                            scanf("%d", &annoFin);
+                            
+                            dataCorrettaFin = verificaData(giornoFin, meseFin, annoFin);
+                        }
                         
                     } while (!dataCorrettaFin);
                     
-                    snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
-                    
-                    char *tok;
-                    tok = strtok(temp->dataInizio, "/");
-                    
-                    while (tok) {
-                        if (colonna == 0) {
-                            giornoIn = atoi(tok);
+                    if(continuaModifica) {
+
+                        snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
+                        
+                        char *tok;
+                        tok = strtok(temp->dataInizio, "/");
+                        
+                        while (tok) {
+                            if (colonna == 0) {
+                                giornoIn = atoi(tok);
+                            }
+                            if (colonna == 1) {
+                                meseIn = atoi(tok);
+                            }
+                            if (colonna == 2) {
+                                annoIn = atoi(tok);
+                            }
+                            tok = strtok(NULL, "/");
+                            colonna++;
                         }
-                        if (colonna == 1) {
-                            meseIn = atoi(tok);
+                        
+                        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
+                            flagDate = true;
+                        } else {
+                            printColor("Attenzione!\n", COLOR_RED);
+                            printf("La data di fine mostra deve susseguire la data d'inizio.\n");
+                            printf("Si prega di inserire nuovamente le date.\n\n");
                         }
-                        if (colonna == 2) {
-                            annoIn = atoi(tok);
-                        }
-                        tok = strtok(NULL, "/");
-                        colonna++;
-                    }
-                    
-                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
-                        flagDate = true;
-                    } else {
-                        printColor("Attenzione!\n", COLOR_RED);
-                        printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                        printf("Si prega di inserire nuovamente le date.\n\n");
                     }
                     
                 } while (!flagDate);
                 strcpy(temp->dataFine, dataFin);
                 
                 break;
-                
+              
+                /*
             case 7:
                 printf("Inserisci il numero delle opere: ");
                 scanf("%d", &nOpere);
                 temp->nOpere = nOpere;
                 break;
+                 */
                 
             default:
                 break;
         }
         
-        
-        while ('\n' != getchar());
-        printf("Vuoi modificare un altro campo? (s/n): ");
-        risposta = getchar();
-        
-        if (toupper(risposta) == 'N') {
+        if (scelta != 0 && continuaModifica) {
+            do {
+                
+                printf("Vuoi modificare un altro campo? (s/n): ");
+                risposta = getchar();
+                while ('\n' != getchar());
+                
+                //rendo la risposta in maiuscolo per evitare errori
+                risposta = toupper(risposta);
+                
+                if (risposta == 'N') {
+                    scriviMostre(testa);
+                }
+                
+            } while (risposta != 'S' && risposta != 'N');
+        } else {
             scriviMostre(testa);
         }
-    } while (risposta == 'S');
+        
+        clearConsole();
+        titolo();
+    } while (risposta == 'S' && scelta != 0);
 }
 
 //stampa a video
@@ -651,7 +758,8 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
     }
     
     if (!flag) {
-        printColor("---Mostra non trovata!---\n", COLOR_RED);
+        printColor("Attenzione!\n", COLOR_RED);
+        printf("Mostra non trovata.");
     }
     
     if (flag)

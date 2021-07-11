@@ -446,8 +446,6 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
     int scelta;
     char risposta = '\0';
     
-    
-    
     char nome[20];
     char cognome[20];
     char email[60];
@@ -661,7 +659,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                     
                 } while (!dataCorretta);
                 
-                if(dataCorretta) {
+                if(continuaModifica) {
                     snprintf(data, 11, "%d/%d/%d", giorno, mese, anno);
                     strcpy(temp->dataNascita, data);
                 }

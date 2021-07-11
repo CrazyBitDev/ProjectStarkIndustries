@@ -4,7 +4,7 @@ Elenco cose da fare/problemi:
 
 - controllare ed aggiustare tutti i messaggi 
 
-- controlli vari sugli input
+- controlli vari sugli input. Controllare opere e prenotazioni (?)
 
 - fare controlli al momento in cui si inserisco giorno/mese/anno -> controllare che si inseriscano solo numeri 
 
@@ -15,7 +15,6 @@ Elenco cose da fare/problemi:
 
 - l'amministratore può modificare i permessi degli altri utenti 
 
-- fare i sottomenù
 
 Promemoria per DAN: 
 - rimuovere i void dalle funzioni prima di consegnare 
