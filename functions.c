@@ -237,3 +237,14 @@ int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, in
     }
     return differenza;
 }
+
+void notificaAnnulla() {
+    consoleColor(COLOR_RED);
+    printf("\t\t\t|-----------------------------|\n");
+    printf("\t\t\t|         Attenzione!         |\n");
+    printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
+    printf("\t\t\t|       tornare al menu'      |\n");
+    printf("\t\t\t|   premere il tasto invio    |\n");
+    printf("\t\t\t|-----------------------------|\n");
+    consoleColor(COLOR_RESET);
+}
