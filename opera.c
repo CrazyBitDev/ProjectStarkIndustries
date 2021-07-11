@@ -9,7 +9,7 @@ Opera *letturaOpere(FILE *fp) {
     if (fp == NULL) {
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
         printColor("\t\t\t|  File \"opere\" non trovato!  |\n", COLOR_RED);
-        printColor("\t\t\t|\t...                   |\n", COLOR_RED);
+        printColor("\t\t\t|             ...             |\n", COLOR_RED);
         printColor("\t\t\t|      File in creazione      |\n", COLOR_RED);
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
     } else {
@@ -252,7 +252,7 @@ void aggiungiOpera(Opera *testa) {
 
 void modificaOpera(Opera *testa, Opera *opera) {
     
-    int scelta, colonna = 0;
+    int scelta;
     char risposta;
 
     int anno;
@@ -486,7 +486,9 @@ Opera *opereBrowser(Opera *testa, bool selezione) {
             opereTrovate = 0;
             clearConsole();
             printf("Inserire nome completo o parziale dell'opera: ");
-            scanf("%s", &input);
+            fgets(input, 30, stdin);
+            input[strlen(input) - 1] = 0;
+                
             for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                 if (strstr(temp->nome, input) != NULL) {
                     opereTrovate++;
