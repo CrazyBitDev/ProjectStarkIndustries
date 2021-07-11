@@ -4,7 +4,7 @@ void aggiungiOpera(Opera *testa);
 
 void modificaOpera(Opera *testa, Opera *opera);
 
-Opera *eliminaOpera(Opera *testa, Opera *opera);
+void eliminaOpera(Opera *testa, Opera *opera);
 
 void scriviOpere(Opera *testa);
 

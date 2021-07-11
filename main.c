@@ -23,7 +23,7 @@ int main() {
 
     int scelta, scelta2 = 0;
     char email[60];
-    int nMostra;
+    int nMostra, nOpera;
 
     Utente *testaUtente  = NULL;
     Mostra *testaMostra  = NULL;
@@ -101,13 +101,16 @@ int main() {
                                 printf("4: Aggiungi dati mostra\n");
                                 printf("5: Modifica dati mostra\n");
                                 printf("6: Cancella dati mostra\n");
+                                printf("7: Aggiungi dati opera\n");
+                                printf("8: Modifica dati opera\n");
+                                printf("9: Cancella dati opera\n");
                             } else {
                                 //operazioni che può effettuare l'utente
                                 printf("4: Visualizza mostre\n");
                                 //printf("5: Prenotati ad una mostra\n");
                             }
 
-                            printf("9: Logout\n");
+                            //printf("9: Logout\n");
                             printf("0: Chiudi Applicazione\n");
                             printf("----------\n");
                             printf("-> ");
@@ -217,6 +220,82 @@ int main() {
                                         
                                     }
                                     break;
+                                case 7:
+                                    clearConsole();
+                                    titolo();
+
+                                    if (utenteLogin->permessi == 2) {
+                                        aggiungiOpera(testaOpera);
+                                    }
+                                    break;
+                                case 8:
+                                    clearConsole();
+                                    titolo();
+
+                                    if (utenteLogin->permessi == 2) {
+                                        
+                                        fseek(fpO, 0, SEEK_END);
+                                        long sizeO = ftell(fpO);
+                                        
+                                        if(sizeO == 0) { //non ci sono mostre registrate
+                                            printColor("Attenzione!\n", COLOR_RED);
+                                            printf("Non ci sono opere registrate.\n");
+                                        } else {
+                                            printColor("Elenco delle Opere disponibili\n", COLOR_CYAN);
+                                            stampaOpere(testaOpera);
+                                            printf("\n");
+                                            printf("Inserire il numero dell'opera da modificare: ");
+                                            scanf("%d", &nOpera);
+
+                                            clearConsole();
+                                            titolo();
+
+                                            operaScelta = ricercaOpera(testaOpera, nOpera);
+
+                                            char *valore2 = (char *) operaScelta;
+                                            if (valore2 != NULL) {
+                                                modificaOpera(testaOpera, operaScelta);
+                                            }
+                                            while ('\n' != getchar());
+                                        }
+                                        
+                                    }
+                                    break;
+                                case 9:
+                                    clearConsole();
+                                    titolo();
+
+                                    if (utenteLogin->permessi == 2) {
+                                        fseek(fpO, 0, SEEK_END);
+                                        long sizeO = ftell(fpO);
+                                        
+                                        if(sizeO == 0) { //non ci sono mostre registrate
+                                            
+                                            printColor("Attenzione!\n", COLOR_RED);
+                                            printf("Non ci sono opere registrate.\n");
+                                            
+                                        } else {
+                                            
+                                            printColor("Elenco delle Opere\n", COLOR_CYAN);
+                                            stampaOpere(testaOpera);
+                                            printf("\n");
+                                            printf("Inserire il numero della mostra da eliminare: ");
+                                            scanf("%d", &nOpera);
+
+                                            clearConsole();
+                                            titolo();
+
+                                            operaScelta = ricercaOpera(testaOpera, nOpera);
+
+                                            char *valore2 = (char *) operaScelta;
+                                            if (valore2 != NULL) {
+                                                eliminaOpera(testaOpera, operaScelta);
+                                            }
+                                            while ('\n' != getchar());
+                                        }
+                                        
+                                    }
+                                    break;
                                 default:
                                     clearConsole();
                                     titolo();
@@ -226,7 +305,7 @@ int main() {
                                 scelta = 0;
                             }
 
-                        } while (scelta2 != 9 && scelta2 != 3 && scelta2 != 0);
+                        } while (/*scelta2 != 9 && */scelta2 != 3 && scelta2 != 0);
                     }
                 }
                 break;

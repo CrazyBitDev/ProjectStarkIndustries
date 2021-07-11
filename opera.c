@@ -8,9 +8,9 @@ Opera *letturaOpere(FILE *fp) {
 
     if (fp == NULL) {
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
-        printColor("\t\t\t|File \"opere\" non trovato!   |\n", COLOR_RED);
+        printColor("\t\t\t|  File \"opere\" non trovato!  |\n", COLOR_RED);
         printColor("\t\t\t|\t...                   |\n", COLOR_RED);
-        printColor("\t\t\t|File in creazione            |\n", COLOR_RED);
+        printColor("\t\t\t|      File in creazione      |\n", COLOR_RED);
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
     } else {
         while (!feof(fp)) {
@@ -51,7 +51,7 @@ Opera *letturaOpere(FILE *fp) {
                     strcpy(tempOpera->periodo, tok);
                     tempOpera->periodo[strlen(tempOpera->periodo)] = 0;
                 }
-                if (colonna == 7) {
+                if (colonna == 6) {
                     tempOpera->anno = atoi(tok);
                 }
                 tok = strtok(NULL, ",");
@@ -255,9 +255,6 @@ void modificaOpera(Opera *testa, Opera *opera) {
     int scelta, colonna = 0;
     char risposta;
 
-    Opera *temp = NULL;
-    temp = opera;
-
     int anno;
 
     printColor("\nDati relativi alla opera scelta:\n", COLOR_CYAN);
@@ -289,43 +286,43 @@ void modificaOpera(Opera *testa, Opera *opera) {
                 
             case 1:
                 printf("Inserisci il Nome dell'Opera: ");
-                fgets(temp->nome, 30, stdin);
-                temp->nome[strlen(temp->nome) - 1] = 0;
-                temp->nome[0] = toupper(temp->nome[0]);
+                fgets(opera->nome, 30, stdin);
+                opera->nome[strlen(opera->nome) - 1] = 0;
+                opera->nome[0] = toupper(opera->nome[0]);
                 break;
                 
             case 2:
                 printf("Inserisci l'Autore: ");
-                fgets(temp->autore, 30, stdin);
-                temp->autore[strlen(temp->autore) - 1] = 0;
-                temp->autore[0] = toupper(temp->autore[0]);
+                fgets(opera->autore, 30, stdin);
+                opera->autore[strlen(opera->autore) - 1] = 0;
+                opera->autore[0] = toupper(opera->autore[0]);
                 break;
 
             case 3:
                 printf("Inserisci la Tipologia dell'Opera: ");
-                fgets(temp->tipo, 20, stdin);
-                temp->tipo[strlen(temp->tipo) - 1] = 0;
-                temp->tipo[0] = toupper(temp->tipo[0]);
+                fgets(opera->tipo, 20, stdin);
+                opera->tipo[strlen(opera->tipo) - 1] = 0;
+                opera->tipo[0] = toupper(opera->tipo[0]);
                 break;
                 
             case 4:
                 printf("Inserisci il Genere: ");
-                fgets(temp->genere, 20, stdin);
-                temp->genere[strlen(temp->genere) - 1] = 0;
-                temp->genere[0] = toupper(temp->genere[0]);
+                fgets(opera->genere, 20, stdin);
+                opera->genere[strlen(opera->genere) - 1] = 0;
+                opera->genere[0] = toupper(opera->genere[0]);
                 break;
                 
             case 5:
                 printf("Inserisci il Periodo: ");
-                fgets(temp->periodo, 20, stdin);
-                temp->periodo[strlen(temp->periodo) - 1] = 0;
-                temp->periodo[0] = toupper(temp->periodo[0]);
+                fgets(opera->periodo, 20, stdin);
+                opera->periodo[strlen(opera->periodo) - 1] = 0;
+                opera->periodo[0] = toupper(opera->periodo[0]);
                 break;
 
             case 6:
                 printf("Inserisci l'Anno: ");
                 scanf("%d", &anno);
-                temp->anno = anno;
+                opera->anno = anno;
                 break;
 
             default:
@@ -346,9 +343,11 @@ void modificaOpera(Opera *testa, Opera *opera) {
 //stampa a video
 void stampaOpere(Opera *testa) {
     for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
+        printf("id: %d\n", temp->id);
         printf("Nome Opera: %s\n", temp->nome);
         printf("Di %s\n", temp->autore);
-        printf("Genere: %s\t - Periodo: %s", temp->genere, temp->periodo);
+        printf("Genere: %s\n", temp->genere);
+        printf("Periodo: %s\n", temp->periodo);
         printf("Anno: %d\n", temp->anno);
         printf("----------\n");
     }
@@ -365,19 +364,18 @@ void scriviOpere(Opera *testa) {
 
         if (size == 0)   //file vuoto.
         {
-            /*fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->luogo, temp->citta,
-                    temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);*/
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->autore, temp->tipo,
+                    temp->genere, temp->periodo, temp->anno);
         } else     //file pieno
         {
-            /*fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->luogo, temp->citta,
-                    temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);*/
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->autore, temp->tipo,
+                    temp->genere, temp->periodo, temp->anno);
         }
     }
     fclose(fp);
 }
 
-
-Opera *eliminaOpera(Opera *testa, Opera *opera) {
+void eliminaOpera(Opera *testa, Opera *opera) {
     char risposta;
     Opera *curr, *prec;
     Opera *temp;
@@ -404,11 +402,11 @@ Opera *eliminaOpera(Opera *testa, Opera *opera) {
             curr = curr->nextOpera;
 
             if (temp->id == curr->id) {
-                if (prec == NULL)   //elemento trovato in testa
-                {
+                if (prec == NULL) {
+                    //elemento trovato in testa
                     testa = curr->nextOpera;
-                } else     //elemento al centro della lista
-                {
+                } else {
+                    //elemento al centro della lista
                     prec->nextOpera = curr->nextOpera;
                 }
                 free(curr);
@@ -416,16 +414,13 @@ Opera *eliminaOpera(Opera *testa, Opera *opera) {
             scriviOpere(testa);
         }
     }
-    return testa;
 }
-
 
 Opera *ricercaOpera(Opera *testa, int id) {
     bool flag = false;
     Opera *nuovoNodo = NULL;
-    Opera *temp;
 
-    for (temp = testa; temp != NULL; temp = temp->nextOpera) {
+    for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
 
         if (temp->id == id) {
 
