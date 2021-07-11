@@ -4,6 +4,8 @@ void registrazioneUtente(Utente *testa);
 
 Utente *accesso(Utente *testa, char *text);
 
+Utente *ricercaUtente(Utente *testa, int id);
+
 void stampaUtente(Utente *testa);
 
 void scriviUtenti(Utente *testa);

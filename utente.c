@@ -420,6 +420,29 @@ Utente *accesso(Utente *testa, char *text) {
         return NULL;
 }
 
+
+Utente *ricercaUtente(Utente *testa, int id) {
+    bool flag = false;
+    Utente *nuovoNodo = NULL;
+
+    for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
+
+        if (temp->id == id) {
+
+            nuovoNodo = temp;
+            flag = true;
+            break;
+
+        }
+    }
+
+    if (!flag) {
+        printColor("---Mostra non trovata!---\n", COLOR_RED);
+    }
+
+    return nuovoNodo;
+}
+
 void stampaUtente(Utente *utenteLogin) {
     Utente *temp = NULL;
     temp = utenteLogin;

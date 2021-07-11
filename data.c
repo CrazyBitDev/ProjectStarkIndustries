@@ -42,8 +42,8 @@ struct mostra {
 typedef struct prenotazione Prenotazione;
 struct prenotazione {
     int id;
-    int idUtente;
-    int idMostra;
+    Utente *utente;
+    Mostra *mostra;
     char data[11];
     char ora[5];
     Prenotazione *nextPrenotazione;

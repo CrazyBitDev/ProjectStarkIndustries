@@ -1,4 +1,4 @@
-Prenotazione *letturaPrenotazioni(FILE *fp) {
+Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMostra) {
     int colonna = 0;
     char buf[BUFFER_SIZE];
 
@@ -32,10 +32,10 @@ Prenotazione *letturaPrenotazioni(FILE *fp) {
                     tempPrenotazione->id = atoi(tok);
                 }
                 if (colonna == 1) {
-                    tempPrenotazione->idUtente = atoi(tok);
+                    tempPrenotazione->utente = ricercaUtente(testaUtente,atoi(tok));
                 }
                 if (colonna == 2) {
-                    tempPrenotazione->idMostra = atoi(tok);
+                    tempPrenotazione->mostra = ricercaMostra(testaMostra,atoi(tok));
                 }
                 if (colonna == 3) {
                     strcpy(tempPrenotazione->data, tok);

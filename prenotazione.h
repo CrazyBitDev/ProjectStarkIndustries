@@ -1,4 +1,4 @@
-Prenotazione *letturaPrenotazioni(FILE *fp);
+Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMostra);
 
 void registrazionePrenotazione(Prenotazione *testa);
 

@@ -13,9 +13,9 @@
 
 #include "functions.h"
 #include "utente.h"
-#include "prenotazione.h"
 #include "mostra.h"
 #include "opera.h"
+#include "prenotazione.h"
 
 int main() {
 
@@ -54,10 +54,10 @@ int main() {
     FILE *fpP;
     fpP = fopen("prenotazioni.csv", "r");
 
-    testaUtente = letturaUtenti(fpU);
-    testaMostra = letturaMostre(fpM);
-    testaOpera  = letturaOpere(fpO);
-    testaPrenotazioni = letturaPrenotazioni(fpP);
+    testaUtente       = letturaUtenti(fpU);
+    testaMostra       = letturaMostre(fpM);
+    testaOpera        = letturaOpere(fpO);
+    testaPrenotazioni = letturaPrenotazioni(fpP, testaUtente, testaMostra);
 
     do {
         printf("---HOME---\n");
