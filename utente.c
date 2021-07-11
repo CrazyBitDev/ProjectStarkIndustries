@@ -743,6 +743,7 @@ void eliminaUtente(Utente *utenteLogin, Utente *testa) {
     } else {
         printColor("-----------------------------\n", COLOR_CYAN);
         printf("%s siamo contenti che tu abbia deciso di rimanere con noi!\n", temp->nome);
+        printf("Se vuoi puoi riaccedere al tuo profilo facendo il login.\n");
     }
 }
 

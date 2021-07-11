@@ -22,8 +22,11 @@ int main() {
     titolo();
 
     int scelta, scelta2 = 0;
+    int sceltaGestP = 0, sceltaGestM, sceltaGestO, sceltaGestPren;
     char email[60];
     int nMostra, nOpera;
+    long sizeM;
+    long sizeO;
 
     Utente       *testaUtente        = NULL;
     Mostra       *testaMostra        = NULL;
@@ -99,24 +102,21 @@ int main() {
                         do {
                             printf("\n---MENU'---\n");
                             printf("1: Visualizza informazioni personali\n");
-                            printf("2: Modifica dati personali\n");
-                            printf("3: Elimina account\n");
+                            printf("2: Gestione profilo\n");
 
                             if (utenteLogin->permessi == 2) {
                                 //operazioni che può effettuare il dirigente
-                                printf("4: Aggiungi dati mostra\n");
-                                printf("5: Modifica dati mostra\n");
-                                printf("6: Cancella dati mostra\n");
-                                printf("7: Aggiungi dati opera\n");
-                                printf("8: Modifica dati opera\n");
-                                printf("9: Cancella dati opera\n");
+                                printf("3: Gestione mostra\n");
+                                printf("4: Gestione opera\n");
+                                //printf("5: Modifica permessi\n");
                             } else {
-                                //operazioni che può effettuare l'utente
-                                printf("4: Visualizza mostre\n");
-                                //printf("5: Prenotati ad una mostra\n");
+                                //operazioni che può effettuare l'utente base
+                                printf("3: Visualizza mostre\n");
+                                //printf("4: Prenotati ad una mostra\n");
+                                //printf("5: Gestione prenotazione\n");
                             }
 
-                            //printf("9: Logout\n");
+                            printf("9: Logout\n");
                             printf("0: Chiudi Applicazione\n");
                             printf("----------\n");
                             printf("-> ");
@@ -132,15 +132,125 @@ int main() {
                                 case 2:
                                     clearConsole();
                                     titolo();
-                                    while ('\n' != getchar());
-                                    stampaUtente(utenteLogin);
-                                    modificaUtente(utenteLogin, testaUtente);
+                                    printColor("Gestione profilo\n", COLOR_CYAN);
+                                    printf("1: Modifica dati personali\n");
+                                    printf("2: Elimina account\n");
+                                    printf("0: Torna indietro\n");
+                                    printf("----------\n");
+                                    printf("-> ");
+                                    scanf("%d", &sceltaGestP);
+                                    
+                                    clearConsole();
+                                    titolo();
+                                    
+                                    switch (sceltaGestP) {
+                                        case 1:
+                                            while ('\n' != getchar());
+                                            stampaUtente(utenteLogin);
+                                            modificaUtente(utenteLogin, testaUtente);
+                                            break;
+                                        
+                                        case 2:
+                                            eliminaUtente(utenteLogin, testaUtente);
+                                            break;
+                                            
+                                        default:
+                                            break;
+                                    }
                                     break;
 
                                 case 3:
                                     clearConsole();
                                     titolo();
-                                    eliminaUtente(utenteLogin, testaUtente);
+
+                                    while ('\n' != getchar());
+
+                                    if (utenteLogin->permessi == 2) {
+                                        printColor("Gestione mostra\n", COLOR_CYAN);
+                                        printf("1: Aggiungi dati mostra\n");
+                                        printf("2: Modifica dati mostra\n");
+                                        printf("3: Cancella dati mostra\n");
+                                        printf("0: Torna indietro\n");
+                                        printf("----------\n");
+                                        printf("-> ");
+                                        scanf("%d", &sceltaGestM);
+                                        
+                                        clearConsole();
+                                        titolo();
+                                        
+                                        switch (sceltaGestM) {
+                                            case 1:
+                                                aggiungiMostra(testaMostra);
+                                                break;
+                                                
+                                            case 2:
+                                                fseek(fpM, 0, SEEK_END);
+                                                sizeM = ftell(fpM);
+                                                
+                                                if(sizeM == 0) { //non ci sono mostre registrate
+                                                    printColor("Attenzione!\n", COLOR_RED);
+                                                    printf("Non ci sono mostre registrate.\n");
+                                                } else {
+                                                    printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
+                                                    stampaMostre(testaMostra);
+                                                    printf("\n");
+                                                    printf("Inserire il numero della mostra da modificare: ");
+                                                    scanf("%d", &nMostra);
+
+                                                    clearConsole();
+                                                    titolo();
+
+                                                    mostraScelta = ricercaMostra(testaMostra, nMostra);
+
+                                                    char *valore2 = (char *) mostraScelta;
+                                                    if (valore2 != NULL) {
+                                                        modificaMostra(testaMostra, mostraScelta);
+                                                    }
+                                                    while ('\n' != getchar());
+                                                }
+                                                break;
+                                                
+                                            case 3:
+                                                clearConsole();
+                                                titolo();
+                                                fseek(fpM, 0, SEEK_END);
+                                                sizeM = ftell(fpM);
+                                                
+                                                if(sizeM == 0) { //non ci sono mostre registrate
+                                                    
+                                                    printColor("Attenzione!\n", COLOR_RED);
+                                                    printf("Non ci sono mostre registrate.\n");
+                                                    
+                                                } else {
+                                                    
+                                                    printColor("Elenco delle Mostre\n", COLOR_CYAN);
+                                                    stampaMostre(testaMostra);
+                                                    printf("\n");
+                                                    printf("Inserire il numero della mostra da eliminare: ");
+                                                    scanf("%d", &nMostra);
+
+                                                    clearConsole();
+                                                    titolo();
+
+                                                    mostraScelta = ricercaMostra(testaMostra, nMostra);
+
+                                                    char *valore2 = (char *) mostraScelta;
+                                                    if (valore2 != NULL) {
+                                                        eliminaMostra(testaMostra, mostraScelta);
+                                                    }
+                                                    while ('\n' != getchar());
+                                                }
+                                                break;
+                                                
+                                                
+                                            default:
+                                                break;
+                                        }
+                                        
+                                    } else {
+                                        stampaMostre(testaMostra);
+                                    }
+                                    
                                     break;
 
                                 case 4:
@@ -150,156 +260,102 @@ int main() {
                                     while ('\n' != getchar());
 
                                     if (utenteLogin->permessi == 2) {
-                                        aggiungiMostra(testaMostra);
+                                        
+                                        printColor("Gestione opera\n", COLOR_CYAN);
+                                        printf("1: Aggiungi dati opera\n");
+                                        printf("2: Modifica dati opera\n");
+                                        printf("3: Cancella dati opera\n");
+                                        printf("0: Torna indietro\n");
+                                        printf("----------\n");
+                                        printf("-> ");
+                                        scanf("%d", &sceltaGestO);
+                                        
+                                        clearConsole();
+                                        titolo();
+                                        
+                                        switch (sceltaGestO) {
+                                            case 1:
+                                                aggiungiOpera(testaOpera);
+                                                break;
+                                            
+                                            case 2:
+                                                fseek(fpM, 0, SEEK_END);
+                                                sizeO = ftell(fpO);
+                                                
+                                                if(sizeO == 0) { //non ci sono opere registrate
+                                                    printColor("Attenzione!\n", COLOR_RED);
+                                                    printf("Non ci sono opere registrate.\n");
+                                                } else {
+                                                    printColor("Elenco delle Opere disponibili\n", COLOR_CYAN);
+                                                    stampaOpere(testaOpera);
+                                                    printf("\n");
+                                                    printf("Inserire il numero dell'opera da modificare: ");
+                                                    scanf("%d", &nOpera);
+
+                                                    clearConsole();
+                                                    titolo();
+
+                                                    operaScelta = ricercaOpera(testaOpera, nOpera);
+
+                                                    char *valore2 = (char *) operaScelta;
+                                                    if (valore2 != NULL) {
+                                                        modificaOpera(testaOpera, operaScelta);
+                                                    }
+                                                    while ('\n' != getchar());
+                                                }
+                                                break;
+                                                
+                                            case 3:
+                                                fseek(fpO, 0, SEEK_END);
+                                                sizeO = ftell(fpO);
+                                                
+                                                if(sizeO == 0) { //non ci sono mostre registrate
+                                                    
+                                                    printColor("Attenzione!\n", COLOR_RED);
+                                                    printf("Non ci sono opere registrate.\n");
+                                                    
+                                                } else {
+                                                    
+                                                    printColor("Elenco delle Opere\n", COLOR_CYAN);
+                                                    stampaOpere(testaOpera);
+                                                    printf("\n");
+                                                    printf("Inserire il numero della mostra da eliminare: ");
+                                                    scanf("%d", &nOpera);
+
+                                                    clearConsole();
+                                                    titolo();
+
+                                                    operaScelta = ricercaOpera(testaOpera, nOpera);
+
+                                                    char *valore2 = (char *) operaScelta;
+                                                    if (valore2 != NULL) {
+                                                        eliminaOpera(testaOpera, operaScelta);
+                                                    }
+                                                    while ('\n' != getchar());
+                                                }
+                                                break;
+                                                
+                                            default:
+                                                break;
+                                        }
+                                        
                                     } else {
-                                        stampaMostre(testaMostra);
+                                        //prenotazione mostra
                                     }
                                     break;
-
-                                case 5:;
+                                    
+                                case 5:
                                     clearConsole();
                                     titolo();
 
-                                    if (utenteLogin->permessi == 2) {
-                                        
-                                        fseek(fpM, 0, SEEK_END);
-                                        long sizeM = ftell(fpM);
-                                        
-                                        if(sizeM == 0) { //non ci sono mostre registrate
-                                            printColor("Attenzione!\n", COLOR_RED);
-                                            printf("Non ci sono mostre registrate.\n");
-                                        } else {
-                                            printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
-                                            stampaMostre(testaMostra);
-                                            printf("\n");
-                                            printf("Inserire il numero della mostra da modificare: ");
-                                            scanf("%d", &nMostra);
-
-                                            clearConsole();
-                                            titolo();
-
-                                            mostraScelta = ricercaMostra(testaMostra, nMostra);
-
-                                            char *valore2 = (char *) mostraScelta;
-                                            if (valore2 != NULL) {
-                                                modificaMostra(testaMostra, mostraScelta);
-                                            }
-                                            while ('\n' != getchar());
-                                        }
-                                        
-                                    }
-                                    break;
-                                case 6:
-                                    clearConsole();
-                                    titolo();
+                                    while ('\n' != getchar());
 
                                     if (utenteLogin->permessi == 2) {
-                                        fseek(fpM, 0, SEEK_END);
-                                        long sizeM = ftell(fpM);
-                                        
-                                        if(sizeM == 0) { //non ci sono mostre registrate
-                                            
-                                            printColor("Attenzione!\n", COLOR_RED);
-                                            printf("Non ci sono mostre registrate.\n");
-                                            
-                                        } else {
-                                            
-                                            printColor("Elenco delle Mostre\n", COLOR_CYAN);
-                                            stampaMostre(testaMostra);
-                                            printf("\n");
-                                            printf("Inserire il numero della mostra da eliminare: ");
-                                            scanf("%d", &nMostra);
-
-                                            clearConsole();
-                                            titolo();
-
-                                            mostraScelta = ricercaMostra(testaMostra, nMostra);
-
-                                            char *valore2 = (char *) mostraScelta;
-                                            if (valore2 != NULL) {
-                                                eliminaMostra(testaMostra, mostraScelta);
-                                            }
-                                            while ('\n' != getchar());
-                                        }
-                                        
+                                        //modifica permessi
+                                    } else {
+                                        //gestione prenotazione (modifica e elimina)
                                     }
-                                    break;
-                                case 7:
-                                    clearConsole();
-                                    titolo();
 
-                                    if (utenteLogin->permessi == 2) {
-                                        aggiungiOpera(testaOpera);
-                                    }
-                                    break;
-                                case 8:
-                                    clearConsole();
-                                    titolo();
-
-                                    if (utenteLogin->permessi == 2) {
-                                        
-                                        fseek(fpO, 0, SEEK_END);
-                                        long sizeO = ftell(fpO);
-                                        
-                                        if(sizeO == 0) { //non ci sono mostre registrate
-                                            printColor("Attenzione!\n", COLOR_RED);
-                                            printf("Non ci sono opere registrate.\n");
-                                        } else {
-                                            printColor("Elenco delle Opere disponibili\n", COLOR_CYAN);
-                                            stampaOpere(testaOpera);
-                                            printf("\n");
-                                            printf("Inserire il numero dell'opera da modificare: ");
-                                            scanf("%d", &nOpera);
-
-                                            clearConsole();
-                                            titolo();
-
-                                            operaScelta = ricercaOpera(testaOpera, nOpera);
-
-                                            char *valore2 = (char *) operaScelta;
-                                            if (valore2 != NULL) {
-                                                modificaOpera(testaOpera, operaScelta);
-                                            }
-                                            while ('\n' != getchar());
-                                        }
-                                        
-                                    }
-                                    break;
-                                case 9:
-                                    clearConsole();
-                                    titolo();
-
-                                    if (utenteLogin->permessi == 2) {
-                                        fseek(fpO, 0, SEEK_END);
-                                        long sizeO = ftell(fpO);
-                                        
-                                        if(sizeO == 0) { //non ci sono mostre registrate
-                                            
-                                            printColor("Attenzione!\n", COLOR_RED);
-                                            printf("Non ci sono opere registrate.\n");
-                                            
-                                        } else {
-                                            
-                                            printColor("Elenco delle Opere\n", COLOR_CYAN);
-                                            stampaOpere(testaOpera);
-                                            printf("\n");
-                                            printf("Inserire il numero della mostra da eliminare: ");
-                                            scanf("%d", &nOpera);
-
-                                            clearConsole();
-                                            titolo();
-
-                                            operaScelta = ricercaOpera(testaOpera, nOpera);
-
-                                            char *valore2 = (char *) operaScelta;
-                                            if (valore2 != NULL) {
-                                                eliminaOpera(testaOpera, operaScelta);
-                                            }
-                                            while ('\n' != getchar());
-                                        }
-                                        
-                                    }
-                                    break;
                                 default:
                                     clearConsole();
                                     titolo();
@@ -309,7 +365,7 @@ int main() {
                                 scelta = 0;
                             }
 
-                        } while (/*scelta2 != 9 && */scelta2 != 3 && scelta2 != 0);
+                        } while (scelta2 != 9 && sceltaGestP != 2 && scelta2 != 0);
                     }
                 }
                 break;
