@@ -267,8 +267,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
     printf("Anno: %d\n", opera->anno);
     printColor("----------\n\n", COLOR_CYAN);
     do {
-        while ('\n' != getchar());
-
+        
         //elenco campi modificabili
         printf("Scegliere il campo da modificare\n");
         printf("----------\n");
@@ -458,70 +457,248 @@ Opera *ricercaOpera(Opera *testa, int id) {
  *      possibilità di modificare l'opera, possibilità di selezionare
  *      l'opera.
  *
+ *   FILE fp: TODO: finire
  *   Opera testa: TODO: finire
  *   bool selezione: se true permette di selezionare l'opera con return avvalorato
  *
  *   returns: se selezione == true l'opera selezionata, altrimenti NULLL
  */
-Opera *opereBrowser(Opera *testa, bool selezione) {
+Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
     Opera *operaSelezionata = NULL;
 
     bool ricercaInCorso = true;
     int scelta, opereTrovate;
-    char input[30];
+    char input[30], tempName[30];
 
-    do {
+    fseek(fp, 0, SEEK_END);
+    int size = ftell(fp);
+    
+    if(size == 0) { //non ci sono opere registrate
+        printColor("Attenzione!\n", COLOR_RED);
+        printf("Non ci sono opere registrate.\n");
+    } else {
 
-        printf("Selezionare tipo di ricerca:\n");
-        printf("1: Ricerca Opera per nome\n");
-        printf("2: Ricerca Opera per autore\n");
-        printf("3: Ricerca Opera per anno\n");
-        printf("0: Annulla la ricerca\n");
-        printf("-> ");
-        scanf("%d", &scelta);
+        clearConsole();
+        titolo();
 
-        switch (scelta)
-        {
-        case 1:
-            opereTrovate = 0;
-            clearConsole();
-            printf("Inserire nome completo o parziale dell'opera: ");
-            fgets(input, 30, stdin);
-            input[strlen(input) - 1] = 0;
-                
-            for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
-                if (strstr(temp->nome, input) != NULL) {
-                    opereTrovate++;
-                    stampaOpera(temp);
-                    printf("---------------------\n");
-                }
-            }
-            if (opereTrovate > 0) {
-                if (selezione) {
-                    printf("Digitare l'ID dell'opera da selezionare: ");
-                    //TODO: annullare ricerca e tornare al menu "selezionare tipo di ricerca"
-                    scanf("%d", &scelta);
-                    operaSelezionata = ricercaOpera(testa, scelta);
+        do {
+            printf("Selezionare tipo di ricerca:\n");
+            printf("1: Ricerca Opera per nome\n");
+            printf("2: Ricerca Opera per autore\n");
+            printf("3: Ricerca Opera per tipo\n");
+            printf("4: Ricerca Opera per genere\n");
+            printf("5: Ricerca Opera per periodo\n");
+            printf("6: Ricerca Opera per anno\n");
+            printf("0: Annulla la ricerca\n");
+            printf("-> ");
+            scanf("%d", &scelta);
+
+            switch (scelta)
+            {
+                case 1:
+                    opereTrovate = 0;
+                    clearConsole();
+                    while ('\n' != getchar());
+                    printf("Inserire nome completo o parziale dell'opera: ");
+                    fgets(input, 30, stdin);
+                    input[strlen(input) - 1] = 0;
+                    strupr(input);
+
+                    if (strlen(input) != 0) {
+                        for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
+                            strcpy(tempName, temp->nome);
+                            if (strstr(strupr(tempName), input) != NULL) {
+                                opereTrovate++;
+                                stampaOpera(temp);
+                                printf("---------------------\n");
+                            }
+                        }
+                        if (opereTrovate > 0) {
+                            if (selezione) {
+                                printf("Digitare l'ID dell'opera da selezionare: ");
+                                fgets(input, 30, stdin);
+                                input[strlen(input) - 1] = 0;
+                                if (strlen(input) != 0) {
+                                    scelta = atoi(input);
+                                    operaSelezionata = ricercaOpera(testa, scelta);
+                                    ricercaInCorso = false;
+                                }
+                            } else {
+                                pausa();
+                                titolo();
+                            }
+                        } else {
+                            clearConsole();
+                            titolo();
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                        }
+                    }
+                    break;
+                case 2:
+                    opereTrovate = 0;
+                    clearConsole();
+                    while ('\n' != getchar());
+                    printf("Inserire nome completo o parziale dell'autore: ");
+                    fgets(input, 30, stdin);
+                    input[strlen(input) - 1] = 0;
+                    strupr(input);
+
+                    if (strlen(input) != 0) {
+                        for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
+                            strcpy(tempName, temp->autore);
+                            if (strstr(strupr(tempName), input) != NULL) {
+                                opereTrovate++;
+                                stampaOpera(temp);
+                                printf("---------------------\n");
+                            }
+                        }
+                        if (opereTrovate > 0) {
+                            if (selezione) {
+                                printf("Digitare l'ID dell'opera da selezionare: ");
+                                fgets(input, 30, stdin);
+                                input[strlen(input) - 1] = 0;
+                                if (strlen(input) != 0) {
+                                    scelta = atoi(input);
+                                    operaSelezionata = ricercaOpera(testa, scelta);
+                                    ricercaInCorso = false;
+                                }
+                            } else {
+                                pausa();
+                                titolo();
+                            }
+                        } else {
+                            clearConsole();
+                            titolo();
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                        }
+                    }
+                    break;
+                case 3:
+                    opereTrovate = 0;
+                    clearConsole();
+                    while ('\n' != getchar());
+                    printf("Inserire la tipologia dell'opera: ");
+                    fgets(input, 30, stdin);
+                    input[strlen(input) - 1] = 0;
+                    strupr(input);
+
+                    if (strlen(input) != 0) {
+                        for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
+                            strcpy(tempName, temp->tipo);
+                            if (strstr(strupr(tempName), input) != NULL) {
+                                opereTrovate++;
+                                stampaOpera(temp);
+                                printf("---------------------\n");
+                            }
+                        }
+                        if (opereTrovate > 0) {
+                            if (selezione) {
+                                printf("Digitare l'ID dell'opera da selezionare: ");
+                                fgets(input, 30, stdin);
+                                input[strlen(input) - 1] = 0;
+                                if (strlen(input) != 0) {
+                                    scelta = atoi(input);
+                                    operaSelezionata = ricercaOpera(testa, scelta);
+                                    ricercaInCorso = false;
+                                }
+                            } else {
+                                pausa();
+                                titolo();
+                            }
+                        } else {
+                            clearConsole();
+                            titolo();
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                        }
+                    }
+                    break;
+                case 4:
+                    opereTrovate = 0;
+                    clearConsole();
+                    while ('\n' != getchar());
+                    printf("Inserire il genere dell'opera: ");
+                    fgets(input, 30, stdin);
+                    input[strlen(input) - 1] = 0;
+                    strupr(input);
+
+                    if (strlen(input) != 0) {
+                        for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
+                            strcpy(tempName, temp->genere);
+                            if (strstr(strupr(tempName), input) != NULL) {
+                                opereTrovate++;
+                                stampaOpera(temp);
+                                printf("---------------------\n");
+                            }
+                        }
+                        if (opereTrovate > 0) {
+                            if (selezione) {
+                                printf("Digitare l'ID dell'opera da selezionare: ");
+                                fgets(input, 30, stdin);
+                                input[strlen(input) - 1] = 0;
+                                if (strlen(input) != 0) {
+                                    scelta = atoi(input);
+                                    operaSelezionata = ricercaOpera(testa, scelta);
+                                    ricercaInCorso = false;
+                                }
+                            } else {
+                                pausa();
+                                titolo();
+                            }
+                        } else {
+                            clearConsole();
+                            titolo();
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                        }
+                    }
+                    break;
+                case 5:
+                    opereTrovate = 0;
+                    clearConsole();
+                    while ('\n' != getchar());
+                    printf("Inserire il perido dell'opera: ");
+                    fgets(input, 30, stdin);
+                    input[strlen(input) - 1] = 0;
+                    strupr(input);
+
+                    if (strlen(input) != 0) {
+                        for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
+                            strcpy(tempName, temp->periodo);
+                            if (strstr(strupr(tempName), input) != NULL) {
+                                opereTrovate++;
+                                stampaOpera(temp);
+                                printf("---------------------\n");
+                            }
+                        }
+                        if (opereTrovate > 0) {
+                            if (selezione) {
+                                printf("Digitare l'ID dell'opera da selezionare: ");
+                                fgets(input, 30, stdin);
+                                input[strlen(input) - 1] = 0;
+                                if (strlen(input) != 0) {
+                                    scelta = atoi(input);
+                                    operaSelezionata = ricercaOpera(testa, scelta);
+                                    ricercaInCorso = false;
+                                }
+                            } else {
+                                pausa();
+                                titolo();
+                            }
+                        } else {
+                            clearConsole();
+                            titolo();
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                        }
+                    }
+                    break;
+                case 0:
                     ricercaInCorso = false;
-                } else {
-                    pause();
-                }
-            } else {
-                clearConsole();
-                printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                    break;
+                default:
+                    break;
             }
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 0:
-            ricercaInCorso = false;
-            break;
-        default:
-            break;
-        }
-    } while (ricercaInCorso);
-
+        } while (ricercaInCorso);
+        clearConsole();
+    }
+    
     return operaSelezionata;
 }

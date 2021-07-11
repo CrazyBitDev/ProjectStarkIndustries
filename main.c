@@ -106,12 +106,13 @@ int main() {
 
                             if (utenteLogin->permessi == 2) {
                                 //operazioni che può effettuare il dirigente
-                                printf("3: Gestione mostra\n");
-                                printf("4: Gestione opera\n");
+                                printf("3: Gestione mostre\n");
+                                printf("4: Gestione opere\n");
                                 //printf("5: Modifica permessi\n");
                             } else {
                                 //operazioni che può effettuare l'utente base
                                 printf("3: Visualizza mostre\n");
+                                printf("4: Mostra opere\n");
                                 //printf("4: Prenotati ad una mostra\n");
                                 //printf("5: Gestione prenotazione\n");
                             }
@@ -261,9 +262,10 @@ int main() {
                                     if (utenteLogin->permessi == 2) {
                                         
                                         printColor("Gestione opera\n", COLOR_CYAN);
-                                        printf("1: Aggiungi dati opera\n");
-                                        printf("2: Modifica dati opera\n");
-                                        printf("3: Cancella dati opera\n");
+                                        printf("1: Sfoglia le opere\n");
+                                        printf("2: Aggiungi dati opera\n");
+                                        printf("3: Modifica dati opera\n");
+                                        printf("4: Cancella dati opera\n");
                                         printf("0: Torna indietro\n");
                                         printf("----------\n");
                                         printf("-> ");
@@ -274,63 +276,32 @@ int main() {
                                         
                                         switch (sceltaGestO) {
                                             case 1:
+                                                browserOpere(fpO, testaOpera, false);
+                                                break;
+
+                                            case 2:
                                                 while ('\n' != getchar());
                                                 aggiungiOpera(testaOpera);
                                                 break;
                                             
-                                            case 2:
-                                                fseek(fpM, 0, SEEK_END);
-                                                sizeO = ftell(fpO);
+                                            case 3:
+
+                                                operaScelta = browserOpere(fpO, testaOpera, true);
                                                 
-                                                if(sizeO == 0) { //non ci sono opere registrate
-                                                    printColor("Attenzione!\n", COLOR_RED);
-                                                    printf("Non ci sono opere registrate.\n");
-                                                } else {
-                                                    printColor("Elenco delle Opere disponibili\n", COLOR_CYAN);
-                                                    stampaOpere(testaOpera);
-                                                    printf("\n");
-                                                    printf("Inserire il numero dell'opera da modificare: ");
-                                                    scanf("%d", &nOpera);
-
-                                                    clearConsole();
-                                                    titolo();
-
-                                                    operaScelta = ricercaOpera(testaOpera, nOpera);
-
-                                                    char *valore2 = (char *) operaScelta;
-                                                    if (valore2 != NULL) {
-                                                        modificaOpera(testaOpera, operaScelta);
-                                                    }
+                                                if(operaScelta != NULL) {
+                                                    modificaOpera(testaOpera, operaScelta);
                                                 }
+
                                                 break;
                                                 
-                                            case 3:
-                                                fseek(fpO, 0, SEEK_END);
-                                                sizeO = ftell(fpO);
+                                            case 4:
+
+                                                operaScelta = browserOpere(fpO, testaOpera, true);
                                                 
-                                                if(sizeO == 0) { //non ci sono mostre registrate
-                                                    
-                                                    printColor("Attenzione!\n", COLOR_RED);
-                                                    printf("Non ci sono opere registrate.\n");
-                                                
-                                                } else {
-                                                    
-                                                    printColor("Elenco delle Opere\n", COLOR_CYAN);
-                                                    stampaOpere(testaOpera);
-                                                    printf("\n");
-                                                    printf("Inserire il numero della mostra da eliminare: ");
-                                                    scanf("%d", &nOpera);
-
-                                                    clearConsole();
-                                                    titolo();
-
-                                                    operaScelta = ricercaOpera(testaOpera, nOpera);
-
-                                                    char *valore2 = (char *) operaScelta;
-                                                    if (valore2 != NULL) {
-                                                        eliminaOpera(testaOpera, operaScelta);
-                                                    }
+                                                if(operaScelta != NULL) {
+                                                    eliminaOpera(testaOpera, operaScelta);
                                                 }
+
                                                 break;
                                                 
                                             default:
@@ -338,7 +309,7 @@ int main() {
                                         }
                                         
                                     } else {
-                                        //prenotazione mostra
+                                        browserOpere(fpO, testaOpera, false);
                                     }
                                     break;
                                     
