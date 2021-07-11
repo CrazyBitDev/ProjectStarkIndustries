@@ -247,7 +247,7 @@ void notificaAnnulla() {
     consoleColor(COLOR_RESET);
 }
 
-void pause() {
+void pausa() {
     printf("Premi INVIO per continuare\n");  
     getchar();
 }

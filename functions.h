@@ -18,6 +18,6 @@ bool differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, i
 
 void notificaAnnulla(void);
 
-void pause();
+void pausa(void);
 
 #include "functions.c"
