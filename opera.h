@@ -10,6 +10,8 @@ void scriviOpere(Opera *testa);
 
 void stampaOpere(Opera *testa);
 
+void stampaOpera(Opera *opera);
+
 Opera *ricercaOpera(Opera *testa, int id);
 
 #include "opera.c"

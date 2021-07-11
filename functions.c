@@ -246,3 +246,8 @@ void notificaAnnulla() {
     printf("\t\t\t|-----------------------------|\n");
     consoleColor(COLOR_RESET);
 }
+
+void pause() {
+    printf("Premi INVIO per continuare\n");  
+    getchar();
+}

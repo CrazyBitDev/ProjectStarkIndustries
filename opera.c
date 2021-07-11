@@ -348,15 +348,19 @@ void modificaOpera(Opera *testa, Opera *opera) {
 //stampa a video
 void stampaOpere(Opera *testa) {
     for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
-        printf("id: %d\n", temp->id);
-        printf("Nome Opera: %s\n", temp->nome);
-        printf("Di %s\n", temp->autore);
-        printf("Genere: %s\n", temp->genere);
-        printf("Tipologia: %s\n", temp->tipo);
-        printf("Periodo: %s\n", temp->periodo);
-        printf("Anno: %d\n", temp->anno);
+        stampaOpera(temp);
         printf("----------\n");
     }
+}
+
+void stampaOpera(Opera *opera) {
+    printf("id: %d\n", opera->id);
+    printf("Nome Opera: %s\n", opera->nome);
+    printf("Di %s\n", opera->autore);
+    printf("Genere: %s\n", opera->genere);
+    printf("Tipologia: %s\n", opera->tipo);
+    printf("Periodo: %s\n", opera->periodo);
+    printf("Anno: %d\n", opera->anno);
 }
 
 //scrittura su file
@@ -445,4 +449,76 @@ Opera *ricercaOpera(Opera *testa, int id) {
         return nuovoNodo;
     else
         return NULL;
+}
+
+/*
+ * Function: opereBrowser
+ * ----------------------------
+ *   Permette una vista approfondita delle opere, con ricerca,
+ *      possibilità di modificare l'opera, possibilità di selezionare
+ *      l'opera.
+ *
+ *   Opera testa: TODO: finire
+ *   bool selezione: se true permette di selezionare l'opera con return avvalorato
+ *
+ *   returns: se selezione == true l'opera selezionata, altrimenti NULLL
+ */
+Opera *opereBrowser(Opera *testa, bool selezione) {
+    Opera *operaSelezionata = NULL;
+
+    bool ricercaInCorso = true;
+    int scelta, opereTrovate;
+    char input[30];
+
+    do {
+
+        printf("Selezionare tipo di ricerca:\n");
+        printf("1: Ricerca Opera per nome\n");
+        printf("2: Ricerca Opera per autore\n");
+        printf("3: Ricerca Opera per anno\n");
+        printf("0: Annulla la ricerca\n");
+        printf("-> ");
+        scanf("%d", &scelta);
+
+        switch (scelta)
+        {
+        case 1:
+            opereTrovate = 0;
+            clearConsole();
+            printf("Inserire nome completo o parziale dell'opera: ");
+            scanf("%s", &input);
+            for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
+                if (strstr(temp->nome, input) != NULL) {
+                    opereTrovate++;
+                    stampaOpera(temp);
+                    printf("---------------------\n");
+                }
+            }
+            if (opereTrovate > 0) {
+                if (selezione) {
+                    printf("Digitare l'ID dell'opera da selezionare: ");
+                    //TODO: annullare ricerca e tornare al menu "selezionare tipo di ricerca"
+                    scanf("%d", &scelta);
+                    operaSelezionata = ricercaOpera(testa, scelta);
+                } else {
+                    pause();
+                }
+            } else {
+                clearConsole();
+                printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+            }
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 0:
+            ricercaInCorso = false;
+            break;
+        default:
+            break;
+        }
+    } while (ricercaInCorso);
+
+    return operaSelezionata;
 }
