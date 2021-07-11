@@ -35,7 +35,6 @@ struct mostra {
     char indirizzo[30];
     char dataInizio[11];
     char dataFine[11];
-    int nOpere; // Numero opere
     Mostra *nextMostra; //puntatore al prossimo nodo
 };
 

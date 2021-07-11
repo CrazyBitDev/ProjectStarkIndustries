@@ -57,9 +57,6 @@ Mostra *letturaMostre(FILE *fp) {
                     strcpy(tempMostra->dataFine, tok2);
                     tempMostra->dataFine[strlen(tempMostra->dataFine)] = 0;
                 }
-                if (colonna1 == 7) {
-                    tempMostra->nOpere = atoi(tok2);
-                }
                 tok2 = strtok(NULL, ",");
                 colonna1++;
             }
@@ -285,13 +282,6 @@ void aggiungiMostra(Mostra *testa) {
         strcpy(nuovoNodo->dataInizio, dataIn);
         strcpy(nuovoNodo->dataFine, dataFin);
         
-        printf("-----------------------------\n");
-        
-        printf("Inserisci Il Numero delle Opere: ");
-        scanf("%d", &nuovoNodo->nOpere);
-        printf("\n");
-        
-        
         //verifico se nel file ci sono già delle mmostre registrate o meno
         fseek(fp, 0, SEEK_END);
         long size = ftell(fp);
@@ -308,15 +298,15 @@ void aggiungiMostra(Mostra *testa) {
             
             nuovoNodo->id = 0;
             
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->luogo,
-                    nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->luogo,
+                    nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine);
             
         } else { //file pieno
             
             nuovoNodo->id = ultimoID;
             
-            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->luogo,
-                    nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine, nuovoNodo->nOpere);
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->luogo,
+                    nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine);
         }
         
         fclose(fp);
@@ -366,7 +356,6 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
     printf("Indirizzo: %s\n", temp->indirizzo);
     printf("Data inizio mostra: %s\n", temp->dataInizio);
     printf("Data fine mostra: %s\n", temp->dataFine);
-    //printf("Numero opere esposte: %d\n", temp->nOpere);
     printColor("----------\n\n", COLOR_CYAN);
     
     do {
@@ -683,12 +672,12 @@ void scriviMostre(Mostra *testa) {
         
         if (size == 0) {
             //file vuoto.
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->luogo, temp->citta,
-                    temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s", temp->id, temp->responsabile, temp->luogo, temp->citta,
+                    temp->indirizzo, temp->dataInizio, temp->dataFine);
         } else {
             //file pieno
-            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->responsabile, temp->luogo, temp->citta,
-                    temp->indirizzo, temp->dataInizio, temp->dataFine, temp->nOpere);
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s", temp->id, temp->responsabile, temp->luogo, temp->citta,
+                    temp->indirizzo, temp->dataInizio, temp->dataFine);
         }
     }
     fclose(fp);
