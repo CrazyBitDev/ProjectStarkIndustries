@@ -180,6 +180,7 @@ int main() {
                                         
                                         switch (sceltaGestM) {
                                             case 1:
+                                                while ('\n' != getchar());
                                                 aggiungiMostra(testaMostra);
                                                 break;
                                                 
@@ -206,7 +207,6 @@ int main() {
                                                     if (valore2 != NULL) {
                                                         modificaMostra(testaMostra, mostraScelta);
                                                     }
-                                                    while ('\n' != getchar());
                                                 }
                                                 break;
                                                 
@@ -238,7 +238,6 @@ int main() {
                                                     if (valore2 != NULL) {
                                                         eliminaMostra(testaMostra, mostraScelta);
                                                     }
-                                                    while ('\n' != getchar());
                                                 }
                                                 break;
                                                 
@@ -275,6 +274,7 @@ int main() {
                                         
                                         switch (sceltaGestO) {
                                             case 1:
+                                                while ('\n' != getchar());
                                                 aggiungiOpera(testaOpera);
                                                 break;
                                             
@@ -301,7 +301,6 @@ int main() {
                                                     if (valore2 != NULL) {
                                                         modificaOpera(testaOpera, operaScelta);
                                                     }
-                                                    while ('\n' != getchar());
                                                 }
                                                 break;
                                                 
@@ -313,7 +312,7 @@ int main() {
                                                     
                                                     printColor("Attenzione!\n", COLOR_RED);
                                                     printf("Non ci sono opere registrate.\n");
-                                                    
+                                                
                                                 } else {
                                                     
                                                     printColor("Elenco delle Opere\n", COLOR_CYAN);
@@ -331,7 +330,6 @@ int main() {
                                                     if (valore2 != NULL) {
                                                         eliminaOpera(testaOpera, operaScelta);
                                                     }
-                                                    while ('\n' != getchar());
                                                 }
                                                 break;
                                                 
@@ -357,8 +355,6 @@ int main() {
                                     }
 
                                 default:
-                                    clearConsole();
-                                    titolo();
                                     break;
                             }
                             if (scelta2 == 0) {
