@@ -25,13 +25,15 @@ int main() {
     char email[60];
     int nMostra, nOpera;
 
-    Utente *testaUtente  = NULL;
-    Mostra *testaMostra  = NULL;
-    Opera  *testaOpera   = NULL;
+    Utente       *testaUtente        = NULL;
+    Mostra       *testaMostra        = NULL;
+    Opera        *testaOpera         = NULL;
+    Prenotazione *testaPrenotazioni  = NULL;
 
-    Utente *utenteLogin  = NULL; //utente che avrà eseguito il login
-    Mostra *mostraScelta = NULL;
-    Opera  *operaScelta  = NULL;
+    Utente       *utenteLogin        = NULL; //utente che avrà eseguito il login
+    Mostra       *mostraScelta       = NULL;
+    Opera        *operaScelta        = NULL;
+    Prenotazione *prenotazioneScelta = NULL;
 
     //Lettura utenti dal file
     FILE *fpU;
@@ -44,10 +46,15 @@ int main() {
     //Lettura utenti dal file
     FILE *fpO;
     fpO = fopen("opere.csv", "r");
+    //Lettura utenti dal file
+
+    FILE *fpP;
+    fpP = fopen("prenotazioni.csv", "r");
 
     testaUtente = letturaUtenti(fpU);
     testaMostra = letturaMostre(fpM);
     testaOpera  = letturaOpere(fpO);
+    testaPrenotazioni = letturaPrenotazioni(fpP);
 
     do {
         printf("---HOME---\n");

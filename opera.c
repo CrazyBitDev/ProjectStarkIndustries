@@ -258,9 +258,14 @@ void modificaOpera(Opera *testa, Opera *opera) {
     int anno;
 
     printColor("\nDati relativi alla opera scelta:\n", COLOR_CYAN);
-    
+    printf("id: %d\n", opera->id);
+    printf("Nome Opera: %s\n", opera->nome);
+    printf("Di %s\n", opera->autore);
+    printf("Genere: %s\n", opera->genere);
+    printf("Tipologia: %s\n", opera->tipo);
+    printf("Periodo: %s\n", opera->periodo);
+    printf("Anno: %d\n", opera->anno);
     printColor("----------\n\n", COLOR_CYAN);
-
     do {
         while ('\n' != getchar());
 
@@ -330,7 +335,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
         }
 
 
-        while ('\n' != getchar());
+        //while ('\n' != getchar());
         printf("Vuoi modificare un altro campo? (s/n): ");
         risposta = toupper(getchar());
 
@@ -347,6 +352,7 @@ void stampaOpere(Opera *testa) {
         printf("Nome Opera: %s\n", temp->nome);
         printf("Di %s\n", temp->autore);
         printf("Genere: %s\n", temp->genere);
+        printf("Tipologia: %s\n", temp->tipo);
         printf("Periodo: %s\n", temp->periodo);
         printf("Anno: %d\n", temp->anno);
         printf("----------\n");

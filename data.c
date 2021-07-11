@@ -38,3 +38,14 @@ struct mostra {
     int nOpere; // Numero opere
     Mostra *nextMostra; //puntatore al prossimo nodo
 };
+
+//Definizione struct prenotazioni - da modificare
+typedef struct prenotazione Prenotazione;
+struct prenotazione {
+    int id;
+    int idUtente;
+    int idMostra;
+    char data[11];
+    char ora[5];
+    Prenotazione *nextPrenotazione;
+};
