@@ -274,7 +274,7 @@ void aggiungiMostra(Mostra *testa) {
             snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
             
             printf("\n");
-            if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) {
+            if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
                 flagDate = true;
             } else {
                 printColor("Attenzione!\n", COLOR_RED);
@@ -459,7 +459,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         colonna++;
                     }
                     
-                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) {
+                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
                         flagDate = true;
                     } else {
                         printColor("Attenzione!\n", COLOR_RED);
@@ -518,7 +518,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         colonna++;
                     }
                     
-                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) <= 0) {
+                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
                         flagDate = true;
                     } else {
                         printColor("Attenzione!\n", COLOR_RED);

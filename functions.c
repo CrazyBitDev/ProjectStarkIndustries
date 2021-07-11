@@ -219,23 +219,21 @@ void titolo() {
     printf("\n");
 }
 
-int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2) {
-    double differenza = 0;
-    if (verificaData(giorno1, mese1, anno1) && verificaData(giorno2, mese2, anno2)) {
-        struct tm data1;
-        struct tm data2;
+bool differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2) {
+    bool dateCorrette = false;
 
-        data1.tm_mday = giorno1;
-        data1.tm_mon = mese1 - 1;
-        data1.tm_year = anno1 - 1900;
-
-        data2.tm_mday = giorno2;
-        data2.tm_mon = mese2 - 1;
-        data2.tm_year = anno2 - 1900;
-
-        differenza = difftime(mktime(&data1), mktime(&data2));
+    if((giorno1 == giorno2) && (mese1 == mese2) && (anno1 == anno2))
+    {
+        //La mostra dura solo un giorno di conseguenza le date coincidono
+        dateCorrette = true;
     }
-    return differenza;
+    else if(anno1 < anno2 || (anno1 == anno2 && mese1 < mese2) || (anno1 == anno2 && mese1 == mese2 && giorno1 < giorno2))
+    {
+        //La data d'inizio precede quella di fine
+        dateCorrette = true;
+    }
+
+    return dateCorrette;
 }
 
 void notificaAnnulla() {

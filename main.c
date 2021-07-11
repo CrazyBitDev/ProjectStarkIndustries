@@ -31,7 +31,7 @@ int main() {
 
     Utente *utenteLogin  = NULL; //utente che avrà eseguito il login
     Mostra *mostraScelta = NULL;
-    //Opera  *operaScelta  = NULL;
+    Opera  *operaScelta  = NULL;
 
     //Lettura utenti dal file
     FILE *fpU;
