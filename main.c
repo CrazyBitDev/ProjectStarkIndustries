@@ -23,7 +23,7 @@ int main() {
     titolo();
 
     char scelta, scelta2;
-    int sceltaGestP, sceltaGestM, sceltaGestO, sceltaGestPren;
+    char sceltaGestP, sceltaGestM, sceltaGestO, sceltaGestPren;
     char email[60];
     int nMostra, nOpera;
     long sizeM;
@@ -59,7 +59,7 @@ int main() {
     testaMostra       = letturaMostre(fpM);
     testaOpera        = letturaOpere(fpO);
     testaPrenotazioni = letturaPrenotazioni(fpP, testaUtente, testaMostra);
-
+    
     do {
         
         printf("---HOME---\n");
@@ -74,7 +74,9 @@ int main() {
         clearConsole();
         titolo();
 
-        switch ((int)scelta - 48) {
+        scelta = (int)scelta - 48;
+        
+        switch (scelta) {
             case 1:
                 while ('\n' != getchar());
 
@@ -124,10 +126,9 @@ int main() {
                             printf("----------\n");
                             printf("-> ");
                             scanf(" %c", &scelta2);
+                            
                             scelta2 = (int)scelta2 - 48;
                             
-                           // printf("test: %d\n", (int)scelta2 - 48);
-
                             switch (scelta2) {
                                     
                                 case 0:
@@ -135,8 +136,6 @@ int main() {
                                     clearConsole();
                                     titolo();
                                     break;
-                                    
-                                
                                     
                                 case 1:
                                     clearConsole();
@@ -153,7 +152,9 @@ int main() {
                                     printf("0: Torna indietro\n");
                                     printf("----------\n");
                                     printf("-> ");
-                                    scanf("%d", &sceltaGestP);
+                                    scanf("%c", &sceltaGestP);
+                                    
+                                    sceltaGestP = (int)sceltaGestP - 48;
                                     
                                     clearConsole();
                                     titolo();
@@ -188,7 +189,9 @@ int main() {
                                         printf("0: Torna indietro\n");
                                         printf("----------\n");
                                         printf("-> ");
-                                        scanf("%d", &sceltaGestM);
+                                        scanf("%c", &sceltaGestM);
+                                        
+                                        sceltaGestM = (int)sceltaGestM - 48;
                                         
                                         clearConsole();
                                         titolo();
@@ -256,7 +259,6 @@ int main() {
                                                 }
                                                 break;
                                                 
-                                                
                                             default:
                                                 break;
                                         }
@@ -283,7 +285,9 @@ int main() {
                                         printf("0: Torna indietro\n");
                                         printf("----------\n");
                                         printf("-> ");
-                                        scanf("%d", &sceltaGestO);
+                                        scanf("%c", &sceltaGestO);
+                                        
+                                        sceltaGestO = (int)sceltaGestO - 48;
                                         
                                         clearConsole();
                                         titolo();
@@ -294,28 +298,24 @@ int main() {
                                                 break;
 
                                             case 2:
-                                                while ('\n' != getchar());
+                                                //while ('\n' != getchar());
                                                 aggiungiOpera(testaOpera);
                                                 break;
                                             
                                             case 3:
-
                                                 operaScelta = browserOpere(fpO, testaOpera, true);
                                                 
                                                 if(operaScelta != NULL) {
                                                     modificaOpera(testaOpera, operaScelta);
                                                 }
-
                                                 break;
                                                 
                                             case 4:
-
                                                 operaScelta = browserOpere(fpO, testaOpera, true);
-                                                
+                                                printf("test\n");
                                                 if(operaScelta != NULL) {
                                                     eliminaOpera(testaOpera, operaScelta);
                                                 }
-
                                                 break;
                                                 
                                             default:

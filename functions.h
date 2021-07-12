@@ -16,6 +16,8 @@ void titolo(void);
 
 bool differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2);
 
+bool verificaDataCorrente(int giorno, int mese, int anno);
+
 void notificaAnnulla(void);
 
 void pausa(void);

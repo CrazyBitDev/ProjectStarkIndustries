@@ -362,7 +362,6 @@ void registrazioneUtente(Utente *testa) {
             
             nuovoNodo->id = 0;
             nuovoNodo->permessi = 2;
-            
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick,
                     nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
             
@@ -370,10 +369,8 @@ void registrazioneUtente(Utente *testa) {
             
             nuovoNodo->id = ultimoID;
             nuovoNodo->permessi = 1;
-            
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick,
                     nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
-            
         }
         
         fclose(fp);
@@ -394,7 +391,7 @@ Utente *accesso(Utente *testa, char *text) {
     Utente *utente = NULL;
     
     char pass[33] = "";
-    readPassword("Password: ", pass, true);
+    readPassword("Password: ", pass, false);
     
     for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
 
@@ -434,6 +431,7 @@ Utente *ricercaUtente(Utente *testa, int id) {
     }
 
     if (!flag) {
+        //TODO: @CrazyBitDev perchè mostra non trovata?
         printColor("---Mostra non trovata!---\n", COLOR_RED);
     }
 
@@ -690,7 +688,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
         
         if (scelta != 0 && continuaModifica) {
             do {
-                
+                printf("----------\n");
                 printf("Vuoi modificare un altro campo? (s/n): ");
                 risposta = getchar();
                 while ('\n' != getchar());
@@ -735,6 +733,9 @@ void eliminaUtente(Utente *utenteLogin, Utente *testa) {
         
     } while (risposta != 'S' && risposta != 'N');
     
+    clearConsole();
+    titolo();
+    
     if (risposta == 'S') {
         
         while (curr != NULL && temp->id != curr->id) {
@@ -752,8 +753,6 @@ void eliminaUtente(Utente *utenteLogin, Utente *testa) {
         }
         
         scriviUtenti(testa);
-        
-        clearConsole();
         printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
     } else {
         printColor("-----------------------------\n", COLOR_CYAN);
