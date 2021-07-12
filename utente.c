@@ -49,12 +49,12 @@ Utente *letturaUtenti(FILE *fp) {
                     tempUtente->email[strlen(tempUtente->email)] = 0;
                 }
                 if (colonna == 5) {
-                    strcpy(tempUtente->password, tok);
-                    tempUtente->password[strlen(tempUtente->password)] = 0;
-                }
-                if (colonna == 6) {
                     strcpy(tempUtente->dataNascita, tok);
                     tempUtente->dataNascita[strlen(tempUtente->dataNascita)] = 0;
+                }
+                if (colonna == 6) {
+                    strcpy(tempUtente->password, tok);
+                    tempUtente->password[strlen(tempUtente->password)] = 0;
                 }
                 if (colonna == 7) {
                     tempUtente->permessi = atoi(tok);
@@ -62,6 +62,7 @@ Utente *letturaUtenti(FILE *fp) {
                 tok = strtok(NULL, ",");
                 colonna++;
             }
+            printf("%s\n", tempUtente->password);
             colonna = 0;
             precUtente = tempUtente;
             
@@ -393,11 +394,11 @@ Utente *accesso(Utente *testa, char *text) {
     bool utenteTrovato = false;
     Utente *utente = NULL;
     
-    char pass[20] = "";
+    char pass[33] = "";
     readPassword("Password: ", pass, true);
     
     for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
-        
+
         if ((strcmp(temp->email, text) == 0 || strcmp(temp->nick, text) == 0) && strcmp(temp->password, pass) == 0) {
             
             utente = temp;
@@ -773,10 +774,10 @@ void scriviUtenti(Utente *testa) {
         
         if (size == 0) { //file vuoto.
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email,
-                    temp->password, temp->dataNascita, temp->permessi);
+                    temp->dataNascita, temp->password, temp->permessi);
         } else { //file pieno
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email,
-                    temp->password, temp->dataNascita, temp->permessi);
+                    temp->dataNascita, temp->password, temp->permessi);
         }
     }
     

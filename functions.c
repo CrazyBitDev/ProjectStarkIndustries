@@ -86,28 +86,28 @@ void consoleColor(int color) {
 
 /*
 void readPassword() {
-    char password[20] = "";
-    readPassword("TEST: ", password);
+    char password[32] = "";
+    readPassword("TEST: ", password, true);
     printf("%s", password);
 }
 */
 void readPassword(char prompt[], char *password, bool checkLunghezza) {
     do {
-        char *tempPassword="";
         #ifdef _WIN32
+            char input[32] = "";
             HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
             DWORD mode = 0;
             GetConsoleMode(hStdin, &mode);
             SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
             printf("%s", prompt);
-            scanf("%s", tempPassword);
+            scanf("%s", input);
             printf("\n");
             SetConsoleMode(hStdin, mode);
+            strcpy(password, md5(input));
         #else
-            tempPassword = getpass(prompt);
+            char *input = getpass(prompt);
+            strcpy(password, md5(input));
         #endif
-        printf("%s\n", tempPassword);
-        strcpy(password, md5(tempPassword));
     } while (checkLunghezza && strlen(password) < 6 && strlen(password) != 0);
 }
 
