@@ -556,48 +556,47 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         dataCorr = verificaDataCorrente(giornoIn, meseIn, annoIn);
                     } while (!dataCorr);
                         
-                        if(continuaModifica) {
-                            snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
-                            
-                            char *tok;
-                            tok = strtok(temp->dataFine, "/");
-                            
-                            while (tok) {
-                                if (colonna == 0) {
-                                    giornoFin = atoi(tok);
-                                }
-                                if (colonna == 1) {
-                                    meseFin = atoi(tok);
-                                }
-                                if (colonna == 2) {
-                                    annoFin = atoi(tok);
-                                }
-                                tok = strtok(NULL, "/");
-                                colonna++;
+                    if(continuaModifica) {
+                        snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
+                        
+                        char *tok;
+                        tok = strtok(temp->dataFine, "/");
+                        
+                        while (tok) {
+                            if (colonna == 0) {
+                                giornoFin = atoi(tok);
                             }
-                            
-                            if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
-                                flagDate = true;
-                            } else {
-                                clearConsole();
-                                titolo();
-                                printf("\n----------");
-                                printColor("Attenzione!\n", COLOR_RED);
-                                printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                                printf("Si prega di inserire nuovamente le date.\n");
-                                printf("----------\n\n");
+                            if (colonna == 1) {
+                                meseFin = atoi(tok);
                             }
+                            if (colonna == 2) {
+                                annoFin = atoi(tok);
+                            }
+                            tok = strtok(NULL, "/");
+                            colonna++;
                         }
                         
-                        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
+                        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
                             flagDate = true;
                         } else {
+                            clearConsole();
+                            titolo();
+                            printf("\n----------");
                             printColor("Attenzione!\n", COLOR_RED);
                             printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                            printf("Si prega di inserire nuovamente le date.\n\n");
+                            printf("Si prega di inserire nuovamente le date.\n");
+                            printf("----------\n\n");
                         }
                     }
-                    
+                        
+                    if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
+                        flagDate = true;
+                    } else {
+                        printColor("Attenzione!\n", COLOR_RED);
+                        printf("La data di fine mostra deve susseguire la data d'inizio.\n");
+                        printf("Si prega di inserire nuovamente le date.\n\n");
+                    }
+                
                 } while (!flagDate);
                 strcpy(temp->dataInizio, dataIn);
                 break;
