@@ -394,7 +394,7 @@ Utente *accesso(Utente *testa, char *text) {
     Utente *utente = NULL;
     
     char pass[33] = "";
-    readPassword("Password: ", pass, true);
+    readPassword("Password: ", pass, false);
     
     for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
 

@@ -74,7 +74,9 @@ int main() {
         clearConsole();
         titolo();
 
-        switch ((int)scelta - 48) {
+        scelta = (int)scelta - 48;
+
+        switch (scelta) {
             case 1:
                 while ('\n' != getchar());
 
