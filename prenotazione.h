@@ -8,8 +8,10 @@ void eliminaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione);
 
 void scriviPrenotazioni(Prenotazione *testa);
 
-void stampaPrenotazioni(Prenotazione *testa); //DA DEFINIRE
+void stampaPrenotazioni(Prenotazione *testa);
 
-Prenotazione *ricercaPrenotazione(Prenotazione *testa); //DA DEFINIRE
+void stampaPrenotazione(Prenotazione *prenotazione); //DA DEFINIRE
+
+Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id); //DA DEFINIRE
 
 #include "prenotazione.c"

@@ -54,3 +54,61 @@ Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMo
     }
     return testaPrenotazione;
 }
+
+//stampa a video
+void stampaPrenotazioni(Prenotazione *testa) {
+    for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
+        stampaPrenotazione(temp);
+        printf("----------\n");
+    }
+}
+
+void stampaPrenotazione(Prenotazione *prenotazione) {
+    printf("id: %d\n", prenotazione->id);
+    printf("Id utente: %d\n", prenotazione->utente->id);
+    printf("Id mostra: %d\n", prenotazione->mostra->id);
+    printf("Data: %s\n", prenotazione->data);
+    printf("Ora: %s\n", prenotazione->ora);
+}
+
+//scrittura su file
+void scriviPrenotazioni(Prenotazione *testa) {
+    FILE *fp;
+    fp = fopen("prenotazione.csv", "w"); //apertura file
+
+    for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
+        long size = ftell(fp);
+
+        if (size == 0)   //file vuoto.
+        {
+            fprintf(fp, "%d,%d,%d,%s,%s", temp->id, temp->utente->id, temp->mostra->id, temp->data, temp->ora);
+        } else     //file pieno
+        {
+            fprintf(fp, "\n%d,%d,%d,%s,%s", temp->id, temp->utente->id, temp->mostra->id, temp->data, temp->ora);
+        }
+    }
+    fclose(fp);
+}
+
+
+Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id) {
+    bool flag = false;
+    Prenotazione *nuovoNodo = NULL;
+
+    for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
+
+        if (temp->id == id) {
+
+            nuovoNodo = temp;
+            flag = true;
+            break;
+
+        }
+    }
+
+    if (!flag) {
+        printColor("---Mostra non trovata!---\n", COLOR_RED);
+    }
+
+    return nuovoNodo;
+}

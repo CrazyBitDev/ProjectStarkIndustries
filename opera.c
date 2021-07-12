@@ -444,10 +444,7 @@ Opera *ricercaOpera(Opera *testa, int id) {
         printColor("---Mostra non trovata!---\n", COLOR_RED);
     }
 
-    if (flag)
-        return nuovoNodo;
-    else
-        return NULL;
+    return nuovoNodo;
 }
 
 /*
