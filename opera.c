@@ -460,6 +460,8 @@ Opera *ricercaOpera(Opera *testa, int id) {
  *
  *   returns: se selezione == true l'opera selezionata, altrimenti NULLL
  */
+
+/*
 Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
     Opera *operaSelezionata = NULL;
 
@@ -699,3 +701,4 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
     
     return operaSelezionata;
 }
+ */

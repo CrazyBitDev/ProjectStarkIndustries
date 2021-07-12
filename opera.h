@@ -14,6 +14,6 @@ void stampaOpera(Opera *opera);
 
 Opera *ricercaOpera(Opera *testa, int id);
 
-Opera *browserOpere(FILE *fp, Opera *testa, bool selezione);
+//Opera *browserOpere(FILE *fp, Opera *testa, bool selezione);
 
 #include "opera.c"
