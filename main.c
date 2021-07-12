@@ -22,8 +22,8 @@ int main() {
 
     titolo();
 
-    int scelta, scelta2 = 0;
-    int sceltaGestP = 0, sceltaGestM, sceltaGestO, sceltaGestPren;
+    char scelta, scelta2;
+    int sceltaGestP, sceltaGestM, sceltaGestO, sceltaGestPren;
     char email[60];
     int nMostra, nOpera;
     long sizeM;
@@ -38,42 +38,43 @@ int main() {
     Mostra       *mostraScelta       = NULL;
     Opera        *operaScelta        = NULL;
     Prenotazione *prenotazioneScelta = NULL;
-
+    
     //Lettura utenti dal file
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
 
-    //Lettura utenti dal file
+    //Lettura mostre dal file
     FILE *fpM;
     fpM = fopen("mostre.csv", "r");
     
-    //Lettura utenti dal file
+    //Lettura opere dal file
     FILE *fpO;
     fpO = fopen("opere.csv", "r");
-    //Lettura utenti dal file
 
+    //Lettura prenotazioni dal file
     FILE *fpP;
     fpP = fopen("prenotazioni.csv", "r");
-
+ 
     testaUtente       = letturaUtenti(fpU);
     testaMostra       = letturaMostre(fpM);
     testaOpera        = letturaOpere(fpO);
     testaPrenotazioni = letturaPrenotazioni(fpP, testaUtente, testaMostra);
 
     do {
+        
         printf("---HOME---\n");
         printf("1: Login\n");
         printf("2: Registrazione\n");
         printf("0: Chiudi applicazione\n");
         printf("----------\n");
         printf("-> ");
-        scanf("%d", &scelta);
-
+        scanf(" %c", &scelta);
+        
         //ripulisco la schermata
         clearConsole();
         titolo();
 
-        switch (scelta) {
+        switch ((int)scelta - 48) {
             case 1:
                 while ('\n' != getchar());
 
@@ -122,9 +123,21 @@ int main() {
                             printf("0: Chiudi Applicazione\n");
                             printf("----------\n");
                             printf("-> ");
-                            scanf("%d", &scelta2);
+                            scanf(" %c", &scelta2);
+                            scelta2 = (int)scelta2 - 48;
+                            
+                           // printf("test: %d\n", (int)scelta2 - 48);
 
                             switch (scelta2) {
+                                    
+                                case 0:
+                                    scelta = 0;
+                                    clearConsole();
+                                    titolo();
+                                    break;
+                                    
+                                
+                                    
                                 case 1:
                                     clearConsole();
                                     titolo();
@@ -277,7 +290,7 @@ int main() {
                                         
                                         switch (sceltaGestO) {
                                             case 1:
-                                                browserOpere(fpO, testaOpera, false);
+                                                //browserOpere(fpO, testaOpera, false);
                                                 break;
 
                                             case 2:
@@ -287,7 +300,7 @@ int main() {
                                             
                                             case 3:
 
-                                                operaScelta = browserOpere(fpO, testaOpera, true);
+                                               // operaScelta = browserOpere(fpO, testaOpera, true);
                                                 
                                                 if(operaScelta != NULL) {
                                                     modificaOpera(testaOpera, operaScelta);
@@ -297,7 +310,7 @@ int main() {
                                                 
                                             case 4:
 
-                                                operaScelta = browserOpere(fpO, testaOpera, true);
+                                               // operaScelta = browserOpere(fpO, testaOpera, true);
                                                 
                                                 if(operaScelta != NULL) {
                                                     eliminaOpera(testaOpera, operaScelta);
@@ -310,7 +323,7 @@ int main() {
                                         }
                                         
                                     } else {
-                                        browserOpere(fpO, testaOpera, false);
+                                       // browserOpere(fpO, testaOpera, false);
                                     }
                                     break;
                                     
@@ -325,15 +338,17 @@ int main() {
                                     } else {
                                         //gestione prenotazione (modifica e elimina)
                                     }
-
+                                
+                                case 9:
+                                    clearConsole();
+                                    titolo();
+                                    break;
+                                    
                                 default:
                                     break;
                             }
-                            if (scelta2 == 0) {
-                                scelta = 0;
-                            }
 
-                        } while (scelta2 != 9 && sceltaGestP != 2 && scelta2 != 0);
+                        } while (scelta2 != 9 /*&& sceltaGestP != 2 */&& scelta2 != 0);
                     }
                 }
                 break;
