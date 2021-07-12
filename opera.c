@@ -476,9 +476,8 @@ Opera *ricercaOpera(Opera *testa, int id) {
 /*
  * Function: opereBrowser
  * ----------------------------
- *   Permette una vista approfondita delle opere, con ricerca,
- *      possibilità di modificare l'opera, possibilità di selezionare
- *      l'opera.
+ *   Permette una vista approfondita delle opere con ricerca,
+ *      possibilità di selezionare l'opera.
  *
  *   FILE fp: TODO: finire
  *   Opera testa: TODO: finire
@@ -486,7 +485,6 @@ Opera *ricercaOpera(Opera *testa, int id) {
  *
  *   returns: se selezione == true l'opera selezionata, altrimenti NULL
  */
-
 Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
     Opera *operaSelezionata = NULL;
 

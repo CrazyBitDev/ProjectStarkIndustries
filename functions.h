@@ -14,7 +14,9 @@ int contaRighe(char *file);
 
 void titolo(void);
 
-bool differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2);
+int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2);
+
+int differenzaDateOggi(char *data);
 
 void notificaAnnulla(void);
 

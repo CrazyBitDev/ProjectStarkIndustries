@@ -110,11 +110,11 @@ void readPassword(char prompt[], char *password, bool checkLunghezza) {
 }
 
 void clearConsole() {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
 }
 
 bool verificaData(int giorno, int mese, int anno) {
@@ -222,21 +222,43 @@ void titolo() {
     printf("\n");
 }
 
-bool differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2) {
-    bool dateCorrette = false;
+//TODO: cambiare nome?
+// 0 = giorni uguali, 1 = giorno 2 > giorno 1, -1 = giorno 1 > giorno 2
+int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2) {
+    int differenza = 0;
 
-    if((giorno1 == giorno2) && (mese1 == mese2) && (anno1 == anno2))
-    {
-        //La mostra dura solo un giorno di conseguenza le date coincidono
-        dateCorrette = true;
-    }
-    else if(anno1 < anno2 || (anno1 == anno2 && mese1 < mese2) || (anno1 == anno2 && mese1 == mese2 && giorno1 < giorno2))
-    {
-        //La data d'inizio precede quella di fine
-        dateCorrette = true;
+    if(anno1 < anno2 || (anno1 == anno2 && mese1 < mese2) || (anno1 == anno2 && mese1 == mese2 && giorno1 < giorno2)) {
+        differenza = 1;
+    } else if (anno1 != anno2 && mese1 != mese2 && giorno1 != giorno2) {
+        differenza = -1;
     }
 
-    return dateCorrette;
+    return differenza;
+}
+
+int differenzaDateOggi(char *data) {
+    time_t now;
+    struct tm *ts;
+    char annoCorrente[5], meseCorrente[3], giornoCorrente[3];
+    
+    char buf[BUFFER_SIZE];
+    int dataConvertita[3];
+    
+    now = time(NULL);
+    
+    ts = localtime(&now);
+    strftime(annoCorrente,   sizeof(annoCorrente),   "%Y", ts);
+    strftime(meseCorrente,   sizeof(meseCorrente),   "%m", ts);
+    strftime(giornoCorrente, sizeof(giornoCorrente), "%d", ts);
+
+    char *tok = strtok(buf, ",");
+
+    for (int i = 0; i < 3; i++ ) {
+        dataConvertita[i] = atoi(tok);
+        tok = strtok(NULL, "/");
+    }
+
+    return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);
 }
 
 void notificaAnnulla() {

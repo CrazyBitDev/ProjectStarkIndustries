@@ -10,6 +10,8 @@ void scriviMostre(Mostra *testa);
 
 void stampaMostre(Mostra *testa);
 
+void stampaMostra(Mostra *mostra);
+
 Mostra *ricercaMostra(Mostra *testa, int id);
 
 #include "mostra.c"

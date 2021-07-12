@@ -271,7 +271,7 @@ void aggiungiMostra(Mostra *testa) {
             snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
             
             printf("\n");
-            if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
+            if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
                 flagDate = true;
             } else {
                 printColor("Attenzione!\n", COLOR_RED);
@@ -527,7 +527,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             colonna++;
                         }
                         
-                        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
+                        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
                             flagDate = true;
                         } else {
                             printColor("Attenzione!\n", COLOR_RED);
@@ -598,7 +598,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             colonna++;
                         }
                         
-                        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
+                        if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
                             flagDate = true;
                         } else {
                             printColor("Attenzione!\n", COLOR_RED);
@@ -612,14 +612,6 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 
                 break;
               
-                /*
-            case 7:
-                printf("Inserisci il numero delle opere: ");
-                scanf("%d", &nOpere);
-                temp->nOpere = nOpere;
-                break;
-                 */
-                
             default:
                 break;
         }
@@ -652,13 +644,17 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
 void stampaMostre(Mostra *testa) {
     
     for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
-        printf("Mostra numero: %d \n", temp->id);
-        printf("Responsabile: %s \n", temp->responsabile);
-        printf("Luogo di esposizione: %s \n", temp->luogo);
-        printf("Luogo: %s - %s\n", temp->citta, temp->indirizzo);
-        printf("Durata: dal %s al %s\n", temp->dataInizio, temp->dataFine);
+        stampaMostra(temp);
         printf("----------\n");
     }
+}
+
+void stampaMostra(Mostra *mostra) {
+    printf("Mostra numero: %d \n", mostra->id);
+    printf("Responsabile: %s \n", mostra->responsabile);
+    printf("Luogo di esposizione: %s \n", mostra->luogo);
+    printf("Luogo: %s - %s\n", mostra->citta, mostra->indirizzo);
+    printf("Durata: dal %s al %s\n", mostra->dataInizio, mostra->dataFine);
 }
 
 //scrittura su file
@@ -751,8 +747,104 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
         printf("Mostra non trovata.");
     }
     
-    if (flag)
-        return nuovoNodo;
-    else
-        return NULL;
+    return nuovoNodo;
+}
+
+
+/*
+ * Function: mostreBrowser
+ * ----------------------------
+ *   Permette una vista approfondita delle mostre con ricerca,
+ *      possibilità di selezionare la mostra.
+ *
+ *   FILE fp: TODO: finire
+ *   Mostra testa: TODO: finire
+ *   bool selezione: se true permette di selezionare l'opera con return avvalorato
+ *
+ *   returns: se selezione == true la mostra selezionata, altrimenti NULL
+ */
+Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
+    Mostra *mostraSelezionata = NULL;
+
+    bool ricercaInCorso = true;
+    int scelta, mostreTrovate;
+    char input[30], tempName[30];
+
+    fseek(fp, 0, SEEK_END);
+    int size = ftell(fp);
+
+    if (size == 0) { //non ci sono opere registrate
+        printColor("Attenzione!\n", COLOR_RED);
+        printf("Non ci sono mostre registrate.\n");
+    } else {
+
+        clearConsole();
+        titolo();
+
+        do {
+            printf("Selezionare tipo di ricerca:\n");
+            printf("1: Ricerca Mostra per responsabile\n");
+            printf("2: Ricerca Mostra per luogo\n");
+            printf("3: Ricerca Mostra per citta\n");
+            printf("4: Ricerca Mostra per data\n");
+            printf("0: Annulla la ricerca\n");
+            printf("-> ");
+            scanf("%d", &scelta);
+
+            switch(scelta) {
+                
+                case 1:
+                    mostreTrovate = 0;
+                    clearConsole();
+                    while ('\n' != getchar());
+                    printf("Inserire nome completo o parziale del responsabile: ");
+                    fgets(input, 30, stdin);
+                    input[strlen(input) - 1] = 0;
+                    toUppercase(input);
+
+                    if (strlen(input) != 0) {
+                        for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
+                            strcpy(tempName, temp->responsabile);
+                            toUppercase(tempName);
+                            
+                            if (strstr(tempName, input) != NULL) {
+                                mostreTrovate++;
+                                stampaMostra(temp);
+                                printf("---------------------\n");
+                            }
+                        }
+                        if (mostreTrovate > 0) {
+                            if (selezione) {
+                                printf("Digitare l'ID della mostra da selezionare: ");
+                                fgets(input, 30, stdin);
+                                input[strlen(input) - 1] = 0;
+                                if (strlen(input) != 0) {
+                                    scelta = atoi(input);
+                                    mostraSelezionata = ricercaMostra(testa, scelta);
+                                    ricercaInCorso = false;
+                                }
+                            } else {
+                                pausa();
+                                titolo();
+                            }
+                        } else {
+                            clearConsole();
+                            titolo();
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                        }
+                    }
+                    break;
+                    
+                case 0:
+                    ricercaInCorso = false;
+                    break;
+                default:
+                    break;
+            }
+
+        } while (ricercaInCorso);
+        clearConsole();
+    }
+
+    return mostraSelezionata;
 }

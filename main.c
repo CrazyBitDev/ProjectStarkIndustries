@@ -9,7 +9,7 @@
 #include <time.h>
 #include <ctype.h>
 
-//NOME DIVERSO? O LASCIARE IN MAIN.C? DOBBIAMO CREARE UN DATA.H? @dany-el92
+//NOME DIVERSO? O LASCIARE IN MAIN.C? DOBBIAMO CREARE UN DATA.H?
 #include "data.c"
 
 #include "functions.h"
