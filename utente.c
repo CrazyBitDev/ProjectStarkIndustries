@@ -62,7 +62,6 @@ Utente *letturaUtenti(FILE *fp) {
                 tok = strtok(NULL, ",");
                 colonna++;
             }
-            printf("%s\n", tempUtente->password);
             colonna = 0;
             precUtente = tempUtente;
             

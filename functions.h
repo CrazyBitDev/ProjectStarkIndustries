@@ -19,7 +19,10 @@ bool differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, i
 void notificaAnnulla(void);
 
 void pausa(void);
+/*
+uint32_t leftrotate(uint32_t x, uint32_t c);
 
 char *md5(char *initial_msg);
+*/
 
 #include "functions.c"

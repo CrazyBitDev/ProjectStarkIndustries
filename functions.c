@@ -18,9 +18,7 @@
     #define ANSI_COLOR_MAGENTA "\x1b[95m"
     #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#endif
-
-#define LEFTROTATE(x, c) (((x) << (c)) | ((x) >> (32 - (c))))
+#endif 
 
 void printColor(char text[], int color) {
 #ifdef _WIN32
@@ -103,10 +101,10 @@ void readPassword(char prompt[], char *password, bool checkLunghezza) {
             scanf("%s", input);
             printf("\n");
             SetConsoleMode(hStdin, mode);
-            strcpy(password, md5(input));
+            strcpy(password, /*md5(input)*/ input);
         #else
             char *input = getpass(prompt);
-            strcpy(password, md5(input));
+            strcpy(password, /*md5(input)*/ input);
         #endif
     } while (checkLunghezza && strlen(password) < 6 && strlen(password) != 0);
 }
@@ -256,6 +254,11 @@ void pausa() {
     printf("Premi INVIO per continuare\n");  
     getchar();
 }
+
+/*
+uint32_t leftrotate(uint32_t x, uint32_t c) {
+    return (((x) << (c)) | ((x) >> (32 - (c))));
+}
  
 char *md5(char *initial_msg) {
 
@@ -337,7 +340,7 @@ char *md5(char *initial_msg) {
             uint32_t temp = d;
             d = c;
             c = b;
-            b = b + LEFTROTATE((a + f + k[i] + w[g]), r[i]);
+            b = b + leftrotate((a + f + k[i] + w[g]), r[i]);
             a = temp;
 
         }
@@ -360,4 +363,4 @@ char *md5(char *initial_msg) {
             p3[0], p3[1], p3[2], p3[3]);
     return md5result;
  
-}
+}*/

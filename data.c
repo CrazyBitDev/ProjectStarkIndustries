@@ -6,7 +6,7 @@ struct utente {
     char cognome[20];
     char nick[20];
     char email[60];
-    char password[32];
+    char password[33];
     char dataNascita[11]; // gg/mm/aaaa
     int permessi; //livello 1 = utente normale; livello 2 = direttore generale, ha accesso a tutto;
     Utente *nextUtente; //puntatore al prossimo nodo
