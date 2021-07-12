@@ -42,15 +42,15 @@ int main() {
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
 
-    //Lettura utenti dal file
+    //Lettura mostre dal file
     FILE *fpM;
     fpM = fopen("mostre.csv", "r");
     
-    //Lettura utenti dal file
+    //Lettura opere dal file
     FILE *fpO;
     fpO = fopen("opere.csv", "r");
-    //Lettura utenti dal file
 
+    //Lettura prenotazioni dal file
     FILE *fpP;
     fpP = fopen("prenotazioni.csv", "r");
 
