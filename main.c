@@ -19,12 +19,6 @@
 #include "prenotazione.h"
 
 int main() {
-    char test[] = "ciaoAAA111";
-    toUppercase(test);
-    printf("%s",test);
-}
-
-void nonono() {
 
     titolo();
 
@@ -296,7 +290,7 @@ void nonono() {
                                         
                                         switch (sceltaGestO) {
                                             case 1:
-                                                //browserOpere(fpO, testaOpera, false);
+                                                browserOpere(fpO, testaOpera, false);
                                                 break;
 
                                             case 2:
@@ -306,7 +300,7 @@ void nonono() {
                                             
                                             case 3:
 
-                                               // operaScelta = browserOpere(fpO, testaOpera, true);
+                                                operaScelta = browserOpere(fpO, testaOpera, true);
                                                 
                                                 if(operaScelta != NULL) {
                                                     modificaOpera(testaOpera, operaScelta);
@@ -316,7 +310,7 @@ void nonono() {
                                                 
                                             case 4:
 
-                                               // operaScelta = browserOpere(fpO, testaOpera, true);
+                                                operaScelta = browserOpere(fpO, testaOpera, true);
                                                 
                                                 if(operaScelta != NULL) {
                                                     eliminaOpera(testaOpera, operaScelta);
@@ -329,7 +323,7 @@ void nonono() {
                                         }
                                         
                                     } else {
-                                       // browserOpere(fpO, testaOpera, false);
+                                        browserOpere(fpO, testaOpera, false);
                                     }
                                     break;
                                     

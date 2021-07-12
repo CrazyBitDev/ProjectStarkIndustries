@@ -525,12 +525,14 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire nome completo o parziale dell'opera: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
-                    strupr(input);
+                    toUppercase(input);
 
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->nome);
-                            if (strstr(strupr(tempName), input) != NULL) {
+                            toUppercase(tempName);
+                            
+                            if (strstr(tempName, input) != NULL) {
                                 opereTrovate++;
                                 stampaOpera(temp);
                                 printf("---------------------\n");
@@ -564,12 +566,13 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire nome completo o parziale dell'autore: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
-                    strupr(input);
+                    toUppercase(input);
 
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->autore);
-                            if (strstr(strupr(tempName), input) != NULL) {
+                            toUppercase(tempName);
+                            if (strstr(tempName, input) != NULL) {
                                 opereTrovate++;
                                 stampaOpera(temp);
                                 printf("---------------------\n");
@@ -603,12 +606,13 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire la tipologia dell'opera: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
-                    strupr(input);
+                    toUppercase(input);
 
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->tipo);
-                            if (strstr(strupr(tempName), input) != NULL) {
+                            toUppercase(tempName);
+                            if (strstr(tempName, input) != NULL) {
                                 opereTrovate++;
                                 stampaOpera(temp);
                                 printf("---------------------\n");
@@ -642,12 +646,13 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire il genere dell'opera: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
-                    strupr(input);
+                    toUppercase(input);
 
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->genere);
-                            if (strstr(strupr(tempName), input) != NULL) {
+                            toUppercase(tempName);
+                            if (strstr(tempName, input) != NULL) {
                                 opereTrovate++;
                                 stampaOpera(temp);
                                 printf("---------------------\n");
@@ -681,12 +686,13 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire il perido dell'opera: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
-                    strupr(input);
+                    toUppercase(input);
 
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->periodo);
-                            if (strstr(strupr(tempName), input) != NULL) {
+                            toUppercase(tempName);
+                            if (strstr(tempName, input) != NULL) {
                                 opereTrovate++;
                                 stampaOpera(temp);
                                 printf("---------------------\n");
