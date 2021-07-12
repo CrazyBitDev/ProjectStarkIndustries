@@ -111,9 +111,9 @@ void readPassword(char prompt[], char *password, bool checkLunghezza) {
 
 void clearConsole() {
     #ifdef _WIN32
-        system("cls");
+        //system("cls");
     #else
-        system("clear");
+       // system("clear");
     #endif
 }
 
@@ -225,33 +225,37 @@ void titolo() {
 //TODO: cambiare nome?
 // 0 = giorni uguali, 1 = giorno 2 > giorno 1, -1 = giorno 1 > giorno 2
 int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2) {
+
     int differenza = 0;
 
     if(anno1 < anno2 || (anno1 == anno2 && mese1 < mese2) || (anno1 == anno2 && mese1 == mese2 && giorno1 < giorno2)) {
         differenza = 1;
-    } else if (anno1 != anno2 && mese1 != mese2 && giorno1 != giorno2) {
+    } else if (anno1 != anno2 || mese1 != mese2 || giorno1 != giorno2) {
         differenza = -1;
     }
 
     return differenza;
 }
 
-int differenzaDateOggi(char *data) {
-    time_t now;
+int differenzaDateOggi(char *dataTarget) {
+
+    char data[11];
+
+    strcpy(data, dataTarget);
+
     struct tm *ts;
     char annoCorrente[5], meseCorrente[3], giornoCorrente[3];
     
-    char buf[BUFFER_SIZE];
     int dataConvertita[3];
     
-    now = time(NULL);
+    time_t now = time(NULL);
     
     ts = localtime(&now);
     strftime(annoCorrente,   sizeof(annoCorrente),   "%Y", ts);
     strftime(meseCorrente,   sizeof(meseCorrente),   "%m", ts);
     strftime(giornoCorrente, sizeof(giornoCorrente), "%d", ts);
 
-    char *tok = strtok(buf, ",");
+    char *tok = strtok(data, "/");
 
     for (int i = 0; i < 3; i++ ) {
         dataConvertita[i] = atoi(tok);

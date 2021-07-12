@@ -55,7 +55,7 @@ Mostra *letturaMostre(FILE *fp) {
                 }
                 if (colonna1 == 6) {
                     if (strstr(tok2, "\n") != NULL) {
-                        tok2[strlen(tok2) - 2] = 0;
+                        tok2[strlen(tok2) - 1] = 0;
                     }
                     strcpy(tempMostra->dataFine, tok2);
                     tempMostra->dataFine[strlen(tempMostra->dataFine)] = 0;
@@ -855,7 +855,6 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
             printf("1: Ricerca Mostra per responsabile\n");
             printf("2: Ricerca Mostra per luogo\n");
             printf("3: Ricerca Mostra per citta\n");
-            printf("4: Ricerca Mostra per data\n");
             printf("0: Annulla la ricerca\n");
             printf("-> ");
             scanf("%d", &scelta);
@@ -875,8 +874,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
                             strcpy(tempName, temp->responsabile);
                             toUppercase(tempName);
-                            
-                            if (strstr(tempName, input) != NULL) {
+                            if (strstr(tempName, input) != NULL && differenzaDateOggi(temp->dataFine) >= 0) {
                                 mostreTrovate++;
                                 stampaMostra(temp);
                                 printf("---------------------\n");
@@ -904,6 +902,88 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                     }
                     break;
                     
+                case 2:
+                    mostreTrovate = 0;
+                    clearConsole();
+                    while ('\n' != getchar());
+                    printf("Inserire nome completo o parziale del luogo: ");
+                    fgets(input, 30, stdin);
+                    input[strlen(input) - 1] = 0;
+                    toUppercase(input);
+
+                    if (strlen(input) != 0) {
+                        for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
+                            strcpy(tempName, temp->luogo);
+                            toUppercase(tempName);
+                            if (strstr(tempName, input) != NULL && differenzaDateOggi(temp->dataFine) >= 0) {
+                                mostreTrovate++;
+                                stampaMostra(temp);
+                                printf("---------------------\n");
+                            }
+                        }
+                        if (mostreTrovate > 0) {
+                            if (selezione) {
+                                printf("Digitare l'ID della mostra da selezionare: ");
+                                fgets(input, 30, stdin);
+                                input[strlen(input) - 1] = 0;
+                                if (strlen(input) != 0) {
+                                    scelta = atoi(input);
+                                    mostraSelezionata = ricercaMostra(testa, scelta);
+                                    ricercaInCorso = false;
+                                }
+                            } else {
+                                pausa();
+                                titolo();
+                            }
+                        } else {
+                            clearConsole();
+                            titolo();
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                        }
+                    }
+                    break;
+                    
+                case 3:
+                    mostreTrovate = 0;
+                    clearConsole();
+                    while ('\n' != getchar());
+                    printf("Inserire nome completo o parziale della citta': ");
+                    fgets(input, 30, stdin);
+                    input[strlen(input) - 1] = 0;
+                    toUppercase(input);
+
+                    if (strlen(input) != 0) {
+                        for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
+                            strcpy(tempName, temp->luogo);
+                            toUppercase(tempName);
+                            if (strstr(tempName, input) != NULL && differenzaDateOggi(temp->dataFine) >= 0) {
+                                mostreTrovate++;
+                                stampaMostra(temp);
+                                printf("---------------------\n");
+                            }
+                        }
+                        if (mostreTrovate > 0) {
+                            if (selezione) {
+                                printf("Digitare l'ID della mostra da selezionare: ");
+                                fgets(input, 30, stdin);
+                                input[strlen(input) - 1] = 0;
+                                if (strlen(input) != 0) {
+                                    scelta = atoi(input);
+                                    mostraSelezionata = ricercaMostra(testa, scelta);
+                                    ricercaInCorso = false;
+                                }
+                            } else {
+                                pausa();
+                                titolo();
+                            }
+                        } else {
+                            clearConsole();
+                            titolo();
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                        }
+                    }
+                    break;
+
                 case 0:
                     ricercaInCorso = false;
                     break;

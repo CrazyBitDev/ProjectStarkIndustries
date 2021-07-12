@@ -197,65 +197,29 @@ int main() {
                                         titolo();
                                         
                                         switch (sceltaGestM) {
+                                            
                                             case 1:
-                                                while ('\n' != getchar());
+                                                browserMostra(fpM, testaMostra, false);
+                                                break;
+
+                                            case 2:
+                                                //while ('\n' != getchar());
                                                 aggiungiMostra(testaMostra);
                                                 break;
+                                            
+                                            case 3:
+                                                mostraScelta = browserMostra(fpM, testaMostra, true);
                                                 
-                                            case 2:
-                                                fseek(fpM, 0, SEEK_END);
-                                                sizeM = ftell(fpM);
-                                                
-                                                if(sizeM == 0) { //non ci sono mostre registrate
-                                                    printColor("Attenzione!\n", COLOR_RED);
-                                                    printf("Non ci sono mostre registrate.\n");
-                                                } else {
-                                                    printColor("Elenco delle Mostre disponibili\n", COLOR_CYAN);
-                                                    stampaMostre(testaMostra);
-                                                    printf("\n");
-                                                    printf("Inserire il numero della mostra da modificare: ");
-                                                    scanf("%d", &nMostra);
-
-                                                    clearConsole();
-                                                    titolo();
-
-                                                    mostraScelta = ricercaMostra(testaMostra, nMostra);
-
-                                                    char *valore2 = (char *) mostraScelta;
-                                                    if (valore2 != NULL) {
-                                                        modificaMostra(testaMostra, mostraScelta);
-                                                    }
+                                                if(mostraScelta != NULL) {
+                                                    modificaMostra(testaMostra, mostraScelta);
                                                 }
                                                 break;
                                                 
-                                            case 3:
-                                                clearConsole();
-                                                titolo();
-                                                fseek(fpM, 0, SEEK_END);
-                                                sizeM = ftell(fpM);
+                                            case 4:
+                                                mostraScelta = browserMostra(fpM, testaMostra, true);
                                                 
-                                                if(sizeM == 0) { //non ci sono mostre registrate
-                                                    
-                                                    printColor("Attenzione!\n", COLOR_RED);
-                                                    printf("Non ci sono mostre registrate.\n");
-                                                    
-                                                } else {
-                                                    
-                                                    printColor("Elenco delle Mostre\n", COLOR_CYAN);
-                                                    stampaMostre(testaMostra);
-                                                    printf("\n");
-                                                    printf("Inserire il numero della mostra da eliminare: ");
-                                                    scanf("%d", &nMostra);
-
-                                                    clearConsole();
-                                                    titolo();
-
-                                                    mostraScelta = ricercaMostra(testaMostra, nMostra);
-
-                                                    char *valore2 = (char *) mostraScelta;
-                                                    if (valore2 != NULL) {
-                                                        eliminaMostra(testaMostra, mostraScelta);
-                                                    }
+                                                if(mostraScelta != NULL) {
+                                                    eliminaOpera(testaMostra, mostraScelta);
                                                 }
                                                 break;
                                                 
@@ -264,7 +228,7 @@ int main() {
                                         }
                                         
                                     } else {
-                                        stampaMostre(testaMostra);
+                                        browserMostra(fpM, testaMostra, false);
                                     }
                                     
                                     break;

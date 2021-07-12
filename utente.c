@@ -431,8 +431,7 @@ Utente *ricercaUtente(Utente *testa, int id) {
     }
 
     if (!flag) {
-        //TODO: @CrazyBitDev perchè mostra non trovata?
-        printColor("---Mostra non trovata!---\n", COLOR_RED);
+        printColor("---Utente non trovata!---\n", COLOR_RED);
     }
 
     return nuovoNodo;

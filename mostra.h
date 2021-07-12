@@ -14,4 +14,6 @@ void stampaMostra(Mostra *mostra);
 
 Mostra *ricercaMostra(Mostra *testa, int id);
 
+Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione);
+
 #include "mostra.c"
