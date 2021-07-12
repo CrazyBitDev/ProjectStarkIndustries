@@ -12,9 +12,15 @@
 #define LEFTROTATE(x, c) (((x) << (c)) | ((x) >> (32 - (c))))
  
 // These vars will contain the hash
-uint32_t h0, h1, h2, h3;
- 
-void md5(uint8_t *initial_msg, size_t initial_len) {
+
+char *md5(char *initial_msg) {
+
+    size_t initial_len = strlen(initial_msg);
+
+    uint32_t h0, h1, h2, h3;
+    
+    uint8_t *p0, *p1, *p2, *p3;
+    char *md5result = (char*)malloc(32 * sizeof(char));
  
     // Message (to prepare)
     uint8_t *msg = NULL;
@@ -73,19 +79,10 @@ void md5(uint8_t *initial_msg, size_t initial_len) {
  
     // Process the message in successive 512-bit chunks:
     //for each 512-bit chunk of message:
-    int offset;
-    for(offset=0; offset<new_len; offset += (512/8)) {
+    for(int offset=0; offset<new_len; offset += (512/8)) {
  
         // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
         uint32_t *w = (uint32_t *) (msg + offset);
- 
-#ifdef DEBUG
-        printf("offset: %d %x\n", offset, offset);
- 
-        int j;
-        for(j =0; j < 64; j++) printf("%x ", ((uint8_t *) w)[j]);
-        puts("");
-#endif
  
         // Initialize hash value for this chunk:
         uint32_t a = h0;
@@ -95,25 +92,7 @@ void md5(uint8_t *initial_msg, size_t initial_len) {
  
         // Main loop:
         uint32_t i;
-        for(i = 0; i<64; i++) {
-
-#ifdef ROUNDS
-            uint8_t *p;
-            printf("%i: ", i);
-            p=(uint8_t *)&a;
-            printf("%2.2x%2.2x%2.2x%2.2x ", p[0], p[1], p[2], p[3], a);
-         
-            p=(uint8_t *)&b;
-            printf("%2.2x%2.2x%2.2x%2.2x ", p[0], p[1], p[2], p[3], b);
-         
-            p=(uint8_t *)&c;
-            printf("%2.2x%2.2x%2.2x%2.2x ", p[0], p[1], p[2], p[3], c);
-         
-            p=(uint8_t *)&d;
-            printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], d);
-            puts("");
-#endif        
-
+        for(i = 0; i<64; i++) {  
  
             uint32_t f, g;
  
@@ -131,9 +110,6 @@ void md5(uint8_t *initial_msg, size_t initial_len) {
                 g = (7*i) % 16;
             }
 
-#ifdef ROUNDS
-            printf("f=%x g=%d w[g]=%x\n", f, g, w[g]);
-#endif 
             uint32_t temp = d;
             d = c;
             c = b;
@@ -141,8 +117,6 @@ void md5(uint8_t *initial_msg, size_t initial_len) {
             b = b + LEFTROTATE((a + f + k[i] + w[g]), r[i]);
             a = temp;
 
-
- 
         }
  
         // Add this chunk's hash to result so far:
@@ -153,9 +127,18 @@ void md5(uint8_t *initial_msg, size_t initial_len) {
         h3 += d;
  
     }
- 
-    // cleanup
-    free(msg);
+     
+    p0=(uint8_t *)&h0;
+    p1=(uint8_t *)&h1;
+    p2=(uint8_t *)&h2;
+    p3=(uint8_t *)&h3;
+    sprintf(md5result, "%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x",
+            p0[0], p0[1], p0[2], p0[3],
+            p1[0], p1[1], p1[2], p1[3],
+            p2[0], p2[1], p2[2], p2[3],
+            p3[0], p3[1], p3[2], p3[3]);
+
+    return md5result;
  
 }
  
@@ -167,31 +150,32 @@ int main(int argc, char **argv) {
     }
  
     char *msg = argv[1];
-    size_t len = strlen(msg);
  
     // benchmark
     // int i;
     // for (i = 0; i < 1000000; i++) {
-        md5(msg, len);
+        printf("%s\n", md5(msg));
+        printf("hey\n");
+        printf("%d\n", (int)strlen(md5(msg)));
     // }
- 
+ /*
     //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)
     uint8_t *p;
  
     // display result
  
     p=(uint8_t *)&h0;
-    printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], h0);
+    printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3]);
  
     p=(uint8_t *)&h1;
-    printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], h1);
+    printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3]);
  
     p=(uint8_t *)&h2;
-    printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], h2);
+    printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3]);
  
     p=(uint8_t *)&h3;
-    printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], h3);
-    puts("");
+    printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3]);
+    puts("");*/
  
     return 0;
 }

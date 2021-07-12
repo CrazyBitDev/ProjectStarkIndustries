@@ -244,17 +244,14 @@ void registrazioneUtente(Utente *testa) {
         }
         
         printf("-----------------------------\n");
-        char psw[20], psw2[20];
+        char psw[32], psw2[32];
         
         //controllo su correttezza password
         do {
-            do {
-                readPassword("Password (minimo 6 caratteri): ", psw);
-            } while (strlen(psw) < 6);
+
+            readPassword("Password (minimo 6 caratteri): ", psw, true);
             
-            do {
-                readPassword("Conferma password: ", psw2);
-            } while (strlen(psw2) < 6);
+            readPassword("Conferma password: ", psw2, true);
             
             if (strcmp(psw, psw2) != 0) {
                 clearConsole();
@@ -397,7 +394,7 @@ Utente *accesso(Utente *testa, char *text) {
     Utente *utente = NULL;
     
     char pass[20] = "";
-    readPassword("Password: ", pass);
+    readPassword("Password: ", pass, true);
     
     for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
         
@@ -600,22 +597,19 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                 titolo();
                 notificaAnnulla();
                 
-                char psw[20], psw2[20];
+                char psw[32], psw2[32];
                 
                 do {
                     printf("\n");
-                    do {
-                        readPassword("Inserisci la nuova password (minimo 6 caratteri): ", psw);
-                    } while (strlen(psw) < 6 && strlen(psw) != 0);
+                    
+                    readPassword("Inserisci la nuova password (minimo 6 caratteri): ", psw, false);
                     
                     if(strlen(psw) == 0) {
                         continuaModifica = false;
                         break;
                     }
-                    
-                    do {
-                        readPassword("Conferma password: ", psw2);
-                    } while (strlen(psw2) < 6);
+                        
+                    readPassword("Conferma password: ", psw2, true);
                     
                     if (strcmp(psw, psw2) != 0) {
                         clearConsole();

@@ -2,7 +2,7 @@ void printColor(char text[], int color);
 
 void consoleColor(int color);
 
-void readPassword(char prompt[], char *password);
+void readPassword(char prompt[], char *password, bool checkLunghezza);
 
 void clearConsole(void);
 
@@ -19,5 +19,7 @@ bool differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, i
 void notificaAnnulla(void);
 
 void pausa(void);
+
+char *md5(char *initial_msg);
 
 #include "functions.c"
