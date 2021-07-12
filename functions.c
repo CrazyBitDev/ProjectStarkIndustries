@@ -18,7 +18,7 @@
     #define ANSI_COLOR_MAGENTA "\x1b[95m"
     #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#endif 
+#endif
 
 void printColor(char text[], int color) {
 #ifdef _WIN32
@@ -261,6 +261,45 @@ int differenzaDateOggi(char *data) {
     return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);
 }
 
+bool verificaDataCorrente(int giorno, int mese, int anno) {
+    bool dataCorrente;
+    
+    time_t now;
+    struct tm *ts;
+    
+    char giornoCorrente[3];
+    char meseCorrente[3];
+    char annoCorrente[5];
+    int giornoCorr, meseCorr, annoCorr;
+    
+    //salvo data odierna
+    now = time(NULL);
+    ts = localtime(&now);
+    
+    strftime(annoCorrente, sizeof(annoCorrente), "%Y", ts);
+    strftime(meseCorrente, sizeof(meseCorrente), "%m", ts);
+    strftime(giornoCorrente, sizeof(giornoCorrente), "%d", ts);
+    
+    giornoCorr = atoi(giornoCorrente);
+    meseCorr = atoi(meseCorrente);
+    annoCorr = atoi(annoCorrente);
+    
+    if((giorno == giornoCorr) && (mese == meseCorr) && (anno == annoCorr)) {
+        //le date coincidono
+        dataCorrente = true;
+    } else {
+        if(anno < annoCorr || (anno == annoCorr && mese < meseCorr) || (anno == annoCorr && mese == meseCorr && giorno < giornoCorr)) {
+            //La data di inizio mostra precede la data odierna
+            dataCorrente = false;
+        } else {
+            //la data di inizio mostra e' successiva alla data odierna
+            dataCorrente = true;
+        }
+    }
+    
+    return dataCorrente;
+}
+
 void notificaAnnulla() {
     consoleColor(COLOR_RED);
     printf("\t\t\t|-----------------------------|\n");
@@ -273,7 +312,7 @@ void notificaAnnulla() {
 }
 
 void pausa() {
-    printf("Premi INVIO per continuare\n");  
+    printf("Premi INVIO per continuare\n");
     getchar();
 }
 
@@ -350,7 +389,7 @@ char *md5(char *initial_msg) {
         uint32_t d = h3;
  
         uint32_t i;
-        for(i = 0; i<64; i++) {  
+        for(i = 0; i<64; i++) {
  
             uint32_t f, g;
  
@@ -362,7 +401,7 @@ char *md5(char *initial_msg) {
                 g = (5*i + 1) % 16;
             } else if (i < 48) {
                 f = b ^ c ^ d;
-                g = (3*i + 5) % 16;          
+                g = (3*i + 5) % 16;
             } else {
                 f = c ^ (b | (~d));
                 g = (7*i) % 16;

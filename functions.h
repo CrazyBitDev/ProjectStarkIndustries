@@ -18,6 +18,8 @@ int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, in
 
 int differenzaDateOggi(char *data);
 
+bool verificaDataCorrente(int giorno, int mese, int anno);
+
 void notificaAnnulla(void);
 
 void pausa(void);
