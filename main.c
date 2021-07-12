@@ -19,6 +19,12 @@
 #include "prenotazione.h"
 
 int main() {
+    char test[] = "ciaoAAA111";
+    toUppercase(test);
+    printf("%s",test);
+}
+
+void nonono() {
 
     titolo();
 

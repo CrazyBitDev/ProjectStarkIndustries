@@ -255,6 +255,15 @@ void pausa() {
     getchar();
 }
 
+void toUppercase(char *stringa) {
+    // Convert to upper case
+    char *s = stringa;
+    while (*s) {
+        *s = toupper((unsigned char) *s);
+        s++;
+    }
+}
+
 /*
 uint32_t leftrotate(uint32_t x, uint32_t c) {
     return (((x) << (c)) | ((x) >> (32 - (c))));
