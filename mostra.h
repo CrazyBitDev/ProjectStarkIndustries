@@ -8,6 +8,8 @@ void modificaMostra(Mostra *testa, Mostra *mostra);
 
 void eliminaMostra(Mostra *testa, Mostra *mostra);
 
+void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera);
+
 void scriviMostre(Mostra *testa);
 
 void stampaMostre(Mostra *testa);

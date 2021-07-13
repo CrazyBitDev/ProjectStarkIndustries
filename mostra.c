@@ -96,7 +96,13 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
             
             while (tok) {
                 if (colonna1 == 0) {
-                    tempMostraOpera = ricercaMostra(testaMostra, atoi(tok))->opere;
+                    Mostra *tempMostra = ricercaMostra(testaMostra, atoi(tok));
+                    if (tempMostra->opere == NULL) {
+                        tempMostra->opere = (MostraOpera *) malloc(sizeof(MostraOpera));
+                        tempMostra->opere->nextOpera = NULL;
+                        tempMostra->opere->opera = NULL;
+                    }
+                    tempMostraOpera = tempMostra->opere;
                 }
                 if (colonna1 == 1) {
                     if (strstr(tok, "\n") != NULL) {
@@ -105,10 +111,15 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
                     tempOpera = ricercaOpera(testaOpera, atoi(tok));
                     operaNonInserita = true;
                     do {
-                        if (tempMostraOpera == NULL) {
+                        if (tempMostraOpera->opera == NULL) {
                             tempMostraOpera->opera = tempOpera;
                             operaNonInserita = false;
                         } else {
+                            if (tempMostraOpera->nextOpera == NULL) {
+                                tempMostraOpera->nextOpera = (MostraOpera *) malloc(sizeof(MostraOpera));
+                                tempMostraOpera->nextOpera->nextOpera = NULL;
+                                tempMostraOpera->nextOpera->opera = NULL;
+                            }
                             tempMostraOpera = tempMostraOpera->nextOpera;
                         }
                     } while (operaNonInserita);
@@ -117,10 +128,9 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
                 colonna1++;
             }
             colonna1 = 0;
-            tempMostra1 = tempMostra;
         }
     }
-    
+
     return testaMostra;
 }
 
@@ -857,7 +867,7 @@ void stampaMostra(Mostra *mostra, bool stampaOpere) {
             MostraOpera *temp = mostra->opere;
             printf("Opere nella mostra:\n");
             for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
-                printf("\tID %d - %s di %s", temp->opera->id, temp->opera->nome, temp->opera->autore);
+                printf("\tID %d - %s di %s\n", temp->opera->id, temp->opera->nome, temp->opera->autore);
             }
         }
     }
@@ -952,6 +962,47 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
                 testa = curr->nextMostra;
             } else { //elemento al centro della lista
                 prec->nextMostra = curr->nextMostra;
+            }
+            free(curr);
+        }
+        
+        scriviMostre(testa);
+        printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
+    }
+}
+
+void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
+    char risposta;
+    do {
+        while ('\n' != getchar());
+        printColor("ATTENZIONE!\n", COLOR_RED);
+        printf("Sei sicuro/a di voler eliminare la mostra?\n");
+        printf("Risposta (s/n): ");
+        scanf("%c", &risposta);
+        printf("\n");
+        
+        //rendo la risposta tutta maiuscola per evitare errori
+        risposta = toupper(risposta);
+        
+    } while (risposta != 'S' && risposta != 'N');
+    
+    clearConsole();
+    titolo();
+    
+    if (risposta == 'S') {
+
+        MostraOpera *curr = mostra->opere, *prec = NULL;
+
+        while (curr != NULL && curr->opera->id != idOpera) {
+            prec = curr;
+            curr = curr->nextOpera;
+        }
+        
+        if (idOpera == curr->opera->id) {
+            if (prec == NULL) { //elemento trovato in testa
+                mostra->opere = curr->nextOpera;
+            } else { //elemento al centro della lista
+                prec->nextOpera = curr->nextOpera;
             }
             free(curr);
         }
