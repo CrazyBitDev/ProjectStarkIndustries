@@ -32,7 +32,7 @@ int main() {
     Utente       *testaUtente        = NULL;
     Mostra       *testaMostra        = NULL;
     Opera        *testaOpera         = NULL;
-    Prenotazione *testaPrenotazioni  = NULL;
+    Prenotazione *testaPrenotazione  = NULL;
 
     Utente       *utenteLogin        = NULL; //utente che avrà eseguito il login
     Mostra       *mostraScelta       = NULL;
@@ -58,7 +58,7 @@ int main() {
     testaUtente       = letturaUtenti(fpU);
     testaMostra       = letturaMostre(fpM);
     testaOpera        = letturaOpere(fpO);
-    testaPrenotazioni = letturaPrenotazioni(fpP, testaUtente, testaMostra);
+    testaPrenotazione = letturaPrenotazioni(fpP, testaUtente, testaMostra);
     
     do {
         
@@ -120,6 +120,7 @@ int main() {
                                 //printf("4: Prenotati ad una mostra\n");
                                 //printf("5: Gestione prenotazione\n");
                             }
+                            printf("5: Gestione prenotazione\n");
 
                             printf("9: Logout\n");
                             printf("0: Chiudi Applicazione\n");
@@ -219,10 +220,10 @@ int main() {
                                                 mostraScelta = browserMostra(fpM, testaMostra, true);
                                                 
                                                 if(mostraScelta != NULL) {
-                                                    eliminaOpera(testaMostra, mostraScelta);
+                                                    eliminaMostra(testaMostra, mostraScelta);
                                                 }
                                                 break;
-                                                
+
                                             default:
                                                 break;
                                         }
@@ -292,17 +293,65 @@ int main() {
                                     break;
                                     
                                 case 5:
+
                                     clearConsole();
                                     titolo();
 
                                     while ('\n' != getchar());
+                                        
+                                        printColor("Gestione prenotazioni\n", COLOR_CYAN);
+                                        printf("1: Le tue prenotazioni\n");
+                                        printf("2: Nuova prenotazione\n");
+                                        printf("3: Modifica prenotazione\n");
+                                        printf("4: Elimina prenotazione\n");
+                                        if (utenteLogin->permessi == 2) {
+                                            printf("5: Visualizza le prenotazioni\n");
+                                        }
+                                        printf("0: Torna indietro\n");
+                                        printf("----------\n");
+                                        printf("-> ");
+                                        scanf("%c", &sceltaGestO);
+                                        
+                                        sceltaGestO = (int)sceltaGestO - 48;
+                                        
+                                        clearConsole();
+                                        titolo();
+                                        
+                                        switch (sceltaGestO) {
+                                            case 1:
+                                                stampaPrenotazioniUtente(testaPrenotazione, utenteLogin);
+                                                pausa();
+                                                break;
 
-                                    if (utenteLogin->permessi == 2) {
-                                        //modifica permessi
-                                    } else {
-                                        //gestione prenotazione (modifica e elimina)
-                                    }
-                                
+                                            case 2:
+                                                mostraScelta = browserMostra(fpM, testaMostra, true);
+                                                if (mostraScelta != NULL) {
+                                                    registrazionePrenotazione(testaPrenotazione, utenteLogin, mostraScelta);
+                                                }
+                                                break;
+                                            
+                                            case 3:
+                                                /*operaScelta = browserOpere(fpO, testaOpera, true);
+                                                
+                                                if(operaScelta != NULL) {
+                                                    modificaOpera(testaOpera, operaScelta);
+                                                }*/
+                                                break;
+                                                
+                                            case 4:
+                                                /*operaScelta = browserOpere(fpO, testaOpera, true);
+                                                printf("test\n");
+                                                if(operaScelta != NULL) {
+                                                    eliminaOpera(testaOpera, operaScelta);
+                                                }*/
+                                                break;
+                                                
+                                            default:
+                                                break;
+                                        }
+                                        
+                                    break;
+                                    
                                 case 9:
                                     clearConsole();
                                     titolo();

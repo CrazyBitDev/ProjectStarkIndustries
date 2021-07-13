@@ -304,6 +304,31 @@ bool verificaDataCorrente(int giorno, int mese, int anno) {
     return dataCorrente;
 }
 
+bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorno2) {
+    bool inIntervallo = false;
+    int giorno1conv[3], giorno2conv[3];
+
+    char *tok = strtok(giorno1, "/");
+
+    for (int i = 0; i < 3; i++ ) {
+        giorno1conv[i] = atoi(tok);
+        tok = strtok(NULL, "/");
+    }
+
+    tok = strtok(giorno2, "/");
+
+    for (int i = 0; i < 3; i++ ) {
+        giorno2conv[i] = atoi(tok);
+        tok = strtok(NULL, "/");
+    }
+    if (verificaData(giorno, mese, anno) && verificaData(giorno1conv[0], giorno1conv[1], giorno1conv[2]) && verificaData(giorno2conv[0], giorno2conv[1], giorno2conv[2])) {
+        if (differenzaDate(giorno, mese, anno, giorno1conv[0], giorno1conv[1], giorno1conv[2]) <= 0 && differenzaDate(giorno, mese, anno, giorno2conv[0], giorno2conv[1], giorno2conv[2]) >= 0) {
+            inIntervallo = true;
+        }
+    }
+    return inIntervallo;
+}
+
 void notificaAnnulla() {
     consoleColor(COLOR_RED);
     printf("\t\t\t|-----------------------------|\n");
