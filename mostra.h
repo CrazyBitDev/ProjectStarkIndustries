@@ -1,4 +1,4 @@
-Mostra *letturaMostre(FILE *fp);
+Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera);
 
 void aggiungiMostra(Mostra *testa);
 

@@ -7,7 +7,7 @@
  *
  *   returns: //
  */
-Mostra *letturaMostre(FILE *fp) {
+Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
     
     //Lettura mostre dal file
     int colonna1 = 0;
@@ -16,6 +16,10 @@ Mostra *letturaMostre(FILE *fp) {
     Mostra *testaMostra = NULL;
     Mostra *tempMostra  = NULL; //temporanea
     Mostra *tempMostra1 = NULL;
+
+    MostraOpera *tempMostraOpera = NULL;
+    Opera *tempOpera    = NULL;
+    bool operaNonInserita = false;
     
     if (fp == NULL) {
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
@@ -28,6 +32,7 @@ Mostra *letturaMostre(FILE *fp) {
             fgets(buf, BUFFER_SIZE, fp);
             tempMostra = (Mostra *) malloc(sizeof(Mostra));
             tempMostra->nextMostra = NULL;
+            tempMostra->opere = NULL;
             
             if (tempMostra1 != NULL) {
                 tempMostra1->nextMostra = tempMostra;
@@ -70,6 +75,45 @@ Mostra *letturaMostre(FILE *fp) {
                     tempMostra->dataFine[strlen(tempMostra->dataFine)] = 0;
                 }
                 tok2 = strtok(NULL, ",");
+                colonna1++;
+            }
+            colonna1 = 0;
+            tempMostra1 = tempMostra;
+        }
+    }
+    
+    if (fpMO == NULL) {
+        printColor("\t\t\t|-------------------------------|\n", COLOR_RED);
+        printColor("\t\t\t|File \"mostreopere\" non trovato!|\n", COLOR_RED);
+        printColor("\t\t\t|              ...              |\n", COLOR_RED);
+        printColor("\t\t\t|       File in creazione       |\n", COLOR_RED);
+        printColor("\t\t\t|-------------------------------|\n", COLOR_RED);
+    } else {
+        while (!feof(fpMO)) {
+            fgets(buf, BUFFER_SIZE, fpMO);
+
+            char *tok = strtok(buf, ",");
+            
+            while (tok) {
+                if (colonna1 == 0) {
+                    tempMostraOpera = ricercaMostra(testaMostra, atoi(tok))->opere;
+                }
+                if (colonna1 == 1) {
+                    if (strstr(tok, "\n") != NULL) {
+                        tok[strlen(tok) - 1] = 0;
+                    }
+                    tempOpera = ricercaOpera(testaOpera, atoi(tok));
+                    operaNonInserita = true;
+                    do {
+                        if (tempMostraOpera == NULL) {
+                            tempMostraOpera->opera = tempOpera;
+                            operaNonInserita = false;
+                        } else {
+                            tempMostraOpera = tempMostraOpera->nextOpera;
+                        }
+                    } while (operaNonInserita);
+                }
+                tok = strtok(NULL, ",");
                 colonna1++;
             }
             colonna1 = 0;
@@ -783,11 +827,11 @@ void stampaMostra(Mostra *mostra) {
  *   returns: //
  */
 void scriviMostre(Mostra *testa) {
-    Mostra *temp = NULL;
-    FILE *fp;
+    FILE *fp, *fpMO;
     fp = fopen("mostre.csv", "w"); //apertura file
+    fpMO = fopen("mostreopere.csv", "w"); //apertura file
     
-    for (temp = testa; temp != NULL; temp = temp->nextMostra) {
+    for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
         long size = ftell(fp);
         
         if (size == 0) {
@@ -799,8 +843,21 @@ void scriviMostre(Mostra *testa) {
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s", temp->id, temp->responsabile, temp->luogo, temp->citta,
                     temp->indirizzo, temp->dataInizio, temp->dataFine);
         }
+
+        for (MostraOpera *tempMO = temp->opere; temp != NULL; tempMO = tempMO->nextOpera) {
+            long size = ftell(fp);
+        
+            if (size == 0) {
+                //file vuoto.
+                fprintf(fp, "%d,%d", temp->id, tempMO->opera->id);
+            } else {
+                //file pieno
+                fprintf(fp, "\n%d,%d", temp->id, tempMO->opera->id);
+            }
+        }
     }
     fclose(fp);
+    fclose(fpMO);
 }
 
 /*

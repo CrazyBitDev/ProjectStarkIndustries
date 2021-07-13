@@ -25,6 +25,13 @@ struct opera {
     Opera *nextOpera; //puntatore al prossimo nodo
 };
 
+//Definizione struct opera
+typedef struct mostraOpera MostraOpera;
+struct mostraOpera {
+    Opera *opera;
+    MostraOpera *nextOpera; //puntatore al prossimo nodo
+};
+
 //Definizione struct mostre
 typedef struct mostra Mostra;
 struct mostra {
@@ -35,6 +42,7 @@ struct mostra {
     char indirizzo[30];
     char dataInizio[11];
     char dataFine[11];
+    MostraOpera *opere;
     Mostra *nextMostra; //puntatore al prossimo nodo
 };
 

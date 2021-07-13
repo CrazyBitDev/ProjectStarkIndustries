@@ -14,8 +14,8 @@
 
 #include "functions.h"
 #include "utente.h"
-#include "mostra.h"
 #include "opera.h"
+#include "mostra.h"
 #include "prenotazione.h"
 
 int main() {
@@ -46,22 +46,26 @@ int main() {
     //Lettura utenti dal file
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
-
-    //Lettura mostre dal file
-    FILE *fpM;
-    fpM = fopen("mostre.csv", "r");
     
     //Lettura opere dal file
     FILE *fpO;
     fpO = fopen("opere.csv", "r");
 
+    //Lettura mostre dal file
+    FILE *fpM;
+    fpM = fopen("mostre.csv", "r");
+
+    //Lettura mostre dal file
+    FILE *fpMO;
+    fpMO = fopen("mostreopere.csv", "r");
+    
     //Lettura prenotazioni dal file
     FILE *fpP;
     fpP = fopen("prenotazioni.csv", "r");
  
     testaUtente       = letturaUtenti(fpU);
-    testaMostra       = letturaMostre(fpM);
     testaOpera        = letturaOpere(fpO);
+    testaMostra       = letturaMostre(fpM, fpMO, testaOpera);
     testaPrenotazione = letturaPrenotazioni(fpP, testaUtente, testaMostra);
     
     do {
