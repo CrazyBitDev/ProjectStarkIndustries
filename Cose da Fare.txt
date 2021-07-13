@@ -1,7 +1,5 @@
 Elenco cose da fare/problemi:
 
-- controlli sulle date delle mostre -> devono essere successive alla data odierna. (Sta sviluppando Teo)
-
 - controllare ed aggiustare tutti i messaggi 
 
 - controlli vari sugli input. Controllare opere e prenotazioni (?)
@@ -13,14 +11,11 @@ Elenco cose da fare/problemi:
 - usare funzione difftime per confrontare due date (nelle mostre)
  --https://www.tutorialspoint.com/c_standard_library/time_h.htm
 
-- l'amministratore può modificare i permessi degli altri utenti 
 
 
 Promemoria per DAN: 
 - rimuovere i void dalle funzioni prima di consegnare 
-- file opere.c rigo 256, main.c rigo 34 rimettere come stava
 - fare il coso dei commenti per le funzioni
-- continuare controlli input mostre
 
 
 

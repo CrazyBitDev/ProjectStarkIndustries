@@ -1,3 +1,12 @@
+/*
+ * Function: letturaUtenti
+ * ----------------------------
+ *   Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente
+ *
+ *   FILE fp: nome del file da cui leggere i dati, ovvero "utenti.csv"
+ *
+ *   returns: //
+ */
 Utente *letturaUtenti(FILE *fp) {
     
     int colonna = 0;
@@ -71,6 +80,15 @@ Utente *letturaUtenti(FILE *fp) {
     return testaUtente;
 }
 
+/*
+ * Function: registrazioneUtente
+ * ----------------------------
+ *   Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente
+ *
+ *   Utente *testa: lista utente
+ *
+ *   returns: //
+ */
 void registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
     Utente *temp;
@@ -248,7 +266,7 @@ void registrazioneUtente(Utente *testa) {
         
         //controllo su correttezza password
         do {
-
+            
             readPassword("Password (minimo 6 caratteri): ", psw, true);
             
             readPassword("Conferma password: ", psw2, true);
@@ -264,7 +282,7 @@ void registrazioneUtente(Utente *testa) {
         } while (strcmp(psw, psw2) != 0);
         
         strcpy(nuovoNodo->password, psw);
-             
+        
         printf("-----------------------------\n");
         
         
@@ -362,15 +380,13 @@ void registrazioneUtente(Utente *testa) {
             
             nuovoNodo->id = 0;
             nuovoNodo->permessi = 2;
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick,
-                    nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
             
         } else { //file pieno
             
             nuovoNodo->id = ultimoID;
             nuovoNodo->permessi = 1;
-            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick,
-                    nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
         }
         
         fclose(fp);
@@ -386,6 +402,19 @@ void registrazioneUtente(Utente *testa) {
     }
 }
 
+/*
+ * Function: accesso
+ * ----------------------------
+ *   Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato
+ *
+ *   Utente *testa: lista utente
+ *   char *text: testo inserito dall'utente per fare l'accesso (email o nickname)
+ *
+ *   returns: returns: se esiste utente con email o nickname uguale al valore del secondo argomento
+ *            (char *text) e la password inserita corrisponde la funzione lo ritornerà,
+ *            altrimenti il valore sarà uguale a NULL
+ *
+ */
 Utente *accesso(Utente *testa, char *text) {
     bool utenteTrovato = false;
     Utente *utente = NULL;
@@ -394,7 +423,7 @@ Utente *accesso(Utente *testa, char *text) {
     readPassword("Password: ", pass, false);
     
     for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
-
+        
         if ((strcmp(temp->email, text) == 0 || strcmp(temp->nick, text) == 0) && strcmp(temp->password, pass) == 0) {
             
             utente = temp;
@@ -415,28 +444,51 @@ Utente *accesso(Utente *testa, char *text) {
 }
 
 
+/*
+ * Function: ricercaUtente
+ * ----------------------------
+ *   TODO: da finire
+ *
+ *   Utente *testa: lista utente
+ *   int id: TODO: da finire
+ *
+ *   returns: TODO: da finire
+ */
 Utente *ricercaUtente(Utente *testa, int id) {
     bool flag = false;
     Utente *nuovoNodo = NULL;
-
+    
     for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
-
+        
         if (temp->id == id) {
-
+            
             nuovoNodo = temp;
             flag = true;
             break;
-
+            
         }
     }
-
+    
     if (!flag) {
-        printColor("---Utente non trovata!---\n", COLOR_RED);
+        printf("\n----------\n");
+        printColor("Attenzione!\n", COLOR_RED);
+        printf("Utente non trovata!\n");
+        printf("----------\n\n");
     }
-
+    
     return nuovoNodo;
 }
 
+/*
+ * Function: stampaUtente
+ * ----------------------------
+ *   Permette di stampare i dati personali di un determinato utente dopo
+ *   che ha effettuato l'accesso al proprio profilo
+ *
+ *   Utente *utenteLogin: utente che ha effettuato il login
+ *
+ *   returns: //
+ */
 void stampaUtente(Utente *utenteLogin) {
     Utente *temp = NULL;
     temp = utenteLogin;
@@ -459,6 +511,16 @@ void stampaUtente(Utente *utenteLogin) {
     
 }
 
+/*
+ * Function: modificaUtente
+ * ----------------------------
+ *   Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo
+ *
+ *   Utente *utenteLogin: utente che ha effettuato il login
+ *   Utente *testa: lista utente
+ *
+ *   returns: //
+ */
 void modificaUtente(Utente *utenteLogin, Utente *testa) {
     int scelta;
     char risposta = '\0';
@@ -605,7 +667,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                         continuaModifica = false;
                         break;
                     }
-                        
+                    
                     readPassword("Conferma password: ", psw2, true);
                     
                     if (strcmp(psw, psw2) != 0) {
@@ -709,6 +771,16 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
     } while (risposta == 'S' && scelta != 0);
 }
 
+/*
+ * Function: eliminaUtente
+ * ----------------------------
+ *   Dopo aver effettuato l'accesso al proprio profilo, permette di eliminarlo
+ *
+ *   Utente *utenteLogin: utente che ha effettuato il login
+ *   Utente *testa: lista utente
+ *
+ *   returns: //
+ */
 void eliminaUtente(Utente *utenteLogin, Utente *testa) {
     char risposta;
     Utente *curr, *prec;
@@ -760,6 +832,15 @@ void eliminaUtente(Utente *utenteLogin, Utente *testa) {
     }
 }
 
+/*
+ * Function: scriviUtenti
+ * ----------------------------
+ *   Permette di salvare tutte le modifiche effettuate sul file "utenti.csv"
+ *
+ *   Utente *testa: lista utente
+ *
+ *   returns: //
+ */
 void scriviUtenti(Utente *testa) {
     Utente *temp = NULL;
     
@@ -770,13 +851,121 @@ void scriviUtenti(Utente *testa) {
         long size = ftell(fp);
         
         if (size == 0) { //file vuoto.
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email,
-                    temp->dataNascita, temp->password, temp->permessi);
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->dataNascita, temp->password, temp->permessi);
         } else { //file pieno
-            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email,
-                    temp->dataNascita, temp->password, temp->permessi);
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->cognome, temp->nick, temp->email, temp->dataNascita, temp->password, temp->permessi);
         }
     }
     
     fclose(fp);
+}
+
+/*
+ * Function: modificaPermessi
+ * ----------------------------
+ *   Permette all'utente che possiede i permessi di livello 2 (direttore) di modificare
+ *   il livello dei permessi degli altri utenti
+ *
+ *   Utente *testa: lista utente
+ *
+ *   returns: //
+ */
+void modificaPermessi(Utente *testa) {
+    Utente *temp = NULL;
+    char idScelto, sceltaPerm;
+    char risposta = '\0';
+    bool modifica = true;
+    bool trovato = false;
+    
+    do {
+        do {
+            printColor("Elenco utenti.\n", COLOR_CYAN);
+            for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+                printf("Id: %d\n", temp->id);
+                printf("Nominativo: %s %s\n", temp->nome, temp->cognome);
+                if(temp->permessi == 1) {
+                    printf("Permessi: Utente base\n");
+                } else {
+                    printf("Permessi: Direttore\n");
+                }
+                printf("----------\n");
+                
+            }
+            
+            notificaAnnulla();
+            printf("Scegli l'id dell'utente al quale vuoi cambiare i permessi: \n");
+            printf("-> ");
+            scanf(" %c", &idScelto);
+            idScelto = (int)idScelto - 48;
+            
+            clearConsole();
+            titolo();
+            
+            printf("Che livello di permessi vuoi assegnargli? \n");
+            printf("1: Utente base\n");
+            printf("2: Direttore\n");
+            printf("0: Torna indietro\n");
+            printf("-> ");
+            scanf(" %c", &sceltaPerm);
+            while ('\n' != getchar());
+            sceltaPerm = (int)sceltaPerm - 48;
+            
+            switch (sceltaPerm) {
+                case 0:
+                    modifica = false;
+                    trovato = true;
+                    break;
+                    
+                case 1:
+                    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+                        if(temp->id == idScelto) {
+                            trovato = true;
+                            temp->permessi = 1;
+                        }
+                    }
+                    break;
+                    
+                case 2:
+                    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+                        if(temp->id == idScelto) {
+                            trovato = true;
+                            temp->permessi = 2;
+                        }
+                    }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            if(!trovato) {
+                clearConsole();
+                titolo();
+                printf("\n----------\n");
+                printColor("Attenzione!\n", COLOR_RED);
+                printf("Nessun utente trovato con questo id.\n");
+                printf("Scegliere un nuovo utente.\n");
+                printf("----------\n\n");
+                pausa();
+            }
+            clearConsole();
+            titolo();
+        }while(!trovato && modifica);
+        
+        if(modifica) {
+            do {
+                printf("----------\n");
+                printf("Vuoi modificare altri permessi? (s/n): ");
+                risposta = getchar();
+                
+                //rendo la risposta in maiuscolo per evitare errori
+                risposta = toupper(risposta);
+                
+                if (risposta == 'N') {
+                    scriviUtenti(testa);
+                }
+                printf("test %c\n", risposta);
+            } while (risposta != 'S' && risposta != 'N');
+        }
+    }while (risposta == 'S' && modifica);
 }

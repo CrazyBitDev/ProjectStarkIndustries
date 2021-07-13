@@ -14,4 +14,6 @@ void modificaUtente(Utente *utenteLogin, Utente *testa);
 
 void eliminaUtente(Utente *utenteLogin, Utente *testa);
 
+void modificaPermessi(Utente *testa);
+
 #include "utente.c"
