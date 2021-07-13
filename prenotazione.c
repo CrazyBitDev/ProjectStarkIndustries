@@ -387,8 +387,6 @@ void scriviPrenotazioni(Prenotazione *testa) {
 
     for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
         long size = ftell(fp);
-
-        printf("- %s\n", temp->data);
         
         if (size == 0) { //file vuoto
             fprintf(fp, "%d,%s,%s,%d,%d", temp->id, temp->data, temp->ora, temp->utente->id, temp->mostra->id);
@@ -469,5 +467,59 @@ bool prenotazioneModificabile(Prenotazione *prenotazione) {
 }
 
 void eliminaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
-
+    char risposta;
+    Prenotazione *curr, *prec;
+    Prenotazione *temp;
+    
+    temp = prenotazione;
+    prec = NULL;
+    curr = testa;
+    
+    clearConsole();
+    titolo();
+    
+    if(prenotazioneModificabile(prenotazione)) {
+        do {
+            
+            //while ('\n' != getchar());
+            printColor("ATTENZIONE!\n", COLOR_RED);
+            printf("Sei sicuro/a di voler eliminare la prenotazione?\n");
+            printf("Risposta (s/n): ");
+            scanf("%c", &risposta);
+            printf("\n");
+            
+            //rendo la risposta tutta maiuscola per evitare errori
+            risposta = toupper(risposta);
+        } while (risposta != 'S' && risposta != 'N');
+        
+        clearConsole();
+        titolo();
+        
+        if (risposta == 'S') {
+            while (curr != NULL && temp->id != curr->id) {
+                prec = curr;
+                curr = curr->nextPrenotazione;
+            }
+            
+            if (temp->id == curr->id) {
+                if (prec == NULL) {
+                    //elemento trovato in testa
+                    testa = curr->nextPrenotazione;
+                } else {
+                    //elemento al centro della lista
+                    prec->nextPrenotazione = curr->nextPrenotazione;
+                }
+                free(curr);
+            }
+            scriviPrenotazioni(testa);
+            printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
+            
+        }
+    } else {
+        
+        printf("\n----------\n");
+        printColor("Attenzione!\n", COLOR_RED);
+        printf("I termini per la cancellazione della prenotazione sono scaduti.\n");
+        printf("----------\n\n");
+    }
 }

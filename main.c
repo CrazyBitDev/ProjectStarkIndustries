@@ -354,6 +354,7 @@ int main() {
                                             break;
                                             
                                         case 4:
+                                            while ('\n' != getchar());
                                             stampaPrenotazioniUtente(testaPrenotazione, utenteLogin);
                                             printf("Digitare l'ID della prenotazione da eliminare: ");
                                             fgets(input, 30, stdin);
