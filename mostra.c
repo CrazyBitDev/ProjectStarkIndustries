@@ -412,6 +412,42 @@ void aggiungiMostra(Mostra *testa) {
 }
 
 /*
+ * Function: aggiungiOperaAMostra
+ * ----------------------------
+ *   Permette di aggiungere una opera ad una determinata mostra, controllando che nel periodo della mostra l'opera non è già occupata
+ *
+ *   Mostra *testa: lista mostra
+ *   Mostra *mostra: mostra scelta per essere modificata
+ *   Opera *opera: opera scelta per essere aggiunta
+ *
+ *   returns: //
+ */
+void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
+    bool operaLibera = true;
+    for (Mostra *tempMostra = testa; tempMostra != NULL; tempMostra = tempMostra->nextMostra) {
+        if ( differenzaDateChar(mostra->dataInizio, tempMostra->dataFine) >= 0 && differenzaDateChar(mostra->dataFine, tempMostra->dataInizio) <= 0)
+        for (MostraOpera *tempMostraOpera = tempMostra->opere; tempMostraOpera != NULL; tempMostraOpera = tempMostraOpera->nextOpera) {
+            if (opera->id == tempMostraOpera->opera->id) {
+                operaLibera = false;
+            }
+        }
+    }
+    if (operaLibera) {
+        bool operaNonInserita = true;
+        MostraOpera *tempMostraOpera = mostra->opere;
+        do {
+            if (tempMostraOpera == NULL) {
+                tempMostraOpera->opera = opera;
+                operaNonInserita = false;
+            } else {
+                tempMostraOpera = tempMostraOpera->nextOpera;
+            }
+        } while (operaNonInserita);
+        scriviMostre(testa);
+    }
+}
+
+/*
  * Function: modificaMostra
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi

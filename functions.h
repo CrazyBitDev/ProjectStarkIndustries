@@ -18,6 +18,8 @@ void titolo(void);
 
 int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2);
 
+int differenzaDateChar(char *data1, char *data2);
+
 int differenzaDateOggi(int giorno, int mese, int anno);
 
 int differenzaDateOggiChar(char *dataTarget);

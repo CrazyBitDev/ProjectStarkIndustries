@@ -2,6 +2,8 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera);
 
 void aggiungiMostra(Mostra *testa);
 
+void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera);
+
 void modificaMostra(Mostra *testa, Mostra *mostra);
 
 void eliminaMostra(Mostra *testa, Mostra *mostra);
