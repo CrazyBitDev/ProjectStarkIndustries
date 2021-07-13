@@ -1,3 +1,12 @@
+/*
+ * Function: letturaMostre
+ * ----------------------------
+ *   Permette di leggere i dati dal file "mostre.csv" e salvarli all'interno della struct Mostra
+ *
+ *   FILE fp: nome del file da cui leggere i dati, ovvero "mostre.csv"
+ *
+ *   returns: //
+ */
 Mostra *letturaMostre(FILE *fp) {
     
     //Lettura mostre dal file
@@ -63,7 +72,6 @@ Mostra *letturaMostre(FILE *fp) {
                 tok2 = strtok(NULL, ",");
                 colonna1++;
             }
-            
             colonna1 = 0;
             tempMostra1 = tempMostra;
         }
@@ -72,6 +80,16 @@ Mostra *letturaMostre(FILE *fp) {
     return testaMostra;
 }
 
+/*
+ * Function: registrazioneUtente
+ * ----------------------------
+ *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) la registrazione di
+ *   una nuova mostra, con salvatggio dei dati sul file "mostre.csv" e nella struct Mostra
+ *
+ *   Mostra *testa: lista mostra
+ *
+ *   returns: //
+ */
 void aggiungiMostra(Mostra *testa) {
     
     Mostra *curr, *prec;
@@ -349,6 +367,17 @@ void aggiungiMostra(Mostra *testa) {
     titolo();
 }
 
+/*
+ * Function: modificaMostra
+ * ----------------------------
+ *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi
+ *   alla mostra scelta
+ *
+ *   Mostra *testa: lista mostra
+ *   Mostra *mostra: mostra scelta per essere modificata
+ *
+ *   returns: //
+ */
 void modificaMostra(Mostra *testa, Mostra *mostra) {
     int scelta, colonna = 0;
     char risposta = '\0';
@@ -709,15 +738,33 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
     } while (risposta == 'S' && scelta != 0);
 }
 
-//stampa a video
+
+
+/*
+ * Function: stampaMostre
+ * ----------------------------
+ *   Permette di stampare a video l'elenco delle mostre
+ *
+ *   Mostra *testa: lista mostra
+ *
+ *   returns: //
+ */
 void stampaMostre(Mostra *testa) {
-    
     for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
         stampaMostra(temp);
         printf("----------\n");
     }
 }
 
+/*
+ * Function: stampaMostra
+ * ----------------------------
+ *   Permette di stampare i dettagli di una mostra
+ *
+ *   Mostra *mostra: mostra scelta
+ *
+ *   returns: //
+ */
 void stampaMostra(Mostra *mostra) {
     printf("Mostra numero: %d \n", mostra->id);
     printf("Responsabile: %s \n", mostra->responsabile);
@@ -726,7 +773,15 @@ void stampaMostra(Mostra *mostra) {
     printf("Durata: dal %s al %s\n", mostra->dataInizio, mostra->dataFine);
 }
 
-//scrittura su file
+/*
+ * Function: scriviMostre
+ * ----------------------------
+ *   Permette di salvare tutte le modifiche effettuate sul file "mostre.csv"
+ *
+ *   Mostra *testa: lista mostra
+ *
+ *   returns: //
+ */
 void scriviMostre(Mostra *testa) {
     Mostra *temp = NULL;
     FILE *fp;
@@ -748,6 +803,16 @@ void scriviMostre(Mostra *testa) {
     fclose(fp);
 }
 
+/*
+ * Function: eliminaMostra
+ * ----------------------------
+ *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare la mostra scelta
+ *
+ *   Mostra *testa: lista mostra
+ *   Mostra *mostra: mostra da eliminare
+ *
+ *   returns: //
+ */
 void eliminaMostra(Mostra *testa, Mostra *mostra) {
     char risposta;
     Mostra *curr, *prec;
@@ -793,7 +858,16 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
     }
 }
 
-
+/*
+ * Function: ricercaMostra
+ * ----------------------------
+ *   TODO: da finire
+ *
+ *   Mostra *testa: lista mostra
+ *   int id: TODO: da finire
+ *
+ *   returns: TODO: da finire
+ */
 Mostra *ricercaMostra(Mostra *testa, int id) {
     bool flag = false;
     Mostra *nuovoNodo = NULL;
@@ -840,7 +914,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
     char input[30], tempName[30];
 
     fseek(fp, 0, SEEK_END);
-    int size = ftell(fp);
+    long size = ftell(fp);
 
     if (size == 0) { //non ci sono opere registrate
         printColor("Attenzione!\n", COLOR_RED);

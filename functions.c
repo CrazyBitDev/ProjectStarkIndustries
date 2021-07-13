@@ -109,14 +109,35 @@ void readPassword(char prompt[], char *password, bool checkLunghezza) {
     } while (checkLunghezza && strlen(password) < 6 && strlen(password) != 0);
 }
 
+/*
+ * Function: clearConsole
+ * ----------------------------
+ *   Permette di pulire la console
+ *
+ *   Params: //
+ *
+ *   returns: //
+ */
 void clearConsole() {
     #ifdef _WIN32
-        //system("cls");
+        system("cls");
     #else
-       // system("clear");
+        system("clear");
     #endif
 }
 
+/*
+ * Function: verificaData
+ * ----------------------------
+ *   Controlla che la data inserita sia corretta
+ *
+ *   int giorno: giorno inserito
+ *   int mese: mese inserito
+ *   int anno: anno inserito
+ *
+ *   returns: dataCorretta == true se tutti e tre i campi rispettano i criteri
+ *            dataCorretta == false se la data inserita non e' corretta
+ */
 bool verificaData(int giorno, int mese, int anno) {
     bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per verificare la correttezza della data di nascita
@@ -155,6 +176,15 @@ bool verificaData(int giorno, int mese, int anno) {
     return dataCorretta;
 }
 
+/*
+ * Function: letturaUltimoID
+ * ----------------------------
+ *   Verifica qual'e' l'ultimo ID inserito
+ *
+ *   char *file: nome del file sul quale effettuare la verifica dell'ultimo ID
+ *
+ *   returns: ultimoID -> numero dell'ultimo ID presente nel file
+ */
 int letturaUltimoID(char *file) {
     FILE *fp = NULL;
 
@@ -188,7 +218,15 @@ int letturaUltimoID(char *file) {
     return ultimoID;
 }
 
-
+/*
+ * Function: contaRighe
+ * ----------------------------
+ *   Conta quante righe sono presenti nel file
+ *
+ *   char *file: nome del file sul quale si vogliono contare le righe presenti
+ *
+ *   returns: totRighe -> numero delle righe totali
+ */
 int contaRighe(char *file) {
     FILE *fp = NULL;
     fp = fopen(file, "r"); //apertura file
@@ -210,6 +248,15 @@ int contaRighe(char *file) {
     return totRighe;
 }
 
+/*
+ * Function: titolo
+ * ----------------------------
+ *   Stampa a video del titolo
+ *
+ *   Params: //
+ *
+ *   returns: //
+ */
 void titolo() {
     printf("\n");
     consoleColor(COLOR_CYAN);
@@ -265,6 +312,7 @@ int differenzaDateOggi(char *dataTarget) {
     return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);
 }
 
+
 bool verificaDataCorrente(int giorno, int mese, int anno) {
     bool dataCorrente;
     
@@ -304,6 +352,15 @@ bool verificaDataCorrente(int giorno, int mese, int anno) {
     return dataCorrente;
 }
 
+/*
+ * Function: notificaAnnulla
+ * ----------------------------
+ *   Stampa a video un avviso per l'utente
+ *
+ *   Params: //
+ *
+ *   returns: //
+ */
 void notificaAnnulla() {
     consoleColor(COLOR_RED);
     printf("\t\t\t|-----------------------------|\n");

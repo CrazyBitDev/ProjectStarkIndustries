@@ -1,3 +1,12 @@
+/*
+ * Function: letturaOpere
+ * ----------------------------
+ *   Permette di leggere i dati dal file "opere.csv" e salvarli all'interno della struct Opera
+ *
+ *   FILE fp: nome del file da cui leggere i dati, ovvero "opere.csv"
+ *
+ *   returns: //
+ */
 Opera *letturaOpere(FILE *fp) {
     int colonna = 0;
     char buf[BUFFER_SIZE];
@@ -64,6 +73,16 @@ Opera *letturaOpere(FILE *fp) {
     return testaOpera;
 }
 
+/*
+ * Function: aggiungiOpera
+ * ----------------------------
+ *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) la registrazione di
+ *   una nuova opera, con salvatggio dei dati sul file "opere.csv" e nella struct Opera
+ *
+ *   Opera *testa: lista opera
+ *
+ *   returns: //
+ */
 void aggiungiOpera(Opera *testa) {
 
     Opera *curr, *prec;
@@ -270,6 +289,17 @@ void aggiungiOpera(Opera *testa) {
     titolo();
 }
 
+/*
+ * Function: modificaOpera
+ * ----------------------------
+ *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi
+ *   all'opera scelta
+ *
+ *   Opera *testa: lista opera
+ *   Opera *opera: opera scelta per essere modificata
+ *
+ *   returns: //
+ */
 void modificaOpera(Opera *testa, Opera *opera) {
 
     bool continuaModifica = true;
@@ -464,7 +494,15 @@ void modificaOpera(Opera *testa, Opera *opera) {
     } while (risposta == 'S' && scelta != 0);
 }
 
-//stampa a video
+/*
+ * Function: stampaOpere
+ * ----------------------------
+ *   Permette di stampare a video l'elenco delle opere
+ *
+ *   Opera *testa: lista opera
+ *
+ *   returns: //
+ */
 void stampaOpere(Opera *testa) {
     for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
         stampaOpera(temp);
@@ -472,6 +510,15 @@ void stampaOpere(Opera *testa) {
     }
 }
 
+/*
+ * Function: stampaOpera
+ * ----------------------------
+ *   Permette di stampare i dettagli di un'opera
+ *
+ *   Opera *opera: opera scelta
+ *
+ *   returns: //
+ */
 void stampaOpera(Opera *opera) {
     printf("Id: %d\n", opera->id);
     printf("Nome Opera: %s\n", opera->nome);
@@ -482,7 +529,15 @@ void stampaOpera(Opera *opera) {
     printf("Anno: %d\n", opera->anno);
 }
 
-//scrittura su file
+/*
+ * Function: scriviOpere
+ * ----------------------------
+ *   Permette di salvare tutte le modifiche effettuate sul file "opere.csv"
+ *
+ *   Opera *testa: lista opera
+ *
+ *   returns: //
+ */
 void scriviOpere(Opera *testa) {
     Opera *temp = NULL;
     FILE *fp;
@@ -504,6 +559,16 @@ void scriviOpere(Opera *testa) {
     fclose(fp);
 }
 
+/*
+ * Function: eliminaOpera
+ * ----------------------------
+ *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare l'opera scelta
+ *
+ *   Opera *testa: lista opera
+ *   Opera *opera: opera da eliminare
+ *
+ *   returns: //
+ */
 void eliminaOpera(Opera *testa, Opera *opera) {
     char risposta;
     Opera *curr, *prec;
@@ -550,6 +615,16 @@ void eliminaOpera(Opera *testa, Opera *opera) {
     }
 }
 
+/*
+ * Function: ricercaOpera
+ * ----------------------------
+ *   TODO: da finire
+ *
+ *   Opera *testa: lista opera
+ *   int id: TODO: da finire
+ *
+ *   returns: TODO: da finire
+ */
 Opera *ricercaOpera(Opera *testa, int id) {
     bool flag = false;
     Opera *nuovoNodo = NULL;

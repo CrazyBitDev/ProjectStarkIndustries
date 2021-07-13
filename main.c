@@ -25,9 +25,12 @@ int main() {
     char scelta, scelta2;
     char sceltaGestP, sceltaGestM, sceltaGestO, sceltaGestPren;
     char email[60];
+    
+    /*TODO: forse non servono
     int nMostra, nOpera;
     long sizeM;
     long sizeO;
+     */
 
     Utente       *testaUtente        = NULL;
     Mostra       *testaMostra        = NULL;
@@ -37,7 +40,7 @@ int main() {
     Utente       *utenteLogin        = NULL; //utente che avrà eseguito il login
     Mostra       *mostraScelta       = NULL;
     Opera        *operaScelta        = NULL;
-    Prenotazione *prenotazioneScelta = NULL;
+   // Prenotazione *prenotazioneScelta = NULL; TODO: forse non serve
     
     //Lettura utenti dal file
     FILE *fpU;
@@ -112,7 +115,7 @@ int main() {
                                 //operazioni che può effettuare il dirigente
                                 printf("3: Gestione mostre\n");
                                 printf("4: Gestione opere\n");
-                                //printf("5: Modifica permessi\n");
+                                printf("5: Modifica permessi\n");
                             } else {
                                 //operazioni che può effettuare l'utente base
                                 printf("3: Visualizza mostre\n");
@@ -219,7 +222,7 @@ int main() {
                                                 mostraScelta = browserMostra(fpM, testaMostra, true);
                                                 
                                                 if(mostraScelta != NULL) {
-                                                    eliminaOpera(testaMostra, mostraScelta);
+                                                    eliminaMostra(testaMostra, mostraScelta);
                                                 }
                                                 break;
                                                 
@@ -298,7 +301,7 @@ int main() {
                                     while ('\n' != getchar());
 
                                     if (utenteLogin->permessi == 2) {
-                                        //modifica permessi
+                                        modificaPermessi(testaUtente);
                                     } else {
                                         //gestione prenotazione (modifica e elimina)
                                     }
