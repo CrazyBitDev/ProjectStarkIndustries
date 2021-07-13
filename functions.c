@@ -352,7 +352,6 @@ bool verificaDataCorrente(int giorno, int mese, int anno) {
     return dataCorrente;
 }
 
-<<<<<<< HEAD
 bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorno2) {
     bool inIntervallo = false;
     int giorno1conv[3], giorno2conv[3];
@@ -378,7 +377,6 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
     return inIntervallo;
 }
 
-=======
 /*
  * Function: notificaAnnulla
  * ----------------------------
@@ -388,7 +386,6 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
  *
  *   returns: //
  */
->>>>>>> 169ca151637eb75c1634aedaf7eca297214f93ca
 void notificaAnnulla() {
     consoleColor(COLOR_RED);
     printf("\t\t\t|-----------------------------|\n");
