@@ -831,7 +831,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
  */
 void stampaMostre(Mostra *testa) {
     for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
-        stampaMostra(temp);
+        stampaMostra(temp, false);
         printf("----------\n");
     }
 }
@@ -842,15 +842,25 @@ void stampaMostre(Mostra *testa) {
  *   Permette di stampare i dettagli di una mostra
  *
  *   Mostra *mostra: mostra scelta
+ *   bool stampaOpere: mostra opere assegnate alla mostra se true
  *
  *   returns: //
  */
-void stampaMostra(Mostra *mostra) {
+void stampaMostra(Mostra *mostra, bool stampaOpere) {
     printf("Mostra numero: %d \n", mostra->id);
     printf("Responsabile: %s \n", mostra->responsabile);
     printf("Luogo di esposizione: %s \n", mostra->luogo);
     printf("Luogo: %s - %s\n", mostra->citta, mostra->indirizzo);
     printf("Durata: dal %s al %s\n", mostra->dataInizio, mostra->dataFine);
+    if (stampaOpere) {
+        if (mostra->opere != NULL) {
+            MostraOpera *temp = mostra->opere;
+            printf("Opere nella mostra:\n");
+            for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
+                printf("\tID %d - %s di %s", temp->opera->id, temp->opera->nome, temp->opera->autore);
+            }
+        }
+    }
 }
 
 /*
@@ -1043,7 +1053,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                             toUppercase(tempName);
                             if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
-                                stampaMostra(temp);
+                                stampaMostra(temp, true);
                                 printf("---------------------\n");
                             }
                         }
@@ -1084,7 +1094,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                             toUppercase(tempName);
                             if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
-                                stampaMostra(temp);
+                                stampaMostra(temp, true);
                                 printf("---------------------\n");
                             }
                         }
@@ -1125,7 +1135,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                             toUppercase(tempName);
                             if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
-                                stampaMostra(temp);
+                                stampaMostra(temp, true);
                                 printf("---------------------\n");
                             }
                         }

@@ -12,7 +12,7 @@ void scriviMostre(Mostra *testa);
 
 void stampaMostre(Mostra *testa);
 
-void stampaMostra(Mostra *mostra);
+void stampaMostra(Mostra *mostra, bool stampaOpere);
 
 Mostra *ricercaMostra(Mostra *testa, int id);
 
