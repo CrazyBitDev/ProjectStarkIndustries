@@ -139,26 +139,13 @@ void clearConsole() {
  *            dataCorretta == false se la data inserita non e' corretta
  */
 bool verificaData(int giorno, int mese, int anno) {
-    bool annoBis = false; //flag anno bisestile
     bool dataCorretta = false; //flag per verificare la correttezza della data di nascita
 
     //controllo se l'anno inserito è bisestile o meno
-    if (anno % 4 == 0) {
-        if (anno % 100 == 0) {
-            if (anno % 400 == 0) {
-                annoBis = true;
-            } else {
-                annoBis = false;
-            }
-        } else {
-            annoBis = true;
-        }
-    } else {
-        annoBis = false;
-    }
+    bool annoBis = annoBisestile(anno);
 
     //controllo la correttezza di tutta la data inserita
-    if ((giorno > 28 && mese == 2 && annoBis == false) || (giorno > 29 && mese == 2 && annoBis == true)) {
+    if ((giorno > 28 && mese == 2 && !annoBis) || (giorno > 29 && mese == 2 && annoBis)) {
         dataCorretta = false;
     } else {
         if (giorno > 31 &&
@@ -174,6 +161,24 @@ bool verificaData(int giorno, int mese, int anno) {
     }
 
     return dataCorretta;
+}
+
+bool annoBisestile(int anno) {
+    bool annoBis = false;
+    if (anno % 4 == 0) {
+        if (anno % 100 == 0) {
+            if (anno % 400 == 0) {
+                annoBis = true;
+            } else {
+                annoBis = false;
+            }
+        } else {
+            annoBis = true;
+        }
+    } else {
+        annoBis = false;
+    }
+    return annoBis;
 }
 
 /*
@@ -284,16 +289,9 @@ int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, in
     return differenza;
 }
 
-int differenzaDateOggi(char *dataTarget) {
-
-    char data[11];
-
-    strcpy(data, dataTarget);
-
+int differenzaDateOggi(int giorno, int mese, int anno) {
     struct tm *ts;
     char annoCorrente[5], meseCorrente[3], giornoCorrente[3];
-    
-    int dataConvertita[3];
     
     time_t now = time(NULL);
     
@@ -302,6 +300,17 @@ int differenzaDateOggi(char *dataTarget) {
     strftime(meseCorrente,   sizeof(meseCorrente),   "%m", ts);
     strftime(giornoCorrente, sizeof(giornoCorrente), "%d", ts);
 
+    return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), giorno, mese, anno);
+}
+
+int differenzaDateOggiChar(char *dataTarget) {
+
+    char data[11];
+
+    strcpy(data, dataTarget);
+
+    int dataConvertita[3];
+    
     char *tok = strtok(data, "/");
 
     for (int i = 0; i < 3; i++ ) {
@@ -309,7 +318,9 @@ int differenzaDateOggi(char *dataTarget) {
         tok = strtok(NULL, "/");
     }
 
-    return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);
+    return differenzaDateOggi(dataConvertita[0], dataConvertita[1], dataConvertita[2]);
+
+    //return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);
 }
 
 

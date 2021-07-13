@@ -14,4 +14,6 @@ void stampaPrenotazione(Prenotazione *prenotazione); //DA DEFINIRE
 
 Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id); //DA DEFINIRE
 
+bool prenotazioneModificabile(Prenotazione *prenotazione);
+
 #include "prenotazione.c"

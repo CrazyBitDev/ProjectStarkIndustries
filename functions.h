@@ -8,6 +8,8 @@ void clearConsole(void);
 
 bool verificaData(int giorno, int mese, int anno);
 
+bool annoBisestile(int anno);
+
 int letturaUltimoID(char *file);
 
 int contaRighe(char *file);
@@ -16,7 +18,9 @@ void titolo(void);
 
 int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2);
 
-int differenzaDateOggi(char *data);
+int differenzaDateOggi(int giorno, int mese, int anno);
+
+int differenzaDateOggiChar(char *dataTarget);
 
 bool verificaDataCorrente(int giorno, int mese, int anno);
 

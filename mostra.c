@@ -948,7 +948,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
                             strcpy(tempName, temp->responsabile);
                             toUppercase(tempName);
-                            if (strstr(tempName, input) != NULL && differenzaDateOggi(temp->dataFine) >= 0) {
+                            if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
                                 stampaMostra(temp);
                                 printf("---------------------\n");
@@ -989,7 +989,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
                             strcpy(tempName, temp->luogo);
                             toUppercase(tempName);
-                            if (strstr(tempName, input) != NULL && differenzaDateOggi(temp->dataFine) >= 0) {
+                            if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
                                 stampaMostra(temp);
                                 printf("---------------------\n");
@@ -1030,7 +1030,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
                             strcpy(tempName, temp->luogo);
                             toUppercase(tempName);
-                            if (strstr(tempName, input) != NULL && differenzaDateOggi(temp->dataFine) >= 0) {
+                            if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
                                 stampaMostra(temp);
                                 printf("---------------------\n");

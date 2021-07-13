@@ -25,6 +25,7 @@ int main() {
     char scelta, scelta2;
     char sceltaGestP, sceltaGestM, sceltaGestO, sceltaGestPren;
     char email[60];
+    char input[30];
     
     /*TODO: forse non servono
     int nMostra, nOpera;
@@ -334,19 +335,23 @@ int main() {
                                                 break;
                                             
                                             case 3:
-                                                /*operaScelta = browserOpere(fpO, testaOpera, true);
-                                                
-                                                if(operaScelta != NULL) {
-                                                    modificaOpera(testaOpera, operaScelta);
-                                                }*/
+                                                stampaPrenotazioniUtente(testaPrenotazione, utenteLogin);
+                                                printf("Digitare l'ID della prenotazione da modificare: ");
+                                                fgets(input, 30, stdin);
+                                                input[strlen(input) - 1] = 0;
+                                                if (strlen(input) != 0) {
+                                                    modificaPrenotazione(testaPrenotazione, ricercaPrenotazione(testaPrenotazione, atoi(input)));
+                                                }
                                                 break;
                                                 
                                             case 4:
-                                                /*operaScelta = browserOpere(fpO, testaOpera, true);
-                                                printf("test\n");
-                                                if(operaScelta != NULL) {
-                                                    eliminaOpera(testaOpera, operaScelta);
-                                                }*/
+                                                stampaPrenotazioniUtente(testaPrenotazione, utenteLogin);
+                                                printf("Digitare l'ID della prenotazione da eliminare: ");
+                                                fgets(input, 30, stdin);
+                                                input[strlen(input) - 1] = 0;
+                                                if (strlen(input) != 0) {
+                                                    eliminaPrenotazione(testaPrenotazione, ricercaPrenotazione(testaPrenotazione, atoi(input)));
+                                                }
                                                 break;
                                                 
                                             default:
