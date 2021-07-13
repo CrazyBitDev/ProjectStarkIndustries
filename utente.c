@@ -127,7 +127,7 @@ void registrazioneUtente(Utente *testa) {
         }
         
         for(i=0; i<strlen(nuovoNodo->nome); i++) {
-            if(isalpha(nuovoNodo->nome[i]) == 0) {
+            if(isalpha(nuovoNodo->nome[i]) == 0 && nuovoNodo->nome[i] != ' ') {
                 testInput = true; //carattere non alfabetico
             }
         }
@@ -155,10 +155,8 @@ void registrazioneUtente(Utente *testa) {
             nuovoNodo->cognome[0] = toupper(nuovoNodo->cognome[0]);
             
             for(i=0; i<strlen(nuovoNodo->cognome); i++) {
-                if(isalpha(nuovoNodo->cognome[i]) == 0) {
+                if(isalpha(nuovoNodo->cognome[i]) == 0 && nuovoNodo->cognome[i] != ' ') {
                     testInput = true; //carattere non alfabetico
-                } else {
-                    testInput = false;
                 }
             }
             
@@ -195,7 +193,6 @@ void registrazioneUtente(Utente *testa) {
                 
                 //verifica univocita' nickname
                 for (temp = testa; temp != NULL; temp = temp->nextUtente) {
-                    
                     if (strcmp(temp->nick, nuovoNodo->nick) == 0) {
                         flag = true;
                         break;
@@ -380,13 +377,13 @@ void registrazioneUtente(Utente *testa) {
             
             nuovoNodo->id = 0;
             nuovoNodo->permessi = 2;
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email,nuovoNodo->dataNascita, nuovoNodo->password, nuovoNodo->permessi);
             
         } else { //file pieno
             
             nuovoNodo->id = ultimoID;
             nuovoNodo->permessi = 1;
-            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->password, nuovoNodo->dataNascita, nuovoNodo->permessi);
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->cognome, nuovoNodo->nick, nuovoNodo->email, nuovoNodo->dataNascita, nuovoNodo->password, nuovoNodo->permessi);
         }
         
         fclose(fp);
@@ -418,18 +415,16 @@ void registrazioneUtente(Utente *testa) {
 Utente *accesso(Utente *testa, char *text) {
     bool utenteTrovato = false;
     Utente *utente = NULL;
+    Utente *temp = NULL;
     
     char pass[33] = "";
     readPassword("Password: ", pass, false);
     
-    for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
-        
+    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
         if ((strcmp(temp->email, text) == 0 || strcmp(temp->nick, text) == 0) && strcmp(temp->password, pass) == 0) {
-            
             utente = temp;
             utenteTrovato = true;
             break;
-            
         }
     }
     
@@ -459,20 +454,17 @@ Utente *ricercaUtente(Utente *testa, int id) {
     Utente *nuovoNodo = NULL;
     
     for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
-        
         if (temp->id == id) {
-            
             nuovoNodo = temp;
             flag = true;
             break;
-            
         }
     }
     
     if (!flag) {
         printf("\n----------\n");
         printColor("Attenzione!\n", COLOR_RED);
-        printf("Utente non trovata!\n");
+        printf("Utente non trovato!\n");
         printf("----------\n\n");
     }
     
@@ -502,7 +494,7 @@ void stampaUtente(Utente *utenteLogin) {
     printf("Data di nascita: %s\n", temp->dataNascita);
     
     if (temp->permessi == 1) {
-        printf("Permessi: utente\n");
+        printf("Permessi: utente base\n");
     } else {
         printf("Permessi: direttore\n");
     }
@@ -522,7 +514,7 @@ void stampaUtente(Utente *utenteLogin) {
  *   returns: //
  */
 void modificaUtente(Utente *utenteLogin, Utente *testa) {
-    int scelta;
+    int scelta, i;
     char risposta = '\0';
     
     char nome[20];
@@ -533,6 +525,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
     bool dataCorretta = true; //flag per verificare la correttezza della data di nascita
     bool flag = false;
     bool continuaModifica = true;
+    bool testInput = false;
     
     Utente *temp = NULL;
     Utente *temp2 = NULL;
@@ -564,27 +557,47 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
             case 1:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
                 
-                printf("Inserisci il nuovo nome: ");
-                fgets(nome, 20, stdin);
-                nome[strlen(nome) - 1] = 0;
-                nome[0] = toupper(nome[0]);
-                
-                if(strlen(nome) == 0) {
-                    continuaModifica = false;
-                    break;
-                } else {
-                    strcpy(temp->nome, nome);
-                }
+                do {
+                    notificaAnnulla();
+                    testInput = false;
+                    printf("Inserisci il nuovo nome: ");
+                    fgets(nome, 20, stdin);
+                    nome[strlen(nome) - 1] = 0;
+                    nome[0] = toupper(nome[0]);
+                    
+                    if(strlen(nome) == 0 && testInput == false) {
+                        continuaModifica = false;
+                        break;
+                    }
+                    
+                    for(i=0; i<strlen(nome); i++) {
+                        if(isalpha(nome[i]) == 0 && nome[i] != ' ') {
+                            testInput = true; //carattere non alfabetico
+                        }
+                    }
+                    
+                    if(testInput) {
+                        clearConsole();
+                        titolo();
+                        printf("\n----------");
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("Nome non valido.\n");
+                        printf("----------\n\n");
+                    } else {
+                        strcpy(temp->nome, nome);
+                    }
+                    
+                } while (testInput);
                 
                 break;
                 
             case 2:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
-                
+                do {
+                    notificaAnnulla();
+                    testInput = false;
                 printf("Inserisci il nuovo cognome: ");
                 fgets(cognome, 20, stdin);
                 cognome[strlen(cognome) - 1] = 0;
@@ -593,9 +606,26 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                 if(strlen(cognome) == 0) {
                     continuaModifica = false;
                     break;
-                } else {
-                    strcpy(temp->cognome, nome);
                 }
+                    
+                    
+                    for(i=0; i<strlen(cognome); i++) {
+                        if(isalpha(cognome[i]) == 0 && cognome[i] != ' ') {
+                            testInput = true; //carattere non alfabetico
+                        }
+                    }
+                    
+                    if(testInput) {
+                        clearConsole();
+                        titolo();
+                        printf("\n----------");
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("Cognome non valido.\n");
+                        printf("----------\n\n");
+                    } else {
+                        strcpy(temp->cognome, cognome);
+                    }
+                } while(testInput);
                 
                 break;
                 
@@ -964,7 +994,6 @@ void modificaPermessi(Utente *testa) {
                 if (risposta == 'N') {
                     scriviUtenti(testa);
                 }
-                printf("test %c\n", risposta);
             } while (risposta != 'S' && risposta != 'N');
         }
     }while (risposta == 'S' && modifica);

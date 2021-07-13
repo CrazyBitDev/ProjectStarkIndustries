@@ -32,18 +32,18 @@ Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMo
                     tempPrenotazione->id = atoi(tok);
                 }
                 if (colonna == 1) {
-                    tempPrenotazione->utente = ricercaUtente(testaUtente,atoi(tok));
-                }
-                if (colonna == 2) {
-                    tempPrenotazione->mostra = ricercaMostra(testaMostra,atoi(tok));
-                }
-                if (colonna == 3) {
                     strcpy(tempPrenotazione->data, tok);
                     tempPrenotazione->data[strlen(tempPrenotazione->data)] = 0;
                 }
-                if (colonna == 4) {
+                if (colonna == 2) {
                     strcpy(tempPrenotazione->ora, tok);
                     tempPrenotazione->ora[strlen(tempPrenotazione->ora)] = 0;
+                }
+                if (colonna == 3) {
+                    tempPrenotazione->utente = ricercaUtente(testaUtente,atoi(tok));
+                }
+                if (colonna == 4) {
+                    tempPrenotazione->mostra = ricercaMostra(testaMostra,atoi(tok));
                 }
                 tok = strtok(NULL, ",");
                 colonna++;
@@ -66,17 +66,15 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
     bool continuaInserimento = true;
 
     bool dataCorretta = true, continuaModifica = true;
-    int giorno, mese, anno, ora, minuti;
+    int giorno, mese = 0, anno = 0, ora, minuti;
 
     Prenotazione *nuovoNodo = NULL;
-
-
     nuovoNodo = (Prenotazione *) malloc(sizeof(Prenotazione));
 
     FILE *fp;
     fp = fopen("prenotazioni.csv", "a+"); //apertura file
 
-    while ('\n' != getchar());
+    
 
     consoleColor(COLOR_RED);
     printf("\t\t\t|-----------------------------|\n");
@@ -92,6 +90,7 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
     do {
         if (!dataCorretta) {
             clearConsole();
+            titolo();
             printColor("\nAttenzione!\n", COLOR_RED);
             printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente\n\n");
         }
@@ -123,23 +122,24 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
 
     snprintf(nuovoNodo->data, 11, "%d/%d/%d", giorno, mese, anno);
     
+    printf("-----------------------------\n");
     if(continuaModifica) {
         do {
-            printf("Ora: ");
+            printf("Ora (dalle 9 alle 22): ");
             scanf("%d", &ora);
-        } while (ora < 0 || ora > 24);
+        } while (ora < 9 || ora > 22);
         
         do {
             printf("Minuti: ");
             scanf("%d", &minuti);
         } while (minuti < 0 || minuti >= 60);
 
-        snprintf(nuovoNodo->ora, 11, "%d:%d", ora, minuti);
-
+        snprintf(nuovoNodo->ora, 6, "%d:%d", ora, minuti);
+        
         nuovoNodo->utente = utente;
         nuovoNodo->mostra = mostra;
 
-                //verifico se nel file ci sono già delle mmostre registrate o meno
+        //verifico se nel file ci sono già delle prenotazioni registrate o meno
         fseek(fp, 0, SEEK_END);
         long size = ftell(fp);
         
@@ -153,49 +153,45 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
         
         if (size == 0) { //file vuoto
             nuovoNodo->id = 0;
-            fprintf(fp, "%d,%d,%d,%s,%s", nuovoNodo->id, nuovoNodo->utente->id, nuovoNodo->mostra->id,
-                    nuovoNodo->data, nuovoNodo->ora);
+            fprintf(fp, "%d,%s,%s,%d,%d", nuovoNodo->id, nuovoNodo->data, nuovoNodo->ora, nuovoNodo->utente->id, nuovoNodo->mostra->id);
             
         } else { //file pieno
             nuovoNodo->id = ultimoID;
-            fprintf(fp, "\n%d,%d,%d,%s,%s", nuovoNodo->id, nuovoNodo->utente->id, nuovoNodo->mostra->id,
-                    nuovoNodo->data, nuovoNodo->ora);
+            fprintf(fp, "\n%d,%s,%s,%d,%d", nuovoNodo->id, nuovoNodo->data, nuovoNodo->ora, nuovoNodo->utente->id, nuovoNodo->mostra->id);
         }
         
         fclose(fp);
 
+        //aggiornamento dei collegamenti
+        if (prec == NULL) {
+            nuovoNodo->nextPrenotazione = testa;
+            testa = nuovoNodo;
+        } else {
+            prec->nextPrenotazione = nuovoNodo;
+            nuovoNodo->nextPrenotazione = curr;
+        }
+        
     }
 
-    
     clearConsole();
     titolo();
 }
 
 void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
-    int scelta, colonna = 0;
+    int scelta;
     char risposta = '\0';
     bool flagDate = false;
     bool continuaModifica = true;
     
-    Prenotazione *temp = NULL;
-    temp = prenotazione;
-    
-    char responsabile[30];
-    char luogo[25];
-    char citta[20];
-    char indirizzo[30];
-    
-    bool dataCorrettaIn = true;
+    bool dataCorretta = true;
     int giorno = 0, mese = 0, anno = 0;
+    int ora, minuti;
 
-    int giornoFin = 0, meseFin = 0, annoFin = 0;
-    bool dataCorrettaFin = true;
-    
-    
-    stampaPrenotazione(prenotazione);
-    
     do {
-        while ('\n' != getchar());
+        
+        clearConsole();
+        titolo();
+        //while ('\n' != getchar());
         
         //elenco campi modificabili
         printf("Scegliere il campo da modificare\n");
@@ -209,17 +205,20 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
         printf("\n");
         while ('\n' != getchar());
         
+        clearConsole();
+        titolo();
+        
         switch (scelta) {
             case 0:
                 break;
 
             case 1:;
-                bool dataCorr = true;
-                flagDate = false;
-                char dataIn[11];
+                char data[11];
                 
                 clearConsole();
-                titolo();
+                printColor("Dati prenotazione.\n", COLOR_CYAN);
+                stampaPrenotazione(prenotazione);
+                printColor("--------------------------\n", COLOR_CYAN);
                 
                 consoleColor(COLOR_RED);
                 printf("\t\t\t|-----------------------------|\n");
@@ -231,100 +230,92 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
                 consoleColor(COLOR_RESET);
                 
                 do {
+                    if (!dataCorretta) {
+                        clearConsole();
+                        titolo();
+                        printf("\n----------");
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente.\n");
+                    }
+                    
+                    printf("----------\n");
+                    printColor("Attenzione!\n", COLOR_RED);
+                    printf("La mostra si svolge dal ");
+                    printColor(prenotazione->mostra->dataInizio, COLOR_CYAN);
+                    printf(" al ");
+                    printColor(prenotazione->mostra->dataFine, COLOR_CYAN);
+                    printf("\nSi prega di inserire una data in questo intervallo.\n");
+                    printf("----------\n\n");
+                    
+                    printf("Inserisci la nuova data:\n");
+                    
                     do {
-                        if(!dataCorr) {
-                            clearConsole();
-                            titolo();
-                            printf("\n----------");
-                            printColor("\nAttenzione!\n", COLOR_RED);
-                            printf("Si prega di inserirla nuovamente.\n");
-                            printf("----------\n\n");
-                        }
-                        
-                        printf("Inserisci la nuova data:\n");
-                        
-                        do {
-                            if (!dataCorrettaIn) {
-                                clearConsole();
-                                titolo();
-                                printf("\n----------");
-                                printColor("\nAttenzione!\n", COLOR_RED);
-                                printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente.\n");
-                                printf("----------\n\n");
-                            }
-                            
-                            do {
-                                printf("Giorno: ");
-                                scanf("%d", &giorno);
-                                
-                                if(giorno == 0) {
-                                    continuaModifica = false;
-                                    flagDate = true;
-                                    break;
-                                }
-                                
-                            } while (giorno < 1 || giorno > 31);
-                            
-                            if(continuaModifica) {
-                                
-                                do {
-                                    printf("Mese: ");
-                                    scanf("%d", &mese);
-                                } while (mese < 1 || mese > 12);
-                                
-                                printf("Anno: ");
-                                scanf("%d", &anno);
-                                
-                                dataCorrettaIn = verificaData(giorno, mese, anno);
-                            }
-                        
-                        } while (!dataCorrettaIn);
-                        
+                        printf("Giorno: ");
+                        scanf("%d", &giorno);
                         if(giorno == 0) {
                             continuaModifica = false;
-                            flagDate = true;
                             break;
                         }
                         
-                        dataCorr = verificaDataCorrente(giorno, mese, anno);
-                    } while (!dataCorr);
-                        
+                    } while (giorno < 1 || giorno > 31);
+                    
                     if(continuaModifica) {
+                        do {
+                            printf("Mese: ");
+                            scanf("%d", &mese);
+                        } while (mese < 1 || mese > 12);
                         
-                        char *tok;
-                        tok = strtok(temp->mostra->dataFine, "/");
+                        printf("Anno: ");
+                        scanf("%d", &anno);
                         
-                        while (tok) {
-                            if (colonna == 0) {
-                                giornoFin = atoi(tok);
-                            }
-                            if (colonna == 1) {
-                                meseFin = atoi(tok);
-                            }
-                            if (colonna == 2) {
-                                annoFin = atoi(tok);
-                            }
-                            tok = strtok(NULL, "/");
-                            colonna++;
-                        }
-                        
-                        if (differenzaDate(giorno, mese, anno, giornoFin, meseFin, annoFin) >= 1) {
-                            flagDate = true;
-                        } else {
-                            clearConsole();
-                            titolo();
-                            printf("\n----------");
-                            printColor("Attenzione!\n", COLOR_RED);
-                            printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                            printf("Si prega di inserire nuovamente le date.\n");
-                            printf("----------\n\n");
-                        }
+                        dataCorretta = dataInIntervallo(giorno, mese, anno, prenotazione->mostra->dataInizio, prenotazione->mostra->dataFine);
                     }
+                    
+                } while (!dataCorretta);
                 
-                } while (!flagDate);
-                snprintf(dataIn, 11, "%d/%d/%d", giorno, mese, anno);
-                strcpy(temp->data, dataIn);
+                if(continuaModifica) {
+                    snprintf(data, 11, "%d/%d/%d", giorno, mese, anno);
+                    strcpy(prenotazione->data, data);
+                }
+                
                 break;
+                
+            case 2:
+                clearConsole();
+                printColor("Dati prenotazione.\n", COLOR_CYAN);
+                stampaPrenotazione(prenotazione);
+                printColor("--------------------------\n", COLOR_CYAN);
+                
+                consoleColor(COLOR_RED);
+                printf("\t\t\t|-----------------------------|\n");
+                printf("\t\t\t|         Attenzione!         |\n");
+                printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
+                printf("\t\t\t|       tornare al menu'      |\n");
+                printf("\t\t\t|      premere il tasto 0     |\n");
+                printf("\t\t\t|-----------------------------|\n");
+                consoleColor(COLOR_RESET);
+                
+                
+                do {
+                    printf("Ora (dalle 9 alle 22): ");
+                    scanf("%d", &ora);
+                    if(ora == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
+                    
+                } while (ora < 9 || ora > 22);
+                
+                if(continuaModifica) {
+                    do {
+                        printf("Minuti: ");
+                        scanf("%d", &minuti);
+                    } while (minuti < 0 || minuti >= 60);
+
+                    snprintf(prenotazione->ora, 6, "%d:%d", ora, minuti);
+                }
+                break;
+                
               
             default:
                 break;
@@ -334,6 +325,7 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
             do {
                 printf("----------\n");
                 printf("Vuoi modificare un altro campo? (s/n): ");
+                while ('\n' != getchar());
                 risposta = getchar();
                 while ('\n' != getchar());
                 
@@ -343,7 +335,7 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
                 if (risposta == 'N') {
                     scriviPrenotazioni(testa);
                 }
-
+                
             } while (risposta != 'S' && risposta != 'N');
         } else {
             scriviPrenotazioni(testa);
@@ -363,36 +355,45 @@ void stampaPrenotazioni(Prenotazione *testa) {
 }
 
 void stampaPrenotazioniUtente(Prenotazione *testa, Utente *utente) {
+    bool trovato = false;
+    
     for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
         if (temp->utente->id == utente->id) {
             stampaPrenotazione(temp);
+            trovato = true;
             printf("----------\n");
         }
+    }
+    if(!trovato) {
+        printf("\n----------\n");
+        printColor("Attenzione!\n", COLOR_RED);
+        printf("Non hai effettuato nessuna prenotazione.\n");
+        printf("----------\n\n");
     }
 }
 
 void stampaPrenotazione(Prenotazione *prenotazione) {
-    printf("id: %d\n", prenotazione->id);
+    printf("Id: %d\n", prenotazione->id);
     printf("Utente: %s %s\n", prenotazione->utente->nome, prenotazione->utente->cognome);
-    printf("Id mostra: %d\n", prenotazione->mostra->id);
-    printf("Data: %s\n", prenotazione->data);
+    printf("Mostra: %s - %s\n", prenotazione->mostra->citta, prenotazione->mostra->indirizzo);
+    printf("Prenotazione in data: %s\n", prenotazione->data);
     printf("Ora: %s\n", prenotazione->ora);
 }
 
 //scrittura su file
 void scriviPrenotazioni(Prenotazione *testa) {
     FILE *fp;
-    fp = fopen("prenotazione.csv", "w"); //apertura file
+    fp = fopen("prenotazioni.csv", "w"); //apertura file
 
     for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
         long size = ftell(fp);
 
-        if (size == 0)   //file vuoto.
-        {
-            fprintf(fp, "%d,%d,%d,%s,%s", temp->id, temp->utente->id, temp->mostra->id, temp->data, temp->ora);
-        } else     //file pieno
-        {
-            fprintf(fp, "\n%d,%d,%d,%s,%s", temp->id, temp->utente->id, temp->mostra->id, temp->data, temp->ora);
+        printf("- %s\n", temp->data);
+        
+        if (size == 0) { //file vuoto
+            fprintf(fp, "%d,%s,%s,%d,%d", temp->id, temp->data, temp->ora, temp->utente->id, temp->mostra->id);
+        } else { //file pieno
+            fprintf(fp, "\n%d,%s,%s,%d,%d", temp->id, temp->data, temp->ora, temp->utente->id, temp->mostra->id);
         }
     }
     fclose(fp);
@@ -415,7 +416,10 @@ Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id) {
     }
 
     if (!flag) {
-        printColor("---Mostra non trovata!---\n", COLOR_RED);
+        printf("\n----------\n");
+        printColor("Attenzione!\n", COLOR_RED);
+        printf("Prenotazione non trovata.\n");
+        printf("----------\n\n");
     }
 
     return nuovoNodo;
@@ -444,7 +448,7 @@ bool prenotazioneModificabile(Prenotazione *prenotazione) {
             data[1]=12;
         }
         if (data[1] == 2) {
-            data[0] = ( annoBisestile(data[3]) ? 29 : 28 ) + giorniDaSottrarre;
+            data[0] = (annoBisestile(data[1]) ? 29 : 28 ) + giorniDaSottrarre;
         } else {
             switch(data[1]) {
                 case 4:
@@ -456,7 +460,7 @@ bool prenotazioneModificabile(Prenotazione *prenotazione) {
 
                 default:
                     data[0] = 31 + giorniDaSottrarre;
-                    break;    
+                    break;
             }
         }
     }

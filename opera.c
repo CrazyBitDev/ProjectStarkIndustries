@@ -10,11 +10,11 @@
 Opera *letturaOpere(FILE *fp) {
     int colonna = 0;
     char buf[BUFFER_SIZE];
-
+    
     Opera *testaOpera = NULL;
     Opera *tempOpera = NULL; //temporanea
     Opera *precOpera = NULL;
-
+    
     if (fp == NULL) {
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
         printColor("\t\t\t|  File \"opere\" non trovato!  |\n", COLOR_RED);
@@ -26,16 +26,16 @@ Opera *letturaOpere(FILE *fp) {
             fgets(buf, BUFFER_SIZE, fp);
             tempOpera = (Opera *) malloc(sizeof(Opera));
             tempOpera->nextOpera = NULL;
-
+            
             if (precOpera != NULL) {
                 precOpera->nextOpera = tempOpera;
             } else {
                 testaOpera = tempOpera;
             }
-
+            
             char *tok;
             tok = strtok(buf, ",");
-
+            
             while (tok) {
                 if (colonna == 0) {
                     tempOpera->id = atoi(tok);
@@ -84,48 +84,48 @@ Opera *letturaOpere(FILE *fp) {
  *   returns: //
  */
 void aggiungiOpera(Opera *testa) {
-
+    
     Opera *curr, *prec;
     prec = NULL;
     curr = testa;
-
+    
     int ultimoID = 0, i;
     int anno;
     bool testInput = false; //flag per controllare i vari input
     bool continuaInserimento = true;
-
+    
     Opera *nuovoNodo = NULL;
-
-
+    
+    
     nuovoNodo = (Opera *) malloc(sizeof(Opera));
-
+    
     FILE *fp;
     fp = fopen("opere.csv", "a+"); //apertura file
-
+    
     while ('\n' != getchar());
-
+    
     notificaAnnulla();
-
+    
     do {
         testInput = false;
         printf("Inserisci Nome Opera: ");
         fgets(nuovoNodo->nome, 30, stdin);
         nuovoNodo->nome[strlen(nuovoNodo->nome) - 1] = 0;
         nuovoNodo->nome[0] = toupper(nuovoNodo->nome[0]);
-
+        
         if (strlen(nuovoNodo->nome) == 0) {
             continuaInserimento = false;
             clearConsole();
             titolo();
             break;
         }
-
+        
         for (i = 0; i < strlen(nuovoNodo->nome); i++) {
-            if (isalpha(nuovoNodo->nome[i]) == 0) {
+            if (isalpha(nuovoNodo->nome[i]) == 0 && nuovoNodo->nome[i] != ' ') {
                 testInput = true; //carattere non alfabetico
             }
         }
-
+        
         if (testInput) {
             clearConsole();
             titolo();
@@ -135,22 +135,22 @@ void aggiungiOpera(Opera *testa) {
             printf("----------\n\n");
         }
     } while (testInput);
-
+    
     if (continuaInserimento) {
-
+        
         do {
             testInput = false;
             printf("Inserisci Autore: ");
             fgets(nuovoNodo->autore, 30, stdin);
             nuovoNodo->autore[strlen(nuovoNodo->autore) - 1] = 0;
             nuovoNodo->autore[0] = toupper(nuovoNodo->autore[0]);
-
+            
             for (i = 0; i < strlen(nuovoNodo->autore); i++) {
-                if (isalpha(nuovoNodo->autore[i]) == 0) {
+                if (isalpha(nuovoNodo->autore[i]) == 0 && nuovoNodo->autore[i] != ' ') {
                     testInput = true; //carattere non alfabetico
                 }
             }
-
+            
             if (testInput) {
                 clearConsole();
                 titolo();
@@ -160,20 +160,20 @@ void aggiungiOpera(Opera *testa) {
                 printf("----------\n\n");
             }
         } while (testInput || strlen(nuovoNodo->autore) == 0);
-
+        
         do {
             testInput = false;
             printf("Inserisci Tipologia dell'Opera (es. dipinto): ");
-            fgets(nuovoNodo->tipo, 20, stdin);
+            fgets(nuovoNodo->tipo, 30, stdin);
             nuovoNodo->tipo[strlen(nuovoNodo->tipo) - 1] = 0;
             nuovoNodo->tipo[0] = toupper(nuovoNodo->tipo[0]);
-
+            
             for (i = 0; i < strlen(nuovoNodo->tipo); i++) {
-                if (isalpha(nuovoNodo->tipo[i]) == 0) {
+                if (isalpha(nuovoNodo->tipo[i]) == 0 && nuovoNodo->tipo[i] != ' ') {
                     testInput = true; //carattere non alfabetico
                 }
             }
-
+            
             if (testInput) {
                 clearConsole();
                 titolo();
@@ -183,20 +183,20 @@ void aggiungiOpera(Opera *testa) {
                 printf("----------\n\n");
             }
         } while (testInput || strlen(nuovoNodo->tipo) == 0);
-
+        
         do {
             testInput = false;
             printf("Inserisci Genere (es. ritratto): ");
-            fgets(nuovoNodo->genere, 20, stdin);
+            fgets(nuovoNodo->genere, 30, stdin);
             nuovoNodo->genere[strlen(nuovoNodo->genere) - 1] = 0;
             nuovoNodo->genere[0] = toupper(nuovoNodo->genere[0]);
-
+            
             for (i = 0; i < strlen(nuovoNodo->genere); i++) {
-                if (isalpha(nuovoNodo->genere[i]) == 0) {
+                if (isalpha(nuovoNodo->genere[i]) == 0 && nuovoNodo->genere[i] != ' ') {
                     testInput = true; //carattere non alfabetico
                 }
             }
-
+            
             if (testInput) {
                 clearConsole();
                 titolo();
@@ -206,20 +206,20 @@ void aggiungiOpera(Opera *testa) {
                 printf("----------\n\n");
             }
         } while (testInput);
-
+        
         do {
             testInput = false;
-            printf("Inserisci Periodo storico (es. Barocco): ");
+            printf("Inserisci Periodo Storico (es. Barocco): ");
             fgets(nuovoNodo->periodo, 20, stdin);
             nuovoNodo->periodo[strlen(nuovoNodo->periodo) - 1] = 0;
             nuovoNodo->periodo[0] = toupper(nuovoNodo->periodo[0]);
-
+            
             for (i = 0; i < strlen(nuovoNodo->periodo); i++) {
-                if (isalpha(nuovoNodo->periodo[i]) == 0) {
+                if (isalpha(nuovoNodo->periodo[i]) == 0 && nuovoNodo->periodo[i] != ' ') {
                     testInput = true; //carattere non alfabetico
                 }
             }
-
+            
             if (testInput) {
                 clearConsole();
                 titolo();
@@ -229,7 +229,7 @@ void aggiungiOpera(Opera *testa) {
                 printf("----------\n\n");
             }
         } while (testInput || strlen(nuovoNodo->periodo) == 0);
-
+        
         do {
             do {
                 printf("Inserisci l'anno: ");
@@ -237,45 +237,45 @@ void aggiungiOpera(Opera *testa) {
             } while (nuovoNodo->anno < 1);
             
             printf("\n");
-                
-
+            
+            
             //controllo data corrente
             time_t now;
             struct tm *ts;
             char annoCorrente[5];
-
+            
             now = time(NULL);
-
+            
             ts = localtime(&now);
             strftime(annoCorrente, sizeof(annoCorrente), "%Y", ts);
             anno = atoi(annoCorrente);
         } while (nuovoNodo->anno > anno);
-
+        
         //verifico se nel file ci sono già delle opere registrate o meno
         fseek(fp, 0, SEEK_END);
         long size = ftell(fp);
-
+        
         ultimoID = letturaUltimoID("opere.csv") + 1;
-
+        
         //ricerca della posizione di inserimento
         while (curr != NULL && ultimoID > curr->id) {
             prec = curr;
             curr = curr->nextOpera;
         }
-
+        
         if (size == 0) { //file vuoto
             nuovoNodo->id = 0;
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->autore,
                     nuovoNodo->tipo, nuovoNodo->genere, nuovoNodo->periodo, nuovoNodo->anno);
-
+            
         } else { //file pieno
             nuovoNodo->id = ultimoID;
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%d", nuovoNodo->id, nuovoNodo->nome, nuovoNodo->autore,
                     nuovoNodo->tipo, nuovoNodo->genere, nuovoNodo->periodo, nuovoNodo->anno);
         }
-
+        
         fclose(fp);
-
+        
         //aggiornamento dei collegamenti
         if (prec == NULL) {
             nuovoNodo->nextOpera = testa;
@@ -301,10 +301,11 @@ void aggiungiOpera(Opera *testa) {
  *   returns: //
  */
 void modificaOpera(Opera *testa, Opera *opera) {
-
-    bool continuaModifica = true;
-    int scelta;
+    
+    int scelta, i;
     char risposta = '\0';
+    bool continuaModifica = true;
+    bool testInput = false;
     
     char nome[30];
     char autore[30];
@@ -315,7 +316,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
     
     Opera *temp = NULL;
     temp = opera;
-
+    
     printColor("\nDati relativi alla opera scelta:\n", COLOR_CYAN);
     printf("id: %d\n", opera->id);
     printf("Nome Opera: %s\n", opera->nome);
@@ -326,7 +327,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
     printf("Anno: %d\n", opera->anno);
     printColor("----------\n\n", COLOR_CYAN);
     do {
-
+        
         //elenco campi modificabili
         printf("Scegliere il campo da modificare\n");
         printf("----------\n");
@@ -342,101 +343,187 @@ void modificaOpera(Opera *testa, Opera *opera) {
         scanf("%d", &scelta);
         printf("\n");
         while ('\n' != getchar());
-
+        
         switch (scelta) {
             case 0:
                 break;
-
+                
             case 1:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
                 
-                printf("Inserisci il Nome dell'Opera: ");
-                fgets(nome, 30, stdin);
-                nome[strlen(nome) - 1] = 0;
-                nome[0] = toupper(nome[0]);
-                
-                if(strlen(nome) == 0) {
-                    continuaModifica = false;
-                    break;
-                } else {
-                    strcpy(opera->nome, nome);
-                }
+                do {
+                    notificaAnnulla();
+                    testInput = false;
+                    printf("Inserisci il Nome dell'Opera: ");
+                    fgets(nome, 30, stdin);
+                    nome[strlen(nome) - 1] = 0;
+                    nome[0] = toupper(nome[0]);
+                    
+                    if(strlen(nome) == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
+                    
+                    for (i = 0; i < strlen(nome); i++) {
+                        if (isalpha(nome[i]) == 0 && nome[i] != ' ') {
+                            testInput = true; //carattere non alfabetico
+                        }
+                    }
+                    
+                    if (testInput) {
+                        clearConsole();
+                        titolo();
+                        printf("\n----------");
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("Nome non valido.\n");
+                        printf("----------\n\n");
+                    } else {
+                        strcpy(temp->nome, nome);
+                    }
+                    
+                } while(testInput);
                 break;
-
+                
             case 2:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
-                
-                printf("Inserisci l'Autore: ");
-                fgets(autore, 30, stdin);
-                autore[strlen(autore) - 1] = 0;
-                autore[0] = toupper(autore[0]);
-                
-                if(strlen(autore) == 0) {
-                    continuaModifica = false;
-                    break;
-                } else {
-                    strcpy(opera->autore, autore);
-                }
+                do {
+                    notificaAnnulla();
+                    testInput = false;
+                    printf("Inserisci l'Autore: ");
+                    fgets(autore, 30, stdin);
+                    autore[strlen(autore) - 1] = 0;
+                    autore[0] = toupper(autore[0]);
+                    
+                    if(strlen(autore) == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
+                    for (i = 0; i < strlen(autore); i++) {
+                        if (isalpha(autore[i]) == 0 && autore[i] != ' ') {
+                            testInput = true; //carattere non alfabetico
+                        }
+                    }
+                    
+                    if (testInput) {
+                        clearConsole();
+                        titolo();
+                        printf("\n----------");
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("Autore non valido.\n");
+                        printf("----------\n\n");
+                    } else {
+                        strcpy(temp->autore, autore);
+                    }
+                } while(testInput);
                 break;
-
+                
             case 3:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
                 
-                printf("Inserisci la Tipologia dell'Opera: ");
-                fgets(tipo, 20, stdin);
-                tipo[strlen(tipo) - 1] = 0;
-                tipo[0] = toupper(tipo[0]);
-                
-                if(strlen(tipo) == 0) {
-                    continuaModifica = false;
-                    break;
-                } else {
-                    strcpy(opera->tipo, tipo);
-                }
+                do {
+                    notificaAnnulla();
+                    printf("Inserisci la Tipologia dell'Opera: ");
+                    fgets(tipo, 30, stdin);
+                    tipo[strlen(tipo) - 1] = 0;
+                    tipo[0] = toupper(tipo[0]);
+                    
+                    if(strlen(tipo) == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
+                    
+                    for (i = 0; i < strlen(nome); i++) {
+                        if (isalpha(tipo[i]) == 0 && tipo[i] != ' ') {
+                            testInput = true; //carattere non alfabetico
+                        }
+                    }
+                    
+                    if (testInput) {
+                        clearConsole();
+                        titolo();
+                        printf("\n----------");
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("Tipo non valido.\n");
+                        printf("----------\n\n");
+                    } else {
+                        strcpy(temp->tipo, tipo);
+                    }
+                } while(testInput);
                 break;
                 
             case 4:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
-                
-                printf("Inserisci il Genere: ");
-                fgets(genere, 20, stdin);
-                genere[strlen(genere) - 1] = 0;
-                genere[0] = toupper(genere[0]);
-                
-                if(strlen(genere) == 0) {
-                    continuaModifica = false;
-                    break;
-                } else {
-                    strcpy(genere, genere);
-                }
+                do {
+                    notificaAnnulla();
+                    testInput = false;
+                    printf("Inserisci il Genere (es. ritratto): ");
+                    fgets(genere, 30, stdin);
+                    genere[strlen(genere) - 1] = 0;
+                    genere[0] = toupper(genere[0]);
+                    
+                    if(strlen(genere) == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
+                    
+                    for (i = 0; i < strlen(nome); i++) {
+                        if (isalpha(genere[i]) == 0 && genere[i] != ' ') {
+                            testInput = true; //carattere non alfabetico
+                        }
+                    }
+                    
+                    if (testInput) {
+                        clearConsole();
+                        titolo();
+                        printf("\n----------");
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("Genere non valido.\n");
+                        printf("----------\n\n");
+                    } else {
+                        strcpy(temp->genere, genere);
+                    }
+                } while(testInput);
                 break;
                 
             case 5:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
-                
-                printf("Inserisci il Periodo: ");
-                fgets(periodo, 20, stdin);
-                periodo[strlen(periodo) - 1] = 0;
-                periodo[0] = toupper(periodo[0]);
-                
-                if(strlen(periodo) == 0) {
-                    continuaModifica = false;
-                    break;
-                } else {
-                    strcpy(opera->periodo, periodo);
-                }
+                do {
+                    notificaAnnulla();
+                    testInput = false;
+                    printf("Inserisci il Periodo Storico (es. Barocco): ");
+                    fgets(periodo, 20, stdin);
+                    periodo[strlen(periodo) - 1] = 0;
+                    periodo[0] = toupper(periodo[0]);
+                    
+                    if(strlen(periodo) == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
+                    
+                    for (i = 0; i < strlen(periodo); i++) {
+                        if (isalpha(periodo[i]) == 0 && periodo[i] != ' ') {
+                            testInput = true; //carattere non alfabetico
+                        }
+                    }
+                    
+                    if (testInput) {
+                        clearConsole();
+                        titolo();
+                        printf("\n----------");
+                        printColor("\nAttenzione!\n", COLOR_RED);
+                        printf("Periodo non valido.\n");
+                        printf("----------\n\n");
+                    } else {
+                        strcpy(temp->periodo, periodo);
+                    }
+                } while(testInput);
                 break;
-
+                
             case 6:
                 clearConsole();
                 titolo();
@@ -464,12 +551,12 @@ void modificaOpera(Opera *testa, Opera *opera) {
                     opera->anno = anno;
                 }
                 break;
-
+                
             default:
                 break;
         }
-
-
+        
+        
         if (scelta != 0 && continuaModifica) {
             do {
                 printf("----------\n");
@@ -483,7 +570,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
                 if (risposta == 'N') {
                     scriviOpere(testa);
                 }
-
+                
             } while (risposta != 'S' && risposta != 'N');
         } else {
             scriviOpere(testa);
@@ -522,7 +609,7 @@ void stampaOpere(Opera *testa) {
 void stampaOpera(Opera *opera) {
     printf("Id: %d\n", opera->id);
     printf("Nome Opera: %s\n", opera->nome);
-    printf("Di %s\n", opera->autore);
+    printf("Di: %s\n", opera->autore);
     printf("Genere: %s\n", opera->genere);
     printf("Tipologia: %s\n", opera->tipo);
     printf("Periodo: %s\n", opera->periodo);
@@ -542,10 +629,10 @@ void scriviOpere(Opera *testa) {
     Opera *temp = NULL;
     FILE *fp;
     fp = fopen("opere.csv", "w"); //apertura file
-
+    
     for (temp = testa; temp != NULL; temp = temp->nextOpera) {
         long size = ftell(fp);
-
+        
         if (size == 0)   //file vuoto.
         {
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->autore, temp->tipo,
@@ -573,11 +660,11 @@ void eliminaOpera(Opera *testa, Opera *opera) {
     char risposta;
     Opera *curr, *prec;
     Opera *temp;
-
+    
     temp = opera;
     prec = NULL;
     curr = testa;
-
+    
     do {
         //while ('\n' != getchar());
         printColor("ATTENZIONE!\n", COLOR_RED);
@@ -585,11 +672,11 @@ void eliminaOpera(Opera *testa, Opera *opera) {
         printf("Risposta (s/n): ");
         scanf("%c", &risposta);
         printf("\n");
-
+        
         //rendo la risposta tutta maiuscola per evitare errori
         risposta = toupper(risposta);
     } while (risposta != 'S' && risposta != 'N');
-
+    
     clearConsole();
     titolo();
     
@@ -598,7 +685,7 @@ void eliminaOpera(Opera *testa, Opera *opera) {
             prec = curr;
             curr = curr->nextOpera;
         }
-
+        
         if (temp->id == curr->id) {
             if (prec == NULL) {
                 //elemento trovato in testa
@@ -628,25 +715,25 @@ void eliminaOpera(Opera *testa, Opera *opera) {
 Opera *ricercaOpera(Opera *testa, int id) {
     bool flag = false;
     Opera *nuovoNodo = NULL;
-
+    
     for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
-
+        
         if (temp->id == id) {
-
+            
             nuovoNodo = temp;
             flag = true;
             break;
-
+            
         }
     }
-
+    
     if (!flag) {
         printf("\n----------\n");
-        printColor("Attenzione!", COLOR_RED);
+        printColor("Attenzione!\n", COLOR_RED);
         printf("Opera non trovata.\n");
         printf("----------\n\n");
     }
-
+    
     return nuovoNodo;
 }
 
@@ -664,24 +751,24 @@ Opera *ricercaOpera(Opera *testa, int id) {
  */
 Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
     Opera *operaSelezionata = NULL;
-
+    
     bool ricercaInCorso = true;
     int scelta, opereTrovate;
     char input[30], tempName[30];
-
+    
     fseek(fp, 0, SEEK_END);
     long size = ftell(fp);
-
+    
     if (size == 0) { //non ci sono opere registrate
         printf("\n----------\n");
         printColor("Attenzione!", COLOR_RED);
         printf("Non ci sono opera registrate.\n");
         printf("----------\n\n");
     } else {
-
+        
         clearConsole();
         titolo();
-
+        
         do {
             printf("Selezionare tipo di ricerca:\n");
             printf("1: Ricerca Opera per nome\n");
@@ -694,8 +781,12 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
             printf("-> ");
             scanf("%d", &scelta);
             printf("\n");
-
+            
             switch (scelta) {
+                case 0:
+                    ricercaInCorso = false;
+                    break;
+                
                 case 1:
                     opereTrovate = 0;
                     clearConsole();
@@ -704,8 +795,9 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire nome completo o parziale dell'opera: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
+                    printf("---------------------\n");
                     toUppercase(input);
-
+                    
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->nome);
@@ -722,6 +814,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 printf("Digitare l'ID dell'opera da selezionare: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
+                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     scelta = atoi(input);
                                     operaSelezionata = ricercaOpera(testa, scelta);
@@ -729,6 +822,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
+                                clearConsole();
                                 titolo();
                             }
                         } else {
@@ -746,8 +840,9 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire nome completo o parziale dell'autore: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
+                    printf("---------------------\n");
                     toUppercase(input);
-
+                    
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->autore);
@@ -763,6 +858,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 printf("Digitare l'ID dell'opera da selezionare: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
+                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     scelta = atoi(input);
                                     operaSelezionata = ricercaOpera(testa, scelta);
@@ -770,6 +866,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
+                                clearConsole();
                                 titolo();
                             }
                         } else {
@@ -787,8 +884,9 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire la tipologia dell'opera: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
+                    printf("---------------------\n");
                     toUppercase(input);
-
+                    
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->tipo);
@@ -804,6 +902,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 printf("Digitare l'ID dell'opera da selezionare: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
+                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     scelta = atoi(input);
                                     operaSelezionata = ricercaOpera(testa, scelta);
@@ -811,6 +910,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
+                                clearConsole();
                                 titolo();
                             }
                         } else {
@@ -828,8 +928,9 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire il genere dell'opera: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
+                    printf("---------------------\n");
                     toUppercase(input);
-
+                    
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->genere);
@@ -845,6 +946,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 printf("Digitare l'ID dell'opera da selezionare: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
+                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     scelta = atoi(input);
                                     operaSelezionata = ricercaOpera(testa, scelta);
@@ -852,6 +954,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
+                                clearConsole();
                                 titolo();
                             }
                         } else {
@@ -869,8 +972,9 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     printf("Inserire il perido dell'opera: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
+                    printf("---------------------\n");
                     toUppercase(input);
-
+                    
                     if (strlen(input) != 0) {
                         for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
                             strcpy(tempName, temp->periodo);
@@ -886,6 +990,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 printf("Digitare l'ID dell'opera da selezionare: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
+                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     scelta = atoi(input);
                                     operaSelezionata = ricercaOpera(testa, scelta);
@@ -893,6 +998,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
+                                clearConsole();
                                 titolo();
                             }
                         } else {
@@ -904,6 +1010,8 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     break;
                 case 6:
                     do {
+                        clearConsole();
+                        titolo();
                         printf("Selezionare tipo di ricerca:\n");
                         printf("1: Ricerca per anno\n");
                         printf("2: Ricerca per decennio\n");
@@ -911,13 +1019,21 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                         printf("0: Torna indietro\n");
                         printf("-> ");
                         scanf("%d", &scelta);
-
+                        printf("\n");
+                        
                         switch(scelta) {
+                            case 0:
+                                ricercaInCorso = false;
+                                break;
+                            
                             case 1:
+                                clearConsole();
+                                titolo();
                                 while ('\n' != getchar());
                                 printf("Inserire anno dell'opera: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
+                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     opereTrovate = 0;
                                     scelta = atoi(input);
@@ -933,6 +1049,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                             printf("Digitare l'ID dell'opera da selezionare: ");
                                             fgets(input, 30, stdin);
                                             input[strlen(input) - 1] = 0;
+                                            printf("---------------------\n");
                                             if (strlen(input) != 0) {
                                                 scelta = atoi(input);
                                                 operaSelezionata = ricercaOpera(testa, scelta);
@@ -940,6 +1057,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                             }
                                         } else {
                                             pausa();
+                                            clearConsole();
                                             titolo();
                                         }
                                     } else {
@@ -949,11 +1067,15 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                     }
                                 }
                                 break;
+                                
                             case 2:
+                                clearConsole();
+                                titolo();
                                 while ('\n' != getchar());
                                 printf("Inserire il decennio da ricercare (es. 1990): ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
+                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     opereTrovate = 0;
                                     scelta = atoi(input) /10*10;
@@ -969,6 +1091,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                             printf("Digitare l'ID dell'opera da selezionare: ");
                                             fgets(input, 30, stdin);
                                             input[strlen(input) - 1] = 0;
+                                            printf("---------------------\n");
                                             if (strlen(input) != 0) {
                                                 scelta = atoi(input);
                                                 operaSelezionata = ricercaOpera(testa, scelta);
@@ -976,6 +1099,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                             }
                                         } else {
                                             pausa();
+                                            clearConsole();
                                             titolo();
                                         }
                                     } else {
@@ -985,11 +1109,15 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                     }
                                 }
                                 break;
+                                
                             case 3:
+                                clearConsole();
+                                titolo();
                                 while ('\n' != getchar());
                                 printf("Inserire il secolo (es. 1500 o 16): ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
+                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     opereTrovate = 0;
                                     scelta = atoi(input);
@@ -1010,6 +1138,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                             printf("Digitare l'ID dell'opera da selezionare: ");
                                             fgets(input, 30, stdin);
                                             input[strlen(input) - 1] = 0;
+                                            printf("---------------------\n");
                                             if (strlen(input) != 0) {
                                                 scelta = atoi(input);
                                                 operaSelezionata = ricercaOpera(testa, scelta);
@@ -1017,6 +1146,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                             }
                                         } else {
                                             pausa();
+                                            clearConsole();
                                             titolo();
                                         }
                                     } else {
@@ -1030,20 +1160,19 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                             default:
                                 break;
                         }
-
+                        
                     } while (ricercaInCorso);
                     if (operaSelezionata == NULL) {
                         ricercaInCorso = true;
                     }
-                case 0:
-                    ricercaInCorso = false;
-                    break;
+                    
                 default:
                     break;
             }
         } while (ricercaInCorso);
         clearConsole();
+        titolo();
     }
-
+    
     return operaSelezionata;
 }

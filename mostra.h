@@ -1,20 +1,16 @@
-Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera);
+Mostra *letturaMostre(FILE *fp);
 
 void aggiungiMostra(Mostra *testa);
-
-void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera);
 
 void modificaMostra(Mostra *testa, Mostra *mostra);
 
 void eliminaMostra(Mostra *testa, Mostra *mostra);
 
-void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera);
-
 void scriviMostre(Mostra *testa);
 
 void stampaMostre(Mostra *testa);
 
-void stampaMostra(Mostra *mostra, bool stampaOpere);
+void stampaMostra(Mostra *mostra);
 
 Mostra *ricercaMostra(Mostra *testa, int id);
 

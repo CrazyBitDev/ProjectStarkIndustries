@@ -289,26 +289,6 @@ int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, in
     return differenza;
 }
 
-int differenzaDateChar(char *data1, char *data2) {
-    char dataTemp1[11], dataTemp2[11];
-
-    strcpy(dataTemp1, data1);
-    strcpy(dataTemp2, data2);
-
-    int data1Convertita[3],data2Convertita[3];
-    
-    char *tok1 = strtok(dataTemp1, "/");
-    char *tok2 = strtok(dataTemp2, "/");
-    for (int i = 0; i < 3; i++ ) {
-        data1Convertita[i] = atoi(tok1);
-        data2Convertita[i] = atoi(tok2);
-        tok1 = strtok(NULL, "/");
-        tok2 = strtok(NULL, "/");
-    }
-
-    return differenzaDate(data1Convertita[0], data1Convertita[1], data1Convertita[2], data2Convertita[0], data2Convertita[1], data2Convertita[2]);
-}
-
 int differenzaDateOggi(int giorno, int mese, int anno) {
     struct tm *ts;
     char annoCorrente[5], meseCorrente[3], giornoCorrente[3];
@@ -339,8 +319,9 @@ int differenzaDateOggiChar(char *dataTarget) {
     }
 
     return differenzaDateOggi(dataConvertita[0], dataConvertita[1], dataConvertita[2]);
-}
 
+    //return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);
+}
 
 bool verificaDataCorrente(int giorno, int mese, int anno) {
     bool dataCorrente;
@@ -403,6 +384,7 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
             inIntervallo = true;
         }
     }
+    printf("data in intervallo: %d\n", inIntervallo);
     return inIntervallo;
 }
 

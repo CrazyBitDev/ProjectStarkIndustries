@@ -18,8 +18,8 @@ struct opera {
     int id;
     char nome[30];
     char autore[30];
-    char tipo[20];
-    char genere[20];
+    char tipo[30];
+    char genere[30];
     char periodo[20];
     int anno;
     Opera *nextOpera; //puntatore al prossimo nodo
@@ -53,6 +53,6 @@ struct prenotazione {
     Utente *utente;
     Mostra *mostra;
     char data[11];
-    char ora[5];
+    char ora[6];
     Prenotazione *nextPrenotazione;
 };
