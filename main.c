@@ -216,7 +216,7 @@ int main() {
                                                 break;
                                                 
                                             case 2:
-                                                //while ('\n' != getchar());
+                                                while ('\n' != getchar());
                                                 aggiungiMostra(testaMostra);
                                                 break;
                                                 
