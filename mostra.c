@@ -1288,6 +1288,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
 
         } while (ricercaInCorso);
         clearConsole();
+        titolo();
     }
 
     return mostraSelezionata;
