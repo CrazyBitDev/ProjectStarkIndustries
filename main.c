@@ -14,8 +14,8 @@
 
 #include "functions.h"
 #include "utente.h"
-#include "mostra.h"
 #include "opera.h"
+#include "mostra.h"
 #include "prenotazione.h"
 
 int main() {
@@ -46,22 +46,26 @@ int main() {
     //Lettura utenti dal file
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
-    
-    //Lettura mostre dal file
-    FILE *fpM;
-    fpM = fopen("mostre.csv", "r");
-    
+
     //Lettura opere dal file
     FILE *fpO;
     fpO = fopen("opere.csv", "r");
+
+    //Lettura mostre dal file
+    FILE *fpM;
+    fpM = fopen("mostre.csv", "r");
+
+    //Lettura mostre dal file
+    FILE *fpMO;
+    fpMO = fopen("mostreopere.csv", "r");
     
     //Lettura prenotazioni dal file
     FILE *fpP;
     fpP = fopen("prenotazioni.csv", "r");
     
     testaUtente       = letturaUtenti(fpU);
-    testaMostra       = letturaMostre(fpM);
     testaOpera        = letturaOpere(fpO);
+    testaMostra       = letturaMostre(fpM, fpMO, testaOpera);
     testaPrenotazione = letturaPrenotazioni(fpP, testaUtente, testaMostra);
     
     do {
@@ -193,6 +197,8 @@ int main() {
                                         printf("2: Aggiungi dati mostra\n");
                                         printf("3: Modifica dati mostra\n");
                                         printf("4: Cancella dati mostra\n");
+                                        printf("5: Aggiungi opera a mostra\n");
+                                        printf("6: Rimuovi opera da mostra\n");
                                         printf("0: Torna indietro\n");
                                         printf("----------\n");
                                         printf("-> ");
@@ -227,6 +233,18 @@ int main() {
                                                 
                                                 if(mostraScelta != NULL) {
                                                     eliminaMostra(testaMostra, mostraScelta);
+                                                }
+                                                break;
+
+                                            case 5:
+                                                mostraScelta = browserMostra(fpM, testaMostra, true);
+                                                
+                                                if(mostraScelta != NULL) {
+                                                    operaScelta = browserOpere(fpO, testaOpera, true);
+
+                                                    if (operaScelta != NULL) {
+                                                        
+                                                    }
                                                 }
                                                 break;
                                                 
@@ -337,7 +355,7 @@ int main() {
                                             mostraScelta = browserMostra(fpM, testaMostra, true);
                                             //while ('\n' != getchar());
                                             if (mostraScelta != NULL) {
-                                                stampaMostra(mostraScelta);
+                                                stampaMostra(mostraScelta, false);
                                                 registrazionePrenotazione(testaPrenotazione, utenteLogin, mostraScelta);
                                             }
                                             break;

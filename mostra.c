@@ -7,7 +7,7 @@
  *
  *   @return //
  */
-Mostra *letturaMostre(FILE *fp) {
+Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
     
     //Lettura mostre dal file
     int colonna1 = 0;
@@ -16,6 +16,10 @@ Mostra *letturaMostre(FILE *fp) {
     Mostra *testaMostra = NULL;
     Mostra *tempMostra  = NULL; //temporanea
     Mostra *tempMostra1 = NULL;
+
+    MostraOpera *tempMostraOpera = NULL;
+    Opera *tempOpera    = NULL;
+    bool operaNonInserita = false;
     
     if (fp == NULL) {
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
@@ -28,6 +32,7 @@ Mostra *letturaMostre(FILE *fp) {
             fgets(buf, BUFFER_SIZE, fp);
             tempMostra = (Mostra *) malloc(sizeof(Mostra));
             tempMostra->nextMostra = NULL;
+            tempMostra->opere = NULL;
             
             if (tempMostra1 != NULL) {
                 tempMostra1->nextMostra = tempMostra;
@@ -77,10 +82,59 @@ Mostra *letturaMostre(FILE *fp) {
         }
     }
     
+    if (fpMO == NULL) {
+        printColor("\t\t\t|-------------------------------|\n", COLOR_RED);
+        printColor("\t\t\t|File \"mostreopere\" non trovato!|\n", COLOR_RED);
+        printColor("\t\t\t|              ...              |\n", COLOR_RED);
+        printColor("\t\t\t|       File in creazione       |\n", COLOR_RED);
+        printColor("\t\t\t|-------------------------------|\n", COLOR_RED);
+    } else {
+        while (!feof(fpMO)) {
+            fgets(buf, BUFFER_SIZE, fpMO);
+
+            char *tok = strtok(buf, ",");
+            
+            while (tok) {
+                if (colonna1 == 0) {
+                    Mostra *tempMostra = ricercaMostra(testaMostra, atoi(tok));
+                    if (tempMostra->opere == NULL) {
+                        tempMostra->opere = (MostraOpera *) malloc(sizeof(MostraOpera));
+                        tempMostra->opere->nextOpera = NULL;
+                        tempMostra->opere->opera = NULL;
+                    }
+                    tempMostraOpera = tempMostra->opere;
+                }
+                if (colonna1 == 1) {
+                    if (strstr(tok, "\n") != NULL) {
+                        tok[strlen(tok) - 1] = 0;
+                    }
+                    tempOpera = ricercaOpera(testaOpera, atoi(tok));
+                    operaNonInserita = true;
+                    do {
+                        if (tempMostraOpera->opera == NULL) {
+                            tempMostraOpera->opera = tempOpera;
+                            operaNonInserita = false;
+                        } else {
+                            if (tempMostraOpera->nextOpera == NULL) {
+                                tempMostraOpera->nextOpera = (MostraOpera *) malloc(sizeof(MostraOpera));
+                                tempMostraOpera->nextOpera->nextOpera = NULL;
+                                tempMostraOpera->nextOpera->opera = NULL;
+                            }
+                            tempMostraOpera = tempMostraOpera->nextOpera;
+                        }
+                    } while (operaNonInserita);
+                }
+                tok = strtok(NULL, ",");
+                colonna1++;
+            }
+            colonna1 = 0;
+        }
+    }
+
     return testaMostra;
 }
 
-/**
+/*
  * Function: registrazioneUtente
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) la registrazione di
@@ -116,7 +170,6 @@ void aggiungiMostra(Mostra *testa) {
     FILE *fp;
     fp = fopen("mostre.csv", "a+"); //apertura file
     
-    while ('\n' != getchar());
     notificaAnnulla();
     
     do {
@@ -135,7 +188,7 @@ void aggiungiMostra(Mostra *testa) {
         
         //verifico che siano stati inseriti solo caratteri alfabetici
         for(i=0; i<strlen(nuovoNodo->responsabile); i++) {
-            if(isalpha(nuovoNodo->responsabile[i]) == 0 && nuovoNodo->responsabile[i] != ' ') {
+            if(isalpha(nuovoNodo->responsabile[i]) == 0) {
                 testInput = true; //carattere non alfabetico
             }
         }
@@ -163,7 +216,7 @@ void aggiungiMostra(Mostra *testa) {
             nuovoNodo->luogo[0] = toupper(nuovoNodo->luogo[0]);
             
             for(i=0; i<strlen(nuovoNodo->luogo); i++) {
-                if(isalpha(nuovoNodo->luogo[i]) == 0 && nuovoNodo->luogo[i] != ' ') {
+                if(isalpha(nuovoNodo->luogo[i]) == 0) {
                     testInput = true; //carattere non alfabetico
                 }
             }
@@ -188,7 +241,7 @@ void aggiungiMostra(Mostra *testa) {
             nuovoNodo->citta[0] = toupper(nuovoNodo->citta[0]);
             
             for(i=0; i<strlen(nuovoNodo->citta); i++) {
-                if(isalpha(nuovoNodo->citta[i]) == 0 && nuovoNodo->citta[i] != ' ') {
+                if(isalpha(nuovoNodo->citta[i]) == 0) {
                     testInput = true; //carattere non alfabetico
                 }
             }
@@ -368,7 +421,43 @@ void aggiungiMostra(Mostra *testa) {
     titolo();
 }
 
-/**
+/*
+ * Function: aggiungiOperaAMostra
+ * ----------------------------
+ *   Permette di aggiungere una opera ad una determinata mostra, controllando che nel periodo della mostra l'opera non è già occupata
+ *
+ *   Mostra *testa: lista mostra
+ *   Mostra *mostra: mostra scelta per essere modificata
+ *   Opera *opera: opera scelta per essere aggiunta
+ *
+ *   returns: //
+ */
+void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
+    bool operaLibera = true;
+    for (Mostra *tempMostra = testa; tempMostra != NULL; tempMostra = tempMostra->nextMostra) {
+        if ( differenzaDateChar(mostra->dataInizio, tempMostra->dataFine) >= 0 && differenzaDateChar(mostra->dataFine, tempMostra->dataInizio) <= 0)
+        for (MostraOpera *tempMostraOpera = tempMostra->opere; tempMostraOpera != NULL; tempMostraOpera = tempMostraOpera->nextOpera) {
+            if (opera->id == tempMostraOpera->opera->id) {
+                operaLibera = false;
+            }
+        }
+    }
+    if (operaLibera) {
+        bool operaNonInserita = true;
+        MostraOpera *tempMostraOpera = mostra->opere;
+        do {
+            if (tempMostraOpera == NULL) {
+                tempMostraOpera->opera = opera;
+                operaNonInserita = false;
+            } else {
+                tempMostraOpera = tempMostraOpera->nextOpera;
+            }
+        } while (operaNonInserita);
+        scriviMostre(testa);
+    }
+}
+
+/*
  * Function: modificaMostra
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi
@@ -380,11 +469,10 @@ void aggiungiMostra(Mostra *testa) {
  *   returns: //
  */
 void modificaMostra(Mostra *testa, Mostra *mostra) {
-    int scelta, colonna = 0, i;
+    int scelta, colonna = 0;
     char risposta = '\0';
     bool flagDate = false;
     bool continuaModifica = true;
-    bool testInput = false;
     
     Mostra *temp = NULL;
     temp = mostra;
@@ -438,12 +526,8 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
             case 1:
                 clearConsole();
                 titolo();
-                
-                
-                
-                do {
                 notificaAnnulla();
-                    testInput = false;
+                
                 printf("Inserisci il responsabile: ");
                 fgets(responsabile, 30, stdin);
                 responsabile[strlen(responsabile) - 1] = 0;
@@ -452,71 +536,36 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 if(strlen(responsabile) == 0) {
                     continuaModifica = false;
                     break;
+                } else {
+                    strcpy(temp->responsabile, responsabile);
                 }
-                    
-                    for (i = 0; i < strlen(responsabile); i++) {
-                        if (isalpha(responsabile[i]) == 0 && responsabile[i] != ' ') {
-                            testInput = true; //carattere non alfabetico
-                        }
-                    }
-                    
-                    if (testInput) {
-                        clearConsole();
-                        titolo();
-                        printf("\n----------");
-                        printColor("\nAttenzione!\n", COLOR_RED);
-                        printf("Responsabile non valido.\n");
-                        printf("----------\n\n");
-                    } else {
-                        strcpy(temp->responsabile, responsabile);
-                    }
-                } while(testInput);
-                    
                 break;
                 
             case 2:
                 clearConsole();
                 titolo();
-                
-                do {
                 notificaAnnulla();
-                    testInput = false;
+                
                 printf("Inserisci il luogo: ");
                 fgets(luogo, 25, stdin);
                 luogo[strlen(luogo) - 1] = 0;
                 luogo[0] = toupper(luogo[0]);
                 
                 if(strlen(luogo) == 0) {
+                    printf("test prima: %s", continuaModifica ? "vero\n" : "falso\n");
                     continuaModifica = false;
+                    printf("test dopo: %s", continuaModifica ? "vero\n" : "falso\n");
                     break;
+                } else {
+                    strcpy(temp->luogo, luogo);
                 }
-                    
-                    for (i = 0; i < strlen(luogo); i++) {
-                        if (isalpha(luogo[i]) == 0 && luogo[i] != ' ') {
-                            testInput = true; //carattere non alfabetico
-                        }
-                    }
-                    
-                    if (testInput) {
-                        clearConsole();
-                        titolo();
-                        printf("\n----------");
-                        printColor("\nAttenzione!\n", COLOR_RED);
-                        printf("Luogo non valido.\n");
-                        printf("----------\n\n");
-                    } else {
-                        strcpy(temp->luogo, luogo);
-                    }
-                    
-                } while(testInput);
                 break;
                 
             case 3:
                 clearConsole();
                 titolo();
-                do {
                 notificaAnnulla();
-                    testInput = false;
+                
                 printf("Inserisci la citta': ");
                 fgets(citta, 20, stdin);
                 citta[strlen(citta) - 1] = 0;
@@ -525,24 +574,9 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 if(strlen(citta) == 0) {
                     continuaModifica = false;
                     break;
+                } else {
+                    strcpy(temp->citta, citta);
                 }
-                    for (i = 0; i < strlen(citta); i++) {
-                        if (isalpha(citta[i]) == 0 && citta[i] != ' ') {
-                            testInput = true; //carattere non alfabetico
-                        }
-                    }
-                    
-                    if (testInput) {
-                        clearConsole();
-                        titolo();
-                        printf("\n----------");
-                        printColor("\nAttenzione!\n", COLOR_RED);
-                        printf("Citta' non valida.\n");
-                        printf("----------\n\n");
-                    } else {
-                        strcpy(temp->citta, citta);
-                    }
-                } while(testInput);
                 break;
                 
             case 4:
@@ -558,8 +592,9 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 if(strlen(indirizzo) == 0) {
                     continuaModifica = false;
                     break;
+                } else {
+                    strcpy(temp->indirizzo, indirizzo);
                 }
-                    
                 break;
                 
             case 5:;
@@ -665,7 +700,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         } else {
                             clearConsole();
                             titolo();
-                            printf("\n----------\n");
+                            printf("\n----------");
                             printColor("Attenzione!\n", COLOR_RED);
                             printf("La data di fine mostra deve susseguire la data d'inizio.\n");
                             printf("Si prega di inserire nuovamente le date.\n");
@@ -676,11 +711,9 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                     if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
                         flagDate = true;
                     } else {
-                        printf("\n----------\n");
                         printColor("Attenzione!\n", COLOR_RED);
                         printf("La data di fine mostra deve susseguire la data d'inizio.\n");
-                        printf("Si prega di inserire nuovamente le date.\n");
-                        printf("----------\n\n");
+                        printf("Si prega di inserire nuovamente le date.\n\n");
                     }
                 
                 } while (!flagDate);
@@ -797,7 +830,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
 
 
 
-/**
+/*
  * Function: stampaMostre
  * ----------------------------
  *   Permette di stampare a video l'elenco delle mostre
@@ -808,29 +841,39 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
  */
 void stampaMostre(Mostra *testa) {
     for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
-        stampaMostra(temp);
+        stampaMostra(temp, false);
         printf("----------\n");
     }
 }
 
-/**
+/*
  * Function: stampaMostra
  * ----------------------------
  *   Permette di stampare i dettagli di una mostra
  *
  *   Mostra *mostra: mostra scelta
+ *   bool stampaOpere: mostra opere assegnate alla mostra se true
  *
  *   returns: //
  */
-void stampaMostra(Mostra *mostra) {
+void stampaMostra(Mostra *mostra, bool stampaOpere) {
     printf("Mostra numero: %d \n", mostra->id);
     printf("Responsabile: %s \n", mostra->responsabile);
     printf("Luogo di esposizione: %s \n", mostra->luogo);
     printf("Luogo: %s - %s\n", mostra->citta, mostra->indirizzo);
     printf("Durata: dal %s al %s\n", mostra->dataInizio, mostra->dataFine);
+    if (stampaOpere) {
+        if (mostra->opere != NULL) {
+            MostraOpera *temp = mostra->opere;
+            printf("Opere nella mostra:\n");
+            for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
+                printf("\tID %d - %s di %s\n", temp->opera->id, temp->opera->nome, temp->opera->autore);
+            }
+        }
+    }
 }
 
-/**
+/*
  * Function: scriviMostre
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "mostre.csv"
@@ -840,11 +883,11 @@ void stampaMostra(Mostra *mostra) {
  *   returns: //
  */
 void scriviMostre(Mostra *testa) {
-    Mostra *temp = NULL;
-    FILE *fp;
+    FILE *fp, *fpMO;
     fp = fopen("mostre.csv", "w"); //apertura file
+    fpMO = fopen("mostreopere.csv", "w"); //apertura file
     
-    for (temp = testa; temp != NULL; temp = temp->nextMostra) {
+    for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
         long size = ftell(fp);
         
         if (size == 0) {
@@ -856,11 +899,24 @@ void scriviMostre(Mostra *testa) {
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s", temp->id, temp->responsabile, temp->luogo, temp->citta,
                     temp->indirizzo, temp->dataInizio, temp->dataFine);
         }
+
+        for (MostraOpera *tempMO = temp->opere; temp != NULL; tempMO = tempMO->nextOpera) {
+            long size = ftell(fp);
+        
+            if (size == 0) {
+                //file vuoto.
+                fprintf(fp, "%d,%d", temp->id, tempMO->opera->id);
+            } else {
+                //file pieno
+                fprintf(fp, "\n%d,%d", temp->id, tempMO->opera->id);
+            }
+        }
     }
     fclose(fp);
+    fclose(fpMO);
 }
 
-/**
+/*
  * Function: eliminaMostra
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare la mostra scelta
@@ -915,7 +971,48 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
     }
 }
 
-/**
+void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
+    char risposta;
+    do {
+        while ('\n' != getchar());
+        printColor("ATTENZIONE!\n", COLOR_RED);
+        printf("Sei sicuro/a di voler eliminare la mostra?\n");
+        printf("Risposta (s/n): ");
+        scanf("%c", &risposta);
+        printf("\n");
+        
+        //rendo la risposta tutta maiuscola per evitare errori
+        risposta = toupper(risposta);
+        
+    } while (risposta != 'S' && risposta != 'N');
+    
+    clearConsole();
+    titolo();
+    
+    if (risposta == 'S') {
+
+        MostraOpera *curr = mostra->opere, *prec = NULL;
+
+        while (curr != NULL && curr->opera->id != idOpera) {
+            prec = curr;
+            curr = curr->nextOpera;
+        }
+        
+        if (idOpera == curr->opera->id) {
+            if (prec == NULL) { //elemento trovato in testa
+                mostra->opere = curr->nextOpera;
+            } else { //elemento al centro della lista
+                prec->nextOpera = curr->nextOpera;
+            }
+            free(curr);
+        }
+        
+        scriviMostre(testa);
+        printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
+    }
+}
+
+/*
  * Function: ricercaMostra
  * ----------------------------
  *   TODO: da finire
@@ -951,7 +1048,7 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
 }
 
 
-/**
+/*
  * Function: mostreBrowser
  * ----------------------------
  *   Permette una vista approfondita delle mostre con ricerca,
@@ -974,11 +1071,12 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
     long size = ftell(fp);
 
     if (size == 0) { //non ci sono opere registrate
-        printf("\n----------\n");
         printColor("Attenzione!\n", COLOR_RED);
         printf("Non ci sono mostre registrate.\n");
-        printf("----------\n\n");
     } else {
+
+        clearConsole();
+        titolo();
 
         do {
             printf("Selezionare tipo di ricerca:\n");
@@ -988,22 +1086,16 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
             printf("0: Annulla la ricerca\n");
             printf("-> ");
             scanf("%d", &scelta);
-            printf("\n");
 
             switch(scelta) {
-                case 0:
-                    ricercaInCorso = false;
-                    break;
-                    
+                
                 case 1:
                     mostreTrovate = 0;
                     clearConsole();
-                    titolo();
                     while ('\n' != getchar());
                     printf("Inserire nome completo o parziale del responsabile: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
-                    printf("---------------------\n");
                     toUppercase(input);
 
                     if (strlen(input) != 0) {
@@ -1012,7 +1104,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                             toUppercase(tempName);
                             if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
-                                stampaMostra(temp);
+                                stampaMostra(temp, true);
                                 printf("---------------------\n");
                             }
                         }
@@ -1021,7 +1113,6 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 printf("Digitare l'ID della mostra da selezionare: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
-                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     scelta = atoi(input);
                                     mostraSelezionata = ricercaMostra(testa, scelta);
@@ -1029,13 +1120,12 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
-                                clearConsole();
                                 titolo();
                             }
                         } else {
                             clearConsole();
                             titolo();
-                            printColor("Nessuna mostra corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
                         }
                     }
                     break;
@@ -1043,12 +1133,10 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                 case 2:
                     mostreTrovate = 0;
                     clearConsole();
-                    titolo();
                     while ('\n' != getchar());
                     printf("Inserire nome completo o parziale del luogo: ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
-                    printf("---------------------\n");
                     toUppercase(input);
 
                     if (strlen(input) != 0) {
@@ -1057,7 +1145,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                             toUppercase(tempName);
                             if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
-                                stampaMostra(temp);
+                                stampaMostra(temp, true);
                                 printf("---------------------\n");
                             }
                         }
@@ -1066,7 +1154,6 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 printf("Digitare l'ID della mostra da selezionare: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
-                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     scelta = atoi(input);
                                     mostraSelezionata = ricercaMostra(testa, scelta);
@@ -1074,13 +1161,12 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
-                                clearConsole();
                                 titolo();
                             }
                         } else {
                             clearConsole();
                             titolo();
-                            printColor("Nessuna mostra corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
                         }
                     }
                     break;
@@ -1088,12 +1174,10 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                 case 3:
                     mostreTrovate = 0;
                     clearConsole();
-                    titolo();
                     while ('\n' != getchar());
                     printf("Inserire nome completo o parziale della citta': ");
                     fgets(input, 30, stdin);
                     input[strlen(input) - 1] = 0;
-                    printf("---------------------\n");
                     toUppercase(input);
 
                     if (strlen(input) != 0) {
@@ -1102,7 +1186,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                             toUppercase(tempName);
                             if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
-                                stampaMostra(temp);
+                                stampaMostra(temp, true);
                                 printf("---------------------\n");
                             }
                         }
@@ -1111,7 +1195,6 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 printf("Digitare l'ID della mostra da selezionare: ");
                                 fgets(input, 30, stdin);
                                 input[strlen(input) - 1] = 0;
-                                printf("---------------------\n");
                                 if (strlen(input) != 0) {
                                     scelta = atoi(input);
                                     mostraSelezionata = ricercaMostra(testa, scelta);
@@ -1119,24 +1202,25 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
-                                clearConsole();
                                 titolo();
                             }
                         } else {
                             clearConsole();
                             titolo();
-                            printColor("Nessuna mostra corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
                         }
                     }
                     break;
 
+                case 0:
+                    ricercaInCorso = false;
+                    break;
                 default:
                     break;
             }
 
         } while (ricercaInCorso);
         clearConsole();
-        titolo();
     }
 
     return mostraSelezionata;
