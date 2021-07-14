@@ -1,11 +1,5 @@
 Elenco cose da fare/problemi:
 
-- controllare ed aggiustare tutti i messaggi 
-
-- controlli vari sugli input. Controllare opere e prenotazioni (?)
-
-- fare controlli al momento in cui si inserisco giorno/mese/anno -> controllare che si inseriscano solo numeri 
-
 - correttezza criteri email e password (?) (regex.h)
 
 - usare funzione difftime per confrontare due date (nelle mostre)

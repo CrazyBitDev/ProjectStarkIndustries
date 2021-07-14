@@ -1,3 +1,14 @@
+/**
+ * Function: letturaPrenotazioni
+ * ----------------------------
+ *   Permette di leggere i dati dal file "prenotazioni.csv" e salvarli all'interno della struct Prenotazione
+ *
+ *   @param fp : nome del file da cui leggere i dati, ovvero "prenotazioni.csv"
+ *   @param testaUtente : lista utente
+ *   @param testaMostra : lista mostra
+ *
+ *   @returns: //
+ */
 Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMostra) {
     int colonna = 0;
     char buf[BUFFER_SIZE];
@@ -55,17 +66,27 @@ Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMo
     return testaPrenotazione;
 }
 
+/**
+ * Function: registrazionePrenotazione
+ * ----------------------------
+ *   Permette agli utenti di prenotare una visita ad una mostra in un determinato giorno e orario
+ *
+ *   @param testa : lista prenotazione
+ *   @param utente : utente che ha effettuato il login
+ *   @param mostra : mostra scelta
+ *
+ *   @returns: //
+ */
 void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *mostra) {
     
     Prenotazione *curr, *prec;
     prec = NULL;
     curr = testa;
 
-    int ultimoID = 0, i;
-    bool testInput = false; //flag per controllare i vari input
+    int ultimoID = 0;
     bool continuaInserimento = true;
 
-    bool dataCorretta = true, continuaModifica = true;
+    bool dataCorretta = true;
     int giorno, mese = 0, anno = 0, ora, minuti;
 
     Prenotazione *nuovoNodo = NULL;
@@ -100,13 +121,13 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
             scanf("%d", &giorno);
             
             if(giorno == 0) {
-                continuaModifica = false;
+                continuaInserimento = false;
                 break;
             }
             
         } while (giorno < 1 || giorno > 31);
         
-        if(continuaModifica) {
+        if(continuaInserimento) {
             do {
                 printf("Mese: ");
                 scanf("%d", &mese);
@@ -123,7 +144,7 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
     snprintf(nuovoNodo->data, 11, "%d/%d/%d", giorno, mese, anno);
     
     printf("-----------------------------\n");
-    if(continuaModifica) {
+    if(continuaInserimento) {
         do {
             printf("Ora (dalle 9 alle 22): ");
             scanf("%d", &ora);
@@ -171,10 +192,11 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
             nuovoNodo->nextPrenotazione = curr;
         }
         
+        clearConsole();
+        titolo();
+        printColor("Prenotazione avvenuta con successo.\n", COLOR_GREEN);
+        pausa();
     }
-
-    clearConsole();
-    titolo();
 }
 
 void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
@@ -230,6 +252,7 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
                 consoleColor(COLOR_RESET);
                 
                 do {
+                    continuaModifica = true;
                     if (!dataCorretta) {
                         clearConsole();
                         titolo();
@@ -403,13 +426,10 @@ Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id) {
     Prenotazione *nuovoNodo = NULL;
 
     for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
-
         if (temp->id == id) {
-
             nuovoNodo = temp;
             flag = true;
             break;
-
         }
     }
 

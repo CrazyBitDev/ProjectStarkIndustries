@@ -85,6 +85,7 @@ int main() {
         scelta = (int)scelta - 48;
         
         switch (scelta) {
+                
             case 1:
                 while ('\n' != getchar());
                 
@@ -109,7 +110,9 @@ int main() {
                         clearConsole();
                         titolo();
                         
-                        printColor("Benvenuto nella sezione privata del tuo account\n", COLOR_CYAN);
+                        printColor("Benvenuto/a ", COLOR_CYAN);
+                        printColor(utenteLogin->nome, COLOR_CYAN);
+                        printColor(" nella sezione privata del tuo account\n", COLOR_CYAN);
                         //Operazioni che può effettuare l'utente una volta che ha eseguito il login
                         do {
                             printf("\n---MENU'---\n");
@@ -151,6 +154,10 @@ int main() {
                                     clearConsole();
                                     titolo();
                                     stampaUtente(utenteLogin);
+                                    while ('\n' != getchar());
+                                    pausa();
+                                    clearConsole();
+                                    titolo();
                                     break;
                                     
                                 case 2:
@@ -219,6 +226,8 @@ int main() {
                                             case 2:
                                                 while ('\n' != getchar());
                                                 aggiungiMostra(testaMostra);
+                                                clearConsole();
+                                                titolo();
                                                 break;
                                                 
                                             case 3:
@@ -417,7 +426,7 @@ int main() {
                                     break;
                             }
                             
-                        } while (scelta2 != 9 /*&& sceltaGestP != 2 */&& scelta2 != 0);
+                        } while (scelta2 != 9 && sceltaGestP != 2 && scelta2 != 0);
                     }
                 }
                 break;
@@ -430,6 +439,8 @@ int main() {
                 break;
                 
             default:
+                clearConsole();
+                titolo();
                 break;
         }
         printColor("-----------------------------\n", COLOR_CYAN);
@@ -439,3 +450,4 @@ int main() {
     printf("\n");
     return 0;
 }
+

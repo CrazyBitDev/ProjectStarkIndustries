@@ -284,9 +284,12 @@ void aggiungiOpera(Opera *testa) {
             prec->nextOpera = nuovoNodo;
             nuovoNodo->nextOpera = curr;
         }
+        
+        clearConsole();
+        titolo();
+        printColor("Opera registrata con successo.\n", COLOR_GREEN);
+        pausa();
     }
-    clearConsole();
-    titolo();
 }
 
 /**
@@ -295,10 +298,10 @@ void aggiungiOpera(Opera *testa) {
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi
  *   all'opera scelta
  *
- *   Opera *testa: lista opera
- *   Opera *opera: opera scelta per essere modificata
+ *   @param testa : lista opera
+ *   @param opera : opera scelta per essere modificata
  *
- *   returns: //
+ *   @returns: //
  */
 void modificaOpera(Opera *testa, Opera *opera) {
     
@@ -586,9 +589,9 @@ void modificaOpera(Opera *testa, Opera *opera) {
  * ----------------------------
  *   Permette di stampare a video l'elenco delle opere
  *
- *   Opera *testa: lista opera
+ *   @param testa : lista opera
  *
- *   returns: //
+ *   @returns: //
  */
 void stampaOpere(Opera *testa) {
     for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
@@ -602,9 +605,9 @@ void stampaOpere(Opera *testa) {
  * ----------------------------
  *   Permette di stampare i dettagli di un'opera
  *
- *   Opera *opera: opera scelta
+ *   @param opera : opera scelta
  *
- *   returns: //
+ *   @returns: //
  */
 void stampaOpera(Opera *opera) {
     printf("Id: %d\n", opera->id);
@@ -621,9 +624,9 @@ void stampaOpera(Opera *opera) {
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "opere.csv"
  *
- *   Opera *testa: lista opera
+ *   @param testa : lista opera
  *
- *   returns: //
+ *   @returns: //
  */
 void scriviOpere(Opera *testa) {
     Opera *temp = NULL;
@@ -633,14 +636,12 @@ void scriviOpere(Opera *testa) {
     for (temp = testa; temp != NULL; temp = temp->nextOpera) {
         long size = ftell(fp);
         
-        if (size == 0)   //file vuoto.
-        {
-            fprintf(fp, "%d,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->autore, temp->tipo,
-                    temp->genere, temp->periodo, temp->anno);
-        } else     //file pieno
-        {
-            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->autore, temp->tipo,
-                    temp->genere, temp->periodo, temp->anno);
+        if (size == 0) {
+            //file vuoto
+            fprintf(fp, "%d,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->autore, temp->tipo, temp->genere, temp->periodo, temp->anno);
+        } else {
+            //file vuoto
+            fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%d", temp->id, temp->nome, temp->autore, temp->tipo, temp->genere, temp->periodo, temp->anno);
         }
     }
     fclose(fp);
@@ -651,10 +652,10 @@ void scriviOpere(Opera *testa) {
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare l'opera scelta
  *
- *   Opera *testa: lista opera
- *   Opera *opera: opera da eliminare
+ *   @param testa : lista opera
+ *   @param opera : opera da eliminare
  *
- *   returns: //
+ *   @returns: //
  */
 void eliminaOpera(Opera *testa, Opera *opera) {
     char risposta;
@@ -707,10 +708,10 @@ void eliminaOpera(Opera *testa, Opera *opera) {
  * ----------------------------
  *   TODO: da finire
  *
- *   Opera *testa: lista opera
- *   int id: TODO: da finire
+ *   @param testa : lista opera
+ *   @param id : TODO: da finire
  *
- *   returns: TODO: da finire
+ *   @returns: TODO: da finire
  */
 Opera *ricercaOpera(Opera *testa, int id) {
     bool flag = false;
@@ -743,11 +744,11 @@ Opera *ricercaOpera(Opera *testa, int id) {
  *   Permette una vista approfondita delle opere con ricerca,
  *      possibilità di selezionare l'opera.
  *
- *   FILE fp: TODO: finire
- *   Opera testa: TODO: finire
- *   bool selezione: se true permette di selezionare l'opera con return avvalorato
+ *   @param fp : TODO: finire
+ *   @param testa : TODO: finire
+ *   @param selezione : se true permette di selezionare l'opera con return avvalorato
  *
- *   returns: se selezione == true l'opera selezionata, altrimenti NULL
+ *   @returns: se selezione == true l'opera selezionata, altrimenti NULL
  */
 Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
     Opera *operaSelezionata = NULL;

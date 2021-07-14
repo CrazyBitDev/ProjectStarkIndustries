@@ -3,9 +3,9 @@
  * ----------------------------
  *   Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente
  *
- *   FILE fp: nome del file da cui leggere i dati, ovvero "utenti.csv"
+ *   @param fp : nome del file da cui leggere i dati, ovvero "utenti.csv"
  *
- *   returns: //
+ *   @returns: //
  */
 Utente *letturaUtenti(FILE *fp) {
     
@@ -85,9 +85,9 @@ Utente *letturaUtenti(FILE *fp) {
  * ----------------------------
  *   Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente
  *
- *   Utente *testa: lista utente
+ *   @param testa : lista utente
  *
- *   returns: //
+ *   @returns: //
  */
 void registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
@@ -396,6 +396,13 @@ void registrazioneUtente(Utente *testa) {
             prec->nextUtente = nuovoNodo;
             nuovoNodo->nextUtente = curr;
         }
+        
+        clearConsole();
+        titolo();
+        printColor("Registrazione avvenuta con successo.\n", COLOR_GREEN);
+        printf("Benvenuto/a %s.\n", nuovoNodo->nome);
+        pausa();
+        
     }
 }
 
@@ -404,10 +411,10 @@ void registrazioneUtente(Utente *testa) {
  * ----------------------------
  *   Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato
  *
- *   Utente *testa: lista utente
- *   char *text: testo inserito dall'utente per fare l'accesso (email o nickname)
+ *   @param testa : lista utente
+ *   @param text : testo inserito dall'utente per fare l'accesso (email o nickname)
  *
- *   returns: returns: se esiste utente con email o nickname uguale al valore del secondo argomento
+ *   @returns:  se esiste utente con email o nickname uguale al valore del secondo argomento
  *            (char *text) e la password inserita corrisponde la funzione lo ritornerà,
  *            altrimenti il valore sarà uguale a NULL
  *
@@ -444,10 +451,10 @@ Utente *accesso(Utente *testa, char *text) {
  * ----------------------------
  *   TODO: da finire
  *
- *   Utente *testa: lista utente
- *   int id: TODO: da finire
+ *   @param testa : lista utente
+ *   @param id : TODO: da finire
  *
- *   returns: TODO: da finire
+ *   @returns: TODO: da finire
  */
 Utente *ricercaUtente(Utente *testa, int id) {
     bool flag = false;
@@ -477,9 +484,9 @@ Utente *ricercaUtente(Utente *testa, int id) {
  *   Permette di stampare i dati personali di un determinato utente dopo
  *   che ha effettuato l'accesso al proprio profilo
  *
- *   Utente *utenteLogin: utente che ha effettuato il login
+ *   @param utenteLogin : utente che ha effettuato il login
  *
- *   returns: //
+ *   @returns: //
  */
 void stampaUtente(Utente *utenteLogin) {
     Utente *temp = NULL;
@@ -508,10 +515,10 @@ void stampaUtente(Utente *utenteLogin) {
  * ----------------------------
  *   Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo
  *
- *   Utente *utenteLogin: utente che ha effettuato il login
- *   Utente *testa: lista utente
+ *   @param utenteLogin : utente che ha effettuato il login
+ *   @param testa : lista utente
  *
- *   returns: //
+ *   @returns: //
  */
 void modificaUtente(Utente *utenteLogin, Utente *testa) {
     int scelta, i;
@@ -598,15 +605,15 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                 do {
                     notificaAnnulla();
                     testInput = false;
-                printf("Inserisci il nuovo cognome: ");
-                fgets(cognome, 20, stdin);
-                cognome[strlen(cognome) - 1] = 0;
-                cognome[0] = toupper(cognome[0]);
-                
-                if(strlen(cognome) == 0) {
-                    continuaModifica = false;
-                    break;
-                }
+                    printf("Inserisci il nuovo cognome: ");
+                    fgets(cognome, 20, stdin);
+                    cognome[strlen(cognome) - 1] = 0;
+                    cognome[0] = toupper(cognome[0]);
+                    
+                    if(strlen(cognome) == 0 && testInput == false) {
+                        continuaModifica = false;
+                        break;
+                    }
                     
                     
                     for(i=0; i<strlen(cognome); i++) {
@@ -635,15 +642,18 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                 notificaAnnulla();
                 
                 do {
+                    notificaAnnulla();
+                    testInput = false;
                     flag = false;
                     printf("Inserisci Email (non ti dimenticare la @): \n");
                     fgets(email, 60, stdin);
                     email[strlen(email) - 1] = 0;
                     
-                    if(strlen(email) == 0) {
+                    if(strlen(email) == 0 && testInput == false) {
                         continuaModifica = false;
                         break;
                     }
+                    
                     //verifico univocita'
                     for (temp2 = testa; temp2 != NULL; temp2 = temp2->nextUtente) {
                         if (strcmp(temp2->email, email) == 0) {
@@ -684,11 +694,11 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
             case 4:;
                 clearConsole();
                 titolo();
-                notificaAnnulla();
                 
                 char psw[32], psw2[32];
                 
                 do {
+                    notificaAnnulla();
                     printf("\n");
                     
                     readPassword("Inserisci la nuova password (minimo 6 caratteri): ", psw, false);
@@ -998,3 +1008,4 @@ void modificaPermessi(Utente *testa) {
         }
     }while (risposta == 'S' && modifica);
 }
+
