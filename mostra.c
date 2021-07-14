@@ -901,14 +901,14 @@ void scriviMostre(Mostra *testa) {
         }
 
         for (MostraOpera *tempMO = temp->opere; temp != NULL; tempMO = tempMO->nextOpera) {
-            long size = ftell(fp);
+            long size = ftell(fpMO);
         
             if (size == 0) {
                 //file vuoto.
-                fprintf(fp, "%d,%d", temp->id, tempMO->opera->id);
+                fprintf(fpMO, "%d,%d", temp->id, tempMO->opera->id);
             } else {
                 //file pieno
-                fprintf(fp, "\n%d,%d", temp->id, tempMO->opera->id);
+                fprintf(fpMO, "\n%d,%d", temp->id, tempMO->opera->id);
             }
         }
     }
@@ -976,7 +976,7 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
     do {
         while ('\n' != getchar());
         printColor("ATTENZIONE!\n", COLOR_RED);
-        printf("Sei sicuro/a di voler eliminare la mostra?\n");
+        printf("Sei sicuro/a di voler eliminare l'opera dalla mostra?\n");
         printf("Risposta (s/n): ");
         scanf("%c", &risposta);
         printf("\n");
@@ -1006,6 +1006,7 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
             }
             free(curr);
         }
+        
         
         scriviMostre(testa);
         printColor("Eliminazione completata con successo!\n", COLOR_GREEN);

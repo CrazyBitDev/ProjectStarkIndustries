@@ -41,7 +41,7 @@ int main() {
     Utente       *utenteLogin        = NULL; //utente che avrà eseguito il login
     Mostra       *mostraScelta       = NULL;
     Opera        *operaScelta        = NULL;
-     Prenotazione *prenotazioneScelta = NULL; //TODO: forse non serve
+    Prenotazione *prenotazioneScelta = NULL; //TODO: forse non serve
     
     //Lettura utenti dal file
     FILE *fpU;
@@ -247,18 +247,22 @@ int main() {
                                                     }
                                                 }
                                                 break;
-                                                
-                                            case 6:
+
+                                            case 6:;
+                                                char sceltaIdOpera;
                                                 mostraScelta = browserMostra(fpM, testaMostra, true);
                                                 
                                                 if(mostraScelta != NULL) {
+                                                    printColor("Dettagli mostra scelta.\n", COLOR_CYAN);
                                                     stampaMostra(mostraScelta, true);
-                                                    printf("ID dell'opera da rimuovere: ");
-                                                    //TODO: leggere ID
-                                                    eliminaOperaAMostra(testaMostra, mostraScelta, 0 /*id*/);
+                                                    printColor("---------------------------------------------------\n", COLOR_CYAN);
+                                                    printf("Digitare l'ID dell'opera da rimuovere dalla mostra:\n");
+                                                    printf("-> ");
+                                                    scanf("%c", &sceltaIdOpera);
+                                                    sceltaIdOpera= (int)sceltaIdOpera - 48;
+                                                    eliminaOperaAMostra(testaMostra, mostraScelta, sceltaIdOpera);
                                                 }
-                                                break;
-                                                
+
                                             default:
                                                 break;
                                         }
