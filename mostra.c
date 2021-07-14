@@ -3,9 +3,9 @@
  * ----------------------------
  *   Permette di leggere i dati dal file "mostre.csv" e salvarli all'interno della struct Mostra
  *
- *   FILE fp: nome del file da cui leggere i dati, ovvero "mostre.csv"
+ *   @param fp: nome del file da cui leggere i dati, ovvero "mostre.csv"
  *
- *   returns: //
+ *   @return //
  */
 Mostra *letturaMostre(FILE *fp) {
     
