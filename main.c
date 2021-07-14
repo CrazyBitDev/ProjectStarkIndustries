@@ -243,8 +243,19 @@ int main() {
                                                     operaScelta = browserOpere(fpO, testaOpera, true);
 
                                                     if (operaScelta != NULL) {
-                                                        
+                                                        aggiungiOperaAMostra(testaMostra, mostraScelta, operaScelta);
                                                     }
+                                                }
+                                                break;
+                                                
+                                            case 6:
+                                                mostraScelta = browserMostra(fpM, testaMostra, true);
+                                                
+                                                if(mostraScelta != NULL) {
+                                                    stampaMostra(mostraScelta, true);
+                                                    printf("ID dell'opera da rimuovere: ");
+                                                    //TODO: leggere ID
+                                                    eliminaOperaAMostra(testaMostra, mostraScelta, 0 /*id*/);
                                                 }
                                                 break;
                                                 
