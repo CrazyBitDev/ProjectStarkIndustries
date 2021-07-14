@@ -1,4 +1,4 @@
-/*
+/**
  * Function: letturaMostre
  * ----------------------------
  *   Permette di leggere i dati dal file "mostre.csv" e salvarli all'interno della struct Mostra
@@ -80,7 +80,7 @@ Mostra *letturaMostre(FILE *fp) {
     return testaMostra;
 }
 
-/*
+/**
  * Function: registrazioneUtente
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) la registrazione di
@@ -368,7 +368,7 @@ void aggiungiMostra(Mostra *testa) {
     titolo();
 }
 
-/*
+/**
  * Function: modificaMostra
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi
@@ -797,7 +797,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
 
 
 
-/*
+/**
  * Function: stampaMostre
  * ----------------------------
  *   Permette di stampare a video l'elenco delle mostre
@@ -813,7 +813,7 @@ void stampaMostre(Mostra *testa) {
     }
 }
 
-/*
+/**
  * Function: stampaMostra
  * ----------------------------
  *   Permette di stampare i dettagli di una mostra
@@ -830,7 +830,7 @@ void stampaMostra(Mostra *mostra) {
     printf("Durata: dal %s al %s\n", mostra->dataInizio, mostra->dataFine);
 }
 
-/*
+/**
  * Function: scriviMostre
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "mostre.csv"
@@ -860,7 +860,7 @@ void scriviMostre(Mostra *testa) {
     fclose(fp);
 }
 
-/*
+/**
  * Function: eliminaMostra
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare la mostra scelta
@@ -915,7 +915,7 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
     }
 }
 
-/*
+/**
  * Function: ricercaMostra
  * ----------------------------
  *   TODO: da finire
@@ -951,7 +951,7 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
 }
 
 
-/*
+/**
  * Function: mostreBrowser
  * ----------------------------
  *   Permette una vista approfondita delle mostre con ricerca,

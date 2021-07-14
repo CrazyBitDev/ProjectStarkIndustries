@@ -1,4 +1,4 @@
-/*
+/**
  * Function: letturaOpere
  * ----------------------------
  *   Permette di leggere i dati dal file "opere.csv" e salvarli all'interno della struct Opera
@@ -73,7 +73,7 @@ Opera *letturaOpere(FILE *fp) {
     return testaOpera;
 }
 
-/*
+/**
  * Function: aggiungiOpera
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) la registrazione di
@@ -289,7 +289,7 @@ void aggiungiOpera(Opera *testa) {
     titolo();
 }
 
-/*
+/**
  * Function: modificaOpera
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi
@@ -581,7 +581,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
     } while (risposta == 'S' && scelta != 0);
 }
 
-/*
+/**
  * Function: stampaOpere
  * ----------------------------
  *   Permette di stampare a video l'elenco delle opere
@@ -597,7 +597,7 @@ void stampaOpere(Opera *testa) {
     }
 }
 
-/*
+/**
  * Function: stampaOpera
  * ----------------------------
  *   Permette di stampare i dettagli di un'opera
@@ -616,7 +616,7 @@ void stampaOpera(Opera *opera) {
     printf("Anno: %d\n", opera->anno);
 }
 
-/*
+/**
  * Function: scriviOpere
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "opere.csv"
@@ -646,7 +646,7 @@ void scriviOpere(Opera *testa) {
     fclose(fp);
 }
 
-/*
+/**
  * Function: eliminaOpera
  * ----------------------------
  *   Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare l'opera scelta
@@ -702,7 +702,7 @@ void eliminaOpera(Opera *testa, Opera *opera) {
     }
 }
 
-/*
+/**
  * Function: ricercaOpera
  * ----------------------------
  *   TODO: da finire
@@ -737,7 +737,7 @@ Opera *ricercaOpera(Opera *testa, int id) {
     return nuovoNodo;
 }
 
-/*
+/**
  * Function: opereBrowser
  * ----------------------------
  *   Permette una vista approfondita delle opere con ricerca,

@@ -1,4 +1,4 @@
-/*
+/**
  * Function: letturaUtenti
  * ----------------------------
  *   Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente
@@ -80,7 +80,7 @@ Utente *letturaUtenti(FILE *fp) {
     return testaUtente;
 }
 
-/*
+/**
  * Function: registrazioneUtente
  * ----------------------------
  *   Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente
@@ -399,7 +399,7 @@ void registrazioneUtente(Utente *testa) {
     }
 }
 
-/*
+/**
  * Function: accesso
  * ----------------------------
  *   Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato
@@ -439,7 +439,7 @@ Utente *accesso(Utente *testa, char *text) {
 }
 
 
-/*
+/**
  * Function: ricercaUtente
  * ----------------------------
  *   TODO: da finire
@@ -471,7 +471,7 @@ Utente *ricercaUtente(Utente *testa, int id) {
     return nuovoNodo;
 }
 
-/*
+/**
  * Function: stampaUtente
  * ----------------------------
  *   Permette di stampare i dati personali di un determinato utente dopo
@@ -503,7 +503,7 @@ void stampaUtente(Utente *utenteLogin) {
     
 }
 
-/*
+/**
  * Function: modificaUtente
  * ----------------------------
  *   Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo
@@ -801,7 +801,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
     } while (risposta == 'S' && scelta != 0);
 }
 
-/*
+/**
  * Function: eliminaUtente
  * ----------------------------
  *   Dopo aver effettuato l'accesso al proprio profilo, permette di eliminarlo
@@ -862,7 +862,7 @@ void eliminaUtente(Utente *utenteLogin, Utente *testa) {
     }
 }
 
-/*
+/**
  * Function: scriviUtenti
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "utenti.csv"
@@ -890,7 +890,7 @@ void scriviUtenti(Utente *testa) {
     fclose(fp);
 }
 
-/*
+/**
  * Function: modificaPermessi
  * ----------------------------
  *   Permette all'utente che possiede i permessi di livello 2 (direttore) di modificare

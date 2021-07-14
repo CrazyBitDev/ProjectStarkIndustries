@@ -109,7 +109,7 @@ void readPassword(char prompt[], char *password, bool checkLunghezza) {
     } while (checkLunghezza && strlen(password) < 6 && strlen(password) != 0);
 }
 
-/*
+/**
  * Function: clearConsole
  * ----------------------------
  *   Permette di pulire la console
@@ -126,7 +126,7 @@ void clearConsole() {
     #endif
 }
 
-/*
+/**
  * Function: verificaData
  * ----------------------------
  *   Controlla che la data inserita sia corretta
@@ -181,7 +181,7 @@ bool annoBisestile(int anno) {
     return annoBis;
 }
 
-/*
+/**
  * Function: letturaUltimoID
  * ----------------------------
  *   Verifica qual'e' l'ultimo ID inserito
@@ -223,7 +223,7 @@ int letturaUltimoID(char *file) {
     return ultimoID;
 }
 
-/*
+/**
  * Function: contaRighe
  * ----------------------------
  *   Conta quante righe sono presenti nel file
@@ -253,7 +253,7 @@ int contaRighe(char *file) {
     return totRighe;
 }
 
-/*
+/**
  * Function: titolo
  * ----------------------------
  *   Stampa a video del titolo
@@ -392,7 +392,7 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
     return inIntervallo;
 }
 
-/*
+/**
  * Function: notificaAnnulla
  * ----------------------------
  *   Stampa a video un avviso per l'utente

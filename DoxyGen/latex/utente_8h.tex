@@ -1,0 +1,127 @@
+\hypertarget{utente_8h}{}\doxysection{utente.\+h File Reference}
+\label{utente_8h}\index{utente.h@{utente.h}}
+{\ttfamily \#include \char`\"{}utente.\+c\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$ \mbox{\hyperlink{utente_8h_a443f7dde3869902c0ecda7b38573f37e}{lettura\+Utenti}} (FILE $\ast$fp)
+\item 
+void \mbox{\hyperlink{utente_8h_a6233e879c25a249940058560190a4f85}{registrazione\+Utente}} (\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$testa)
+\item 
+\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$ \mbox{\hyperlink{utente_8h_a83e44c49702bea558f030e74b28dfdd2}{accesso}} (\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$testa, char $\ast$text)
+\item 
+\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$ \mbox{\hyperlink{utente_8h_a53b351429600a128d1c2ef16ed6fe24e}{ricerca\+Utente}} (\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$testa, int id)
+\item 
+void \mbox{\hyperlink{utente_8h_af717ed7e994144a268e115f1fd56cc81}{stampa\+Utente}} (\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$testa)
+\item 
+void \mbox{\hyperlink{utente_8h_a5d86b530e0e17b3af5c63fdf367bf008}{scrivi\+Utenti}} (\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$testa)
+\item 
+void \mbox{\hyperlink{utente_8h_a624035ff057def966d8775a144800e9d}{modifica\+Utente}} (\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$utente\+Login, \mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$testa)
+\item 
+void \mbox{\hyperlink{utente_8h_a7d5afb423f2c814942623fb9f9c1a6b8}{elimina\+Utente}} (\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$utente\+Login, \mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$testa)
+\item 
+void \mbox{\hyperlink{utente_8h_a98f2344fd2dfea49fc9c35f8564c07fb}{modifica\+Permessi}} (\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$testa)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{utente_8h_a83e44c49702bea558f030e74b28dfdd2}\label{utente_8h_a83e44c49702bea558f030e74b28dfdd2}} 
+\index{utente.h@{utente.h}!accesso@{accesso}}
+\index{accesso@{accesso}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{accesso()}{accesso()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}}$\ast$ accesso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{testa,  }\item[{char $\ast$}]{text }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md27}{}\doxysubsubsection{Function\+: accesso}\label{utente_8h_autotoc_md27}
+Permette di effettuare l\textquotesingle{}accesso al proprio profilo personale, precedentemente registrato
+
+Utente $\ast$testa\+: lista utente char $\ast$text\+: testo inserito dall\textquotesingle{}utente per fare l\textquotesingle{}accesso (email o nickname)
+
+returns\+: returns\+: se esiste utente con email o nickname uguale al valore del secondo argomento (char $\ast$text) e la password inserita corrisponde la funzione lo ritornerà, altrimenti il valore sarà uguale a NULL \mbox{\Hypertarget{utente_8h_a7d5afb423f2c814942623fb9f9c1a6b8}\label{utente_8h_a7d5afb423f2c814942623fb9f9c1a6b8}} 
+\index{utente.h@{utente.h}!eliminaUtente@{eliminaUtente}}
+\index{eliminaUtente@{eliminaUtente}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{eliminaUtente()}{eliminaUtente()}}
+{\footnotesize\ttfamily void elimina\+Utente (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{utente\+Login,  }\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{testa }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md31}{}\doxysubsubsection{Function\+: elimina\+Utente}\label{utente_8h_autotoc_md31}
+Dopo aver effettuato l\textquotesingle{}accesso al proprio profilo, permette di eliminarlo
+
+Utente $\ast$utente\+Login\+: utente che ha effettuato il login Utente $\ast$testa\+: lista utente
+
+returns\+: // \mbox{\Hypertarget{utente_8h_a443f7dde3869902c0ecda7b38573f37e}\label{utente_8h_a443f7dde3869902c0ecda7b38573f37e}} 
+\index{utente.h@{utente.h}!letturaUtenti@{letturaUtenti}}
+\index{letturaUtenti@{letturaUtenti}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{letturaUtenti()}{letturaUtenti()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}}$\ast$ lettura\+Utenti (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md25}{}\doxysubsubsection{Function\+: lettura\+Utenti}\label{utente_8h_autotoc_md25}
+Permette di leggere i dati dal file \char`\"{}utenti.\+csv\char`\"{} e salvarli all\textquotesingle{}interno della struct Utente
+
+FILE fp\+: nome del file da cui leggere i dati, ovvero \char`\"{}utenti.\+csv\char`\"{}
+
+returns\+: // \mbox{\Hypertarget{utente_8h_a98f2344fd2dfea49fc9c35f8564c07fb}\label{utente_8h_a98f2344fd2dfea49fc9c35f8564c07fb}} 
+\index{utente.h@{utente.h}!modificaPermessi@{modificaPermessi}}
+\index{modificaPermessi@{modificaPermessi}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{modificaPermessi()}{modificaPermessi()}}
+{\footnotesize\ttfamily void modifica\+Permessi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{testa }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md33}{}\doxysubsubsection{Function\+: modifica\+Permessi}\label{utente_8h_autotoc_md33}
+Permette all\textquotesingle{}utente che possiede i permessi di livello 2 (direttore) di modificare il livello dei permessi degli altri utenti
+
+Utente $\ast$testa\+: lista utente
+
+returns\+: // \mbox{\Hypertarget{utente_8h_a624035ff057def966d8775a144800e9d}\label{utente_8h_a624035ff057def966d8775a144800e9d}} 
+\index{utente.h@{utente.h}!modificaUtente@{modificaUtente}}
+\index{modificaUtente@{modificaUtente}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{modificaUtente()}{modificaUtente()}}
+{\footnotesize\ttfamily void modifica\+Utente (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{utente\+Login,  }\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{testa }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md30}{}\doxysubsubsection{Function\+: modifica\+Utente}\label{utente_8h_autotoc_md30}
+Permette di modificare i dati personali dell\textquotesingle{}utente una volta effettuato l\textquotesingle{}accesso al proprio profilo
+
+Utente $\ast$utente\+Login\+: utente che ha effettuato il login Utente $\ast$testa\+: lista utente
+
+returns\+: // \mbox{\Hypertarget{utente_8h_a6233e879c25a249940058560190a4f85}\label{utente_8h_a6233e879c25a249940058560190a4f85}} 
+\index{utente.h@{utente.h}!registrazioneUtente@{registrazioneUtente}}
+\index{registrazioneUtente@{registrazioneUtente}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{registrazioneUtente()}{registrazioneUtente()}}
+{\footnotesize\ttfamily void registrazione\+Utente (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{testa }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md26}{}\doxysubsubsection{Function\+: registrazione\+Utente}\label{utente_8h_autotoc_md26}
+Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file \char`\"{}utenti.\+csv\char`\"{} e nella struct Utente
+
+Utente $\ast$testa\+: lista utente
+
+returns\+: // \mbox{\Hypertarget{utente_8h_a53b351429600a128d1c2ef16ed6fe24e}\label{utente_8h_a53b351429600a128d1c2ef16ed6fe24e}} 
+\index{utente.h@{utente.h}!ricercaUtente@{ricercaUtente}}
+\index{ricercaUtente@{ricercaUtente}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{ricercaUtente()}{ricercaUtente()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}}$\ast$ ricerca\+Utente (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{testa,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md28}{}\doxysubsubsection{Function\+: ricerca\+Utente}\label{utente_8h_autotoc_md28}
+TODO\+: da finire
+
+Utente $\ast$testa\+: lista utente int id\+: TODO\+: da finire
+
+returns\+: TODO\+: da finire \mbox{\Hypertarget{utente_8h_a5d86b530e0e17b3af5c63fdf367bf008}\label{utente_8h_a5d86b530e0e17b3af5c63fdf367bf008}} 
+\index{utente.h@{utente.h}!scriviUtenti@{scriviUtenti}}
+\index{scriviUtenti@{scriviUtenti}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{scriviUtenti()}{scriviUtenti()}}
+{\footnotesize\ttfamily void scrivi\+Utenti (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{testa }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md32}{}\doxysubsubsection{Function\+: scrivi\+Utenti}\label{utente_8h_autotoc_md32}
+Permette di salvare tutte le modifiche effettuate sul file \char`\"{}utenti.\+csv\char`\"{}
+
+Utente $\ast$testa\+: lista utente
+
+returns\+: // \mbox{\Hypertarget{utente_8h_af717ed7e994144a268e115f1fd56cc81}\label{utente_8h_af717ed7e994144a268e115f1fd56cc81}} 
+\index{utente.h@{utente.h}!stampaUtente@{stampaUtente}}
+\index{stampaUtente@{stampaUtente}!utente.h@{utente.h}}
+\doxysubsubsection{\texorpdfstring{stampaUtente()}{stampaUtente()}}
+{\footnotesize\ttfamily void stampa\+Utente (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{data_8c_a48b8a64e890f986d5e8a42f818d4ee29}{Utente}} $\ast$}]{utente\+Login }\end{DoxyParamCaption})}
+
+\hypertarget{utente_8h_autotoc_md29}{}\doxysubsubsection{Function\+: stampa\+Utente}\label{utente_8h_autotoc_md29}
+Permette di stampare i dati personali di un determinato utente dopo che ha effettuato l\textquotesingle{}accesso al proprio profilo
+
+Utente $\ast$utente\+Login\+: utente che ha effettuato il login
+
+returns\+: // 
