@@ -365,15 +365,19 @@ bool verificaDataCorrente(int giorno, int mese, int anno) {
 bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorno2) {
     bool inIntervallo = false;
     int giorno1conv[3], giorno2conv[3];
+    char giorno1temp[11], giorno2temp[11];
 
-    char *tok = strtok(giorno1, "/");
+    strcpy(giorno1temp, giorno1);
+    strcpy(giorno2temp, giorno2);
+
+    char *tok = strtok(giorno1temp, "/");
 
     for (int i = 0; i < 3; i++ ) {
         giorno1conv[i] = atoi(tok);
         tok = strtok(NULL, "/");
     }
 
-    tok = strtok(giorno2, "/");
+    tok = strtok(giorno2temp, "/");
 
     for (int i = 0; i < 3; i++ ) {
         giorno2conv[i] = atoi(tok);
