@@ -156,6 +156,7 @@ int main() {
                                 case 2:
                                     clearConsole();
                                     titolo();
+                                    while ('\n' != getchar());
                                     printColor("Gestione profilo\n", COLOR_CYAN);
                                     printf("1: Modifica dati personali\n");
                                     printf("2: Elimina account\n");
