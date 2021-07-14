@@ -1180,6 +1180,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
+                                clearConsole();
                                 titolo();
                             }
                         } else {
@@ -1223,6 +1224,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
+                                clearConsole();
                                 titolo();
                             }
                         } else {
@@ -1266,6 +1268,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                                 }
                             } else {
                                 pausa();
+                                clearConsole();
                                 titolo();
                             }
                         } else {
