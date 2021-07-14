@@ -552,9 +552,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 luogo[0] = toupper(luogo[0]);
                 
                 if(strlen(luogo) == 0) {
-                    printf("test prima: %s", continuaModifica ? "vero\n" : "falso\n");
                     continuaModifica = false;
-                    printf("test dopo: %s", continuaModifica ? "vero\n" : "falso\n");
                     break;
                 } else {
                     strcpy(temp->luogo, luogo);
@@ -1126,7 +1124,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         } else {
                             clearConsole();
                             titolo();
-                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                            printColor("Nessuna mostra corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
                         }
                     }
                     break;
@@ -1167,7 +1165,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         } else {
                             clearConsole();
                             titolo();
-                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                            printColor("Nessuna mostra corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
                         }
                     }
                     break;
@@ -1208,7 +1206,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         } else {
                             clearConsole();
                             titolo();
-                            printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                            printColor("Nessuna mostra corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
                         }
                     }
                     break;
