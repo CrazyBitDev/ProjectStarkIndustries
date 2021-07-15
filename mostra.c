@@ -1062,9 +1062,6 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
 
         MostraOpera *curr = mostra->opere, *prec = NULL;
 
-
-        printf("%d\n", curr->opera->id);
-        printf("%d\n", idOpera);
         while (curr != NULL && curr->opera->id != idOpera) {
             prec = curr;
             curr = curr->nextOpera;
