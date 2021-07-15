@@ -13,9 +13,9 @@ void scriviPrenotazioni(Prenotazione *testa);
 
 void stampaPrenotazioni(Prenotazione *testa);
 
-void stampaPrenotazione(Prenotazione *prenotazione); //DA DEFINIRE
+void stampaPrenotazione(Prenotazione *prenotazione);
 
-Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id); //DA DEFINIRE
+Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id);
 
 bool prenotazioneModificabile(Prenotazione *prenotazione);
 

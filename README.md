@@ -29,7 +29,7 @@ FlowCharts
 ----------
 
 flowchart del main:
-![Main](./images/main.png)
+![Main](https://raw.githubusercontent.com/ProjectStarkIndustries/ProjectStarkIndustries/main/images/main.png)
 
 flowchart del menu mostra:
-![Esempio Menu Mostra](./images/menu_mostra.png)
+![Esempio Menu Mostra](https://raw.githubusercontent.com/ProjectStarkIndustries/ProjectStarkIndustries/main/images/menu_mostra.png)
