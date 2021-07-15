@@ -10,7 +10,7 @@
 
 #else //UNIX
 
-#include <unistd.h>
+    #include <unistd.h>
 
     #define ANSI_COLOR_GREEN   "\x1b[92m"
     #define ANSI_COLOR_CYAN    "\x1b[96m"
@@ -25,8 +25,8 @@
  * ----------------------------
  *   Stampa in console del testo con un determinato colore
  *
- *   @param text : testo da visualizzare in console
- *   @param color : codice del colore da utilizzare. È possibile usare le constanti COLOR_*
+ *   @param text testo da visualizzare in console
+ *   @param color codice del colore da utilizzare. È possibile usare le constanti COLOR_*
  */
 void printColor(char text[], int color) {
     #ifdef _WIN32
@@ -68,7 +68,7 @@ void printColor(char text[], int color) {
  * ----------------------------
  *   Cambia il colore alla console
  *
- *   @param color : codice del colore da utilizzare. È possibile usare le constanti COLOR_*
+ *   @param color codice del colore da utilizzare. È possibile usare le constanti COLOR_*
  */
 void consoleColor(int color) {
     #ifdef _WIN32
@@ -103,9 +103,9 @@ void consoleColor(int color) {
  *   Permette all'utente di inserire del testo in console senza che venga visualizzato.
  *   Utile ed utilizzato nell'inserimento di password.
  *
- *   @param prompt : testo da visualizzare prima dell'input
- *   @param password : puntatore all'array di char utilizzato per memorizzare l'input
- *   @param checkLunghezza : abilita il checkLunghezza, utile nell'input al momento della registrazione. Input lunghi meno di 6 caratteri richiederanno il reinserimento fino a condizione non superata
+ *   @param prompt testo da visualizzare prima dell'input
+ *   @param password puntatore all'array di char utilizzato per memorizzare l'input
+ *   @param checkLunghezza abilita il checkLunghezza, utile nell'input al momento della registrazione. Input lunghi meno di 6 caratteri richiederanno il reinserimento fino a condizione non superata
  */
 void readPassword(char prompt[], char *password, bool checkLunghezza) {
     do {
@@ -145,9 +145,9 @@ void clearConsole() {
  * ----------------------------
  *   Controlla che la data sia corretta
  *
- *   @param giorno : giorno (numerico) della data da verificare
- *   @param mese : mese (numerico) della data da verificare
- *   @param anno : anno (numerico) della data da verificare
+ *   @param giorno giorno (numerico) della data da verificare
+ *   @param mese mese (numerico) della data da verificare
+ *   @param anno anno (numerico) della data da verificare
  * 
  *   @return dataCorretta, booleano, true se i campi rispettano i criteri e la data è reale, altrimenti false
  */
@@ -181,7 +181,7 @@ bool verificaData(int giorno, int mese, int anno) {
  * ----------------------------
  *   Controlla che l'anno passato come argomento sia bisestile o meno
  *
- *   @param anno : anno (numerico)
+ *   @param anno anno (numerico)
  * 
  *   @return annoBis, booleano, true se l'anno passato come argomento è bisestile, altrimenti false
  */
@@ -208,7 +208,7 @@ bool annoBisestile(int anno) {
  * ----------------------------
  *   Verifica qual'è l'ultimo ID inserito
  *
- *   @param file : puntatore ad un array di char contenente il nome del file da controllare
+ *   @param file puntatore ad un array di char contenente il nome del file da controllare
  * 
  *   @return ultimo id presente nel file
  */
@@ -250,7 +250,7 @@ int letturaUltimoID(char *file) {
  * ----------------------------
  *   Conta le righe in un determinato file
  *
- *   @param file : puntatore ad un array di char contenente il nome del file da controllare
+ *   @param file puntatore ad un array di char contenente il nome del file da controllare
  * 
  *   @return numero di righe del file
  */
@@ -297,12 +297,12 @@ void titolo() {
  * ----------------------------
  *   Effettua un controllo tra le due date passate come argomento per verificare se coincidono o quale delle due è successiva all'altra
  *
- *   @param giorno1 : intero, giorno della prima data
- *   @param mese1 : intero, mese della prima data
- *   @param anno1 : intero, anno della prima data
- *   @param giorno2 : intero, giorno della seconda data
- *   @param mese2 : intero, mese della seconda data
- *   @param anno2 : intero, anno della seconda data
+ *   @param giorno1 intero, giorno della prima data
+ *   @param mese1 intero, mese della prima data
+ *   @param anno1 intero, anno della prima data
+ *   @param giorno2 intero, giorno della seconda data
+ *   @param mese2 intero, mese della seconda data
+ *   @param anno2 intero, anno della seconda data
  * 
  *   @return 0 se le date sono uguali, 1 se la seconda data è successivo alla prima, -1 se la prima data è successivo alla seconda
  */
@@ -327,8 +327,8 @@ int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, in
  *   Effettua un controllo tra le due date passate come argomento per verificare se coincidono o quale delle due è successiva all'altra.
  *   Effettua una conversione degli array di char e successivamente richiama differenzaDate()
  *
- *   @param data1 : puntatore ad un array di char contenente la prima data, formato gg/mm/aaaa
- *   @param data2 : puntatore ad un array di char contenente la seconda data, formato gg/mm/aaaa
+ *   @param data1 puntatore ad un array di char contenente la prima data, formato gg/mm/aaaa
+ *   @param data2 puntatore ad un array di char contenente la seconda data, formato gg/mm/aaaa
  * 
  *   @return 0 se le date sono uguali, 1 se la seconda data è successivo alla prima, -1 se la prima data è successivo alla seconda
  */
@@ -359,9 +359,9 @@ int differenzaDateChar(char *data1, char *data2) {
  *   Effettua un controllo tra la data passata come argomento e la data del giorno corrente per verificare se coincidono o quale delle due è successiva all'altra
  *   Dopo aver ricavato il giorno corrente, richiama differenzaDate()
  *
- *   @param giorno : intero, giorno della data
- *   @param mese : intero, mese della data
- *   @param anno : intero, anno della data
+ *   @param giorno intero, giorno della data
+ *   @param mese intero, mese della data
+ *   @param anno intero, anno della data
  * 
  *   @return 0 se le date sono uguali, 1 se la seconda data è successivo al giorno corrente, -1 se è precedente al giorno corrente
  */
@@ -385,7 +385,7 @@ int differenzaDateOggi(int giorno, int mese, int anno) {
  *   Effettua un controllo tra la data passata come argomento e la data del giorno corrente per verificare se coincidono o quale delle due è successiva all'altra
  *   Effettua una conversione degli array e successivamente richiama differenzaDateOggi()
  *
- *   @param dataTarget : puntatore all'array di char contenente la data da controllare, formato gg/mm/aaaa
+ *   @param dataTarget puntatore all'array di char contenente la data da controllare, formato gg/mm/aaaa
  * 
  *   @return 0 se le date sono uguali, 1 se la seconda data è successivo al giorno corrente, -1 se è precedente al giorno corrente
  */
@@ -413,11 +413,11 @@ int differenzaDateOggiChar(char *dataTarget) {
  *   Effettua un controllo tra la date passate come argomento, verifica che la prima data (valori passati singolarmente) è inclusa in un intervallo dato dalla seconda e terza data (puntatore all'array di char)
  *   Effettua una conversione degli array e successivamente richiama verificaData() e differenzaDate()
  *
- *   @param giorno : intero, giorno della prima data
- *   @param mese : intero, mese della prima data
- *   @param anno : intero, anno della prima data
- *   @param giorno1 : puntatore all'array di char contenente la seconda data (estremo sinistro dell'intervallo), formato gg/mm/aaaa
- *   @param giorno2 : puntatore all'array di char contenente la terza data (estremo destro dell'intervallo), formato gg/mm/aaaa
+ *   @param giorno intero, giorno della prima data
+ *   @param mese intero, mese della prima data
+ *   @param anno intero, anno della prima data
+ *   @param giorno1 puntatore all'array di char contenente la seconda data (estremo sinistro dell'intervallo), formato gg/mm/aaaa
+ *   @param giorno2 puntatore all'array di char contenente la terza data (estremo destro dell'intervallo), formato gg/mm/aaaa
  * 
  *   @return true se da prima data è inclusa nell'intervallo generato dalla seconda e terza data, altrimenti false
  */
@@ -458,7 +458,7 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
  * ----------------------------
  *   Stampa a video un avviso per l'utente
  * 
- *   @param tastoNum : true se l'utente deve premere il tasto 0, altrimenti tasto INVIO
+ *   @param tastoNum true se l'utente deve premere il tasto 0, altrimenti tasto INVIO
  */
 void notificaAnnulla(bool tastoNum) {
     consoleColor(COLOR_RED);
@@ -490,7 +490,7 @@ void pausa() {
  * ----------------------------
  *   Data una stringa, tutti i caratteri diventano maiuscoli
  *
- *   @param stringa : puntatore all'array di char contenete la stringa che diventerà tutta maiuscola
+ *   @param stringa puntatore all'array di char contenete la stringa che diventerà tutta maiuscola
  */
 void toUppercase(char *stringa) {
     char *s = stringa;

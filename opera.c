@@ -14,7 +14,7 @@ struct opera {
  * ----------------------------
  *   Permette di leggere i dati dal file "opere.csv" e salvarli all'interno della struct Opera
  *
- *   @param fp : puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv
+ *   @param fp puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv
  * 
  *   @return puntatore alla variabile di tipo Opera, una lista contenente tutte le mostre e le opere associate
  */
@@ -89,7 +89,7 @@ Opera *letturaOpere(FILE *fp) {
  * ----------------------------
  *   Permette la registrazione di una nuova opera, con salvatggio dei dati sul file "opere.csv" e nella struct Opera
  *
- *   @param testa : puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
+ *   @param testa puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
  */
 void aggiungiOpera(Opera *testa) {
 
@@ -305,8 +305,8 @@ void aggiungiOpera(Opera *testa) {
  * ----------------------------
  *   Permette di modificare i dati relativi all'opera scelta
  *
- *   @param testa : puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
- *   @param opera : opera scelta per essere modificata
+ *   @param testa puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
+ *   @param opera opera scelta per essere modificata
  */
 void modificaOpera(Opera *testa, Opera *opera) {
 
@@ -587,7 +587,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
  *   Permette di stampare a video l'elenco delle opere
  *   Richiama stampaOpera
  *
- *   @param testa : puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
+ *   @param testa puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
  */
 void stampaOpere(Opera *testa) {
     for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
@@ -601,7 +601,7 @@ void stampaOpere(Opera *testa) {
  * ----------------------------
  *   Permette di stampare i dettagli di un'opera
  *
- *   @param opera : opera da stampare nel dettaglio
+ *   @param opera opera da stampare nel dettaglio
  */
 void stampaOpera(Opera *opera) {
     printf("Id: %d\n", opera->id);
@@ -618,7 +618,7 @@ void stampaOpera(Opera *opera) {
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "opere.csv"
  *
- *   @param testa : puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
+ *   @param testa puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
  */
 void scriviOpere(Opera *testa) {
     Opera *temp = NULL;
@@ -646,8 +646,8 @@ void scriviOpere(Opera *testa) {
  * ----------------------------
  *   Permette di eliminare l'opera scelta e salvare i dati in "opera.csv"
  *
- *   @param testa : puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
- *   @param opera : opera da eliminare
+ *   @param testa puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
+ *   @param opera opera da eliminare
  */
 void eliminaOpera(Opera *testa, Opera *opera) {
     char risposta;
@@ -700,10 +700,10 @@ void eliminaOpera(Opera *testa, Opera *opera) {
  * ----------------------------
  *   Effettua una ricerca di un opera con un determinato id all'interno della lista
  *
- *   @param testa : puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
- *   @param id : id dell'opera da ricercare
+ *   @param testa puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
+ *   @param id id dell'opera da ricercare
  *
- *   @returns: opera ricercata, altrimenti NULL
+ *   @return opera ricercata, altrimenti NULL
  */
 Opera *ricercaOpera(Opera *testa, int id) {
     bool flag = false;
@@ -735,11 +735,11 @@ Opera *ricercaOpera(Opera *testa, int id) {
  * ----------------------------
  *   Permette una vista approfondita delle opere con ricerca e possibilità di selezionare la mostra.
  *
- *   @param fp : puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv
- *   @param testa : puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
- *   @param selezione : se true permette di selezionare l'opera con return avvalorato
+ *   @param fp puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv
+ *   @param testa puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
+ *   @param selezione se true permette di selezionare l'opera con return avvalorato
  *
- *   @returns: se selezione == true l'opera selezionata, altrimenti NULL
+ *   @return se selezione == true l'opera selezionata, altrimenti NULL
  */
 Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
     Opera *operaSelezionata = NULL;

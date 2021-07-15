@@ -161,8 +161,8 @@ Function: eliminaPrenotazione</h2>
 <p>Elimina una prenotazione</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
-    <tr><td class="paramname">prenotazione</td><td>: prenotazione da eliminare </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
+    <tr><td class="paramname">prenotazione</td><td>prenotazione da eliminare </td></tr>
   </table>
   </dd>
 </dl>
@@ -234,9 +234,9 @@ Function: letturaPrenotazioni</h2>
 <p>Permette di leggere i dati dal file "prenotazioni.csv" e salvarli all'interno della struct Prenotazione</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: nome del file da cui leggere i dati, ovvero "prenotazioni.csv" </td></tr>
-    <tr><td class="paramname">testaUtente</td><td>: puntatore alla variabile di tipo Utente, una lista contenente tutte gli utenti </td></tr>
-    <tr><td class="paramname">testaMostra</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre</td></tr>
+    <tr><td class="paramname">fp</td><td>nome del file da cui leggere i dati, ovvero "prenotazioni.csv" </td></tr>
+    <tr><td class="paramname">testaUtente</td><td>puntatore alla variabile di tipo Utente, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">testaMostra</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre</td></tr>
   </table>
   </dd>
 </dl>
@@ -299,8 +299,8 @@ Function: modificaPrenotazione</h2>
 <p>Modifica una prenotazione</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
-    <tr><td class="paramname">prenotazione</td><td>: prenotazione che verrà modificata </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
+    <tr><td class="paramname">prenotazione</td><td>prenotazione che verrà modificata </td></tr>
   </table>
   </dd>
 </dl>
@@ -357,7 +357,7 @@ Function: prenotazioneModificabile</h2>
 <p>Controlla se una prenotazione è modificabile (o eliminabile) o meno. Una prenotazione è modificabile prima di due giorni l'inizio della mostra</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">prenotazione</td><td>: prenotazione da controllare se è modificabile</td></tr>
+    <tr><td class="paramname">prenotazione</td><td>prenotazione da controllare se è modificabile</td></tr>
   </table>
   </dd>
 </dl>
@@ -424,9 +424,9 @@ Function: registrazionePrenotazione</h2>
 <p>Permette agli utenti di prenotare una visita ad una mostra in un determinato giorno e orario</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
-    <tr><td class="paramname">utente</td><td>: utente alla quale verrà assegnata la prenotazione </td></tr>
-    <tr><td class="paramname">mostra</td><td>: mostra scelta </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
+    <tr><td class="paramname">utente</td><td>utente alla quale verrà assegnata la prenotazione </td></tr>
+    <tr><td class="paramname">mostra</td><td>mostra scelta </td></tr>
   </table>
   </dd>
 </dl>
@@ -494,8 +494,8 @@ Function: ricercaPrenotazione</h2>
 <p>Effettua una ricerca tra le prenotazioni per trovare la prenotazione con un determinato id</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
-    <tr><td class="paramname">id</td><td>: intero, identificatore della mostra da ricercare</td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
+    <tr><td class="paramname">id</td><td>intero, identificatore della mostra da ricercare</td></tr>
   </table>
   </dd>
 </dl>
@@ -543,7 +543,7 @@ Function: scriviPrenotazioni</h2>
 <p>Aggiorna il file prenotazioni.csv con le nuove prenotazioni</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
   </table>
   </dd>
 </dl>
@@ -583,7 +583,7 @@ Function: stampaPrenotazione</h2>
 <p>Stampa nel dettaglio la prenotazione passata in argomento</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">prenotazione</td><td>: prenotazione da stampare nel dettaglio </td></tr>
+    <tr><td class="paramname">prenotazione</td><td>prenotazione da stampare nel dettaglio </td></tr>
   </table>
   </dd>
 </dl>
@@ -624,7 +624,7 @@ Function: stampaPrenotazioni</h2>
 <p>Stampa nel dettaglio tutte le prenotazioni (con mostre del giorno corrente o future). Richiama <a class="el" href="prenotazione_8c.html#a82276a174c6fb741b1d5efef9fd00959">stampaPrenotazione()</a></p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
   </table>
   </dd>
 </dl>
@@ -675,8 +675,8 @@ Function: stampaPrenotazioniUtente</h2>
 <p>Stampa nel dettaglio tutte le prenotazioni (con mostre del giorno corrente o future) di un determinato utente. Richiama <a class="el" href="prenotazione_8c.html#a82276a174c6fb741b1d5efef9fd00959">stampaPrenotazione()</a></p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
-    <tr><td class="paramname">utente</td><td>: utente di cui ricercare le prenotazioni </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni </td></tr>
+    <tr><td class="paramname">utente</td><td>utente di cui ricercare le prenotazioni </td></tr>
   </table>
   </dd>
 </dl>

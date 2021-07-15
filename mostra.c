@@ -20,9 +20,9 @@ struct mostra {
  * ----------------------------
  *   Legge i dati dal file "mostre.csv" e il file "mostreopere.csv" salvando il tutto all'interno della struct Mostra e alla struct MostreOpere, contenuta all'interno di Mostra
  *
- *   @param fp : puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv
- *   @param fpMO : puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostreopere.csv
- *   @param testaOpera : puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
+ *   @param fp puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv
+ *   @param fpMO puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostreopere.csv
+ *   @param testaOpera puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
  * 
  *   @return puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
  */
@@ -158,7 +158,7 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
  *   Permette la registrazione di una nuova mostra
  *   Effettuata l'inserimento, verrà effettuato una scrittura del file "mostra.csv"
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
  */
 void aggiungiMostra(Mostra *testa) {
 
@@ -445,9 +445,9 @@ void aggiungiMostra(Mostra *testa) {
  * ----------------------------
  *   Permette di aggiungere una opera ad una determinata mostra, controllando che nel periodo della mostra l'opera non è già occupata
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
- *   @param mostra : mostra scelta per essere modificata
- *   @param opera : opera scelta per essere aggiunta
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
+ *   @param mostra mostra scelta per essere modificata
+ *   @param opera opera scelta per essere aggiunta
  */
 void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
     bool operaLibera = true;
@@ -491,8 +491,8 @@ void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
  * ----------------------------
  *   Permette di modificare i dati relativi ad una mostra scelta
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
- *   @param mostra : mostra scelta per essere modificata
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
+ *   @param mostra mostra scelta per essere modificata
  */
 void modificaMostra(Mostra *testa, Mostra *mostra) {
     int scelta, colonna = 0, i;
@@ -905,7 +905,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
  *   Permette di stampare a video l'elenco delle mostre
  *   Richiama stampaMostra()
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
  */
 void stampaMostre(Mostra *testa) {
     for (Mostra *mostra = testa; mostra != NULL; mostra = mostra->nextMostra) {
@@ -921,8 +921,8 @@ void stampaMostre(Mostra *testa) {
  * ----------------------------
  *   Permette di stampare a video una mostra
  *
- *   @param mostra : puntatore alla mostra da stampare a schermo
- *   @param stampaOpere : mostra opere assegnate alla mostra se true
+ *   @param mostra puntatore alla mostra da stampare a schermo
+ *   @param stampaOpere mostra opere assegnate alla mostra se true
  */
 void stampaMostra(Mostra *mostra, bool stampaOpere) {
     printf("Mostra numero: %d \n", mostra->id);
@@ -945,7 +945,7 @@ void stampaMostra(Mostra *mostra, bool stampaOpere) {
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "mostre.csv" e "mostreopere.csv"
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
  */
 void scriviMostre(Mostra *testa) {
     FILE *fp, *fpMO;
@@ -987,8 +987,8 @@ void scriviMostre(Mostra *testa) {
  *   Permette di eliminare una mostra.
  *   Richiamerà scriviMostre() una volta completata l'eliminazione per aggiornare i file
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
- *   @param mostra : mostra da eliminare
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
+ *   @param mostra mostra da eliminare
  */
 void eliminaMostra(Mostra *testa, Mostra *mostra) {
     char risposta;
@@ -1039,9 +1039,9 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
  * ----------------------------
  *   Permette di modificare una mostra rimuovendone un opera associata
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
- *   @param mostra : mostra da modificare
- *   @param idOpera : id dell'opera da rimuovere dalla mostra
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
+ *   @param mostra mostra da modificare
+ *   @param idOpera id dell'opera da rimuovere dalla mostra
  */
 void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
     char risposta;
@@ -1090,8 +1090,8 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
  * ----------------------------
  *   Verifica che un opera non sia esposta in una mostra del giorno corrente o futura
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
- *   @param idOpera : id dell'opera da controllare
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
+ *   @param idOpera id dell'opera da controllare
  * 
  *   @return true se l'opera viene usata in una mostra del giorno corrente o futura
  */
@@ -1116,10 +1116,10 @@ bool operaUsataInMostre(Mostra *testa, int idOpera) {
  * ----------------------------
  *   Effettua una ricerca cercando una mostra con un determinato id
  *
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
- *   @param id : id della mostra da ricercare
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
+ *   @param id id della mostra da ricercare
  *
- *   @returns: puntatore della mostra ricercata, o NULL se nessuna mostra trovata
+ *   @return puntatore della mostra ricercata, o NULL se nessuna mostra trovata
  */
 Mostra *ricercaMostra(Mostra *testa, int id) {
     bool flag = false;
@@ -1150,11 +1150,11 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
  * ----------------------------
  *   Permette una vista approfondita delle mostre con ricerca e possibilità di selezionare la mostra.
  *
- *   @param fp : puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv
- *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
- *   @param selezione : se true permette di selezionare l'opera con return avvalorato
+ *   @param fp puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv
+ *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
+ *   @param selezione se true permette di selezionare l'opera con return avvalorato
  *
- *   @returns: se selezione == true la mostra selezionata, altrimenti NULL
+ *   @return se selezione == true la mostra selezionata, altrimenti NULL
  */
 Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
     Mostra *mostraSelezionata = NULL;

@@ -15,7 +15,7 @@ struct utente {
  * ----------------------------
  *   Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente
  *
- *   @param fp : puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file utenti.csv
+ *   @param fp puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file utenti.csv
  * 
  *   @return puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
@@ -97,7 +97,7 @@ Utente *letturaUtenti(FILE *fp) {
  * ----------------------------
  *   Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente
  *
- *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
+ *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 void registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
@@ -423,10 +423,10 @@ void registrazioneUtente(Utente *testa) {
  * ----------------------------
  *   Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato
  *
- *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
- *   @param text : testo inserito dall'utente per fare l'accesso (email o nickname)
+ *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
+ *   @param text testo inserito dall'utente per fare l'accesso (email o nickname)
  * 
- *   @returns:  se esiste utente con email o nickname uguale al valore del secondo argomento
+ *   @return  se esiste utente con email o nickname uguale al valore del secondo argomento
  *            (char *text) e la password inserita corrisponde la funzione lo ritornerà,
  *            altrimenti il valore sarà uguale a NULL
  */
@@ -461,10 +461,10 @@ Utente *accesso(Utente *testa, char *text) {
  * ----------------------------
  *   Ricerca l'utente con un determinato id
  *
- *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
- *   @param id : id dell'utente da ricercare
+ *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
+ *   @param id id dell'utente da ricercare
  * 
- *   @returns: Utente con id corrispondende al parametro id, altrimenti NULL
+ *   @return Utente con id corrispondende al parametro id, altrimenti NULL
  */
 Utente *ricercaUtente(Utente *testa, int id) {
     bool flag = false;
@@ -493,7 +493,7 @@ Utente *ricercaUtente(Utente *testa, int id) {
  * ----------------------------
  *   Permette di stampare i dati personali di un determinato utente
  *
- *   @param utente : utente da stampare nel dettaglio
+ *   @param utente utente da stampare nel dettaglio
  */
 void stampaUtente(Utente *utente) {
 
@@ -520,8 +520,8 @@ void stampaUtente(Utente *utente) {
  * ----------------------------
  *   Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo
  *
- *   @param utente : utente da modificare
- *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
+ *   @param utente utente da modificare
+ *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 //TODO: invertire
 void modificaUtente(Utente *utente, Utente *testa) {
@@ -813,8 +813,8 @@ void modificaUtente(Utente *utente, Utente *testa) {
  * ----------------------------
  *   Permette di eliminare un utente
  *
- *   @param utente : utente da stampare nel dettaglio
- *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
+ *   @param utente utente da stampare nel dettaglio
+ *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 //TODO: invertire
 void eliminaUtente(Utente *utente, Utente *testa) {
@@ -873,7 +873,7 @@ void eliminaUtente(Utente *utente, Utente *testa) {
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "utenti.csv"
  *
- *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
+ *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 void scriviUtenti(Utente *testa) {
     Utente *temp = NULL;
@@ -901,7 +901,7 @@ void scriviUtenti(Utente *testa) {
  * ----------------------------
  *   Permette di modificare il permesso di un utente scelto
  *
- *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
+ *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 void modificaPermessi(Utente *testa) {
     char idScelto, sceltaPerm;

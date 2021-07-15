@@ -12,9 +12,9 @@ struct prenotazione {
  * ----------------------------
  *   Permette di leggere i dati dal file "prenotazioni.csv" e salvarli all'interno della struct Prenotazione
  *
- *   @param fp : nome del file da cui leggere i dati, ovvero "prenotazioni.csv"
- *   @param testaUtente : puntatore alla variabile di tipo Utente, una lista contenente tutte gli utenti
- *   @param testaMostra : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
+ *   @param fp nome del file da cui leggere i dati, ovvero "prenotazioni.csv"
+ *   @param testaUtente puntatore alla variabile di tipo Utente, una lista contenente tutte gli utenti
+ *   @param testaMostra puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
  * 
  *   @return puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
  */
@@ -80,9 +80,9 @@ Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMo
  * ----------------------------
  *   Permette agli utenti di prenotare una visita ad una mostra in un determinato giorno e orario
  *
- *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
- *   @param utente : utente alla quale verrà assegnata la prenotazione
- *   @param mostra : mostra scelta
+ *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param utente utente alla quale verrà assegnata la prenotazione
+ *   @param mostra mostra scelta
  */
 void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *mostra) {
 
@@ -205,8 +205,8 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
  * ----------------------------
  *   Modifica una prenotazione 
  *
- *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
- *   @param prenotazione : prenotazione che verrà modificata
+ *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param prenotazione prenotazione che verrà modificata
  */
 void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
     int scelta;
@@ -368,7 +368,7 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
  *   Stampa nel dettaglio tutte le prenotazioni (con mostre del giorno corrente o future).
  *   Richiama stampaPrenotazione()
  *
- *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
  */
 void stampaPrenotazioni(Prenotazione *testa) {
     for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
@@ -385,8 +385,8 @@ void stampaPrenotazioni(Prenotazione *testa) {
  *   Stampa nel dettaglio tutte le prenotazioni (con mostre del giorno corrente o future) di un determinato utente.
  *   Richiama stampaPrenotazione()
  *
- *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
- *   @param utente : utente di cui ricercare le prenotazioni
+ *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param utente utente di cui ricercare le prenotazioni
  */
 void stampaPrenotazioniUtente(Prenotazione *testa, Utente *utente) {
     bool trovato = false;
@@ -413,7 +413,7 @@ void stampaPrenotazioniUtente(Prenotazione *testa, Utente *utente) {
  * ----------------------------
  *   Stampa nel dettaglio la prenotazione passata in argomento
  *
- *   @param prenotazione : prenotazione da stampare nel dettaglio
+ *   @param prenotazione prenotazione da stampare nel dettaglio
  */
 void stampaPrenotazione(Prenotazione *prenotazione) {
     printf("Id: %d\n", prenotazione->id);
@@ -428,7 +428,7 @@ void stampaPrenotazione(Prenotazione *prenotazione) {
  * ----------------------------
  *   Aggiorna il file prenotazioni.csv con le nuove prenotazioni
  *
- *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
  */
 void scriviPrenotazioni(Prenotazione *testa) {
     FILE *fp;
@@ -451,8 +451,8 @@ void scriviPrenotazioni(Prenotazione *testa) {
  * ----------------------------
  *   Effettua una ricerca tra le prenotazioni per trovare la prenotazione con un determinato id
  *
- *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
- *   @param id : intero, identificatore della mostra da ricercare
+ *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param id intero, identificatore della mostra da ricercare
  * 
  *   @return Prenotazione ricercata, se non trovata NULL
  */
@@ -484,7 +484,7 @@ Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id) {
  *   Controlla se una prenotazione è modificabile (o eliminabile) o meno.
  *   Una prenotazione è modificabile prima di due giorni l'inizio della mostra
  *
- *   @param prenotazione : prenotazione da controllare se è modificabile
+ *   @param prenotazione prenotazione da controllare se è modificabile
  * 
  *   @return true se la prenotazione è modificabile, quindi il giorno corrente è antecedente a due giorni prima dell'inizio della mostra, altrimenti false
  */
@@ -536,8 +536,8 @@ bool prenotazioneModificabile(Prenotazione *prenotazione) {
  * ----------------------------
  *   Elimina una prenotazione
  *
- *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
- *   @param prenotazione : prenotazione da eliminare
+ *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param prenotazione prenotazione da eliminare
  */
 void eliminaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
     char risposta;

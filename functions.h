@@ -31,10 +31,5 @@ void notificaAnnulla(bool tastoNum);
 void pausa(void);
 
 void toUppercase(char *stringa);
-/*
-uint32_t leftrotate(uint32_t x, uint32_t c);
-
-char *md5(char *initial_msg);
-*/
 
 #include "functions.c"

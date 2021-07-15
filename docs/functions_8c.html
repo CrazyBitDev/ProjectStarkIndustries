@@ -354,7 +354,7 @@ Function: annoBisestile</h2>
 <p>Controlla che l'anno passato come argomento sia bisestile o meno</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">anno</td><td>: anno (numerico)</td></tr>
+    <tr><td class="paramname">anno</td><td>anno (numerico)</td></tr>
   </table>
   </dd>
 </dl>
@@ -454,7 +454,7 @@ Function: consoleColor</h2>
 <p>Cambia il colore alla console</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">color</td><td>: codice del colore da utilizzare. È possibile usare le constanti COLOR_* </td></tr>
+    <tr><td class="paramname">color</td><td>codice del colore da utilizzare. È possibile usare le constanti COLOR_* </td></tr>
   </table>
   </dd>
 </dl>
@@ -513,7 +513,7 @@ Function: contaRighe</h2>
 <p>Conta le righe in un determinato file</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">file</td><td>: puntatore ad un array di char contenente il nome del file da controllare</td></tr>
+    <tr><td class="paramname">file</td><td>puntatore ad un array di char contenente il nome del file da controllare</td></tr>
   </table>
   </dd>
 </dl>
@@ -585,11 +585,11 @@ Function: dataInIntervallo</h2>
 <p>Effettua un controllo tra la date passate come argomento, verifica che la prima data (valori passati singolarmente) è inclusa in un intervallo dato dalla seconda e terza data (puntatore all'array di char) Effettua una conversione degli array e successivamente richiama <a class="el" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData()</a> e <a class="el" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate()</a></p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">giorno</td><td>: intero, giorno della prima data </td></tr>
-    <tr><td class="paramname">mese</td><td>: intero, mese della prima data </td></tr>
-    <tr><td class="paramname">anno</td><td>: intero, anno della prima data </td></tr>
-    <tr><td class="paramname">giorno1</td><td>: puntatore all'array di char contenente la seconda data (estremo sinistro dell'intervallo), formato gg/mm/aaaa </td></tr>
-    <tr><td class="paramname">giorno2</td><td>: puntatore all'array di char contenente la terza data (estremo destro dell'intervallo), formato gg/mm/aaaa</td></tr>
+    <tr><td class="paramname">giorno</td><td>intero, giorno della prima data </td></tr>
+    <tr><td class="paramname">mese</td><td>intero, mese della prima data </td></tr>
+    <tr><td class="paramname">anno</td><td>intero, anno della prima data </td></tr>
+    <tr><td class="paramname">giorno1</td><td>puntatore all'array di char contenente la seconda data (estremo sinistro dell'intervallo), formato gg/mm/aaaa </td></tr>
+    <tr><td class="paramname">giorno2</td><td>puntatore all'array di char contenente la terza data (estremo destro dell'intervallo), formato gg/mm/aaaa</td></tr>
   </table>
   </dd>
 </dl>
@@ -675,12 +675,12 @@ Function: differenzaDate</h2>
 <p>Effettua un controllo tra le due date passate come argomento per verificare se coincidono o quale delle due è successiva all'altra</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">giorno1</td><td>: intero, giorno della prima data </td></tr>
-    <tr><td class="paramname">mese1</td><td>: intero, mese della prima data </td></tr>
-    <tr><td class="paramname">anno1</td><td>: intero, anno della prima data </td></tr>
-    <tr><td class="paramname">giorno2</td><td>: intero, giorno della seconda data </td></tr>
-    <tr><td class="paramname">mese2</td><td>: intero, mese della seconda data </td></tr>
-    <tr><td class="paramname">anno2</td><td>: intero, anno della seconda data</td></tr>
+    <tr><td class="paramname">giorno1</td><td>intero, giorno della prima data </td></tr>
+    <tr><td class="paramname">mese1</td><td>intero, mese della prima data </td></tr>
+    <tr><td class="paramname">anno1</td><td>intero, anno della prima data </td></tr>
+    <tr><td class="paramname">giorno2</td><td>intero, giorno della seconda data </td></tr>
+    <tr><td class="paramname">mese2</td><td>intero, mese della seconda data </td></tr>
+    <tr><td class="paramname">anno2</td><td>intero, anno della seconda data</td></tr>
   </table>
   </dd>
 </dl>
@@ -745,8 +745,8 @@ Function: differenzaDateChar</h2>
 <p>Effettua un controllo tra le due date passate come argomento per verificare se coincidono o quale delle due è successiva all'altra. Effettua una conversione degli array di char e successivamente richiama <a class="el" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate()</a></p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data1</td><td>: puntatore ad un array di char contenente la prima data, formato gg/mm/aaaa </td></tr>
-    <tr><td class="paramname">data2</td><td>: puntatore ad un array di char contenente la seconda data, formato gg/mm/aaaa</td></tr>
+    <tr><td class="paramname">data1</td><td>puntatore ad un array di char contenente la prima data, formato gg/mm/aaaa </td></tr>
+    <tr><td class="paramname">data2</td><td>puntatore ad un array di char contenente la seconda data, formato gg/mm/aaaa</td></tr>
   </table>
   </dd>
 </dl>
@@ -811,9 +811,9 @@ Function: differenzaDateOggi</h2>
 <p>Effettua un controllo tra la data passata come argomento e la data del giorno corrente per verificare se coincidono o quale delle due è successiva all'altra Dopo aver ricavato il giorno corrente, richiama <a class="el" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate()</a></p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">giorno</td><td>: intero, giorno della data </td></tr>
-    <tr><td class="paramname">mese</td><td>: intero, mese della data </td></tr>
-    <tr><td class="paramname">anno</td><td>: intero, anno della data</td></tr>
+    <tr><td class="paramname">giorno</td><td>intero, giorno della data </td></tr>
+    <tr><td class="paramname">mese</td><td>intero, mese della data </td></tr>
+    <tr><td class="paramname">anno</td><td>intero, anno della data</td></tr>
   </table>
   </dd>
 </dl>
@@ -871,7 +871,7 @@ Function: differenzaDateOggiChar</h2>
 <p>Effettua un controllo tra la data passata come argomento e la data del giorno corrente per verificare se coincidono o quale delle due è successiva all'altra Effettua una conversione degli array e successivamente richiama <a class="el" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">differenzaDateOggi()</a></p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dataTarget</td><td>: puntatore all'array di char contenente la data da controllare, formato gg/mm/aaaa</td></tr>
+    <tr><td class="paramname">dataTarget</td><td>puntatore all'array di char contenente la data da controllare, formato gg/mm/aaaa</td></tr>
   </table>
   </dd>
 </dl>
@@ -925,7 +925,7 @@ Function: letturaUltimoID</h2>
 <p>Verifica qual'è l'ultimo ID inserito</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">file</td><td>: puntatore ad un array di char contenente il nome del file da controllare</td></tr>
+    <tr><td class="paramname">file</td><td>puntatore ad un array di char contenente il nome del file da controllare</td></tr>
   </table>
   </dd>
 </dl>
@@ -977,7 +977,7 @@ Function: notificaAnnulla</h2>
 <p>Stampa a video un avviso per l'utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tastoNum</td><td>: true se l'utente deve premere il tasto 0, altrimenti tasto INVIO </td></tr>
+    <tr><td class="paramname">tastoNum</td><td>true se l'utente deve premere il tasto 0, altrimenti tasto INVIO </td></tr>
   </table>
   </dd>
 </dl>
@@ -1083,8 +1083,8 @@ Function: printColor</h2>
 <p>Stampa in console del testo con un determinato colore</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">text</td><td>: testo da visualizzare in console </td></tr>
-    <tr><td class="paramname">color</td><td>: codice del colore da utilizzare. È possibile usare le constanti COLOR_* </td></tr>
+    <tr><td class="paramname">text</td><td>testo da visualizzare in console </td></tr>
+    <tr><td class="paramname">color</td><td>codice del colore da utilizzare. È possibile usare le constanti COLOR_* </td></tr>
   </table>
   </dd>
 </dl>
@@ -1165,9 +1165,9 @@ Function: consoleColor</h2>
 <p>Permette all'utente di inserire del testo in console senza che venga visualizzato. Utile ed utilizzato nell'inserimento di password.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">prompt</td><td>: testo da visualizzare prima dell'input </td></tr>
-    <tr><td class="paramname">password</td><td>: puntatore all'array di char utilizzato per memorizzare l'input </td></tr>
-    <tr><td class="paramname">checkLunghezza</td><td>: abilita il checkLunghezza, utile nell'input al momento della registrazione. Input lunghi meno di 6 caratteri richiederanno il reinserimento fino a condizione non superata </td></tr>
+    <tr><td class="paramname">prompt</td><td>testo da visualizzare prima dell'input </td></tr>
+    <tr><td class="paramname">password</td><td>puntatore all'array di char utilizzato per memorizzare l'input </td></tr>
+    <tr><td class="paramname">checkLunghezza</td><td>abilita il checkLunghezza, utile nell'input al momento della registrazione. Input lunghi meno di 6 caratteri richiederanno il reinserimento fino a condizione non superata </td></tr>
   </table>
   </dd>
 </dl>
@@ -1268,7 +1268,7 @@ Function: toUppercase</h2>
 <p>Data una stringa, tutti i caratteri diventano maiuscoli</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stringa</td><td>: puntatore all'array di char contenete la stringa che diventerà tutta maiuscola </td></tr>
+    <tr><td class="paramname">stringa</td><td>puntatore all'array di char contenete la stringa che diventerà tutta maiuscola </td></tr>
   </table>
   </dd>
 </dl>
@@ -1324,9 +1324,9 @@ Function: verificaData</h2>
 <p>Controlla che la data sia corretta</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">giorno</td><td>: giorno (numerico) della data da verificare </td></tr>
-    <tr><td class="paramname">mese</td><td>: mese (numerico) della data da verificare </td></tr>
-    <tr><td class="paramname">anno</td><td>: anno (numerico) della data da verificare</td></tr>
+    <tr><td class="paramname">giorno</td><td>giorno (numerico) della data da verificare </td></tr>
+    <tr><td class="paramname">mese</td><td>mese (numerico) della data da verificare </td></tr>
+    <tr><td class="paramname">anno</td><td>anno (numerico) della data da verificare</td></tr>
   </table>
   </dd>
 </dl>

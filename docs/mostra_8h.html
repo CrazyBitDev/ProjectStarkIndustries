@@ -199,7 +199,7 @@ Function: aggiungiMostra</h2>
 <p>Permette la registrazione di una nuova mostra Effettuata l'inserimento, verrà effettuato una scrittura del file "mostra.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
   </table>
   </dd>
 </dl>
@@ -273,9 +273,9 @@ Function: aggiungiOperaAMostra</h2>
 <p>Permette di aggiungere una opera ad una determinata mostra, controllando che nel periodo della mostra l'opera non è già occupata</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
-    <tr><td class="paramname">mostra</td><td>: mostra scelta per essere modificata </td></tr>
-    <tr><td class="paramname">opera</td><td>: opera scelta per essere aggiunta </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
+    <tr><td class="paramname">mostra</td><td>mostra scelta per essere modificata </td></tr>
+    <tr><td class="paramname">opera</td><td>opera scelta per essere aggiunta </td></tr>
   </table>
   </dd>
 </dl>
@@ -340,13 +340,13 @@ Function: mostreBrowser</h2>
 <p>Permette una vista approfondita delle mostre con ricerca e possibilità di selezionare la mostra.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv </td></tr>
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
-    <tr><td class="paramname">selezione</td><td>: se true permette di selezionare l'opera con return avvalorato</td></tr>
+    <tr><td class="paramname">fp</td><td>puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
+    <tr><td class="paramname">selezione</td><td>se true permette di selezionare l'opera con return avvalorato</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: se selezione == true la mostra selezionata, altrimenti NULL </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>se selezione == true la mostra selezionata, altrimenti NULL </dd></dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01159">1159</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
@@ -413,8 +413,8 @@ Function: eliminaMostra</h2>
 <p>Permette di eliminare una mostra. Richiamerà <a class="el" href="mostra_8c.html#a5b9225c22b5acada60cc8057d42dec21">scriviMostre()</a> una volta completata l'eliminazione per aggiornare i file</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
-    <tr><td class="paramname">mostra</td><td>: mostra da eliminare </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
+    <tr><td class="paramname">mostra</td><td>mostra da eliminare </td></tr>
   </table>
   </dd>
 </dl>
@@ -481,9 +481,9 @@ Function: eliminaOperaAMostra</h2>
 <p>Permette di modificare una mostra rimuovendone un opera associata</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
-    <tr><td class="paramname">mostra</td><td>: mostra da modificare </td></tr>
-    <tr><td class="paramname">idOpera</td><td>: id dell'opera da rimuovere dalla mostra </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
+    <tr><td class="paramname">mostra</td><td>mostra da modificare </td></tr>
+    <tr><td class="paramname">idOpera</td><td>id dell'opera da rimuovere dalla mostra </td></tr>
   </table>
   </dd>
 </dl>
@@ -550,9 +550,9 @@ Function: letturaMostre</h2>
 <p>Legge i dati dal file "mostre.csv" e il file "mostreopere.csv" salvando il tutto all'interno della struct Mostra e alla struct MostreOpere, contenuta all'interno di Mostra</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv </td></tr>
-    <tr><td class="paramname">fpMO</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostreopere.csv </td></tr>
-    <tr><td class="paramname">testaOpera</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate</td></tr>
+    <tr><td class="paramname">fp</td><td>puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv </td></tr>
+    <tr><td class="paramname">fpMO</td><td>puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostreopere.csv </td></tr>
+    <tr><td class="paramname">testaOpera</td><td>puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate</td></tr>
   </table>
   </dd>
 </dl>
@@ -615,8 +615,8 @@ Function: modificaMostra</h2>
 <p>Permette di modificare i dati relativi ad una mostra scelta</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
-    <tr><td class="paramname">mostra</td><td>: mostra scelta per essere modificata </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
+    <tr><td class="paramname">mostra</td><td>mostra scelta per essere modificata </td></tr>
   </table>
   </dd>
 </dl>
@@ -682,8 +682,8 @@ Function: operaUsataInMostre</h2>
 <p>Verifica che un opera non sia esposta in una mostra del giorno corrente o futura</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
-    <tr><td class="paramname">idOpera</td><td>: id dell'opera da controllare</td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
+    <tr><td class="paramname">idOpera</td><td>id dell'opera da controllare</td></tr>
   </table>
   </dd>
 </dl>
@@ -743,12 +743,12 @@ Function: ricercaMostra</h2>
 <p>Effettua una ricerca cercando una mostra con un determinato id</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
-    <tr><td class="paramname">id</td><td>: id della mostra da ricercare</td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
+    <tr><td class="paramname">id</td><td>id della mostra da ricercare</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: puntatore della mostra ricercata, o NULL se nessuna mostra trovata </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>puntatore della mostra ricercata, o NULL se nessuna mostra trovata </dd></dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01124">1124</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
@@ -798,7 +798,7 @@ Function: scriviMostre</h2>
 <p>Permette di salvare tutte le modifiche effettuate sul file "mostre.csv" e "mostreopere.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
   </table>
   </dd>
 </dl>
@@ -850,8 +850,8 @@ Function: stampaMostra</h2>
 <p>Permette di stampare a video una mostra</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mostra</td><td>: puntatore alla mostra da stampare a schermo </td></tr>
-    <tr><td class="paramname">stampaOpere</td><td>: mostra opere assegnate alla mostra se true </td></tr>
+    <tr><td class="paramname">mostra</td><td>puntatore alla mostra da stampare a schermo </td></tr>
+    <tr><td class="paramname">stampaOpere</td><td>mostra opere assegnate alla mostra se true </td></tr>
   </table>
   </dd>
 </dl>
@@ -901,7 +901,7 @@ Function: stampaMostre</h2>
 <p>Permette di stampare a video l'elenco delle mostre Richiama <a class="el" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499">stampaMostra()</a></p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
   </table>
   </dd>
 </dl>

@@ -159,12 +159,12 @@ Function: accesso</h2>
 <p>Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
-    <tr><td class="paramname">text</td><td>: testo inserito dall'utente per fare l'accesso (email o nickname)</td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">text</td><td>testo inserito dall'utente per fare l'accesso (email o nickname)</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: se esiste utente con email o nickname uguale al valore del secondo argomento (char *text) e la password inserita corrisponde la funzione lo ritornerà, altrimenti il valore sarà uguale a NULL </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>se esiste utente con email o nickname uguale al valore del secondo argomento (char *text) e la password inserita corrisponde la funzione lo ritornerà, altrimenti il valore sarà uguale a NULL </dd></dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00433">433</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
@@ -219,8 +219,8 @@ Function: eliminaUtente</h2>
 <p>Permette di eliminare un utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">utente</td><td>: utente da stampare nel dettaglio </td></tr>
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">utente</td><td>utente da stampare nel dettaglio </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
   </table>
   </dd>
 </dl>
@@ -271,7 +271,7 @@ Function: letturaUtenti</h2>
 <p>Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file utenti.csv</td></tr>
+    <tr><td class="paramname">fp</td><td>puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file utenti.csv</td></tr>
   </table>
   </dd>
 </dl>
@@ -319,7 +319,7 @@ Function: eliminaUtente</h2>
 <p>Permette di modificare il permesso di un utente scelto</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
   </table>
   </dd>
 </dl>
@@ -382,8 +382,8 @@ Function: modificaUtente</h2>
 <p>Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">utente</td><td>: utente da modificare </td></tr>
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">utente</td><td>utente da modificare </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
   </table>
   </dd>
 </dl>
@@ -438,7 +438,7 @@ Function: registrazioneUtente</h2>
 <p>Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
   </table>
   </dd>
 </dl>
@@ -505,12 +505,12 @@ Function: ricercaUtente</h2>
 <p>Ricerca l'utente con un determinato id</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
-    <tr><td class="paramname">id</td><td>: id dell'utente da ricercare</td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">id</td><td>id dell'utente da ricercare</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: Utente con id corrispondende al parametro id, altrimenti NULL </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Utente con id corrispondende al parametro id, altrimenti NULL </dd></dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00469">469</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
@@ -555,7 +555,7 @@ Function: scriviUtenti</h2>
 <p>Permette di salvare tutte le modifiche effettuate sul file "utenti.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
   </table>
   </dd>
 </dl>
@@ -596,7 +596,7 @@ Function: ricercaUtente</h2>
 <p>Permette di stampare i dati personali di un determinato utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">utente</td><td>: utente da stampare nel dettaglio </td></tr>
+    <tr><td class="paramname">utente</td><td>utente da stampare nel dettaglio </td></tr>
   </table>
   </dd>
 </dl>

@@ -149,7 +149,7 @@ Function: letturaggiungiOperaaOpere</h2>
 <p>Permette la registrazione di una nuova opera, con salvatggio dei dati sul file "opere.csv" e nella struct Opera</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
   </table>
   </dd>
 </dl>
@@ -219,13 +219,13 @@ Function: opereBrowser</h2>
 <p>Permette una vista approfondita delle opere con ricerca e possibilità di selezionare la mostra.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv </td></tr>
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
-    <tr><td class="paramname">selezione</td><td>: se true permette di selezionare l'opera con return avvalorato</td></tr>
+    <tr><td class="paramname">fp</td><td>puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+    <tr><td class="paramname">selezione</td><td>se true permette di selezionare l'opera con return avvalorato</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: se selezione == true l'opera selezionata, altrimenti NULL </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>se selezione == true l'opera selezionata, altrimenti NULL </dd></dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00744">744</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
@@ -287,8 +287,8 @@ Function: eliminaOpera</h2>
 <p>Permette di eliminare l'opera scelta e salvare i dati in "opera.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
-    <tr><td class="paramname">opera</td><td>: opera da eliminare </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+    <tr><td class="paramname">opera</td><td>opera da eliminare </td></tr>
   </table>
   </dd>
 </dl>
@@ -339,7 +339,7 @@ Function: letturaOpere</h2>
 <p>Permette di leggere i dati dal file "opere.csv" e salvarli all'interno della struct Opera</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv</td></tr>
+    <tr><td class="paramname">fp</td><td>puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv</td></tr>
   </table>
   </dd>
 </dl>
@@ -397,8 +397,8 @@ Function: modificaOpera</h2>
 <p>Permette di modificare i dati relativi all'opera scelta</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
-    <tr><td class="paramname">opera</td><td>: opera scelta per essere modificata </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+    <tr><td class="paramname">opera</td><td>opera scelta per essere modificata </td></tr>
   </table>
   </dd>
 </dl>
@@ -460,12 +460,12 @@ Function: ricercaOpera</h2>
 <p>Effettua una ricerca di un opera con un determinato id all'interno della lista</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
-    <tr><td class="paramname">id</td><td>: id dell'opera da ricercare</td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+    <tr><td class="paramname">id</td><td>id dell'opera da ricercare</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: opera ricercata, altrimenti NULL </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>opera ricercata, altrimenti NULL </dd></dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00708">708</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
@@ -511,7 +511,7 @@ Function: scriviOpere</h2>
 <p>Permette di salvare tutte le modifiche effettuate sul file "opere.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
   </table>
   </dd>
 </dl>
@@ -551,7 +551,7 @@ Function: stampaOpera</h2>
 <p>Permette di stampare i dettagli di un'opera</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">opera</td><td>: opera da stampare nel dettaglio </td></tr>
+    <tr><td class="paramname">opera</td><td>opera da stampare nel dettaglio </td></tr>
   </table>
   </dd>
 </dl>
@@ -594,7 +594,7 @@ Function: stampaOpere</h2>
 <p>Permette di stampare a video l'elenco delle opere Richiama stampaOpera</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+    <tr><td class="paramname">testa</td><td>puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
   </table>
   </dd>
 </dl>
