@@ -25,7 +25,9 @@
 var NAVTREE =
 [
   [ "StarkIndustries", "index.html", [
-    [ "ProjectStarkIndustries", "md__r_e_a_d_m_e.html", null ],
+    [ "ProjectStarkIndustries", "index.html", [
+      [ "FlowCharts", "index.html#autotoc_md49", null ]
+    ] ],
     [ "Strutture dati", "annotated.html", [
       [ "Strutture dati", "annotated.html", "annotated_dup" ],
       [ "Indice delle strutture dati", "classes.html", null ],

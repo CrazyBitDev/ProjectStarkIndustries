@@ -10,5 +10,5 @@ var searchData=
   ['prenotazione_2eh_85',['prenotazione.h',['../prenotazione_8h.html',1,'']]],
   ['prenotazionemodificabile_86',['prenotazioneModificabile',['../prenotazione_8c.html#a92b4bd4fc758534058542c91a59406a3',1,'prenotazioneModificabile(Prenotazione *prenotazione):&#160;prenotazione.c'],['../prenotazione_8h.html#a92b4bd4fc758534058542c91a59406a3',1,'prenotazioneModificabile(Prenotazione *prenotazione):&#160;prenotazione.c']]],
   ['printcolor_87',['printColor',['../functions_8c.html#afca704d84c421deddcc822090a4cbce1',1,'printColor(char text[], int color):&#160;functions.c'],['../functions_8h.html#afca704d84c421deddcc822090a4cbce1',1,'printColor(char text[], int color):&#160;functions.c']]],
-  ['projectstarkindustries_88',['ProjectStarkIndustries',['../md__r_e_a_d_m_e.html',1,'']]]
+  ['projectstarkindustries_88',['ProjectStarkIndustries',['../index.html',1,'']]]
 ];
