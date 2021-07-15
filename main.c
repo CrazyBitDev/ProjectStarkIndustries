@@ -320,7 +320,14 @@ int main() {
                                             case 4:
                                                 operaScelta = browserOpere(fpO, testaOpera, true);
                                                 if (operaScelta != NULL) {
-                                                    eliminaOpera(testaOpera, operaScelta);
+                                                    if (operaUsataInMostre(testaMostra, operaScelta->id)) {
+                                                        printColor("Questa opera e' esposta, o e' stato programmato di esporla.\nRimuovi prima l'opera dalle mostre prima di procedere\n", COLOR_RED);
+                                                        pausa();
+                                                        clearConsole();
+                                                        titolo();
+                                                    } else {
+                                                        eliminaOpera(testaOpera, operaScelta);
+                                                    }
                                                 }
                                                 break;
 

@@ -274,7 +274,6 @@ void titolo() {
     printf("\n");
 }
 
-//TODO: cambiare nome?
 // 0 = giorni uguali, 1 = giorno 2 > giorno 1, -1 = giorno 1 > giorno 2
 int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2) {
 

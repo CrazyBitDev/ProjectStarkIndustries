@@ -16,6 +16,8 @@ void eliminaMostra(Mostra *testa, Mostra *mostra);
 
 void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera);
 
+bool operaUsataInMostre(Mostra *testa, int idOpera);
+
 void scriviMostre(Mostra *testa);
 
 void stampaMostre(Mostra *testa);

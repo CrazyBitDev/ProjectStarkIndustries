@@ -940,7 +940,6 @@ void stampaMostra(Mostra *mostra, bool stampaOpere) {
     printf("Durata: dal %s al %s\n", mostra->dataInizio, mostra->dataFine);
     if (stampaOpere) {
         if (mostra->opere != NULL) {
-            MostraOpera *temp = mostra->opere;
             printf("Opere nella mostra:\n");
             for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
                 printf("\tID %d - %s di %s\n", temp->opera->id, temp->opera->nome, temp->opera->autore);
@@ -1087,6 +1086,23 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
     }
 }
 
+
+bool operaUsataInMostre(Mostra *testa, int idOpera) {
+    bool operaUsata = false;
+    for (Mostra *mostra = testa; mostra != NULL; mostra = mostra->nextMostra) {
+        if (differenzaDateOggiChar(mostra->dataFine) == -1) {
+            if (mostra->opere != NULL) {
+                for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
+                    if (temp->opera->id == idOpera) {
+                        operaUsata = true;
+                    }
+                }
+            }
+        }
+    }
+    return operaUsata;
+}
+
 /**
  * Function: ricercaMostra
  * ----------------------------
@@ -1100,9 +1116,8 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
 Mostra *ricercaMostra(Mostra *testa, int id) {
     bool flag = false;
     Mostra *nuovoNodo = NULL;
-    Mostra *temp;
 
-    for (temp = testa; temp != NULL; temp = temp->nextMostra) {
+    for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
         if (temp->id == id) {
             nuovoNodo = temp;
             flag = true;

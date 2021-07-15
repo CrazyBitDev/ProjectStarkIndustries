@@ -209,7 +209,6 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
 void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
     int scelta;
     char risposta = '\0';
-    bool flagDate = false;
     bool continuaModifica = true;
 
     bool dataCorretta = true;
