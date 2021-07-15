@@ -321,7 +321,10 @@ int main() {
                                                 operaScelta = browserOpere(fpO, testaOpera, true);
                                                 if (operaScelta != NULL) {
                                                     if (operaUsataInMostre(testaMostra, operaScelta->id)) {
-                                                        printColor("Questa opera e' esposta, o e' stato programmato di esporla.\nRimuovi prima l'opera dalle mostre prima di procedere\n", COLOR_RED);
+                                                        printf("\n----------");
+                                                        printColor("\nAttenzione!\n", COLOR_RED);
+                                                        printf("Questa opera e' esposta, o e' stata programmata per essere esposta.\nRimuovi l'opera dalle mostre prima di procedere.\n");
+                                                        printf("----------\n\n");
                                                         pausa();
                                                         clearConsole();
                                                         titolo();
