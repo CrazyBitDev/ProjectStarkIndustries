@@ -1,0 +1,7 @@
+<map id="prenotazione" name="prenotazione">
+<area shape="rect" id="node1" title=" " alt="" coords="94,273,190,300"/>
+<area shape="rect" id="node2" href="$structmostra.html" title=" " alt="" coords="23,184,85,211"/>
+<area shape="rect" id="node3" href="$structmostra_opera.html" title=" " alt="" coords="5,95,103,121"/>
+<area shape="rect" id="node4" href="$structopera.html" title=" " alt="" coords="27,5,81,32"/>
+<area shape="rect" id="node5" href="$structutente.html" title=" " alt="" coords="203,184,262,211"/>
+</map>

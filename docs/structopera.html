@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,6 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">StarkIndustries
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -45,6 +50,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('structopera.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Campi</a>  </div>
@@ -67,6 +88,14 @@ $(function() {
 <div class="title">Riferimenti per la struct opera</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Diagramma di collaborazione per opera:</div>
+<div class="dyncontent">
+<div class="center"><img src="structopera__coll__graph.png" border="0" usemap="#aopera_coll__map" alt="Collaboration graph"/></div>
+<map name="aopera_coll__map" id="aopera_coll__map">
+<area shape="rect" title=" " alt="" coords="5,5,60,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legenda</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Campi</h2></td></tr>
@@ -87,7 +116,10 @@ Campi</h2></td></tr>
 <tr class="memitem:aebb6063d9c351b2b11173327f73eb6dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="data_8c.html#a04bad930ba2f5c80a204607d06301186">Opera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structopera.html#aebb6063d9c351b2b11173327f73eb6dc">nextOpera</a></td></tr>
 <tr class="separator:aebb6063d9c351b2b11173327f73eb6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentazione dei campi</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
+<div class="textblock">
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00017">17</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
+</div><h2 class="groupheader">Documentazione dei campi</h2>
 <a id="a641e63fefd1baea5836b5e70c74c5aa3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a641e63fefd1baea5836b5e70c74c5aa3">&#9670;&nbsp;</a></span>anno</h2>
 
@@ -99,6 +131,8 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00024">24</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
 
 </div>
 </div>
@@ -114,6 +148,8 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00020">20</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
+
 </div>
 </div>
 <a id="aa4e5bb2082ee1c62b168bac0b1516bd9"></a>
@@ -127,6 +163,8 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00022">22</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
 
 </div>
 </div>
@@ -142,6 +180,8 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00018">18</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
+
 </div>
 </div>
 <a id="aebb6063d9c351b2b11173327f73eb6dc"></a>
@@ -155,6 +195,8 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00025">25</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
 
 </div>
 </div>
@@ -170,6 +212,8 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00019">19</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
+
 </div>
 </div>
 <a id="ae7550b11be6dba967ee705e1ebd78ec5"></a>
@@ -183,6 +227,8 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00023">23</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
 
 </div>
 </div>
@@ -198,15 +244,21 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00021">21</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
+
 </div>
 </div>
 <hr/>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
-<li><a class="el" href="data_8c.html">data.c</a></li>
+<li><a class="el" href="data_8c_source.html">data.c</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generato da&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structopera.html">opera</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

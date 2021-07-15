@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,6 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">StarkIndustries
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -46,6 +51,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('utente_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,21 +105,25 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="utente_8h.html#a98f2344fd2dfea49fc9c35f8564c07fb">modificaPermessi</a>(<a class="code" href="structutente.html">Utente</a> *testa);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utente_8c.html">utente.c</a>&quot;</span></div>
-<div class="ttc" id="astructutente_html"><div class="ttname"><a href="structutente.html">utente</a></div><div class="ttdef"><b>Definition:</b> data.c:3</div></div>
+<div class="ttc" id="astructutente_html"><div class="ttname"><a href="structutente.html">utente</a></div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00003">data.c:3</a></div></div>
 <div class="ttc" id="autente_8c_html"><div class="ttname"><a href="utente_8c.html">utente.c</a></div></div>
-<div class="ttc" id="autente_8h_html_a443f7dde3869902c0ecda7b38573f37e"><div class="ttname"><a href="utente_8h.html#a443f7dde3869902c0ecda7b38573f37e">letturaUtenti</a></div><div class="ttdeci">Utente * letturaUtenti(FILE *fp)</div><div class="ttdef"><b>Definition:</b> utente.c:10</div></div>
-<div class="ttc" id="autente_8h_html_a53b351429600a128d1c2ef16ed6fe24e"><div class="ttname"><a href="utente_8h.html#a53b351429600a128d1c2ef16ed6fe24e">ricercaUtente</a></div><div class="ttdeci">Utente * ricercaUtente(Utente *testa, int id)</div><div class="ttdef"><b>Definition:</b> utente.c:452</div></div>
-<div class="ttc" id="autente_8h_html_a5d86b530e0e17b3af5c63fdf367bf008"><div class="ttname"><a href="utente_8h.html#a5d86b530e0e17b3af5c63fdf367bf008">scriviUtenti</a></div><div class="ttdeci">void scriviUtenti(Utente *testa)</div><div class="ttdef"><b>Definition:</b> utente.c:874</div></div>
-<div class="ttc" id="autente_8h_html_a6233e879c25a249940058560190a4f85"><div class="ttname"><a href="utente_8h.html#a6233e879c25a249940058560190a4f85">registrazioneUtente</a></div><div class="ttdeci">void registrazioneUtente(Utente *testa)</div><div class="ttdef"><b>Definition:</b> utente.c:92</div></div>
-<div class="ttc" id="autente_8h_html_a624035ff057def966d8775a144800e9d"><div class="ttname"><a href="utente_8h.html#a624035ff057def966d8775a144800e9d">modificaUtente</a></div><div class="ttdeci">void modificaUtente(Utente *utenteLogin, Utente *testa)</div><div class="ttdef"><b>Definition:</b> utente.c:516</div></div>
-<div class="ttc" id="autente_8h_html_a7d5afb423f2c814942623fb9f9c1a6b8"><div class="ttname"><a href="utente_8h.html#a7d5afb423f2c814942623fb9f9c1a6b8">eliminaUtente</a></div><div class="ttdeci">void eliminaUtente(Utente *utenteLogin, Utente *testa)</div><div class="ttdef"><b>Definition:</b> utente.c:814</div></div>
-<div class="ttc" id="autente_8h_html_a83e44c49702bea558f030e74b28dfdd2"><div class="ttname"><a href="utente_8h.html#a83e44c49702bea558f030e74b28dfdd2">accesso</a></div><div class="ttdeci">Utente * accesso(Utente *testa, char *text)</div><div class="ttdef"><b>Definition:</b> utente.c:415</div></div>
-<div class="ttc" id="autente_8h_html_a98f2344fd2dfea49fc9c35f8564c07fb"><div class="ttname"><a href="utente_8h.html#a98f2344fd2dfea49fc9c35f8564c07fb">modificaPermessi</a></div><div class="ttdeci">void modificaPermessi(Utente *testa)</div><div class="ttdef"><b>Definition:</b> utente.c:903</div></div>
-<div class="ttc" id="autente_8h_html_af717ed7e994144a268e115f1fd56cc81"><div class="ttname"><a href="utente_8h.html#af717ed7e994144a268e115f1fd56cc81">stampaUtente</a></div><div class="ttdeci">void stampaUtente(Utente *testa)</div><div class="ttdef"><b>Definition:</b> utente.c:484</div></div>
+<div class="ttc" id="autente_8h_html_a443f7dde3869902c0ecda7b38573f37e"><div class="ttname"><a href="utente_8h.html#a443f7dde3869902c0ecda7b38573f37e">letturaUtenti</a></div><div class="ttdeci">Utente * letturaUtenti(FILE *fp)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00010">utente.c:10</a></div></div>
+<div class="ttc" id="autente_8h_html_a53b351429600a128d1c2ef16ed6fe24e"><div class="ttname"><a href="utente_8h.html#a53b351429600a128d1c2ef16ed6fe24e">ricercaUtente</a></div><div class="ttdeci">Utente * ricercaUtente(Utente *testa, int id)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00459">utente.c:459</a></div></div>
+<div class="ttc" id="autente_8h_html_a5d86b530e0e17b3af5c63fdf367bf008"><div class="ttname"><a href="utente_8h.html#a5d86b530e0e17b3af5c63fdf367bf008">scriviUtenti</a></div><div class="ttdeci">void scriviUtenti(Utente *testa)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00884">utente.c:884</a></div></div>
+<div class="ttc" id="autente_8h_html_a6233e879c25a249940058560190a4f85"><div class="ttname"><a href="utente_8h.html#a6233e879c25a249940058560190a4f85">registrazioneUtente</a></div><div class="ttdeci">void registrazioneUtente(Utente *testa)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00092">utente.c:92</a></div></div>
+<div class="ttc" id="autente_8h_html_a624035ff057def966d8775a144800e9d"><div class="ttname"><a href="utente_8h.html#a624035ff057def966d8775a144800e9d">modificaUtente</a></div><div class="ttdeci">void modificaUtente(Utente *utenteLogin, Utente *testa)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00523">utente.c:523</a></div></div>
+<div class="ttc" id="autente_8h_html_a7d5afb423f2c814942623fb9f9c1a6b8"><div class="ttname"><a href="utente_8h.html#a7d5afb423f2c814942623fb9f9c1a6b8">eliminaUtente</a></div><div class="ttdeci">void eliminaUtente(Utente *utenteLogin, Utente *testa)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00824">utente.c:824</a></div></div>
+<div class="ttc" id="autente_8h_html_a83e44c49702bea558f030e74b28dfdd2"><div class="ttname"><a href="utente_8h.html#a83e44c49702bea558f030e74b28dfdd2">accesso</a></div><div class="ttdeci">Utente * accesso(Utente *testa, char *text)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00422">utente.c:422</a></div></div>
+<div class="ttc" id="autente_8h_html_a98f2344fd2dfea49fc9c35f8564c07fb"><div class="ttname"><a href="utente_8h.html#a98f2344fd2dfea49fc9c35f8564c07fb">modificaPermessi</a></div><div class="ttdeci">void modificaPermessi(Utente *testa)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00913">utente.c:913</a></div></div>
+<div class="ttc" id="autente_8h_html_af717ed7e994144a268e115f1fd56cc81"><div class="ttname"><a href="utente_8h.html#af717ed7e994144a268e115f1fd56cc81">stampaUtente</a></div><div class="ttdeci">void stampaUtente(Utente *testa)</div><div class="ttdef"><b>Definition:</b> <a href="utente_8c_source.html#l00491">utente.c:491</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generato da&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="utente_8h.html">utente.h</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

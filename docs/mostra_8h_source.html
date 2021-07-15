@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,6 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">StarkIndustries
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -46,6 +51,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mostra_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -65,40 +86,52 @@ $(function() {
 <div class="title">mostra.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="mostra_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="mostra_8h.html#aa07a561fcf06ff19b34443bfb65686f4">letturaMostre</a>(FILE *fp);</div>
+<a href="mostra_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="mostra_8h.html#a9978aa6fb360538206d9643786de59b3">letturaMostre</a>(FILE *fp, FILE *fpMO, <a class="code" href="structopera.html">Opera</a> *testaOpera);</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a6054d842da40dda0a5db41ce77ae3df8">aggiungiMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa);</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a7d3a352e2ff225f66193ffb8079ef593">modificaMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa, <a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html">mostra</a>);</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#ad5736677d229524b8d992abc5583a68b">aggiungiOperaAMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa, <a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html">mostra</a>, <a class="code" href="structopera.html">Opera</a> *<a class="code" href="structopera.html">opera</a>);</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a6d1a6272d27273f38a80762259302149">eliminaMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa, <a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html">mostra</a>);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a7d3a352e2ff225f66193ffb8079ef593">modificaMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa, <a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html">mostra</a>);</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a5b9225c22b5acada60cc8057d42dec21">scriviMostre</a>(<a class="code" href="structmostra.html">Mostra</a> *testa);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a6d1a6272d27273f38a80762259302149">eliminaMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa, <a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html">mostra</a>);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a6d2e28fafca87d10f7ebbce462af1b7a">stampaMostre</a>(<a class="code" href="structmostra.html">Mostra</a> *testa);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#afcba41c5626bc34451ecb8c43df1cba2">eliminaOperaAMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa, <a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html">mostra</a>, <span class="keywordtype">int</span> idOpera);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#ad19134e8d69917a5dabda5ff0c882059">stampaMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html">mostra</a>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a5b9225c22b5acada60cc8057d42dec21">scriviMostre</a>(<a class="code" href="structmostra.html">Mostra</a> *testa);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="mostra_8h.html#a2b83b32d2db764aa87e3b5e8cdbf0720">ricercaMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa, <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a6d2e28fafca87d10f7ebbce462af1b7a">stampaMostre</a>(<a class="code" href="structmostra.html">Mostra</a> *testa);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="mostra_8h.html#ab43da72ce0d07897ea7bdf25efa0fc29">browserMostra</a>(FILE *fp, <a class="code" href="structmostra.html">Mostra</a> *testa, <span class="keywordtype">bool</span> selezione);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="mostra_8h.html#a11ccea7f9bbff4109690de797399d499">stampaMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html">mostra</a>, <span class="keywordtype">bool</span> <a class="code" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d">stampaOpere</a>);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mostra_8c.html">mostra.c</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="mostra_8h.html#a2b83b32d2db764aa87e3b5e8cdbf0720">ricercaMostra</a>(<a class="code" href="structmostra.html">Mostra</a> *testa, <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="mostra_8h.html#ab43da72ce0d07897ea7bdf25efa0fc29">browserMostra</a>(FILE *fp, <a class="code" href="structmostra.html">Mostra</a> *testa, <span class="keywordtype">bool</span> selezione);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mostra_8c.html">mostra.c</a>&quot;</span></div>
 <div class="ttc" id="amostra_8c_html"><div class="ttname"><a href="mostra_8c.html">mostra.c</a></div></div>
-<div class="ttc" id="amostra_8h_html_a2b83b32d2db764aa87e3b5e8cdbf0720"><div class="ttname"><a href="mostra_8h.html#a2b83b32d2db764aa87e3b5e8cdbf0720">ricercaMostra</a></div><div class="ttdeci">Mostra * ricercaMostra(Mostra *testa, int id)</div><div class="ttdef"><b>Definition:</b> mostra.c:928</div></div>
-<div class="ttc" id="amostra_8h_html_a5b9225c22b5acada60cc8057d42dec21"><div class="ttname"><a href="mostra_8h.html#a5b9225c22b5acada60cc8057d42dec21">scriviMostre</a></div><div class="ttdeci">void scriviMostre(Mostra *testa)</div><div class="ttdef"><b>Definition:</b> mostra.c:842</div></div>
-<div class="ttc" id="amostra_8h_html_a6054d842da40dda0a5db41ce77ae3df8"><div class="ttname"><a href="mostra_8h.html#a6054d842da40dda0a5db41ce77ae3df8">aggiungiMostra</a></div><div class="ttdeci">void aggiungiMostra(Mostra *testa)</div><div class="ttdef"><b>Definition:</b> mostra.c:93</div></div>
-<div class="ttc" id="amostra_8h_html_a6d1a6272d27273f38a80762259302149"><div class="ttname"><a href="mostra_8h.html#a6d1a6272d27273f38a80762259302149">eliminaMostra</a></div><div class="ttdeci">void eliminaMostra(Mostra *testa, Mostra *mostra)</div><div class="ttdef"><b>Definition:</b> mostra.c:873</div></div>
-<div class="ttc" id="amostra_8h_html_a6d2e28fafca87d10f7ebbce462af1b7a"><div class="ttname"><a href="mostra_8h.html#a6d2e28fafca87d10f7ebbce462af1b7a">stampaMostre</a></div><div class="ttdeci">void stampaMostre(Mostra *testa)</div><div class="ttdef"><b>Definition:</b> mostra.c:809</div></div>
-<div class="ttc" id="amostra_8h_html_a7d3a352e2ff225f66193ffb8079ef593"><div class="ttname"><a href="mostra_8h.html#a7d3a352e2ff225f66193ffb8079ef593">modificaMostra</a></div><div class="ttdeci">void modificaMostra(Mostra *testa, Mostra *mostra)</div><div class="ttdef"><b>Definition:</b> mostra.c:382</div></div>
-<div class="ttc" id="amostra_8h_html_aa07a561fcf06ff19b34443bfb65686f4"><div class="ttname"><a href="mostra_8h.html#aa07a561fcf06ff19b34443bfb65686f4">letturaMostre</a></div><div class="ttdeci">Mostra * letturaMostre(FILE *fp)</div><div class="ttdef"><b>Definition:</b> mostra.c:10</div></div>
-<div class="ttc" id="amostra_8h_html_ab43da72ce0d07897ea7bdf25efa0fc29"><div class="ttname"><a href="mostra_8h.html#ab43da72ce0d07897ea7bdf25efa0fc29">browserMostra</a></div><div class="ttdeci">Mostra * browserMostra(FILE *fp, Mostra *testa, bool selezione)</div><div class="ttdef"><b>Definition:</b> mostra.c:966</div></div>
-<div class="ttc" id="amostra_8h_html_ad19134e8d69917a5dabda5ff0c882059"><div class="ttname"><a href="mostra_8h.html#ad19134e8d69917a5dabda5ff0c882059">stampaMostra</a></div><div class="ttdeci">void stampaMostra(Mostra *mostra)</div><div class="ttdef"><b>Definition:</b> mostra.c:825</div></div>
-<div class="ttc" id="astructmostra_html"><div class="ttname"><a href="structmostra.html">mostra</a></div><div class="ttdef"><b>Definition:</b> data.c:37</div></div>
+<div class="ttc" id="amostra_8h_html_a11ccea7f9bbff4109690de797399d499"><div class="ttname"><a href="mostra_8h.html#a11ccea7f9bbff4109690de797399d499">stampaMostra</a></div><div class="ttdeci">void stampaMostra(Mostra *mostra, bool stampaOpere)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l00916">mostra.c:916</a></div></div>
+<div class="ttc" id="amostra_8h_html_a2b83b32d2db764aa87e3b5e8cdbf0720"><div class="ttname"><a href="mostra_8h.html#a2b83b32d2db764aa87e3b5e8cdbf0720">ricercaMostra</a></div><div class="ttdeci">Mostra * ricercaMostra(Mostra *testa, int id)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l01083">mostra.c:1083</a></div></div>
+<div class="ttc" id="amostra_8h_html_a5b9225c22b5acada60cc8057d42dec21"><div class="ttname"><a href="mostra_8h.html#a5b9225c22b5acada60cc8057d42dec21">scriviMostre</a></div><div class="ttdeci">void scriviMostre(Mostra *testa)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l00942">mostra.c:942</a></div></div>
+<div class="ttc" id="amostra_8h_html_a6054d842da40dda0a5db41ce77ae3df8"><div class="ttname"><a href="mostra_8h.html#a6054d842da40dda0a5db41ce77ae3df8">aggiungiMostra</a></div><div class="ttdeci">void aggiungiMostra(Mostra *testa)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l00147">mostra.c:147</a></div></div>
+<div class="ttc" id="amostra_8h_html_a6d1a6272d27273f38a80762259302149"><div class="ttname"><a href="mostra_8h.html#a6d1a6272d27273f38a80762259302149">eliminaMostra</a></div><div class="ttdeci">void eliminaMostra(Mostra *testa, Mostra *mostra)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l00986">mostra.c:986</a></div></div>
+<div class="ttc" id="amostra_8h_html_a6d2e28fafca87d10f7ebbce462af1b7a"><div class="ttname"><a href="mostra_8h.html#a6d2e28fafca87d10f7ebbce462af1b7a">stampaMostre</a></div><div class="ttdeci">void stampaMostre(Mostra *testa)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l00899">mostra.c:899</a></div></div>
+<div class="ttc" id="amostra_8h_html_a7d3a352e2ff225f66193ffb8079ef593"><div class="ttname"><a href="mostra_8h.html#a7d3a352e2ff225f66193ffb8079ef593">modificaMostra</a></div><div class="ttdeci">void modificaMostra(Mostra *testa, Mostra *mostra)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l00474">mostra.c:474</a></div></div>
+<div class="ttc" id="amostra_8h_html_a9978aa6fb360538206d9643786de59b3"><div class="ttname"><a href="mostra_8h.html#a9978aa6fb360538206d9643786de59b3">letturaMostre</a></div><div class="ttdeci">Mostra * letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l00010">mostra.c:10</a></div></div>
+<div class="ttc" id="amostra_8h_html_ab43da72ce0d07897ea7bdf25efa0fc29"><div class="ttname"><a href="mostra_8h.html#ab43da72ce0d07897ea7bdf25efa0fc29">browserMostra</a></div><div class="ttdeci">Mostra * browserMostra(FILE *fp, Mostra *testa, bool selezione)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l01121">mostra.c:1121</a></div></div>
+<div class="ttc" id="amostra_8h_html_ad5736677d229524b8d992abc5583a68b"><div class="ttname"><a href="mostra_8h.html#ad5736677d229524b8d992abc5583a68b">aggiungiOperaAMostra</a></div><div class="ttdeci">void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l00438">mostra.c:438</a></div></div>
+<div class="ttc" id="amostra_8h_html_afcba41c5626bc34451ecb8c43df1cba2"><div class="ttname"><a href="mostra_8h.html#afcba41c5626bc34451ecb8c43df1cba2">eliminaOperaAMostra</a></div><div class="ttdeci">void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera)</div><div class="ttdef"><b>Definition:</b> <a href="mostra_8c_source.html#l01031">mostra.c:1031</a></div></div>
+<div class="ttc" id="aopera_8c_html_aa79bd349e83bfdcc271b7263e95efe6d"><div class="ttname"><a href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d">stampaOpere</a></div><div class="ttdeci">void stampaOpere(Opera *testa)</div><div class="ttdef"><b>Definition:</b> <a href="opera_8c_source.html#l00596">opera.c:596</a></div></div>
+<div class="ttc" id="astructmostra_html"><div class="ttname"><a href="structmostra.html">mostra</a></div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00037">data.c:37</a></div></div>
+<div class="ttc" id="astructopera_html"><div class="ttname"><a href="structopera.html">opera</a></div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00017">data.c:17</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generato da&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="mostra_8h.html">mostra.h</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StarkIndustries:  File sorgente data.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">StarkIndustries
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('data_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">data.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="data_8c.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">    1</a></span>&#160;<span class="comment">//Definizione della struct Utente</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structutente.html">utente</a> <a class="code" href="structutente.html">Utente</a>;</div>
+<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="structutente.html">    3</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structutente.html">utente</a> {</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="structutente.html#a7441ef0865bcb3db9b8064dd7375c1ea">    4</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structutente.html#a7441ef0865bcb3db9b8064dd7375c1ea">id</a>;</div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="structutente.html#a9ccb3b1009c0baf8e49e38488c83732a">    5</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutente.html#a9ccb3b1009c0baf8e49e38488c83732a">nome</a>[20];</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="structutente.html#ac12627d65ac1798778b6defb4d06a2d1">    6</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutente.html#ac12627d65ac1798778b6defb4d06a2d1">cognome</a>[20];</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="structutente.html#a89c49c77c545d8b9d8e8a930cb39c620">    7</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutente.html#a89c49c77c545d8b9d8e8a930cb39c620">nick</a>[20];</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structutente.html#a1ab804dd2e4cba37fd2853a913444fbf">    8</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutente.html#a1ab804dd2e4cba37fd2853a913444fbf">email</a>[60];</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structutente.html#a4bf7f825f3b8f3a6945f6b4364838e70">    9</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutente.html#a4bf7f825f3b8f3a6945f6b4364838e70">password</a>[33];</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structutente.html#a54febe0ebade022cad823f28edf40286">   10</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutente.html#a54febe0ebade022cad823f28edf40286">dataNascita</a>[11]; <span class="comment">// gg/mm/aaaa</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="structutente.html#a64a531022054065e787d489cc2cd7fd1">   11</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structutente.html#a64a531022054065e787d489cc2cd7fd1">permessi</a>; <span class="comment">//livello 1 = utente normale; livello 2 = direttore generale, ha accesso a tutto;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structutente.html#a794a9ca9ff76839a2466812402306cf8">   12</a></span>&#160;    <a class="code" href="structutente.html">Utente</a> *<a class="code" href="structutente.html#a794a9ca9ff76839a2466812402306cf8">nextUtente</a>; <span class="comment">//puntatore al prossimo nodo</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;};</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//Definizione struct opera</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structopera.html">opera</a> <a class="code" href="structopera.html">Opera</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structopera.html">   17</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structopera.html">opera</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structopera.html#a7441ef0865bcb3db9b8064dd7375c1ea">   18</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structopera.html#a7441ef0865bcb3db9b8064dd7375c1ea">id</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structopera.html#af252717e896ebe272fa0db3574565cbd">   19</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structopera.html#af252717e896ebe272fa0db3574565cbd">nome</a>[30];</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structopera.html#a80f0cf14295342dc673739ff669cfbf1">   20</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structopera.html#a80f0cf14295342dc673739ff669cfbf1">autore</a>[30];</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structopera.html#a855f5169db0e924be0986a9e8745d05b">   21</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structopera.html#a855f5169db0e924be0986a9e8745d05b">tipo</a>[30];</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structopera.html#aa4e5bb2082ee1c62b168bac0b1516bd9">   22</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structopera.html#aa4e5bb2082ee1c62b168bac0b1516bd9">genere</a>[30];</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structopera.html#ae7550b11be6dba967ee705e1ebd78ec5">   23</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structopera.html#ae7550b11be6dba967ee705e1ebd78ec5">periodo</a>[20];</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structopera.html#a641e63fefd1baea5836b5e70c74c5aa3">   24</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structopera.html#a641e63fefd1baea5836b5e70c74c5aa3">anno</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structopera.html#aebb6063d9c351b2b11173327f73eb6dc">   25</a></span>&#160;    <a class="code" href="structopera.html">Opera</a> *<a class="code" href="structopera.html#aebb6063d9c351b2b11173327f73eb6dc">nextOpera</a>; <span class="comment">//puntatore al prossimo nodo</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//Definizione struct opera</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structmostra_opera.html">mostraOpera</a> <a class="code" href="structmostra_opera.html">MostraOpera</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structmostra_opera.html">   30</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structmostra_opera.html">mostraOpera</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structmostra_opera.html#a0c5fa7a7f087338e56d8eed276395130">   31</a></span>&#160;    <a class="code" href="structopera.html">Opera</a> *<a class="code" href="structmostra_opera.html#a0c5fa7a7f087338e56d8eed276395130">opera</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structmostra_opera.html#a163202247cbf96649c095cdad3f97d58">   32</a></span>&#160;    <a class="code" href="structmostra_opera.html">MostraOpera</a> *<a class="code" href="structmostra_opera.html#a163202247cbf96649c095cdad3f97d58">nextOpera</a>; <span class="comment">//puntatore al prossimo nodo</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">//Definizione struct mostre</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structmostra.html">mostra</a> <a class="code" href="structmostra.html">Mostra</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structmostra.html">   37</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structmostra.html">mostra</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structmostra.html#a7441ef0865bcb3db9b8064dd7375c1ea">   38</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structmostra.html#a7441ef0865bcb3db9b8064dd7375c1ea">id</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structmostra.html#a5f3d354d5d3f85269e97db8b17ebac17">   39</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structmostra.html#a5f3d354d5d3f85269e97db8b17ebac17">responsabile</a>[30];</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structmostra.html#a0af11589e1e3213b7307d687ae101102">   40</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structmostra.html#a0af11589e1e3213b7307d687ae101102">luogo</a>[25];</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structmostra.html#a4fb3f407c89263044fc87c14c902b2ff">   41</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structmostra.html#a4fb3f407c89263044fc87c14c902b2ff">citta</a>[20];</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structmostra.html#ab866881afd41d2e2c58502d77a60981d">   42</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structmostra.html#ab866881afd41d2e2c58502d77a60981d">indirizzo</a>[30];</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structmostra.html#a9eca79d4ee29c37e34510c4b72c3e3c3">   43</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structmostra.html#a9eca79d4ee29c37e34510c4b72c3e3c3">dataInizio</a>[11];</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structmostra.html#ad8bdecad6731fe0470f86e9b03c9b65f">   44</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structmostra.html#ad8bdecad6731fe0470f86e9b03c9b65f">dataFine</a>[11];</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structmostra.html#af34dac0d835c8e81dd29e23cc1a56415">   45</a></span>&#160;    <a class="code" href="structmostra_opera.html">MostraOpera</a> *<a class="code" href="structmostra.html#af34dac0d835c8e81dd29e23cc1a56415">opere</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structmostra.html#ab636daaff6c118d60af3dff257d2f665">   46</a></span>&#160;    <a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structmostra.html#ab636daaff6c118d60af3dff257d2f665">nextMostra</a>; <span class="comment">//puntatore al prossimo nodo</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//Definizione struct prenotazioni - da modificare</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structprenotazione.html">prenotazione</a> <a class="code" href="structprenotazione.html">Prenotazione</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structprenotazione.html">   51</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structprenotazione.html">prenotazione</a> {</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structprenotazione.html#a7441ef0865bcb3db9b8064dd7375c1ea">   52</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structprenotazione.html#a7441ef0865bcb3db9b8064dd7375c1ea">id</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structprenotazione.html#a023f26d8a009a9f6f40cf87064ce9538">   53</a></span>&#160;    <a class="code" href="structutente.html">Utente</a> *<a class="code" href="structprenotazione.html#a023f26d8a009a9f6f40cf87064ce9538">utente</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structprenotazione.html#a12f0bdf19a45ee55faf5b4fdba0bea08">   54</a></span>&#160;    <a class="code" href="structmostra.html">Mostra</a> *<a class="code" href="structprenotazione.html#a12f0bdf19a45ee55faf5b4fdba0bea08">mostra</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structprenotazione.html#ad8487ad7482a82658c15cfacdf9e1b9e">   55</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structprenotazione.html#ad8487ad7482a82658c15cfacdf9e1b9e">data</a>[11];</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structprenotazione.html#a9aaf847ef16ea7e3f436ae01f28d9c4a">   56</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structprenotazione.html#a9aaf847ef16ea7e3f436ae01f28d9c4a">ora</a>[6];</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structprenotazione.html#a67db28ccc37da4ec00885be1bfe44f11">   57</a></span>&#160;    <a class="code" href="structprenotazione.html">Prenotazione</a> *<a class="code" href="structprenotazione.html#a67db28ccc37da4ec00885be1bfe44f11">nextPrenotazione</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="ttc" id="astructmostra_html"><div class="ttname"><a href="structmostra.html">mostra</a></div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00037">data.c:37</a></div></div>
+<div class="ttc" id="astructmostra_html_a0af11589e1e3213b7307d687ae101102"><div class="ttname"><a href="structmostra.html#a0af11589e1e3213b7307d687ae101102">mostra::luogo</a></div><div class="ttdeci">char luogo[25]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00040">data.c:40</a></div></div>
+<div class="ttc" id="astructmostra_html_a4fb3f407c89263044fc87c14c902b2ff"><div class="ttname"><a href="structmostra.html#a4fb3f407c89263044fc87c14c902b2ff">mostra::citta</a></div><div class="ttdeci">char citta[20]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00041">data.c:41</a></div></div>
+<div class="ttc" id="astructmostra_html_a5f3d354d5d3f85269e97db8b17ebac17"><div class="ttname"><a href="structmostra.html#a5f3d354d5d3f85269e97db8b17ebac17">mostra::responsabile</a></div><div class="ttdeci">char responsabile[30]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00039">data.c:39</a></div></div>
+<div class="ttc" id="astructmostra_html_a7441ef0865bcb3db9b8064dd7375c1ea"><div class="ttname"><a href="structmostra.html#a7441ef0865bcb3db9b8064dd7375c1ea">mostra::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00038">data.c:38</a></div></div>
+<div class="ttc" id="astructmostra_html_a9eca79d4ee29c37e34510c4b72c3e3c3"><div class="ttname"><a href="structmostra.html#a9eca79d4ee29c37e34510c4b72c3e3c3">mostra::dataInizio</a></div><div class="ttdeci">char dataInizio[11]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00043">data.c:43</a></div></div>
+<div class="ttc" id="astructmostra_html_ab636daaff6c118d60af3dff257d2f665"><div class="ttname"><a href="structmostra.html#ab636daaff6c118d60af3dff257d2f665">mostra::nextMostra</a></div><div class="ttdeci">Mostra * nextMostra</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00046">data.c:46</a></div></div>
+<div class="ttc" id="astructmostra_html_ab866881afd41d2e2c58502d77a60981d"><div class="ttname"><a href="structmostra.html#ab866881afd41d2e2c58502d77a60981d">mostra::indirizzo</a></div><div class="ttdeci">char indirizzo[30]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00042">data.c:42</a></div></div>
+<div class="ttc" id="astructmostra_html_ad8bdecad6731fe0470f86e9b03c9b65f"><div class="ttname"><a href="structmostra.html#ad8bdecad6731fe0470f86e9b03c9b65f">mostra::dataFine</a></div><div class="ttdeci">char dataFine[11]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00044">data.c:44</a></div></div>
+<div class="ttc" id="astructmostra_html_af34dac0d835c8e81dd29e23cc1a56415"><div class="ttname"><a href="structmostra.html#af34dac0d835c8e81dd29e23cc1a56415">mostra::opere</a></div><div class="ttdeci">MostraOpera * opere</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00045">data.c:45</a></div></div>
+<div class="ttc" id="astructmostra_opera_html"><div class="ttname"><a href="structmostra_opera.html">mostraOpera</a></div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00030">data.c:30</a></div></div>
+<div class="ttc" id="astructmostra_opera_html_a0c5fa7a7f087338e56d8eed276395130"><div class="ttname"><a href="structmostra_opera.html#a0c5fa7a7f087338e56d8eed276395130">mostraOpera::opera</a></div><div class="ttdeci">Opera * opera</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00031">data.c:31</a></div></div>
+<div class="ttc" id="astructmostra_opera_html_a163202247cbf96649c095cdad3f97d58"><div class="ttname"><a href="structmostra_opera.html#a163202247cbf96649c095cdad3f97d58">mostraOpera::nextOpera</a></div><div class="ttdeci">MostraOpera * nextOpera</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00032">data.c:32</a></div></div>
+<div class="ttc" id="astructopera_html"><div class="ttname"><a href="structopera.html">opera</a></div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00017">data.c:17</a></div></div>
+<div class="ttc" id="astructopera_html_a641e63fefd1baea5836b5e70c74c5aa3"><div class="ttname"><a href="structopera.html#a641e63fefd1baea5836b5e70c74c5aa3">opera::anno</a></div><div class="ttdeci">int anno</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00024">data.c:24</a></div></div>
+<div class="ttc" id="astructopera_html_a7441ef0865bcb3db9b8064dd7375c1ea"><div class="ttname"><a href="structopera.html#a7441ef0865bcb3db9b8064dd7375c1ea">opera::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00018">data.c:18</a></div></div>
+<div class="ttc" id="astructopera_html_a80f0cf14295342dc673739ff669cfbf1"><div class="ttname"><a href="structopera.html#a80f0cf14295342dc673739ff669cfbf1">opera::autore</a></div><div class="ttdeci">char autore[30]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00020">data.c:20</a></div></div>
+<div class="ttc" id="astructopera_html_a855f5169db0e924be0986a9e8745d05b"><div class="ttname"><a href="structopera.html#a855f5169db0e924be0986a9e8745d05b">opera::tipo</a></div><div class="ttdeci">char tipo[30]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00021">data.c:21</a></div></div>
+<div class="ttc" id="astructopera_html_aa4e5bb2082ee1c62b168bac0b1516bd9"><div class="ttname"><a href="structopera.html#aa4e5bb2082ee1c62b168bac0b1516bd9">opera::genere</a></div><div class="ttdeci">char genere[30]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00022">data.c:22</a></div></div>
+<div class="ttc" id="astructopera_html_ae7550b11be6dba967ee705e1ebd78ec5"><div class="ttname"><a href="structopera.html#ae7550b11be6dba967ee705e1ebd78ec5">opera::periodo</a></div><div class="ttdeci">char periodo[20]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00023">data.c:23</a></div></div>
+<div class="ttc" id="astructopera_html_aebb6063d9c351b2b11173327f73eb6dc"><div class="ttname"><a href="structopera.html#aebb6063d9c351b2b11173327f73eb6dc">opera::nextOpera</a></div><div class="ttdeci">Opera * nextOpera</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00025">data.c:25</a></div></div>
+<div class="ttc" id="astructopera_html_af252717e896ebe272fa0db3574565cbd"><div class="ttname"><a href="structopera.html#af252717e896ebe272fa0db3574565cbd">opera::nome</a></div><div class="ttdeci">char nome[30]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00019">data.c:19</a></div></div>
+<div class="ttc" id="astructprenotazione_html"><div class="ttname"><a href="structprenotazione.html">prenotazione</a></div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00051">data.c:51</a></div></div>
+<div class="ttc" id="astructprenotazione_html_a023f26d8a009a9f6f40cf87064ce9538"><div class="ttname"><a href="structprenotazione.html#a023f26d8a009a9f6f40cf87064ce9538">prenotazione::utente</a></div><div class="ttdeci">Utente * utente</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00053">data.c:53</a></div></div>
+<div class="ttc" id="astructprenotazione_html_a12f0bdf19a45ee55faf5b4fdba0bea08"><div class="ttname"><a href="structprenotazione.html#a12f0bdf19a45ee55faf5b4fdba0bea08">prenotazione::mostra</a></div><div class="ttdeci">Mostra * mostra</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00054">data.c:54</a></div></div>
+<div class="ttc" id="astructprenotazione_html_a67db28ccc37da4ec00885be1bfe44f11"><div class="ttname"><a href="structprenotazione.html#a67db28ccc37da4ec00885be1bfe44f11">prenotazione::nextPrenotazione</a></div><div class="ttdeci">Prenotazione * nextPrenotazione</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00057">data.c:57</a></div></div>
+<div class="ttc" id="astructprenotazione_html_a7441ef0865bcb3db9b8064dd7375c1ea"><div class="ttname"><a href="structprenotazione.html#a7441ef0865bcb3db9b8064dd7375c1ea">prenotazione::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00052">data.c:52</a></div></div>
+<div class="ttc" id="astructprenotazione_html_a9aaf847ef16ea7e3f436ae01f28d9c4a"><div class="ttname"><a href="structprenotazione.html#a9aaf847ef16ea7e3f436ae01f28d9c4a">prenotazione::ora</a></div><div class="ttdeci">char ora[6]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00056">data.c:56</a></div></div>
+<div class="ttc" id="astructprenotazione_html_ad8487ad7482a82658c15cfacdf9e1b9e"><div class="ttname"><a href="structprenotazione.html#ad8487ad7482a82658c15cfacdf9e1b9e">prenotazione::data</a></div><div class="ttdeci">char data[11]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00055">data.c:55</a></div></div>
+<div class="ttc" id="astructutente_html"><div class="ttname"><a href="structutente.html">utente</a></div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00003">data.c:3</a></div></div>
+<div class="ttc" id="astructutente_html_a1ab804dd2e4cba37fd2853a913444fbf"><div class="ttname"><a href="structutente.html#a1ab804dd2e4cba37fd2853a913444fbf">utente::email</a></div><div class="ttdeci">char email[60]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00008">data.c:8</a></div></div>
+<div class="ttc" id="astructutente_html_a4bf7f825f3b8f3a6945f6b4364838e70"><div class="ttname"><a href="structutente.html#a4bf7f825f3b8f3a6945f6b4364838e70">utente::password</a></div><div class="ttdeci">char password[33]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00009">data.c:9</a></div></div>
+<div class="ttc" id="astructutente_html_a54febe0ebade022cad823f28edf40286"><div class="ttname"><a href="structutente.html#a54febe0ebade022cad823f28edf40286">utente::dataNascita</a></div><div class="ttdeci">char dataNascita[11]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00010">data.c:10</a></div></div>
+<div class="ttc" id="astructutente_html_a64a531022054065e787d489cc2cd7fd1"><div class="ttname"><a href="structutente.html#a64a531022054065e787d489cc2cd7fd1">utente::permessi</a></div><div class="ttdeci">int permessi</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00011">data.c:11</a></div></div>
+<div class="ttc" id="astructutente_html_a7441ef0865bcb3db9b8064dd7375c1ea"><div class="ttname"><a href="structutente.html#a7441ef0865bcb3db9b8064dd7375c1ea">utente::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00004">data.c:4</a></div></div>
+<div class="ttc" id="astructutente_html_a794a9ca9ff76839a2466812402306cf8"><div class="ttname"><a href="structutente.html#a794a9ca9ff76839a2466812402306cf8">utente::nextUtente</a></div><div class="ttdeci">Utente * nextUtente</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00012">data.c:12</a></div></div>
+<div class="ttc" id="astructutente_html_a89c49c77c545d8b9d8e8a930cb39c620"><div class="ttname"><a href="structutente.html#a89c49c77c545d8b9d8e8a930cb39c620">utente::nick</a></div><div class="ttdeci">char nick[20]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00007">data.c:7</a></div></div>
+<div class="ttc" id="astructutente_html_a9ccb3b1009c0baf8e49e38488c83732a"><div class="ttname"><a href="structutente.html#a9ccb3b1009c0baf8e49e38488c83732a">utente::nome</a></div><div class="ttdeci">char nome[20]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00005">data.c:5</a></div></div>
+<div class="ttc" id="astructutente_html_ac12627d65ac1798778b6defb4d06a2d1"><div class="ttname"><a href="structutente.html#ac12627d65ac1798778b6defb4d06a2d1">utente::cognome</a></div><div class="ttdeci">char cognome[20]</div><div class="ttdef"><b>Definition:</b> <a href="data_8c_source.html#l00006">data.c:6</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="data_8c.html">data.c</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

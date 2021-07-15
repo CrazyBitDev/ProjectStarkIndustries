@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,6 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">StarkIndustries
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -45,6 +50,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('structmostra_opera.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Campi</a>  </div>
@@ -67,6 +88,15 @@ $(function() {
 <div class="title">Riferimenti per la struct mostraOpera</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Diagramma di collaborazione per mostraOpera:</div>
+<div class="dyncontent">
+<div class="center"><img src="structmostra_opera__coll__graph.png" border="0" usemap="#amostra_opera_coll__map" alt="Collaboration graph"/></div>
+<map name="amostra_opera_coll__map" id="amostra_opera_coll__map">
+<area shape="rect" title=" " alt="" coords="5,95,103,121"/>
+<area shape="rect" href="structopera.html" title=" " alt="" coords="27,5,81,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legenda</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Campi</h2></td></tr>
@@ -75,7 +105,10 @@ Campi</h2></td></tr>
 <tr class="memitem:a163202247cbf96649c095cdad3f97d58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="data_8c.html#add6195bc954d7c96cb630f6bb5d01605">MostraOpera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmostra_opera.html#a163202247cbf96649c095cdad3f97d58">nextOpera</a></td></tr>
 <tr class="separator:a163202247cbf96649c095cdad3f97d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentazione dei campi</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
+<div class="textblock">
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00030">30</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
+</div><h2 class="groupheader">Documentazione dei campi</h2>
 <a id="a163202247cbf96649c095cdad3f97d58"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a163202247cbf96649c095cdad3f97d58">&#9670;&nbsp;</a></span>nextOpera</h2>
 
@@ -87,6 +120,8 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00032">32</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
 
 </div>
 </div>
@@ -102,15 +137,21 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definizione alla linea <a class="el" href="data_8c_source.html#l00031">31</a> del file <a class="el" href="data_8c_source.html">data.c</a>.</p>
+
 </div>
 </div>
 <hr/>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
-<li><a class="el" href="data_8c.html">data.c</a></li>
+<li><a class="el" href="data_8c_source.html">data.c</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generato da&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structmostra_opera.html">mostraOpera</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

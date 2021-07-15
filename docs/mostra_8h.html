@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,6 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">StarkIndustries
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -45,6 +50,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mostra_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Funzioni</a>  </div>
@@ -67,26 +88,48 @@ $(function() {
 <div class="title">Riferimenti per il file mostra.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="mostra_8c.html">mostra.c</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="mostra_8c_source.html">mostra.c</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per mostra.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h__incl.png" border="0" usemap="#amostra_8h" alt=""/></div>
+<map name="amostra_8h" id="amostra_8h">
+<area shape="rect" title=" " alt="" coords="5,5,79,32"/>
+<area shape="rect" href="mostra_8c.html" title=" " alt="" coords="5,80,79,107"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h__dep__incl.png" border="0" usemap="#amostra_8hdep" alt=""/></div>
+<map name="amostra_8hdep" id="amostra_8hdep">
+<area shape="rect" title=" " alt="" coords="5,5,79,32"/>
+<area shape="rect" href="main_8c.html" title=" " alt="" coords="11,80,73,107"/>
+</map>
+</div>
 </div>
 <p><a href="mostra_8h_source.html">Vai al codice sorgente di questo file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
-<tr class="memitem:aa07a561fcf06ff19b34443bfb65686f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#aa07a561fcf06ff19b34443bfb65686f4">letturaMostre</a> (FILE *fp)</td></tr>
-<tr class="separator:aa07a561fcf06ff19b34443bfb65686f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9978aa6fb360538206d9643786de59b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#a9978aa6fb360538206d9643786de59b3">letturaMostre</a> (FILE *fp, FILE *fpMO, <a class="el" href="data_8c.html#a04bad930ba2f5c80a204607d06301186">Opera</a> *testaOpera)</td></tr>
+<tr class="separator:a9978aa6fb360538206d9643786de59b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6054d842da40dda0a5db41ce77ae3df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#a6054d842da40dda0a5db41ce77ae3df8">aggiungiMostra</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa)</td></tr>
 <tr class="separator:a6054d842da40dda0a5db41ce77ae3df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5736677d229524b8d992abc5583a68b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#ad5736677d229524b8d992abc5583a68b">aggiungiOperaAMostra</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa, <a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *<a class="el" href="structmostra.html">mostra</a>, <a class="el" href="data_8c.html#a04bad930ba2f5c80a204607d06301186">Opera</a> *<a class="el" href="structopera.html">opera</a>)</td></tr>
+<tr class="separator:ad5736677d229524b8d992abc5583a68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d3a352e2ff225f66193ffb8079ef593"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#a7d3a352e2ff225f66193ffb8079ef593">modificaMostra</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa, <a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *<a class="el" href="structmostra.html">mostra</a>)</td></tr>
 <tr class="separator:a7d3a352e2ff225f66193ffb8079ef593"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d1a6272d27273f38a80762259302149"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#a6d1a6272d27273f38a80762259302149">eliminaMostra</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa, <a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *<a class="el" href="structmostra.html">mostra</a>)</td></tr>
 <tr class="separator:a6d1a6272d27273f38a80762259302149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcba41c5626bc34451ecb8c43df1cba2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#afcba41c5626bc34451ecb8c43df1cba2">eliminaOperaAMostra</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa, <a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *<a class="el" href="structmostra.html">mostra</a>, int idOpera)</td></tr>
+<tr class="separator:afcba41c5626bc34451ecb8c43df1cba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b9225c22b5acada60cc8057d42dec21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#a5b9225c22b5acada60cc8057d42dec21">scriviMostre</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa)</td></tr>
 <tr class="separator:a5b9225c22b5acada60cc8057d42dec21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d2e28fafca87d10f7ebbce462af1b7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#a6d2e28fafca87d10f7ebbce462af1b7a">stampaMostre</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa)</td></tr>
 <tr class="separator:a6d2e28fafca87d10f7ebbce462af1b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad19134e8d69917a5dabda5ff0c882059"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#ad19134e8d69917a5dabda5ff0c882059">stampaMostra</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *<a class="el" href="structmostra.html">mostra</a>)</td></tr>
-<tr class="separator:ad19134e8d69917a5dabda5ff0c882059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11ccea7f9bbff4109690de797399d499"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#a11ccea7f9bbff4109690de797399d499">stampaMostra</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *<a class="el" href="structmostra.html">mostra</a>, bool <a class="el" href="opera_8h.html#aa79bd349e83bfdcc271b7263e95efe6d">stampaOpere</a>)</td></tr>
+<tr class="separator:a11ccea7f9bbff4109690de797399d499"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b83b32d2db764aa87e3b5e8cdbf0720"><td class="memItemLeft" align="right" valign="top"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#a2b83b32d2db764aa87e3b5e8cdbf0720">ricercaMostra</a> (<a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa, int id)</td></tr>
 <tr class="separator:a2b83b32d2db764aa87e3b5e8cdbf0720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab43da72ce0d07897ea7bdf25efa0fc29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mostra_8h.html#ab43da72ce0d07897ea7bdf25efa0fc29">browserMostra</a> (FILE *fp, <a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *testa, bool selezione)</td></tr>
@@ -109,10 +152,107 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <h2><a class="anchor" id="autotoc_md7"></a>
-Function: registrazioneUtente</h2>
+Function: aggiungiMostra</h2>
 <p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) la registrazione di una nuova mostra, con salvatggio dei dati sul file "mostre.csv" e nella struct Mostra</p>
-<p>Mostra *testa: lista mostra</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista mostra</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00147">147</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a6054d842da40dda0a5db41ce77ae3df8_cgraph.png" border="0" usemap="#amostra_8h_a6054d842da40dda0a5db41ce77ae3df8_cgraph" alt=""/></div>
+<map name="amostra_8h_a6054d842da40dda0a5db41ce77ae3df8_cgraph" id="amostra_8h_a6054d842da40dda0a5db41ce77ae3df8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,208,116,235"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="184,5,281,32"/>
+<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="181,56,285,83"/>
+<area shape="rect" href="functions_8c.html#a6f0906ef349280dd8907ecbbece94b87" title=" " alt="" coords="179,107,286,133"/>
+<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="179,157,286,184"/>
+<area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="204,208,261,235"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="194,259,271,285"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="207,309,258,336"/>
+<area shape="rect" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db" title=" " alt="" coords="189,360,277,387"/>
+<area shape="rect" href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7" title=" " alt="" coords="164,411,301,437"/>
+<area shape="rect" href="functions_8c.html#a4dccbf701e729932aab0b4bc2860f9ae" title=" " alt="" coords="356,107,443,133"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="351,233,448,260"/>
+<area shape="rect" href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="349,360,449,387"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a6054d842da40dda0a5db41ce77ae3df8_icgraph.png" border="0" usemap="#amostra_8h_a6054d842da40dda0a5db41ce77ae3df8_icgraph" alt=""/></div>
+<map name="amostra_8h_a6054d842da40dda0a5db41ce77ae3df8_icgraph" id="amostra_8h_a6054d842da40dda0a5db41ce77ae3df8_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,215,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad5736677d229524b8d992abc5583a68b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5736677d229524b8d992abc5583a68b">&#9670;&nbsp;</a></span>aggiungiOperaAMostra()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void aggiungiOperaAMostra </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td>
+          <td class="paramname"><em>testa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td>
+          <td class="paramname"><em>mostra</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="data_8c.html#a04bad930ba2f5c80a204607d06301186">Opera</a> *&#160;</td>
+          <td class="paramname"><em>opera</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md8"></a>
+Function: aggiungiOperaAMostra</h2>
+<p>Permette di aggiungere una opera ad una determinata mostra, controllando che nel periodo della mostra l'opera non è già occupata</p>
+<p>Mostra *testa: lista mostra Mostra *mostra: mostra scelta per essere modificata Opera *opera: opera scelta per essere aggiunta</p>
 <p>returns: // </p>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00438">438</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_ad5736677d229524b8d992abc5583a68b_cgraph.png" border="0" usemap="#amostra_8h_ad5736677d229524b8d992abc5583a68b_cgraph" alt=""/></div>
+<map name="amostra_8h_ad5736677d229524b8d992abc5583a68b_cgraph" id="amostra_8h_ad5736677d229524b8d992abc5583a68b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,160,57"/>
+<area shape="rect" href="functions_8c.html#ad05827086fab31c2566d2dfc343d8f37" title=" " alt="" coords="208,5,339,32"/>
+<area shape="rect" href="mostra_8c.html#a5b9225c22b5acada60cc8057d42dec21" title=" " alt="" coords="228,56,319,83"/>
+<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="387,5,491,32"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_ad5736677d229524b8d992abc5583a68b_icgraph.png" border="0" usemap="#amostra_8h_ad5736677d229524b8d992abc5583a68b_icgraph" alt=""/></div>
+<map name="amostra_8h_ad5736677d229524b8d992abc5583a68b_icgraph" id="amostra_8h_ad5736677d229524b8d992abc5583a68b_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,259,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -147,11 +287,50 @@ Function: registrazioneUtente</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Function: mostreBrowser</h2>
 <p>Permette una vista approfondita delle mostre con ricerca, possibilità di selezionare la mostra.</p>
-<p>FILE fp: TODO: finire Mostra testa: TODO: finire bool selezione: se true permette di selezionare l'opera con return avvalorato</p>
-<p>returns: se selezione == true la mostra selezionata, altrimenti NULL </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fp</td><td>: TODO: finire </td></tr>
+    <tr><td class="paramname">testa</td><td>: TODO: finire </td></tr>
+    <tr><td class="paramname">selezione</td><td>: se true permette di selezionare l'opera con return avvalorato</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: se selezione == true la mostra selezionata, altrimenti NULL </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01121">1121</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_cgraph.png" border="0" usemap="#amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_cgraph" alt=""/></div>
+<map name="amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_cgraph" id="amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_cgraph">
+<area shape="rect" title=" " alt="" coords="5,174,112,201"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="383,10,481,37"/>
+<area shape="rect" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="160,200,319,226"/>
+<area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="211,250,268,277"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="393,73,471,100"/>
+<area shape="rect" href="mostra_8c.html#a2b83b32d2db764aa87e3b5e8cdbf0720" title=" " alt="" coords="189,48,290,74"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="407,124,457,150"/>
+<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="187,301,292,328"/>
+<area shape="rect" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f" title=" " alt="" coords="192,352,287,378"/>
+<area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="367,200,497,226"/>
+<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="545,200,649,226"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="549,124,646,150"/>
+<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="382,301,482,328"/>
+<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="547,301,647,328"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_icgraph.png" border="0" usemap="#amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_icgraph" alt=""/></div>
+<map name="amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_icgraph" id="amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,211,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -180,16 +359,104 @@ Function: mostreBrowser</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Function: eliminaMostra</h2>
 <p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare la mostra scelta</p>
-<p>Mostra *testa: lista mostra Mostra *mostra: mostra da eliminare</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
+    <tr><td class="paramname">mostra</td><td>: mostra da eliminare</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00986">986</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a6d1a6272d27273f38a80762259302149_cgraph.png" border="0" usemap="#amostra_8h_a6d1a6272d27273f38a80762259302149_cgraph" alt=""/></div>
+<map name="amostra_8h_a6d1a6272d27273f38a80762259302149_cgraph" id="amostra_8h_a6d1a6272d27273f38a80762259302149_cgraph">
+<area shape="rect" title=" " alt="" coords="5,81,108,108"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="156,5,253,32"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="166,56,243,83"/>
+<area shape="rect" href="mostra_8c.html#a5b9225c22b5acada60cc8057d42dec21" title=" " alt="" coords="159,107,250,133"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="179,157,230,184"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="301,157,399,184"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a6d1a6272d27273f38a80762259302149_icgraph.png" border="0" usemap="#amostra_8h_a6d1a6272d27273f38a80762259302149_icgraph" alt=""/></div>
+<map name="amostra_8h_a6d1a6272d27273f38a80762259302149_icgraph" id="amostra_8h_a6d1a6272d27273f38a80762259302149_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="aa07a561fcf06ff19b34443bfb65686f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa07a561fcf06ff19b34443bfb65686f4">&#9670;&nbsp;</a></span>letturaMostre()</h2>
+<a id="afcba41c5626bc34451ecb8c43df1cba2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcba41c5626bc34451ecb8c43df1cba2">&#9670;&nbsp;</a></span>eliminaOperaAMostra()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void eliminaOperaAMostra </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td>
+          <td class="paramname"><em>testa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td>
+          <td class="paramname"><em>mostra</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idOpera</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01031">1031</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_afcba41c5626bc34451ecb8c43df1cba2_cgraph.png" border="0" usemap="#amostra_8h_afcba41c5626bc34451ecb8c43df1cba2_cgraph" alt=""/></div>
+<map name="amostra_8h_afcba41c5626bc34451ecb8c43df1cba2_cgraph" id="amostra_8h_afcba41c5626bc34451ecb8c43df1cba2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,81,152,108"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="200,5,297,32"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="210,56,287,83"/>
+<area shape="rect" href="mostra_8c.html#a5b9225c22b5acada60cc8057d42dec21" title=" " alt="" coords="203,107,294,133"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="223,157,274,184"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="345,157,443,184"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_afcba41c5626bc34451ecb8c43df1cba2_icgraph.png" border="0" usemap="#amostra_8h_afcba41c5626bc34451ecb8c43df1cba2_icgraph" alt=""/></div>
+<map name="amostra_8h_afcba41c5626bc34451ecb8c43df1cba2_icgraph" id="amostra_8h_afcba41c5626bc34451ecb8c43df1cba2_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,251,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9978aa6fb360538206d9643786de59b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9978aa6fb360538206d9643786de59b3">&#9670;&nbsp;</a></span>letturaMostre()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,8 +465,24 @@ Function: eliminaMostra</h2>
           <td class="memname"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a>* letturaMostre </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td class="paramname"><em>fp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fpMO</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="data_8c.html#a04bad930ba2f5c80a204607d06301186">Opera</a> *&#160;</td>
+          <td class="paramname"><em>testaOpera</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -213,6 +496,31 @@ Function: letturaMostre</h2>
   </dd>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>// </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00010">10</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a9978aa6fb360538206d9643786de59b3_cgraph.png" border="0" usemap="#amostra_8h_a9978aa6fb360538206d9643786de59b3_cgraph" alt=""/></div>
+<map name="amostra_8h_a9978aa6fb360538206d9643786de59b3_cgraph" id="amostra_8h_a9978aa6fb360538206d9643786de59b3_cgraph">
+<area shape="rect" title=" " alt="" coords="5,22,104,48"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="311,22,389,48"/>
+<area shape="rect" href="mostra_8c.html#a2b83b32d2db764aa87e3b5e8cdbf0720" title=" " alt="" coords="152,72,253,99"/>
+<area shape="rect" href="opera_8c.html#a7dad6f83036627b90dd06e77d6acaab4" title=" " alt="" coords="155,22,251,48"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="301,72,399,99"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="325,123,375,150"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="447,123,544,150"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a9978aa6fb360538206d9643786de59b3_icgraph.png" border="0" usemap="#amostra_8h_a9978aa6fb360538206d9643786de59b3_icgraph" alt=""/></div>
+<map name="amostra_8h_a9978aa6fb360538206d9643786de59b3_icgraph" id="amostra_8h_a9978aa6fb360538206d9643786de59b3_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,203,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -241,11 +549,46 @@ Function: letturaMostre</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Function: modificaMostra</h2>
 <p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi alla mostra scelta</p>
-<p>Mostra *testa: lista mostra Mostra *mostra: mostra scelta per essere modificata</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
+    <tr><td class="paramname">mostra</td><td>: mostra scelta per essere modificata</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00474">474</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a7d3a352e2ff225f66193ffb8079ef593_cgraph.png" border="0" usemap="#amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_cgraph" alt=""/></div>
+<map name="amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_cgraph" id="amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_cgraph">
+<area shape="rect" title=" " alt="" coords="5,208,116,235"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="184,5,281,32"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="351,157,448,184"/>
+<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="181,107,285,133"/>
+<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="179,157,286,184"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="194,208,271,235"/>
+<area shape="rect" href="mostra_8c.html#a5b9225c22b5acada60cc8057d42dec21" title=" " alt="" coords="187,259,278,285"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="207,309,258,336"/>
+<area shape="rect" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db" title=" " alt="" coords="189,360,277,387"/>
+<area shape="rect" href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7" title=" " alt="" coords="164,411,301,437"/>
+<area shape="rect" href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="349,360,449,387"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a7d3a352e2ff225f66193ffb8079ef593_icgraph.png" border="0" usemap="#amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_icgraph" alt=""/></div>
+<map name="amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_icgraph" id="amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,215,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -274,11 +617,43 @@ Function: modificaMostra</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Function: ricercaMostra</h2>
 <p>TODO: da finire</p>
-<p>Mostra *testa: lista mostra int id: TODO: da finire</p>
-<p>returns: TODO: da finire </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
+    <tr><td class="paramname">id</td><td>: TODO: da finire</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: TODO: da finire </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01083">1083</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a2b83b32d2db764aa87e3b5e8cdbf0720_cgraph.png" border="0" usemap="#amostra_8h_a2b83b32d2db764aa87e3b5e8cdbf0720_cgraph" alt=""/></div>
+<map name="amostra_8h_a2b83b32d2db764aa87e3b5e8cdbf0720_cgraph" id="amostra_8h_a2b83b32d2db764aa87e3b5e8cdbf0720_cgraph">
+<area shape="rect" title=" " alt="" coords="5,56,107,83"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="155,5,252,32"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="165,56,242,83"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="178,107,229,133"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="300,107,397,133"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a2b83b32d2db764aa87e3b5e8cdbf0720_icgraph.png" border="0" usemap="#amostra_8h_a2b83b32d2db764aa87e3b5e8cdbf0720_icgraph" alt=""/></div>
+<map name="amostra_8h_a2b83b32d2db764aa87e3b5e8cdbf0720_icgraph" id="amostra_8h_a2b83b32d2db764aa87e3b5e8cdbf0720_icgraph">
+<area shape="rect" title=" " alt="" coords="283,56,384,83"/>
+<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="116,5,223,32"/>
+<area shape="rect" href="mostra_8c.html#a9978aa6fb360538206d9643786de59b3" title=" " alt="" coords="120,56,219,83"/>
+<area shape="rect" href="prenotazione_8c.html#afcac9cb3e861937e4ab80374c2ae3117" title=" " alt="" coords="104,107,235,133"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -297,16 +672,36 @@ Function: ricercaMostra</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Function: scriviMostre</h2>
 <p>Permette di salvare tutte le modifiche effettuate sul file "mostre.csv"</p>
-<p>Mostra *testa: lista mostra</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista mostra</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00942">942</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a5b9225c22b5acada60cc8057d42dec21_icgraph.png" border="0" usemap="#amostra_8h_a5b9225c22b5acada60cc8057d42dec21_icgraph" alt=""/></div>
+<map name="amostra_8h_a5b9225c22b5acada60cc8057d42dec21_icgraph" id="amostra_8h_a5b9225c22b5acada60cc8057d42dec21_icgraph">
+<area shape="rect" title=" " alt="" coords="307,81,397,108"/>
+<area shape="rect" href="mostra_8c.html#ad5736677d229524b8d992abc5583a68b" title=" " alt="" coords="104,5,259,32"/>
+<area shape="rect" href="mostra_8c.html#a6d1a6272d27273f38a80762259302149" title=" " alt="" coords="130,56,233,83"/>
+<area shape="rect" href="mostra_8c.html#afcba41c5626bc34451ecb8c43df1cba2" title=" " alt="" coords="108,107,255,133"/>
+<area shape="rect" href="mostra_8c.html#a7d3a352e2ff225f66193ffb8079ef593" title=" " alt="" coords="126,157,237,184"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,81,56,108"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="ad19134e8d69917a5dabda5ff0c882059"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad19134e8d69917a5dabda5ff0c882059">&#9670;&nbsp;</a></span>stampaMostra()</h2>
+<a id="a11ccea7f9bbff4109690de797399d499"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11ccea7f9bbff4109690de797399d499">&#9670;&nbsp;</a></span>stampaMostra()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,16 +710,55 @@ Function: scriviMostre</h2>
           <td class="memname">void stampaMostra </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="data_8c.html#a3aa0a10f448909d0a4453fff481f16ae">Mostra</a> *&#160;</td>
-          <td class="paramname"><em>mostra</em></td><td>)</td>
+          <td class="paramname"><em>mostra</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>stampaOpere</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Function: stampaMostra</h2>
 <p>Permette di stampare i dettagli di una mostra</p>
-<p>Mostra *mostra: mostra scelta</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mostra</td><td>: mostra scelta </td></tr>
+    <tr><td class="paramname">stampaOpere</td><td>: mostra opere assegnate alla mostra se true</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00916">916</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a11ccea7f9bbff4109690de797399d499_cgraph.png" border="0" usemap="#amostra_8h_a11ccea7f9bbff4109690de797399d499_cgraph" alt=""/></div>
+<map name="amostra_8h_a11ccea7f9bbff4109690de797399d499_cgraph" id="amostra_8h_a11ccea7f9bbff4109690de797399d499_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,111,32"/>
+<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="159,5,259,32"/>
+<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="307,5,407,32"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a11ccea7f9bbff4109690de797399d499_icgraph.png" border="0" usemap="#amostra_8h_a11ccea7f9bbff4109690de797399d499_icgraph" alt=""/></div>
+<map name="amostra_8h_a11ccea7f9bbff4109690de797399d499_icgraph" id="amostra_8h_a11ccea7f9bbff4109690de797399d499_icgraph">
+<area shape="rect" title=" " alt="" coords="259,56,364,83"/>
+<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,5,211,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,56,57"/>
+<area shape="rect" href="mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="105,107,210,133"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -343,18 +777,40 @@ Function: stampaMostra</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Function: stampaMostre</h2>
 <p>Permette di stampare a video l'elenco delle mostre</p>
-<p>Mostra *testa: lista mostra</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista mostra</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00899">899</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_cgraph.png" border="0" usemap="#amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_cgraph" alt=""/></div>
+<map name="amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_cgraph" id="amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,111,32"/>
+<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="159,5,264,32"/>
+<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="312,5,412,32"/>
+<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="460,5,560,32"/>
+</map>
+</div>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generato da&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="mostra_8h.html">mostra.h</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,6 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">StarkIndustries
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -45,6 +50,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('utente_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Funzioni</a>  </div>
@@ -67,6 +88,18 @@ $(function() {
 <div class="title">Riferimenti per il file utente.c</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c__dep__incl.png" border="0" usemap="#autente_8cdep" alt=""/></div>
+<map name="autente_8cdep" id="autente_8cdep">
+<area shape="rect" title=" " alt="" coords="5,5,75,32"/>
+<area shape="rect" href="utente_8h.html" title=" " alt="" coords="5,80,75,107"/>
+<area shape="rect" href="main_8c.html" title=" " alt="" coords="9,155,71,181"/>
+</map>
+</div>
+</div>
+<p><a href="utente_8c_source.html">Vai al codice sorgente di questo file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
@@ -115,11 +148,38 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 Function: accesso</h2>
 <p>Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato</p>
-<p>Utente *testa: lista utente char *text: testo inserito dall'utente per fare l'accesso (email o nickname)</p>
-<p>returns: returns: se esiste utente con email o nickname uguale al valore del secondo argomento (char *text) e la password inserita corrisponde la funzione lo ritornerà, altrimenti il valore sarà uguale a NULL </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista utente </td></tr>
+    <tr><td class="paramname">text</td><td>: testo inserito dall'utente per fare l'accesso (email o nickname)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: se esiste utente con email o nickname uguale al valore del secondo argomento (char *text) e la password inserita corrisponde la funzione lo ritornerà, altrimenti il valore sarà uguale a NULL </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00422">422</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a83e44c49702bea558f030e74b28dfdd2_cgraph.png" border="0" usemap="#autente_8c_a83e44c49702bea558f030e74b28dfdd2_cgraph" alt=""/></div>
+<map name="autente_8c_a83e44c49702bea558f030e74b28dfdd2_cgraph" id="autente_8c_a83e44c49702bea558f030e74b28dfdd2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,76,57"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="137,5,215,32"/>
+<area shape="rect" href="functions_8c.html#a72b8a9a69a000b9332a3757d286b4170" title=" " alt="" coords="124,56,228,83"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a83e44c49702bea558f030e74b28dfdd2_icgraph.png" border="0" usemap="#autente_8c_a83e44c49702bea558f030e74b28dfdd2_icgraph" alt=""/></div>
+<map name="autente_8c_a83e44c49702bea558f030e74b28dfdd2_icgraph" id="autente_8c_a83e44c49702bea558f030e74b28dfdd2_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,175,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -148,11 +208,35 @@ Function: accesso</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 Function: eliminaUtente</h2>
 <p>Dopo aver effettuato l'accesso al proprio profilo, permette di eliminarlo</p>
 <p>Utente *utenteLogin: utente che ha effettuato il login Utente *testa: lista utente</p>
 <p>returns: // </p>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00824">824</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a7d5afb423f2c814942623fb9f9c1a6b8_cgraph.png" border="0" usemap="#autente_8c_a7d5afb423f2c814942623fb9f9c1a6b8_cgraph" alt=""/></div>
+<map name="autente_8c_a7d5afb423f2c814942623fb9f9c1a6b8_cgraph" id="autente_8c_a7d5afb423f2c814942623fb9f9c1a6b8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,81,107,108"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="155,5,252,32"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="165,56,242,83"/>
+<area shape="rect" href="utente_8c.html#a5d86b530e0e17b3af5c63fdf367bf008" title=" " alt="" coords="161,107,246,133"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="178,157,229,184"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="300,157,397,184"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a7d5afb423f2c814942623fb9f9c1a6b8_icgraph.png" border="0" usemap="#autente_8c_a7d5afb423f2c814942623fb9f9c1a6b8_icgraph" alt=""/></div>
+<map name="autente_8c_a7d5afb423f2c814942623fb9f9c1a6b8_icgraph" id="autente_8c_a7d5afb423f2c814942623fb9f9c1a6b8_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,205,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -171,11 +255,36 @@ Function: eliminaUtente</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Function: letturaUtenti</h2>
 <p>Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente</p>
-<p>FILE fp: nome del file da cui leggere i dati, ovvero "utenti.csv"</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fp</td><td>: nome del file da cui leggere i dati, ovvero "utenti.csv"</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00010">10</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a443f7dde3869902c0ecda7b38573f37e_cgraph.png" border="0" usemap="#autente_8c_a443f7dde3869902c0ecda7b38573f37e_cgraph" alt=""/></div>
+<map name="autente_8c_a443f7dde3869902c0ecda7b38573f37e_cgraph" id="autente_8c_a443f7dde3869902c0ecda7b38573f37e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,97,32"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="145,5,223,32"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a443f7dde3869902c0ecda7b38573f37e_icgraph.png" border="0" usemap="#autente_8c_a443f7dde3869902c0ecda7b38573f37e_icgraph" alt=""/></div>
+<map name="autente_8c_a443f7dde3869902c0ecda7b38573f37e_icgraph" id="autente_8c_a443f7dde3869902c0ecda7b38573f37e_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,196,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -194,11 +303,37 @@ Function: letturaUtenti</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md36"></a>
 Function: modificaPermessi</h2>
 <p>Permette all'utente che possiede i permessi di livello 2 (direttore) di modificare il livello dei permessi degli altri utenti</p>
 <p>Utente *testa: lista utente</p>
 <p>returns: // </p>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00913">913</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a98f2344fd2dfea49fc9c35f8564c07fb_cgraph.png" border="0" usemap="#autente_8c_a98f2344fd2dfea49fc9c35f8564c07fb_cgraph" alt=""/></div>
+<map name="autente_8c_a98f2344fd2dfea49fc9c35f8564c07fb_cgraph" id="autente_8c_a98f2344fd2dfea49fc9c35f8564c07fb_cgraph">
+<area shape="rect" title=" " alt="" coords="5,132,131,159"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="183,5,281,32"/>
+<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="179,56,285,83"/>
+<area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="203,107,261,133"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="193,157,271,184"/>
+<area shape="rect" href="utente_8c.html#a5d86b530e0e17b3af5c63fdf367bf008" title=" " alt="" coords="189,208,275,235"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="207,259,257,285"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="333,157,431,184"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a98f2344fd2dfea49fc9c35f8564c07fb_icgraph.png" border="0" usemap="#autente_8c_a98f2344fd2dfea49fc9c35f8564c07fb_icgraph" alt=""/></div>
+<map name="autente_8c_a98f2344fd2dfea49fc9c35f8564c07fb_icgraph" id="autente_8c_a98f2344fd2dfea49fc9c35f8564c07fb_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,229,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -227,11 +362,45 @@ Function: modificaPermessi</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md33"></a>
 Function: modificaUtente</h2>
 <p>Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo</p>
-<p>Utente *utenteLogin: utente che ha effettuato il login Utente *testa: lista utente</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">utenteLogin</td><td>: utente che ha effettuato il login </td></tr>
+    <tr><td class="paramname">testa</td><td>: lista utente</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00523">523</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a624035ff057def966d8775a144800e9d_cgraph.png" border="0" usemap="#autente_8c_a624035ff057def966d8775a144800e9d_cgraph" alt=""/></div>
+<map name="autente_8c_a624035ff057def966d8775a144800e9d_cgraph" id="autente_8c_a624035ff057def966d8775a144800e9d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,183,113,209"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="166,5,263,32"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="317,107,415,133"/>
+<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="161,107,268,133"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="176,157,253,184"/>
+<area shape="rect" href="functions_8c.html#a72b8a9a69a000b9332a3757d286b4170" title=" " alt="" coords="163,208,267,235"/>
+<area shape="rect" href="utente_8c.html#a5d86b530e0e17b3af5c63fdf367bf008" title=" " alt="" coords="172,259,257,285"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="189,309,240,336"/>
+<area shape="rect" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db" title=" " alt="" coords="171,360,259,387"/>
+<area shape="rect" href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="316,360,416,387"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a624035ff057def966d8775a144800e9d_icgraph.png" border="0" usemap="#autente_8c_a624035ff057def966d8775a144800e9d_icgraph" alt=""/></div>
+<map name="autente_8c_a624035ff057def966d8775a144800e9d_icgraph" id="autente_8c_a624035ff057def966d8775a144800e9d_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,212,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -250,11 +419,46 @@ Function: modificaUtente</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Function: registrazioneUtente</h2>
 <p>Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente</p>
-<p>Utente *testa: lista utente</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista utente</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00092">92</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a6233e879c25a249940058560190a4f85_cgraph.png" border="0" usemap="#autente_8c_a6233e879c25a249940058560190a4f85_cgraph" alt=""/></div>
+<map name="autente_8c_a6233e879c25a249940058560190a4f85_cgraph" id="autente_8c_a6233e879c25a249940058560190a4f85_cgraph">
+<area shape="rect" title=" " alt="" coords="5,183,140,209"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="193,5,290,32"/>
+<area shape="rect" href="functions_8c.html#a6f0906ef349280dd8907ecbbece94b87" title=" " alt="" coords="188,56,295,83"/>
+<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="188,107,295,133"/>
+<area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="213,157,270,184"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="203,208,280,235"/>
+<area shape="rect" href="functions_8c.html#a72b8a9a69a000b9332a3757d286b4170" title=" " alt="" coords="189,259,293,285"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="216,309,267,336"/>
+<area shape="rect" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db" title=" " alt="" coords="197,360,285,387"/>
+<area shape="rect" href="functions_8c.html#a4dccbf701e729932aab0b4bc2860f9ae" title=" " alt="" coords="349,56,436,83"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="344,208,441,235"/>
+<area shape="rect" href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="343,360,443,387"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a6233e879c25a249940058560190a4f85_icgraph.png" border="0" usemap="#autente_8c_a6233e879c25a249940058560190a4f85_icgraph" alt=""/></div>
+<map name="autente_8c_a6233e879c25a249940058560190a4f85_icgraph" id="autente_8c_a6233e879c25a249940058560190a4f85_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,239,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -283,11 +487,38 @@ Function: registrazioneUtente</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 Function: ricercaUtente</h2>
 <p>TODO: da finire</p>
-<p>Utente *testa: lista utente int id: TODO: da finire</p>
-<p>returns: TODO: da finire </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: lista utente </td></tr>
+    <tr><td class="paramname">id</td><td>: TODO: da finire</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: TODO: da finire </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00459">459</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a53b351429600a128d1c2ef16ed6fe24e_cgraph.png" border="0" usemap="#autente_8c_a53b351429600a128d1c2ef16ed6fe24e_cgraph" alt=""/></div>
+<map name="autente_8c_a53b351429600a128d1c2ef16ed6fe24e_cgraph" id="autente_8c_a53b351429600a128d1c2ef16ed6fe24e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,104,32"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="152,5,229,32"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a53b351429600a128d1c2ef16ed6fe24e_icgraph.png" border="0" usemap="#autente_8c_a53b351429600a128d1c2ef16ed6fe24e_icgraph" alt=""/></div>
+<map name="autente_8c_a53b351429600a128d1c2ef16ed6fe24e_icgraph" id="autente_8c_a53b351429600a128d1c2ef16ed6fe24e_icgraph">
+<area shape="rect" title=" " alt="" coords="283,5,381,32"/>
+<area shape="rect" href="prenotazione_8c.html#afcac9cb3e861937e4ab80374c2ae3117" title=" " alt="" coords="104,5,235,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -306,11 +537,25 @@ Function: ricercaUtente</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md35"></a>
 Function: scriviUtenti</h2>
 <p>Permette di salvare tutte le modifiche effettuate sul file "utenti.csv"</p>
 <p>Utente *testa: lista utente</p>
 <p>returns: // </p>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00884">884</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_a5d86b530e0e17b3af5c63fdf367bf008_icgraph.png" border="0" usemap="#autente_8c_a5d86b530e0e17b3af5c63fdf367bf008_icgraph" alt=""/></div>
+<map name="autente_8c_a5d86b530e0e17b3af5c63fdf367bf008_icgraph" id="autente_8c_a5d86b530e0e17b3af5c63fdf367bf008_icgraph">
+<area shape="rect" title=" " alt="" coords="277,56,363,83"/>
+<area shape="rect" href="utente_8c.html#a7d5afb423f2c814942623fb9f9c1a6b8" title=" " alt="" coords="116,5,217,32"/>
+<area shape="rect" href="utente_8c.html#a98f2344fd2dfea49fc9c35f8564c07fb" title=" " alt="" coords="104,56,229,83"/>
+<area shape="rect" href="utente_8c.html#a624035ff057def966d8775a144800e9d" title=" " alt="" coords="113,107,221,133"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -329,18 +574,47 @@ Function: scriviUtenti</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 Function: stampaUtente</h2>
 <p>Permette di stampare i dati personali di un determinato utente dopo che ha effettuato l'accesso al proprio profilo</p>
-<p>Utente *utenteLogin: utente che ha effettuato il login</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">utenteLogin</td><td>: utente che ha effettuato il login</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00491">491</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_ac9ff9092130dce22ed48300f14c2855a_cgraph.png" border="0" usemap="#autente_8c_ac9ff9092130dce22ed48300f14c2855a_cgraph" alt=""/></div>
+<map name="autente_8c_ac9ff9092130dce22ed48300f14c2855a_cgraph" id="autente_8c_ac9ff9092130dce22ed48300f14c2855a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,108,32"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="156,5,233,32"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="utente_8c_ac9ff9092130dce22ed48300f14c2855a_icgraph.png" border="0" usemap="#autente_8c_ac9ff9092130dce22ed48300f14c2855a_icgraph" alt=""/></div>
+<map name="autente_8c_ac9ff9092130dce22ed48300f14c2855a_icgraph" id="autente_8c_ac9ff9092130dce22ed48300f14c2855a_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generato da&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="utente_8c.html">utente.c</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>
