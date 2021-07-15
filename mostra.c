@@ -976,7 +976,7 @@ void scriviMostre(Mostra *testa) {
                     temp->indirizzo, temp->dataInizio, temp->dataFine);
         }
 
-        for (MostraOpera *tempMO = temp->opere; temp != NULL; tempMO = tempMO->nextOpera) {
+        for (MostraOpera *tempMO = temp->opere; tempMO != NULL; tempMO = tempMO->nextOpera) {;
             long size = ftell(fpMO);
 
             if (size == 0) {
@@ -1012,7 +1012,6 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
     curr = testa;
 
     do {
-        while ('\n' != getchar());
         printColor("ATTENZIONE!\n", COLOR_RED);
         printf("Sei sicuro/a di voler eliminare la mostra?\n");
         printf("Risposta (s/n): ");
