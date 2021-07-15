@@ -453,6 +453,7 @@ void aggiungiMostra(Mostra *testa) {
  *   returns: //
  */
 void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
+    printf("ciao1\n");
     bool operaLibera = true;
     for (Mostra *tempMostra = testa; tempMostra != NULL; tempMostra = tempMostra->nextMostra) {
         if (differenzaDateChar(mostra->dataInizio, tempMostra->dataFine) >= 0 &&
@@ -464,19 +465,32 @@ void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
                 }
             }
     }
+    printf("ciao2\n");
     if (operaLibera) {
+        printf("operaLibera\n");
         bool operaNonInserita = true;
+        if (mostra->opere == NULL) {
+            mostra->opere = (MostraOpera *) malloc(sizeof(MostraOpera));
+            mostra->opere->nextOpera = NULL;
+            mostra->opere->opera = NULL;
+        }
         MostraOpera *tempMostraOpera = mostra->opere;
         do {
-            if (tempMostraOpera == NULL) {
+            if (tempMostraOpera->opera == NULL) {
                 tempMostraOpera->opera = opera;
                 operaNonInserita = false;
             } else {
+                if (tempMostraOpera->nextOpera == NULL) {
+                    tempMostraOpera->nextOpera = (MostraOpera *) malloc(sizeof(MostraOpera));
+                    tempMostraOpera->nextOpera->nextOpera = NULL;
+                    tempMostraOpera->nextOpera->opera = NULL;
+                }
                 tempMostraOpera = tempMostraOpera->nextOpera;
             }
         } while (operaNonInserita);
         scriviMostre(testa);
     }
+    printf("ciao3\n");
 }
 
 /**
