@@ -270,7 +270,6 @@ int main() {
                                         }
 
                                     } else {
-                                        printf("ciao\n");
                                         browserMostra(fpM, testaMostra, false);
                                     }
 

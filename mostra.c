@@ -1151,7 +1151,6 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
     return nuovoNodo;
 }
 
-
 /**
  * Function: mostreBrowser
  * ----------------------------
