@@ -20,15 +20,9 @@ int main() {
     titolo();
 
     char scelta, scelta2;
-    char sceltaGestP, sceltaGestM, sceltaGestO, sceltaGestPren;
+    char sceltaGestP, sceltaGestM, sceltaGestO;
     char email[60];
     char input[30];
-
-    //TODO: forse non servono
-    int nMostra, nOpera;
-    long sizeM;
-    long sizeO;
-
 
     Utente *testaUtente = NULL;
     Mostra *testaMostra = NULL;
@@ -38,7 +32,6 @@ int main() {
     Utente *utenteLogin = NULL; //utente che avrà eseguito il login
     Mostra *mostraScelta = NULL;
     Opera *operaScelta = NULL;
-    Prenotazione *prenotazioneScelta = NULL; //TODO: forse non serve
 
     //Lettura utenti dal file
     FILE *fpU;
