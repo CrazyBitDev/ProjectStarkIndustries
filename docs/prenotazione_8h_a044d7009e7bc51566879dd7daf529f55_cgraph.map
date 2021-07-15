@@ -1,12 +1,13 @@
 <map id="eliminaPrenotazione" name="eliminaPrenotazione">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,144,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,144,159"/>
 <area shape="rect" id="node2" href="$functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="225,5,323,32"/>
-<area shape="rect" id="node3" href="$prenotazione_8c.html#a92b4bd4fc758534058542c91a59406a3" title=" " alt="" coords="192,56,356,83"/>
-<area shape="rect" id="node7" href="$functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="235,107,313,133"/>
-<area shape="rect" id="node8" href="$prenotazione_8c.html#ac9697a2054d21e155d547b10ebe16836" title=" " alt="" coords="213,157,335,184"/>
-<area shape="rect" id="node9" href="$functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="249,208,299,235"/>
-<area shape="rect" id="node4" href="$functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="419,31,519,57"/>
-<area shape="rect" id="node5" href="$functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="404,81,535,108"/>
-<area shape="rect" id="node6" href="$functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="583,81,687,108"/>
-<area shape="rect" id="node10" href="$functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="421,208,518,235"/>
+<area shape="rect" id="node3" href="$functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="245,56,303,83"/>
+<area shape="rect" id="node4" href="$prenotazione_8c.html#a92b4bd4fc758534058542c91a59406a3" title=" " alt="" coords="192,107,356,133"/>
+<area shape="rect" id="node8" href="$functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="235,157,313,184"/>
+<area shape="rect" id="node9" href="$prenotazione_8c.html#ac9697a2054d21e155d547b10ebe16836" title=" " alt="" coords="213,208,335,235"/>
+<area shape="rect" id="node10" href="$functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="249,259,299,285"/>
+<area shape="rect" id="node5" href="$functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="419,81,519,108"/>
+<area shape="rect" id="node6" href="$functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="404,132,535,159"/>
+<area shape="rect" id="node7" href="$functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="583,132,687,159"/>
+<area shape="rect" id="node11" href="$functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="421,259,518,285"/>
 </map>

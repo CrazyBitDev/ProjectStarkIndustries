@@ -1,5 +1,5 @@
 struct mostraOpera {
-    Opera *opera;
+    Opera *opera; //puntatore all'opera
     MostraOpera *nextOpera; //puntatore al prossimo nodo
 };
 

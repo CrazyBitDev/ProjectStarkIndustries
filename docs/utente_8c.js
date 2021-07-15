@@ -1,5 +1,6 @@
 var utente_8c =
 [
+    [ "utente", "structutente.html", "structutente" ],
     [ "accesso", "utente_8c.html#a83e44c49702bea558f030e74b28dfdd2", null ],
     [ "eliminaUtente", "utente_8c.html#a7d5afb423f2c814942623fb9f9c1a6b8", null ],
     [ "letturaUtenti", "utente_8c.html#a443f7dde3869902c0ecda7b38573f37e", null ],

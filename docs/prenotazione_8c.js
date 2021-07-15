@@ -1,5 +1,6 @@
 var prenotazione_8c =
 [
+    [ "prenotazione", "structprenotazione.html", "structprenotazione" ],
     [ "eliminaPrenotazione", "prenotazione_8c.html#a044d7009e7bc51566879dd7daf529f55", null ],
     [ "letturaPrenotazioni", "prenotazione_8c.html#afcac9cb3e861937e4ab80374c2ae3117", null ],
     [ "modificaPrenotazione", "prenotazione_8c.html#a71966bdc8bd0e786ca32817cb636099b", null ],

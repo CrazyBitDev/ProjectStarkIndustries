@@ -1,5 +1,7 @@
 var mostra_8c =
 [
+    [ "mostraOpera", "structmostra_opera.html", "structmostra_opera" ],
+    [ "mostra", "structmostra.html", "structmostra" ],
     [ "aggiungiMostra", "mostra_8c.html#a6054d842da40dda0a5db41ce77ae3df8", null ],
     [ "aggiungiOperaAMostra", "mostra_8c.html#ad5736677d229524b8d992abc5583a68b", null ],
     [ "browserMostra", "mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29", null ],

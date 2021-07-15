@@ -1,5 +1,6 @@
 var opera_8c =
 [
+    [ "opera", "structopera.html", "structopera" ],
     [ "aggiungiOpera", "opera_8c.html#acb372b9ea9719ee823abd3f9d3639eb3", null ],
     [ "browserOpere", "opera_8c.html#a9ee9a89fb4ce015dbc97aa3cfc09c390", null ],
     [ "eliminaOpera", "opera_8c.html#a38fd56b1a567b07c9cd7738795e1fd3a", null ],

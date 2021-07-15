@@ -1,5 +1,6 @@
 var opera_8h =
 [
+    [ "Opera", "opera_8h.html#a04bad930ba2f5c80a204607d06301186", null ],
     [ "aggiungiOpera", "opera_8h.html#acb372b9ea9719ee823abd3f9d3639eb3", null ],
     [ "browserOpere", "opera_8h.html#a9ee9a89fb4ce015dbc97aa3cfc09c390", null ],
     [ "eliminaOpera", "opera_8h.html#a38fd56b1a567b07c9cd7738795e1fd3a", null ],

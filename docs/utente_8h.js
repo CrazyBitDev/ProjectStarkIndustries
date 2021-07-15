@@ -1,5 +1,6 @@
 var utente_8h =
 [
+    [ "Utente", "utente_8h.html#a48b8a64e890f986d5e8a42f818d4ee29", null ],
     [ "accesso", "utente_8h.html#a83e44c49702bea558f030e74b28dfdd2", null ],
     [ "eliminaUtente", "utente_8h.html#a7d5afb423f2c814942623fb9f9c1a6b8", null ],
     [ "letturaUtenti", "utente_8h.html#a443f7dde3869902c0ecda7b38573f37e", null ],

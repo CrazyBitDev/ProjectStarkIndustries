@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('functions_8c_source.html',''); initRes
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#else </span><span class="comment">//UNIX</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">    #include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="functions_8c.html#a966c72d8d733c7734c6c784753d894c7">   15</a></span>&#160;<span class="preprocessor">    #define ANSI_COLOR_GREEN   &quot;\x1b[92m&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="functions_8c.html#a8d0b0043e152438bb39b918a1f98c65f">   16</a></span>&#160;<span class="preprocessor">    #define ANSI_COLOR_CYAN    &quot;\x1b[96m&quot;</span></div>
@@ -109,65 +109,65 @@ $(document).ready(function(){initNavTree('functions_8c_source.html',''); initRes
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1">   23</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1">printColor</a>(<span class="keywordtype">char</span> text[], <span class="keywordtype">int</span> color) {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    SetConsoleTextAttribute(hConsole, color);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">switch</span> (color) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            printf(<a class="code" href="functions_8c.html#a966c72d8d733c7734c6c784753d894c7">ANSI_COLOR_GREEN</a>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            printf(<a class="code" href="functions_8c.html#a8d0b0043e152438bb39b918a1f98c65f">ANSI_COLOR_CYAN</a>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            printf(<a class="code" href="functions_8c.html#a34995b955465f6bbb37c359173d50477">ANSI_COLOR_RED</a>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            printf(<a class="code" href="functions_8c.html#acb30614ba1535da5b9d0c490b3c10515">ANSI_COLOR_MAGENTA</a>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            printf(<a class="code" href="functions_8c.html#a92a364c2b863dde1a024a77eac2a5b3b">ANSI_COLOR_RESET</a>);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">    #ifdef _WIN32</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        SetConsoleTextAttribute(hConsole, color);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">switch</span> (color) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                printf(<a class="code" href="functions_8c.html#a966c72d8d733c7734c6c784753d894c7">ANSI_COLOR_GREEN</a>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                printf(<a class="code" href="functions_8c.html#a8d0b0043e152438bb39b918a1f98c65f">ANSI_COLOR_CYAN</a>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                printf(<a class="code" href="functions_8c.html#a34995b955465f6bbb37c359173d50477">ANSI_COLOR_RED</a>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                printf(<a class="code" href="functions_8c.html#acb30614ba1535da5b9d0c490b3c10515">ANSI_COLOR_MAGENTA</a>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                printf(<a class="code" href="functions_8c.html#a92a364c2b863dde1a024a77eac2a5b3b">ANSI_COLOR_RESET</a>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">    #endif</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    printf(<span class="stringliteral">&quot;%s&quot;</span>, text);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    SetConsoleTextAttribute(hConsole, 15);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    printf(<a class="code" href="functions_8c.html#a92a364c2b863dde1a024a77eac2a5b3b">ANSI_COLOR_RESET</a>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">    #ifdef _WIN32</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        SetConsoleTextAttribute(hConsole, 15);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        printf(<a class="code" href="functions_8c.html#a92a364c2b863dde1a024a77eac2a5b3b">ANSI_COLOR_RESET</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">    #endif</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b">consoleColor</a>(<span class="keywordtype">int</span> color) {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    SetConsoleTextAttribute(hConsole, color);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">switch</span> (color) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>:</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            printf(<a class="code" href="functions_8c.html#a966c72d8d733c7734c6c784753d894c7">ANSI_COLOR_GREEN</a>);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>:</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            printf(<a class="code" href="functions_8c.html#a8d0b0043e152438bb39b918a1f98c65f">ANSI_COLOR_CYAN</a>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            printf(<a class="code" href="functions_8c.html#a34995b955465f6bbb37c359173d50477">ANSI_COLOR_RED</a>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>:</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            printf(<a class="code" href="functions_8c.html#acb30614ba1535da5b9d0c490b3c10515">ANSI_COLOR_MAGENTA</a>);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            printf(<a class="code" href="functions_8c.html#a92a364c2b863dde1a024a77eac2a5b3b">ANSI_COLOR_RESET</a>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">    #ifdef _WIN32</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        SetConsoleTextAttribute(hConsole, color);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">switch</span> (color) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                printf(<a class="code" href="functions_8c.html#a966c72d8d733c7734c6c784753d894c7">ANSI_COLOR_GREEN</a>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                printf(<a class="code" href="functions_8c.html#a8d0b0043e152438bb39b918a1f98c65f">ANSI_COLOR_CYAN</a>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>:</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                printf(<a class="code" href="functions_8c.html#a34995b955465f6bbb37c359173d50477">ANSI_COLOR_RED</a>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>:</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                printf(<a class="code" href="functions_8c.html#acb30614ba1535da5b9d0c490b3c10515">ANSI_COLOR_MAGENTA</a>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="functions_8c.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                printf(<a class="code" href="functions_8c.html#a92a364c2b863dde1a024a77eac2a5b3b">ANSI_COLOR_RESET</a>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">    #endif</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">/*</span></div>
@@ -320,7 +320,7 @@ $(document).ready(function(){initNavTree('functions_8c_source.html',''); initRes
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="keywordtype">int</span> differenza = 0;</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="keywordflow">if</span>(anno1 &lt; anno2 || (anno1 == anno2 &amp;&amp; mese1 &lt; mese2) || (anno1 == anno2 &amp;&amp; mese1 == mese2 &amp;&amp; giorno1 &lt; giorno2)) {</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="keywordflow">if</span> (anno1 &lt; anno2 || (anno1 == anno2 &amp;&amp; mese1 &lt; mese2) || (anno1 == anno2 &amp;&amp; mese1 == mese2 &amp;&amp; giorno1 &lt; giorno2)) {</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        differenza = 1;</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (anno1 != anno2 || mese1 != mese2 || giorno1 != giorno2) {</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        differenza = -1;</div>
@@ -336,280 +336,284 @@ $(document).ready(function(){initNavTree('functions_8c_source.html',''); initRes
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    strcpy(dataTemp1, data1);</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    strcpy(dataTemp2, data2);</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordtype">int</span> data1Convertita[3],data2Convertita[3];</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordtype">int</span> data1Convertita[3], data2Convertita[3];</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordtype">char</span> *tok1 = strtok(dataTemp1, <span class="stringliteral">&quot;/&quot;</span>);</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordtype">char</span> *tok2 = strtok(dataTemp2, <span class="stringliteral">&quot;/&quot;</span>);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++ ) {</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++) {</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        data1Convertita[i] = atoi(tok1);</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        data2Convertita[i] = atoi(tok2);</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        tok1 = strtok(NULL, <span class="stringliteral">&quot;/&quot;</span>);</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        tok2 = strtok(NULL, <span class="stringliteral">&quot;/&quot;</span>);</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    }</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a>(data1Convertita[0], data1Convertita[1], data1Convertita[2], data2Convertita[0], data2Convertita[1], data2Convertita[2]);</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;}</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">  313</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">differenzaDateOggi</a>(<span class="keywordtype">int</span> giorno, <span class="keywordtype">int</span> mese, <span class="keywordtype">int</span> anno) {</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keyword">struct </span>tm *ts;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordtype">char</span> annoCorrente[5], meseCorrente[3], giornoCorrente[3];</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    </div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    time_t now = time(NULL);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    </div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    ts = localtime(&amp;now);</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    strftime(annoCorrente,   <span class="keyword">sizeof</span>(annoCorrente),   <span class="stringliteral">&quot;%Y&quot;</span>, ts);</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    strftime(meseCorrente,   <span class="keyword">sizeof</span>(meseCorrente),   <span class="stringliteral">&quot;%m&quot;</span>, ts);</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    strftime(giornoCorrente, <span class="keyword">sizeof</span>(giornoCorrente), <span class="stringliteral">&quot;%d&quot;</span>, ts);</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a>(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), giorno, mese, anno);</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;}</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
-<div class="line"><a name="l00327"></a><span class="lineno"><a class="line" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9">  327</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9">differenzaDateOggiChar</a>(<span class="keywordtype">char</span> *dataTarget) {</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="keywordtype">char</span> data[11];</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    strcpy(data, dataTarget);</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordtype">int</span> dataConvertita[3];</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    </div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keywordtype">char</span> *tok = strtok(data, <span class="stringliteral">&quot;/&quot;</span>);</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++ ) {</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        dataConvertita[i] = atoi(tok);</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        tok = strtok(NULL, <span class="stringliteral">&quot;/&quot;</span>);</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    }</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160; </div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">differenzaDateOggi</a>(dataConvertita[0], dataConvertita[1], dataConvertita[2]);</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <span class="comment">//return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;}</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
-<div class="line"><a name="l00347"></a><span class="lineno"><a class="line" href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7">  347</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7">verificaDataCorrente</a>(<span class="keywordtype">int</span> giorno, <span class="keywordtype">int</span> mese, <span class="keywordtype">int</span> anno) {</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="keywordtype">bool</span> dataCorrente;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    </div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    time_t now;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <span class="keyword">struct </span>tm *ts;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    </div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="keywordtype">char</span> giornoCorrente[3];</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordtype">char</span> meseCorrente[3];</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordtype">char</span> annoCorrente[5];</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="keywordtype">int</span> giornoCorr, meseCorr, annoCorr;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    </div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <span class="comment">//salvo data odierna</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    now = time(NULL);</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    ts = localtime(&amp;now);</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    </div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    strftime(annoCorrente, <span class="keyword">sizeof</span>(annoCorrente), <span class="stringliteral">&quot;%Y&quot;</span>, ts);</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    strftime(meseCorrente, <span class="keyword">sizeof</span>(meseCorrente), <span class="stringliteral">&quot;%m&quot;</span>, ts);</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    strftime(giornoCorrente, <span class="keyword">sizeof</span>(giornoCorrente), <span class="stringliteral">&quot;%d&quot;</span>, ts);</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    </div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    giornoCorr = atoi(giornoCorrente);</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    meseCorr = atoi(meseCorrente);</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    annoCorr = atoi(annoCorrente);</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    </div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="keywordflow">if</span>((giorno == giornoCorr) &amp;&amp; (mese == meseCorr) &amp;&amp; (anno == annoCorr)) {</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        <span class="comment">//le date coincidono</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        dataCorrente = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="keywordflow">if</span>(anno &lt; annoCorr || (anno == annoCorr &amp;&amp; mese &lt; meseCorr) || (anno == annoCorr &amp;&amp; mese == meseCorr &amp;&amp; giorno &lt; giornoCorr)) {</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            <span class="comment">//La data di inizio mostra precede la data odierna</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            dataCorrente = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            <span class="comment">//la data di inizio mostra e&#39; successiva alla data odierna</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;            dataCorrente = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        }</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    }</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    </div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="keywordflow">return</span> dataCorrente;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;}</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
-<div class="line"><a name="l00386"></a><span class="lineno"><a class="line" href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0">  386</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0">dataInIntervallo</a>(<span class="keywordtype">int</span> giorno, <span class="keywordtype">int</span> mese, <span class="keywordtype">int</span> anno, <span class="keywordtype">char</span> *giorno1, <span class="keywordtype">char</span> *giorno2) {</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keywordtype">bool</span> inIntervallo = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="keywordtype">int</span> giorno1conv[3], giorno2conv[3];</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordtype">char</span> giorno1temp[11], giorno2temp[11];</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160; </div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    strcpy(giorno1temp, giorno1);</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    strcpy(giorno2temp, giorno2);</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; </div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordtype">char</span> *tok = strtok(giorno1temp, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a>(data1Convertita[0], data1Convertita[1], data1Convertita[2], data2Convertita[0],</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                          data2Convertita[1], data2Convertita[2]);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;}</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
+<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">  314</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">differenzaDateOggi</a>(<span class="keywordtype">int</span> giorno, <span class="keywordtype">int</span> mese, <span class="keywordtype">int</span> anno) {</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keyword">struct </span>tm *ts;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordtype">char</span> annoCorrente[5], meseCorrente[3], giornoCorrente[3];</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    time_t now = time(NULL);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    ts = localtime(&amp;now);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    strftime(annoCorrente, <span class="keyword">sizeof</span>(annoCorrente), <span class="stringliteral">&quot;%Y&quot;</span>, ts);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    strftime(meseCorrente, <span class="keyword">sizeof</span>(meseCorrente), <span class="stringliteral">&quot;%m&quot;</span>, ts);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    strftime(giornoCorrente, <span class="keyword">sizeof</span>(giornoCorrente), <span class="stringliteral">&quot;%d&quot;</span>, ts);</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a>(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), giorno, mese, anno);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;}</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160; </div>
+<div class="line"><a name="l00328"></a><span class="lineno"><a class="line" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9">  328</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9">differenzaDateOggiChar</a>(<span class="keywordtype">char</span> *dataTarget) {</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keywordtype">char</span> data[11];</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    strcpy(data, dataTarget);</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <span class="keywordtype">int</span> dataConvertita[3];</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="keywordtype">char</span> *tok = strtok(data, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++) {</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        dataConvertita[i] = atoi(tok);</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        tok = strtok(NULL, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    }</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">differenzaDateOggi</a>(dataConvertita[0], dataConvertita[1], dataConvertita[2]);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="comment">//return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;}</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160; </div>
+<div class="line"><a name="l00348"></a><span class="lineno"><a class="line" href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7">  348</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7">verificaDataCorrente</a>(<span class="keywordtype">int</span> giorno, <span class="keywordtype">int</span> mese, <span class="keywordtype">int</span> anno) {</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="keywordtype">bool</span> dataCorrente;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    time_t now;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keyword">struct </span>tm *ts;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordtype">char</span> giornoCorrente[3];</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordtype">char</span> meseCorrente[3];</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="keywordtype">char</span> annoCorrente[5];</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <span class="keywordtype">int</span> giornoCorr, meseCorr, annoCorr;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160; </div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="comment">//salvo data odierna</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    now = time(NULL);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    ts = localtime(&amp;now);</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    strftime(annoCorrente, <span class="keyword">sizeof</span>(annoCorrente), <span class="stringliteral">&quot;%Y&quot;</span>, ts);</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    strftime(meseCorrente, <span class="keyword">sizeof</span>(meseCorrente), <span class="stringliteral">&quot;%m&quot;</span>, ts);</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    strftime(giornoCorrente, <span class="keyword">sizeof</span>(giornoCorrente), <span class="stringliteral">&quot;%d&quot;</span>, ts);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    giornoCorr = atoi(giornoCorrente);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    meseCorr = atoi(meseCorrente);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    annoCorr = atoi(annoCorrente);</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordflow">if</span> ((giorno == giornoCorr) &amp;&amp; (mese == meseCorr) &amp;&amp; (anno == annoCorr)) {</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <span class="comment">//le date coincidono</span></div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        dataCorrente = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keywordflow">if</span> (anno &lt; annoCorr || (anno == annoCorr &amp;&amp; mese &lt; meseCorr) ||</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            (anno == annoCorr &amp;&amp; mese == meseCorr &amp;&amp; giorno &lt; giornoCorr)) {</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            <span class="comment">//La data di inizio mostra precede la data odierna</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            dataCorrente = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            <span class="comment">//la data di inizio mostra e&#39; successiva alla data odierna</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            dataCorrente = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        }</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    }</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="keywordflow">return</span> dataCorrente;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;}</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno"><a class="line" href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0">  388</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0">dataInIntervallo</a>(<span class="keywordtype">int</span> giorno, <span class="keywordtype">int</span> mese, <span class="keywordtype">int</span> anno, <span class="keywordtype">char</span> *giorno1, <span class="keywordtype">char</span> *giorno2) {</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordtype">bool</span> inIntervallo = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="keywordtype">int</span> giorno1conv[3], giorno2conv[3];</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="keywordtype">char</span> giorno1temp[11], giorno2temp[11];</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    strcpy(giorno1temp, giorno1);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    strcpy(giorno2temp, giorno2);</div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160; </div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++ ) {</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        giorno1conv[i] = atoi(tok);</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        tok = strtok(NULL, <span class="stringliteral">&quot;/&quot;</span>);</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    }</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160; </div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    tok = strtok(giorno2temp, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordtype">char</span> *tok = strtok(giorno1temp, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160; </div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++) {</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        giorno1conv[i] = atoi(tok);</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        tok = strtok(NULL, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    }</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160; </div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++ ) {</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        giorno2conv[i] = atoi(tok);</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        tok = strtok(NULL, <span class="stringliteral">&quot;/&quot;</span>);</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    }</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData</a>(giorno, mese, anno) &amp;&amp; <a class="code" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData</a>(giorno1conv[0], giorno1conv[1], giorno1conv[2]) &amp;&amp; <a class="code" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData</a>(giorno2conv[0], giorno2conv[1], giorno2conv[2])) {</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a>(giorno, mese, anno, giorno1conv[0], giorno1conv[1], giorno1conv[2]) &lt;= 0 &amp;&amp; <a class="code" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a>(giorno, mese, anno, giorno2conv[0], giorno2conv[1], giorno2conv[2]) &gt;= 0) {</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            inIntervallo = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        }</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    }</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    printf(<span class="stringliteral">&quot;data in intervallo: %d\n&quot;</span>, inIntervallo);</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="keywordflow">return</span> inIntervallo;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;}</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160; </div>
-<div class="line"><a name="l00425"></a><span class="lineno"><a class="line" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e">  425</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e">notificaAnnulla</a>() {</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <a class="code" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b">consoleColor</a>(<a class="code" href="functions_8c.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>);</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|-----------------------------|\n&quot;</span>);</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|         Attenzione!         |\n&quot;</span>);</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|   Se hai sbagliato e vuoi   |\n&quot;</span>);</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|       tornare al menu&#39;      |\n&quot;</span>);</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|   premere il tasto invio    |\n&quot;</span>);</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|-----------------------------|\n&quot;</span>);</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <a class="code" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b">consoleColor</a>(<a class="code" href="functions_8c.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;}</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160; </div>
-<div class="line"><a name="l00436"></a><span class="lineno"><a class="line" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517">  436</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517">pausa</a>() {</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    printf(<span class="stringliteral">&quot;Premi INVIO per continuare\n&quot;</span>);</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    getchar();</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;}</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160; </div>
-<div class="line"><a name="l00441"></a><span class="lineno"><a class="line" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f">  441</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f">toUppercase</a>(<span class="keywordtype">char</span> *stringa) {</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <span class="comment">// Convert to upper case</span></div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <span class="keywordtype">char</span> *s = stringa;</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="keywordflow">while</span> (*s) {</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        *s = toupper((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>) *s);</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        s++;</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    }</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;}</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160; </div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;<span class="comment">uint32_t leftrotate(uint32_t x, uint32_t c) {</span></div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="comment">    return (((x) &lt;&lt; (c)) | ((x) &gt;&gt; (32 - (c))));</span></div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment">}</span></div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">char *md5(char *initial_msg) {</span></div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="comment">    size_t initial_len = strlen(initial_msg);</span></div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment">    uint32_t h0, h1, h2, h3;</span></div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="comment">    </span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="comment">    uint8_t *p0, *p1, *p2, *p3;</span></div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="comment">    char *md5result = (char*)malloc(32 * sizeof(char));</span></div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="comment">    uint8_t *msg = NULL;</span></div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="comment">    uint32_t r[] = {7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,</span></div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="comment">                    5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20,</span></div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="comment">                    4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,</span></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="comment">                    6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21};</span></div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="comment">    uint32_t k[] = {</span></div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="comment">        0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,</span></div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="comment">        0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,</span></div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="comment">        0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,</span></div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment">        0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,</span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment">        0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa,</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment">        0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,</span></div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment">        0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed,</span></div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment">        0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a,</span></div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="comment">        0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c,</span></div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;<span class="comment">        0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70,</span></div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="comment">        0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x04881d05,</span></div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="comment">        0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665,</span></div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">        0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039,</span></div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="comment">        0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1,</span></div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="comment">        0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,</span></div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="comment">        0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391};</span></div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="comment">    h0 = 0x67452301;</span></div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="comment">    h1 = 0xefcdab89;</span></div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="comment">    h2 = 0x98badcfe;</span></div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="comment">    h3 = 0x10325476;</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">    int new_len = ((((initial_len + 8) / 64) + 1) * 64) - 8;</span></div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="comment">    msg = calloc(new_len + 64, 1);</span></div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="comment">    </span></div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="comment">    memcpy(msg, initial_msg, initial_len);</span></div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="comment">    msg[initial_len] = 128;</span></div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment">    uint32_t bits_len = 8*initial_len;</span></div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="comment">    memcpy(msg + new_len, &amp;bits_len, 4);</span></div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="comment">    for(int offset=0; offset&lt;new_len; offset += (512/8)) {</span></div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="comment">        uint32_t *w = (uint32_t *) (msg + offset);</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    tok = strtok(giorno2temp, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160; </div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++) {</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        giorno2conv[i] = atoi(tok);</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        tok = strtok(NULL, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    }</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData</a>(giorno, mese, anno) &amp;&amp; <a class="code" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData</a>(giorno1conv[0], giorno1conv[1], giorno1conv[2]) &amp;&amp;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        <a class="code" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData</a>(giorno2conv[0], giorno2conv[1], giorno2conv[2])) {</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a>(giorno, mese, anno, giorno1conv[0], giorno1conv[1], giorno1conv[2]) &lt;= 0 &amp;&amp;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;            <a class="code" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a>(giorno, mese, anno, giorno2conv[0], giorno2conv[1], giorno2conv[2]) &gt;= 0) {</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            inIntervallo = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        }</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    }</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    printf(<span class="stringliteral">&quot;data in intervallo: %d\n&quot;</span>, inIntervallo);</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="keywordflow">return</span> inIntervallo;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;}</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
+<div class="line"><a name="l00429"></a><span class="lineno"><a class="line" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e">  429</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e">notificaAnnulla</a>() {</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <a class="code" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b">consoleColor</a>(<a class="code" href="functions_8c.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>);</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|-----------------------------|\n&quot;</span>);</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|         Attenzione!         |\n&quot;</span>);</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|   Se hai sbagliato e vuoi   |\n&quot;</span>);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|       tornare al menu&#39;      |\n&quot;</span>);</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|   premere il tasto invio    |\n&quot;</span>);</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    printf(<span class="stringliteral">&quot;\t\t\t|-----------------------------|\n&quot;</span>);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <a class="code" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b">consoleColor</a>(<a class="code" href="functions_8c.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;}</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160; </div>
+<div class="line"><a name="l00440"></a><span class="lineno"><a class="line" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517">  440</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517">pausa</a>() {</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    printf(<span class="stringliteral">&quot;Premi INVIO per continuare\n&quot;</span>);</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    getchar();</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;}</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
+<div class="line"><a name="l00445"></a><span class="lineno"><a class="line" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f">  445</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f">toUppercase</a>(<span class="keywordtype">char</span> *stringa) {</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="comment">// Convert to upper case</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <span class="keywordtype">char</span> *s = stringa;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordflow">while</span> (*s) {</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        *s = toupper((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>) *s);</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        s++;</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    }</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;}</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">uint32_t leftrotate(uint32_t x, uint32_t c) {</span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="comment">    return (((x) &lt;&lt; (c)) | ((x) &gt;&gt; (32 - (c))));</span></div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="comment">}</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment">char *md5(char *initial_msg) {</span></div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="comment">    size_t initial_len = strlen(initial_msg);</span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="comment">    uint32_t h0, h1, h2, h3;</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="comment">    </span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="comment">    uint8_t *p0, *p1, *p2, *p3;</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="comment">    char *md5result = (char*)malloc(32 * sizeof(char));</span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="comment">    uint8_t *msg = NULL;</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="comment">    uint32_t r[] = {7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,</span></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="comment">                    5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20,</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="comment">                    4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,</span></div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="comment">                    6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21};</span></div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment">    uint32_t k[] = {</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment">        0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment">        0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment">        0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,</span></div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment">        0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="comment">        0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa,</span></div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;<span class="comment">        0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,</span></div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="comment">        0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed,</span></div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="comment">        0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a,</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">        0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c,</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="comment">        0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70,</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="comment">        0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x04881d05,</span></div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="comment">        0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665,</span></div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;<span class="comment">        0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039,</span></div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="comment">        0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1,</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="comment">        0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,</span></div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="comment">        0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391};</span></div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="comment">    h0 = 0x67452301;</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">    h1 = 0xefcdab89;</span></div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment">    h2 = 0x98badcfe;</span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="comment">    h3 = 0x10325476;</span></div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="comment">    int new_len = ((((initial_len + 8) / 64) + 1) * 64) - 8;</span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment">    msg = calloc(new_len + 64, 1);</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment">    </span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="comment">    memcpy(msg, initial_msg, initial_len);</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;<span class="comment">    msg[initial_len] = 128;</span></div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;<span class="comment">    uint32_t bits_len = 8*initial_len;</span></div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="comment">    memcpy(msg + new_len, &amp;bits_len, 4);</span></div>
 <div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="comment">        uint32_t a = h0;</span></div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="comment">        uint32_t b = h1;</span></div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="comment">        uint32_t c = h2;</span></div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="comment">        uint32_t d = h3;</span></div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="comment">        uint32_t i;</span></div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="comment">        for(i = 0; i&lt;64; i++) {</span></div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="comment">            uint32_t f, g;</span></div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="comment">             if (i &lt; 16) {</span></div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;<span class="comment">                f = (b &amp; c) | ((~b) &amp; d);</span></div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;<span class="comment">                g = i;</span></div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="comment">            } else if (i &lt; 32) {</span></div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;<span class="comment">                f = (d &amp; b) | ((~d) &amp; c);</span></div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="comment">                g = (5*i + 1) % 16;</span></div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;<span class="comment">            } else if (i &lt; 48) {</span></div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="comment">                f = b ^ c ^ d;</span></div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;<span class="comment">                g = (3*i + 5) % 16;</span></div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;<span class="comment">            } else {</span></div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;<span class="comment">                f = c ^ (b | (~d));</span></div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;<span class="comment">                g = (7*i) % 16;</span></div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="comment">            }</span></div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="comment">            uint32_t temp = d;</span></div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="comment">            d = c;</span></div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;<span class="comment">            c = b;</span></div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="comment">            b = b + leftrotate((a + f + k[i] + w[g]), r[i]);</span></div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<span class="comment">            a = temp;</span></div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;<span class="comment">        }</span></div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;<span class="comment">        h0 += a;</span></div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;<span class="comment">        h1 += b;</span></div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;<span class="comment">        h2 += c;</span></div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="comment">        h3 += d;</span></div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;<span class="comment">    }</span></div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;<span class="comment">     </span></div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;<span class="comment">    p0=(uint8_t *)&amp;h0;</span></div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;<span class="comment">    p1=(uint8_t *)&amp;h1;</span></div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;<span class="comment">    p2=(uint8_t *)&amp;h2;</span></div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="comment">    p3=(uint8_t *)&amp;h3;</span></div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="comment">    sprintf(md5result, &quot;%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x&quot;,</span></div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;<span class="comment">            p0[0], p0[1], p0[2], p0[3],</span></div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment">            p1[0], p1[1], p1[2], p1[3],</span></div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;<span class="comment">            p2[0], p2[1], p2[2], p2[3],</span></div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;<span class="comment">            p3[0], p3[1], p3[2], p3[3]);</span></div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;<span class="comment">    return md5result;</span></div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;<span class="comment">}*/</span></div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="comment">    for(int offset=0; offset&lt;new_len; offset += (512/8)) {</span></div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="comment">        uint32_t *w = (uint32_t *) (msg + offset);</span></div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;<span class="comment">        uint32_t a = h0;</span></div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="comment">        uint32_t b = h1;</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="comment">        uint32_t c = h2;</span></div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="comment">        uint32_t d = h3;</span></div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;<span class="comment">        uint32_t i;</span></div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="comment">        for(i = 0; i&lt;64; i++) {</span></div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;<span class="comment">            uint32_t f, g;</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;<span class="comment">             if (i &lt; 16) {</span></div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="comment">                f = (b &amp; c) | ((~b) &amp; d);</span></div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;<span class="comment">                g = i;</span></div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="comment">            } else if (i &lt; 32) {</span></div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;<span class="comment">                f = (d &amp; b) | ((~d) &amp; c);</span></div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;<span class="comment">                g = (5*i + 1) % 16;</span></div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;<span class="comment">            } else if (i &lt; 48) {</span></div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;<span class="comment">                f = b ^ c ^ d;</span></div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="comment">                g = (3*i + 5) % 16;</span></div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;<span class="comment">            } else {</span></div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="comment">                f = c ^ (b | (~d));</span></div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="comment">                g = (7*i) % 16;</span></div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;<span class="comment">            }</span></div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<span class="comment">            uint32_t temp = d;</span></div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;<span class="comment">            d = c;</span></div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;<span class="comment">            c = b;</span></div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;<span class="comment">            b = b + leftrotate((a + f + k[i] + w[g]), r[i]);</span></div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;<span class="comment">            a = temp;</span></div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;<span class="comment">        h0 += a;</span></div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;<span class="comment">        h1 += b;</span></div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;<span class="comment">        h2 += c;</span></div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;<span class="comment">        h3 += d;</span></div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="comment">     </span></div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="comment">    p0=(uint8_t *)&amp;h0;</span></div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;<span class="comment">    p1=(uint8_t *)&amp;h1;</span></div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment">    p2=(uint8_t *)&amp;h2;</span></div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;<span class="comment">    p3=(uint8_t *)&amp;h3;</span></div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;<span class="comment">    sprintf(md5result, &quot;%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x&quot;,</span></div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;<span class="comment">            p0[0], p0[1], p0[2], p0[3],</span></div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="comment">            p1[0], p1[1], p1[2], p1[3],</span></div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;<span class="comment">            p2[0], p2[1], p2[2], p2[3],</span></div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;<span class="comment">            p3[0], p3[1], p3[2], p3[3]);</span></div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;<span class="comment">    return md5result;</span></div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;<span class="comment">}*/</span></div>
 <div class="ttc" id="afunctions_8c_html_a17f760256046df23dd0ab46602f04d02"><div class="ttname"><a href="functions_8c.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a></div><div class="ttdeci">#define COLOR_RESET</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00005">functions.c:5</a></div></div>
-<div class="ttc" id="afunctions_8c_html_a1e001744c29d449ddea95d5821e6896e"><div class="ttname"><a href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e">notificaAnnulla</a></div><div class="ttdeci">void notificaAnnulla()</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00425">functions.c:425</a></div></div>
+<div class="ttc" id="afunctions_8c_html_a1e001744c29d449ddea95d5821e6896e"><div class="ttname"><a href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e">notificaAnnulla</a></div><div class="ttdeci">void notificaAnnulla()</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00429">functions.c:429</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a344fc8694610c76e62cab4a950172350"><div class="ttname"><a href="functions_8c.html#a344fc8694610c76e62cab4a950172350">titolo</a></div><div class="ttdeci">void titolo()</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00265">functions.c:265</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a34995b955465f6bbb37c359173d50477"><div class="ttname"><a href="functions_8c.html#a34995b955465f6bbb37c359173d50477">ANSI_COLOR_RED</a></div><div class="ttdeci">#define ANSI_COLOR_RED</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00017">functions.c:17</a></div></div>
-<div class="ttc" id="afunctions_8c_html_a3d83e5c4daff78d0cd4f15185b27409f"><div class="ttname"><a href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f">toUppercase</a></div><div class="ttdeci">void toUppercase(char *stringa)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00441">functions.c:441</a></div></div>
+<div class="ttc" id="afunctions_8c_html_a3d83e5c4daff78d0cd4f15185b27409f"><div class="ttname"><a href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f">toUppercase</a></div><div class="ttdeci">void toUppercase(char *stringa)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00445">functions.c:445</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a4dccbf701e729932aab0b4bc2860f9ae"><div class="ttname"><a href="functions_8c.html#a4dccbf701e729932aab0b4bc2860f9ae">contaRighe</a></div><div class="ttdeci">int contaRighe(char *file)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00235">functions.c:235</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a50f3dc2ba14a65e89829e6fd3bc4a1db"><div class="ttname"><a href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData</a></div><div class="ttdeci">bool verificaData(int giorno, int mese, int anno)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00141">functions.c:141</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a6227f1e5ba34a8b10c19a89c406a608d"><div class="ttname"><a href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d">annoBisestile</a></div><div class="ttdeci">bool annoBisestile(int anno)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00166">functions.c:166</a></div></div>
-<div class="ttc" id="afunctions_8c_html_a6d71bdc5a4b1cfe78df4110cd1efa0e7"><div class="ttname"><a href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7">verificaDataCorrente</a></div><div class="ttdeci">bool verificaDataCorrente(int giorno, int mese, int anno)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00347">functions.c:347</a></div></div>
+<div class="ttc" id="afunctions_8c_html_a6d71bdc5a4b1cfe78df4110cd1efa0e7"><div class="ttname"><a href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7">verificaDataCorrente</a></div><div class="ttdeci">bool verificaDataCorrente(int giorno, int mese, int anno)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00348">functions.c:348</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a6f0906ef349280dd8907ecbbece94b87"><div class="ttname"><a href="functions_8c.html#a6f0906ef349280dd8907ecbbece94b87">letturaUltimoID</a></div><div class="ttdeci">int letturaUltimoID(char *file)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00193">functions.c:193</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a72b8a9a69a000b9332a3757d286b4170"><div class="ttname"><a href="functions_8c.html#a72b8a9a69a000b9332a3757d286b4170">readPassword</a></div><div class="ttdeci">void readPassword(char prompt[], char *password, bool checkLunghezza)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00092">functions.c:92</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a82573859711fce56f1aa0a76b18a9b18"><div class="ttname"><a href="functions_8c.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a></div><div class="ttdeci">#define COLOR_CYAN</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00002">functions.c:2</a></div></div>
-<div class="ttc" id="afunctions_8c_html_a8948eb043fad35898f4a8036e9ec85a2"><div class="ttname"><a href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">differenzaDateOggi</a></div><div class="ttdeci">int differenzaDateOggi(int giorno, int mese, int anno)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00313">functions.c:313</a></div></div>
+<div class="ttc" id="afunctions_8c_html_a8948eb043fad35898f4a8036e9ec85a2"><div class="ttname"><a href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">differenzaDateOggi</a></div><div class="ttdeci">int differenzaDateOggi(int giorno, int mese, int anno)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00314">functions.c:314</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a8d0b0043e152438bb39b918a1f98c65f"><div class="ttname"><a href="functions_8c.html#a8d0b0043e152438bb39b918a1f98c65f">ANSI_COLOR_CYAN</a></div><div class="ttdeci">#define ANSI_COLOR_CYAN</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00016">functions.c:16</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a8deb0beccea721b35bdb1b4f7264fe75"><div class="ttname"><a href="functions_8c.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a></div><div class="ttdeci">#define COLOR_MAGENTA</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00004">functions.c:4</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a92a364c2b863dde1a024a77eac2a5b3b"><div class="ttname"><a href="functions_8c.html#a92a364c2b863dde1a024a77eac2a5b3b">ANSI_COLOR_RESET</a></div><div class="ttdeci">#define ANSI_COLOR_RESET</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00019">functions.c:19</a></div></div>
 <div class="ttc" id="afunctions_8c_html_a966c72d8d733c7734c6c784753d894c7"><div class="ttname"><a href="functions_8c.html#a966c72d8d733c7734c6c784753d894c7">ANSI_COLOR_GREEN</a></div><div class="ttdeci">#define ANSI_COLOR_GREEN</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00015">functions.c:15</a></div></div>
-<div class="ttc" id="afunctions_8c_html_a9ca377b7da9c3e1d370fff96131eaad0"><div class="ttname"><a href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0">dataInIntervallo</a></div><div class="ttdeci">bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorno2)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00386">functions.c:386</a></div></div>
+<div class="ttc" id="afunctions_8c_html_a9ca377b7da9c3e1d370fff96131eaad0"><div class="ttname"><a href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0">dataInIntervallo</a></div><div class="ttdeci">bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorno2)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00388">functions.c:388</a></div></div>
 <div class="ttc" id="afunctions_8c_html_ac096aa03281c2c3e8ddf55084594cea0"><div class="ttname"><a href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate</a></div><div class="ttdeci">int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00279">functions.c:279</a></div></div>
 <div class="ttc" id="afunctions_8c_html_acb30614ba1535da5b9d0c490b3c10515"><div class="ttname"><a href="functions_8c.html#acb30614ba1535da5b9d0c490b3c10515">ANSI_COLOR_MAGENTA</a></div><div class="ttdeci">#define ANSI_COLOR_MAGENTA</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00018">functions.c:18</a></div></div>
-<div class="ttc" id="afunctions_8c_html_acf34a2b141801e95e8b4293f44cf94b9"><div class="ttname"><a href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9">differenzaDateOggiChar</a></div><div class="ttdeci">int differenzaDateOggiChar(char *dataTarget)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00327">functions.c:327</a></div></div>
+<div class="ttc" id="afunctions_8c_html_acf34a2b141801e95e8b4293f44cf94b9"><div class="ttname"><a href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9">differenzaDateOggiChar</a></div><div class="ttdeci">int differenzaDateOggiChar(char *dataTarget)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00328">functions.c:328</a></div></div>
 <div class="ttc" id="afunctions_8c_html_ad05827086fab31c2566d2dfc343d8f37"><div class="ttname"><a href="functions_8c.html#ad05827086fab31c2566d2dfc343d8f37">differenzaDateChar</a></div><div class="ttdeci">int differenzaDateChar(char *data1, char *data2)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00293">functions.c:293</a></div></div>
-<div class="ttc" id="afunctions_8c_html_ad3befffba77b3954d6bbea4d22afc517"><div class="ttname"><a href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517">pausa</a></div><div class="ttdeci">void pausa()</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00436">functions.c:436</a></div></div>
+<div class="ttc" id="afunctions_8c_html_ad3befffba77b3954d6bbea4d22afc517"><div class="ttname"><a href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517">pausa</a></div><div class="ttdeci">void pausa()</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00440">functions.c:440</a></div></div>
 <div class="ttc" id="afunctions_8c_html_ad86358bf19927183dd7b4ae215a29731"><div class="ttname"><a href="functions_8c.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a></div><div class="ttdeci">#define COLOR_RED</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00003">functions.c:3</a></div></div>
 <div class="ttc" id="afunctions_8c_html_af420b2cbdafa0652b9bc33119a57064b"><div class="ttname"><a href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b">consoleColor</a></div><div class="ttdeci">void consoleColor(int color)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00058">functions.c:58</a></div></div>
 <div class="ttc" id="afunctions_8c_html_afc9149f5de51bd9ac4f5ebbfa153f018"><div class="ttname"><a href="functions_8c.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a></div><div class="ttdeci">#define COLOR_GREEN</div><div class="ttdef"><b>Definition:</b> <a href="functions_8c_source.html#l00001">functions.c:1</a></div></div>

@@ -1,5 +1,7 @@
 var mostra_8h =
 [
+    [ "Mostra", "mostra_8h.html#a3aa0a10f448909d0a4453fff481f16ae", null ],
+    [ "MostraOpera", "mostra_8h.html#add6195bc954d7c96cb630f6bb5d01605", null ],
     [ "aggiungiMostra", "mostra_8h.html#a6054d842da40dda0a5db41ce77ae3df8", null ],
     [ "aggiungiOperaAMostra", "mostra_8h.html#ad5736677d229524b8d992abc5583a68b", null ],
     [ "browserMostra", "mostra_8h.html#ab43da72ce0d07897ea7bdf25efa0fc29", null ],
