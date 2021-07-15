@@ -10,7 +10,7 @@
 
 #else //UNIX
 
-    #include <unistd.h>
+#include <unistd.h>
 
     #define ANSI_COLOR_GREEN   "\x1b[92m"
     #define ANSI_COLOR_CYAN    "\x1b[96m"
@@ -21,65 +21,65 @@
 #endif
 
 void printColor(char text[], int color) {
-#ifdef _WIN32
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, color);
-#else
-    switch (color) {
-        case COLOR_GREEN:
-            printf(ANSI_COLOR_GREEN);
-            break;
-        case COLOR_CYAN:
-            printf(ANSI_COLOR_CYAN);
-            break;
-        case COLOR_RED:
-            printf(ANSI_COLOR_RED);
-            break;
-        case COLOR_MAGENTA:
-            printf(ANSI_COLOR_MAGENTA);
-            break;
-        case COLOR_RESET:
-            printf(ANSI_COLOR_RESET);
-            break;
-        default:
-            break;
-    }
-#endif
+    #ifdef _WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, color);
+    #else
+        switch (color) {
+            case COLOR_GREEN:
+                printf(ANSI_COLOR_GREEN);
+                break;
+            case COLOR_CYAN:
+                printf(ANSI_COLOR_CYAN);
+                break;
+            case COLOR_RED:
+                printf(ANSI_COLOR_RED);
+                break;
+            case COLOR_MAGENTA:
+                printf(ANSI_COLOR_MAGENTA);
+                break;
+            case COLOR_RESET:
+                printf(ANSI_COLOR_RESET);
+                break;
+            default:
+                break;
+        }
+    #endif
 
     printf("%s", text);
 
-#ifdef _WIN32
-    SetConsoleTextAttribute(hConsole, 15);
-#else
-    printf(ANSI_COLOR_RESET);
-#endif
+    #ifdef _WIN32
+        SetConsoleTextAttribute(hConsole, 15);
+    #else
+        printf(ANSI_COLOR_RESET);
+    #endif
 }
 
 void consoleColor(int color) {
-#ifdef _WIN32
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, color);
-#else
-    switch (color) {
-        case COLOR_GREEN:
-            printf(ANSI_COLOR_GREEN);
-            break;
-        case COLOR_CYAN:
-            printf(ANSI_COLOR_CYAN);
-            break;
-        case COLOR_RED:
-            printf(ANSI_COLOR_RED);
-            break;
-        case COLOR_MAGENTA:
-            printf(ANSI_COLOR_MAGENTA);
-            break;
-        case COLOR_RESET:
-            printf(ANSI_COLOR_RESET);
-            break;
-        default:
-            break;
-    }
-#endif
+    #ifdef _WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, color);
+    #else
+        switch (color) {
+            case COLOR_GREEN:
+                printf(ANSI_COLOR_GREEN);
+                break;
+            case COLOR_CYAN:
+                printf(ANSI_COLOR_CYAN);
+                break;
+            case COLOR_RED:
+                printf(ANSI_COLOR_RED);
+                break;
+            case COLOR_MAGENTA:
+                printf(ANSI_COLOR_MAGENTA);
+                break;
+            case COLOR_RESET:
+                printf(ANSI_COLOR_RESET);
+                break;
+            default:
+                break;
+        }
+    #endif
 }
 
 /*
@@ -280,7 +280,7 @@ int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, in
 
     int differenza = 0;
 
-    if(anno1 < anno2 || (anno1 == anno2 && mese1 < mese2) || (anno1 == anno2 && mese1 == mese2 && giorno1 < giorno2)) {
+    if (anno1 < anno2 || (anno1 == anno2 && mese1 < mese2) || (anno1 == anno2 && mese1 == mese2 && giorno1 < giorno2)) {
         differenza = 1;
     } else if (anno1 != anno2 || mese1 != mese2 || giorno1 != giorno2) {
         differenza = -1;
@@ -296,29 +296,30 @@ int differenzaDateChar(char *data1, char *data2) {
     strcpy(dataTemp1, data1);
     strcpy(dataTemp2, data2);
 
-    int data1Convertita[3],data2Convertita[3];
+    int data1Convertita[3], data2Convertita[3];
 
     char *tok1 = strtok(dataTemp1, "/");
     char *tok2 = strtok(dataTemp2, "/");
-    for (int i = 0; i < 3; i++ ) {
+    for (int i = 0; i < 3; i++) {
         data1Convertita[i] = atoi(tok1);
         data2Convertita[i] = atoi(tok2);
         tok1 = strtok(NULL, "/");
         tok2 = strtok(NULL, "/");
     }
 
-    return differenzaDate(data1Convertita[0], data1Convertita[1], data1Convertita[2], data2Convertita[0], data2Convertita[1], data2Convertita[2]);
+    return differenzaDate(data1Convertita[0], data1Convertita[1], data1Convertita[2], data2Convertita[0],
+                          data2Convertita[1], data2Convertita[2]);
 }
 
 int differenzaDateOggi(int giorno, int mese, int anno) {
     struct tm *ts;
     char annoCorrente[5], meseCorrente[3], giornoCorrente[3];
-    
+
     time_t now = time(NULL);
-    
+
     ts = localtime(&now);
-    strftime(annoCorrente,   sizeof(annoCorrente),   "%Y", ts);
-    strftime(meseCorrente,   sizeof(meseCorrente),   "%m", ts);
+    strftime(annoCorrente, sizeof(annoCorrente), "%Y", ts);
+    strftime(meseCorrente, sizeof(meseCorrente), "%m", ts);
     strftime(giornoCorrente, sizeof(giornoCorrente), "%d", ts);
 
     return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), giorno, mese, anno);
@@ -331,10 +332,10 @@ int differenzaDateOggiChar(char *dataTarget) {
     strcpy(data, dataTarget);
 
     int dataConvertita[3];
-    
+
     char *tok = strtok(data, "/");
 
-    for (int i = 0; i < 3; i++ ) {
+    for (int i = 0; i < 3; i++) {
         dataConvertita[i] = atoi(tok);
         tok = strtok(NULL, "/");
     }
@@ -346,32 +347,33 @@ int differenzaDateOggiChar(char *dataTarget) {
 
 bool verificaDataCorrente(int giorno, int mese, int anno) {
     bool dataCorrente;
-    
+
     time_t now;
     struct tm *ts;
-    
+
     char giornoCorrente[3];
     char meseCorrente[3];
     char annoCorrente[5];
     int giornoCorr, meseCorr, annoCorr;
-    
+
     //salvo data odierna
     now = time(NULL);
     ts = localtime(&now);
-    
+
     strftime(annoCorrente, sizeof(annoCorrente), "%Y", ts);
     strftime(meseCorrente, sizeof(meseCorrente), "%m", ts);
     strftime(giornoCorrente, sizeof(giornoCorrente), "%d", ts);
-    
+
     giornoCorr = atoi(giornoCorrente);
     meseCorr = atoi(meseCorrente);
     annoCorr = atoi(annoCorrente);
-    
-    if((giorno == giornoCorr) && (mese == meseCorr) && (anno == annoCorr)) {
+
+    if ((giorno == giornoCorr) && (mese == meseCorr) && (anno == annoCorr)) {
         //le date coincidono
         dataCorrente = true;
     } else {
-        if(anno < annoCorr || (anno == annoCorr && mese < meseCorr) || (anno == annoCorr && mese == meseCorr && giorno < giornoCorr)) {
+        if (anno < annoCorr || (anno == annoCorr && mese < meseCorr) ||
+            (anno == annoCorr && mese == meseCorr && giorno < giornoCorr)) {
             //La data di inizio mostra precede la data odierna
             dataCorrente = false;
         } else {
@@ -379,7 +381,7 @@ bool verificaDataCorrente(int giorno, int mese, int anno) {
             dataCorrente = true;
         }
     }
-    
+
     return dataCorrente;
 }
 
@@ -393,19 +395,21 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
 
     char *tok = strtok(giorno1temp, "/");
 
-    for (int i = 0; i < 3; i++ ) {
+    for (int i = 0; i < 3; i++) {
         giorno1conv[i] = atoi(tok);
         tok = strtok(NULL, "/");
     }
 
     tok = strtok(giorno2temp, "/");
 
-    for (int i = 0; i < 3; i++ ) {
+    for (int i = 0; i < 3; i++) {
         giorno2conv[i] = atoi(tok);
         tok = strtok(NULL, "/");
     }
-    if (verificaData(giorno, mese, anno) && verificaData(giorno1conv[0], giorno1conv[1], giorno1conv[2]) && verificaData(giorno2conv[0], giorno2conv[1], giorno2conv[2])) {
-        if (differenzaDate(giorno, mese, anno, giorno1conv[0], giorno1conv[1], giorno1conv[2]) <= 0 && differenzaDate(giorno, mese, anno, giorno2conv[0], giorno2conv[1], giorno2conv[2]) >= 0) {
+    if (verificaData(giorno, mese, anno) && verificaData(giorno1conv[0], giorno1conv[1], giorno1conv[2]) &&
+        verificaData(giorno2conv[0], giorno2conv[1], giorno2conv[2])) {
+        if (differenzaDate(giorno, mese, anno, giorno1conv[0], giorno1conv[1], giorno1conv[2]) <= 0 &&
+            differenzaDate(giorno, mese, anno, giorno2conv[0], giorno2conv[1], giorno2conv[2]) >= 0) {
             inIntervallo = true;
         }
     }

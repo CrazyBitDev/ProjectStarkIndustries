@@ -25,19 +25,19 @@ struct mostra {
  *   @return //
  */
 Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
-    
+
     //Lettura mostre dal file
     int colonna1 = 0;
     char buf[BUFFER_SIZE];
-    
+
     Mostra *testaMostra = NULL;
-    Mostra *tempMostra  = NULL; //temporanea
+    Mostra *tempMostra = NULL; //temporanea
     Mostra *tempMostra1 = NULL;
 
     MostraOpera *tempMostraOpera = NULL;
-    Opera *tempOpera    = NULL;
+    Opera *tempOpera = NULL;
     bool operaNonInserita = false;
-    
+
     if (fp == NULL) {
         printColor("\t\t\t|-----------------------------|\n", COLOR_RED);
         printColor("\t\t\t|  File \"mostre\" non trovato! |\n", COLOR_RED);
@@ -50,16 +50,16 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
             tempMostra = (Mostra *) malloc(sizeof(Mostra));
             tempMostra->nextMostra = NULL;
             tempMostra->opere = NULL;
-            
+
             if (tempMostra1 != NULL) {
                 tempMostra1->nextMostra = tempMostra;
             } else {
                 testaMostra = tempMostra;
             }
-            
+
             char *tok2;
             tok2 = strtok(buf, ",");
-            
+
             while (tok2) {
                 if (colonna1 == 0) {
                     tempMostra->id = atoi(tok2);
@@ -98,7 +98,7 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
             tempMostra1 = tempMostra;
         }
     }
-    
+
     if (fpMO == NULL) {
         printColor("\t\t\t|-------------------------------|\n", COLOR_RED);
         printColor("\t\t\t|File \"mostreopere\" non trovato!|\n", COLOR_RED);
@@ -110,7 +110,7 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
             fgets(buf, BUFFER_SIZE, fpMO);
 
             char *tok = strtok(buf, ",");
-            
+
             while (tok) {
                 if (colonna1 == 0) {
                     Mostra *tempMostra = ricercaMostra(testaMostra, atoi(tok));
@@ -162,11 +162,11 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
  *   @returns: //
  */
 void aggiungiMostra(Mostra *testa) {
-    
+
     Mostra *curr, *prec;
     prec = NULL;
     curr = testa;
-    
+
     bool continuaInserimento = true;
     bool testInput = false; //flag per controllare i vari input
     bool flagDate = false;
@@ -174,43 +174,43 @@ void aggiungiMostra(Mostra *testa) {
     bool dataCorrettaIn = true;
     int giornoIn, meseIn, annoIn;
     int ultimoID = 0, i;
-    
+
     char dataFin[11];
     bool dataCorrettaFin = true;
     int giornoFin, meseFin, annoFin;
-    
+
     Mostra *nuovoNodo = NULL;
-    
-    
+
+
     nuovoNodo = (Mostra *) malloc(sizeof(Mostra));
-    
+
     FILE *fp;
     fp = fopen("mostre.csv", "a+"); //apertura file
-    
+
     notificaAnnulla();
-    
+
     do {
         testInput = false;
         printf("Inserisci il responsabile: ");
         fgets(nuovoNodo->responsabile, 30, stdin);
         nuovoNodo->responsabile[strlen(nuovoNodo->responsabile) - 1] = 0;
         nuovoNodo->responsabile[0] = toupper(nuovoNodo->responsabile[0]);
-        
-        if(strlen(nuovoNodo->responsabile) == 0) {
+
+        if (strlen(nuovoNodo->responsabile) == 0) {
             continuaInserimento = false;
             clearConsole();
             titolo();
             break;
         }
-        
+
         //verifico che siano stati inseriti solo caratteri alfabetici
-        for(i=0; i<strlen(nuovoNodo->responsabile); i++) {
-            if(isalpha(nuovoNodo->responsabile[i]) == 0 && nuovoNodo->responsabile[i] != ' ') {
+        for (i = 0; i < strlen(nuovoNodo->responsabile); i++) {
+            if (isalpha(nuovoNodo->responsabile[i]) == 0 && nuovoNodo->responsabile[i] != ' ') {
                 testInput = true; //carattere non alfabetico
             }
         }
-        
-        if(testInput) {
+
+        if (testInput) {
             clearConsole();
             titolo();
             printf("\n----------");
@@ -219,26 +219,26 @@ void aggiungiMostra(Mostra *testa) {
             printf("----------\n\n");
         }
     } while (testInput);
-    
-    if(continuaInserimento) {
-        
+
+    if (continuaInserimento) {
+
         clearConsole();
         titolo();
-        
+
         do {
             testInput = false;
             printf("Inserisci il luogo: ");
             fgets(nuovoNodo->luogo, 25, stdin);
             nuovoNodo->luogo[strlen(nuovoNodo->luogo) - 1] = 0;
             nuovoNodo->luogo[0] = toupper(nuovoNodo->luogo[0]);
-            
-            for(i=0; i<strlen(nuovoNodo->luogo); i++) {
-                if(isalpha(nuovoNodo->luogo[i]) == 0 && nuovoNodo->luogo[i] != ' ') {
+
+            for (i = 0; i < strlen(nuovoNodo->luogo); i++) {
+                if (isalpha(nuovoNodo->luogo[i]) == 0 && nuovoNodo->luogo[i] != ' ') {
                     testInput = true; //carattere non alfabetico
                 }
             }
-            
-            if(testInput || strlen(nuovoNodo->luogo) == 0) {
+
+            if (testInput || strlen(nuovoNodo->luogo) == 0) {
                 clearConsole();
                 titolo();
                 printf("\n----------");
@@ -247,23 +247,23 @@ void aggiungiMostra(Mostra *testa) {
                 printf("----------\n\n");
             }
         } while (testInput || strlen(nuovoNodo->luogo) == 0);
-        
+
         printf("-----------------------------\n");
-        
+
         do {
             testInput = false;
             printf("Inserisci Citta': ");
             fgets(nuovoNodo->citta, 20, stdin);
             nuovoNodo->citta[strlen(nuovoNodo->citta) - 1] = 0;
             nuovoNodo->citta[0] = toupper(nuovoNodo->citta[0]);
-            
-            for(i=0; i<strlen(nuovoNodo->citta); i++) {
-                if(isalpha(nuovoNodo->citta[i]) == 0 && nuovoNodo->citta[i] != ' ') {
+
+            for (i = 0; i < strlen(nuovoNodo->citta); i++) {
+                if (isalpha(nuovoNodo->citta[i]) == 0 && nuovoNodo->citta[i] != ' ') {
                     testInput = true; //carattere non alfabetico
                 }
             }
-            
-            if(testInput || strlen(nuovoNodo->citta) == 0) {
+
+            if (testInput || strlen(nuovoNodo->citta) == 0) {
                 clearConsole();
                 titolo();
                 printf("\n----------");
@@ -272,17 +272,17 @@ void aggiungiMostra(Mostra *testa) {
                 printf("----------\n\n");
             }
         } while (testInput || strlen(nuovoNodo->luogo) == 0);
-        
+
         printf("-----------------------------\n");
-        
+
         do {
             testInput = false;
             printf("Inserisci Indirizzo: ");
             fgets(nuovoNodo->indirizzo, 20, stdin);
             nuovoNodo->indirizzo[strlen(nuovoNodo->indirizzo) - 1] = 0;
             nuovoNodo->indirizzo[0] = toupper(nuovoNodo->indirizzo[0]);
-            
-            if(strlen(nuovoNodo->indirizzo) == 0) {
+
+            if (strlen(nuovoNodo->indirizzo) == 0) {
                 testInput = true;
                 clearConsole();
                 titolo();
@@ -292,14 +292,14 @@ void aggiungiMostra(Mostra *testa) {
                 printf("----------\n\n");
             }
         } while (testInput);
-        
+
         printf("-----------------------------\n");
-        
+
         bool dataCorr = true;
-        
+
         do {
             do {
-                if(!dataCorr) {
+                if (!dataCorr) {
                     clearConsole();
                     titolo();
                     printf("\n----------");
@@ -308,11 +308,11 @@ void aggiungiMostra(Mostra *testa) {
                     printf("Si prega di inserirla nuovamente.\n");
                     printf("----------\n\n");
                 }
-                
+
                 printf("Inserisci la data d'");
                 printColor("inizio ", COLOR_CYAN);
                 printf("mostra\n");
-                
+
                 do {
                     if (!dataCorrettaIn) {
                         clearConsole();
@@ -322,37 +322,37 @@ void aggiungiMostra(Mostra *testa) {
                         printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente.\n");
                         printf("----------\n\n");
                     }
-                    
+
                     do {
                         printf("Giorno: ");
                         scanf("%d", &giornoIn);
                     } while (giornoIn < 1 || giornoIn > 31);
-                    
+
                     do {
                         printf("Mese: ");
                         scanf("%d", &meseIn);
                     } while (meseIn < 1 || meseIn > 12);
-                    
+
                     printf("Anno: ");
                     scanf("%d", &annoIn);
-                    
+
                     dataCorrettaIn = verificaData(giornoIn, meseIn, annoIn);
-                    
+
                 } while (!dataCorrettaIn);
-                
+
                 dataCorr = verificaDataCorrente(giornoIn, meseIn, annoIn);
             } while (!dataCorr);
-            
+
             while ('\n' != getchar());
-            
+
             snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
-            
+
             printf("-----------------------------\n");
-            
+
             printf("Inserisci la data di ");
             printColor("fine ", COLOR_CYAN);
             printf("mostra\n");
-            
+
             do {
                 if (!dataCorrettaFin) {
                     clearConsole();
@@ -362,28 +362,28 @@ void aggiungiMostra(Mostra *testa) {
                     printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente.\n");
                     printf("----------\n\n");
                 }
-                
+
                 do {
                     printf("Giorno: ");
                     scanf("%d", &giornoFin);
                 } while (giornoFin < 1 || giornoFin > 31);
-                
+
                 do {
                     printf("Mese: ");
                     scanf("%d", &meseFin);
                 } while (meseFin < 1 || meseFin > 12);
-                
+
                 printf("Anno: ");
                 scanf("%d", &annoFin);
-                
+
                 dataCorrettaFin = verificaData(giornoFin, meseFin, annoFin);
-                
+
             } while (!dataCorrettaFin);
-            
+
             while ('\n' != getchar());
-            
+
             snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
-            
+
             printf("\n");
             if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
                 flagDate = true;
@@ -399,32 +399,32 @@ void aggiungiMostra(Mostra *testa) {
         } while (!flagDate);
         strcpy(nuovoNodo->dataInizio, dataIn);
         strcpy(nuovoNodo->dataFine, dataFin);
-        
+
         //verifico se nel file ci sono già delle mmostre registrate o meno
         fseek(fp, 0, SEEK_END);
         long size = ftell(fp);
-        
+
         ultimoID = letturaUltimoID("mostre.csv") + 1;
-        
+
         //ricerca della posizione di inserimento
         while (curr != NULL && ultimoID > curr->id) {
             prec = curr;
             curr = curr->nextMostra;
         }
-        
+
         if (size == 0) { //file vuoto
             nuovoNodo->id = 0;
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%s", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->luogo,
                     nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine);
-            
+
         } else { //file pieno
             nuovoNodo->id = ultimoID;
             fprintf(fp, "\n%d,%s,%s,%s,%s,%s,%s", nuovoNodo->id, nuovoNodo->responsabile, nuovoNodo->luogo,
                     nuovoNodo->citta, nuovoNodo->indirizzo, nuovoNodo->dataInizio, nuovoNodo->dataFine);
         }
-        
+
         fclose(fp);
-        
+
         //aggiornamento dei collegamenti
         if (prec == NULL) {
             nuovoNodo->nextMostra = testa;
@@ -433,7 +433,7 @@ void aggiungiMostra(Mostra *testa) {
             prec->nextMostra = nuovoNodo;
             nuovoNodo->nextMostra = curr;
         }
-        
+
         clearConsole();
         titolo();
         printColor("Mostra registrata con successo.\n", COLOR_GREEN);
@@ -455,12 +455,14 @@ void aggiungiMostra(Mostra *testa) {
 void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
     bool operaLibera = true;
     for (Mostra *tempMostra = testa; tempMostra != NULL; tempMostra = tempMostra->nextMostra) {
-        if ( differenzaDateChar(mostra->dataInizio, tempMostra->dataFine) >= 0 && differenzaDateChar(mostra->dataFine, tempMostra->dataInizio) <= 0)
-        for (MostraOpera *tempMostraOpera = tempMostra->opere; tempMostraOpera != NULL; tempMostraOpera = tempMostraOpera->nextOpera) {
-            if (opera->id == tempMostraOpera->opera->id) {
-                operaLibera = false;
+        if (differenzaDateChar(mostra->dataInizio, tempMostra->dataFine) >= 0 &&
+            differenzaDateChar(mostra->dataFine, tempMostra->dataInizio) <= 0)
+            for (MostraOpera *tempMostraOpera = tempMostra->opere;
+                 tempMostraOpera != NULL; tempMostraOpera = tempMostraOpera->nextOpera) {
+                if (opera->id == tempMostraOpera->opera->id) {
+                    operaLibera = false;
+                }
             }
-        }
     }
     if (operaLibera) {
         bool operaNonInserita = true;
@@ -494,23 +496,23 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
     bool flagDate = false;
     bool continuaModifica = true;
     bool testInput = false;
-    
+
     Mostra *temp = NULL;
     temp = mostra;
-    
+
     char responsabile[30];
     char luogo[25];
     char citta[20];
     char indirizzo[30];
-    
+
     char dataIn[11];
     bool dataCorrettaIn = true;
     int giornoIn = 0, meseIn = 0, annoIn = 0;
-    
+
     char dataFin[11];
     bool dataCorrettaFin = true;
     int giornoFin = 0, meseFin = 0, annoFin = 0;
-    
+
     printColor("\nDati relativi alla mostra scelta:\n", COLOR_CYAN);
     printf("Id: %d\n", temp->id);
     printf("Responsabile: %s\n", temp->responsabile);
@@ -520,10 +522,10 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
     printf("Data inizio mostra: %s\n", temp->dataInizio);
     printf("Data fine mostra: %s\n", temp->dataFine);
     printColor("----------\n\n", COLOR_CYAN);
-    
+
     do {
-       // while ('\n' != getchar());
-        
+        // while ('\n' != getchar());
+
         //elenco campi modificabili
         printf("Scegliere il campo da modificare\n");
         printf("----------\n");
@@ -539,34 +541,34 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
         scanf("%d", &scelta);
         printf("\n");
         while ('\n' != getchar());
-        
+
         switch (scelta) {
             case 0:
                 break;
-                
+
             case 1:
                 clearConsole();
                 titolo();
-                
+
                 do {
-                notificaAnnulla();
+                    notificaAnnulla();
                     testInput = false;
-                printf("Inserisci il responsabile: ");
-                fgets(responsabile, 30, stdin);
-                responsabile[strlen(responsabile) - 1] = 0;
-                responsabile[0] = toupper(responsabile[0]);
-                
-                if(strlen(responsabile) == 0) {
-                    continuaModifica = false;
-                    break;
-                }
-                    
+                    printf("Inserisci il responsabile: ");
+                    fgets(responsabile, 30, stdin);
+                    responsabile[strlen(responsabile) - 1] = 0;
+                    responsabile[0] = toupper(responsabile[0]);
+
+                    if (strlen(responsabile) == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
+
                     for (i = 0; i < strlen(responsabile); i++) {
                         if (isalpha(responsabile[i]) == 0 && responsabile[i] != ' ') {
                             testInput = true; //carattere non alfabetico
                         }
                     }
-                    
+
                     if (testInput) {
                         clearConsole();
                         titolo();
@@ -577,31 +579,31 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                     } else {
                         strcpy(temp->responsabile, responsabile);
                     }
-                } while(testInput);
-                
+                } while (testInput);
+
             case 2:
                 clearConsole();
                 titolo();
-                
+
                 do {
-                notificaAnnulla();
+                    notificaAnnulla();
                     testInput = false;
-                printf("Inserisci il luogo: ");
-                fgets(luogo, 25, stdin);
-                luogo[strlen(luogo) - 1] = 0;
-                luogo[0] = toupper(luogo[0]);
-                
-                if(strlen(luogo) == 0) {
-                    continuaModifica = false;
-                    break;
-                }
-                    
+                    printf("Inserisci il luogo: ");
+                    fgets(luogo, 25, stdin);
+                    luogo[strlen(luogo) - 1] = 0;
+                    luogo[0] = toupper(luogo[0]);
+
+                    if (strlen(luogo) == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
+
                     for (i = 0; i < strlen(luogo); i++) {
                         if (isalpha(luogo[i]) == 0 && luogo[i] != ' ') {
                             testInput = true; //carattere non alfabetico
                         }
                     }
-                    
+
                     if (testInput) {
                         clearConsole();
                         titolo();
@@ -612,31 +614,31 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                     } else {
                         strcpy(temp->luogo, luogo);
                     }
-                    
-                } while(testInput);
+
+                } while (testInput);
                 break;
-                
+
             case 3:
                 clearConsole();
                 titolo();
                 do {
-                notificaAnnulla();
+                    notificaAnnulla();
                     testInput = false;
-                printf("Inserisci la citta': ");
-                fgets(citta, 20, stdin);
-                citta[strlen(citta) - 1] = 0;
-                citta[0] = toupper(citta[0]);
-                
-                if(strlen(citta) == 0) {
-                    continuaModifica = false;
-                    break;
-                }
+                    printf("Inserisci la citta': ");
+                    fgets(citta, 20, stdin);
+                    citta[strlen(citta) - 1] = 0;
+                    citta[0] = toupper(citta[0]);
+
+                    if (strlen(citta) == 0) {
+                        continuaModifica = false;
+                        break;
+                    }
                     for (i = 0; i < strlen(citta); i++) {
                         if (isalpha(citta[i]) == 0 && citta[i] != ' ') {
                             testInput = true; //carattere non alfabetico
                         }
                     }
-                    
+
                     if (testInput) {
                         clearConsole();
                         titolo();
@@ -647,35 +649,35 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                     } else {
                         strcpy(temp->citta, citta);
                     }
-                } while(testInput);
+                } while (testInput);
                 break;
-                
-                
+
+
             case 4:
                 clearConsole();
                 titolo();
                 notificaAnnulla();
-                
+
                 printf("Inserisci l'indirizzo: ");
                 fgets(indirizzo, 20, stdin);
                 indirizzo[strlen(indirizzo) - 1] = 0;
                 indirizzo[0] = toupper(indirizzo[0]);
-                
-                if(strlen(indirizzo) == 0) {
+
+                if (strlen(indirizzo) == 0) {
                     continuaModifica = false;
                     break;
                 } else {
                     strcpy(temp->indirizzo, indirizzo);
                 }
                 break;
-                
+
             case 5:;
                 bool dataCorr = true;
                 flagDate = false;
-                
+
                 clearConsole();
                 titolo();
-                
+
                 consoleColor(COLOR_RED);
                 printf("\t\t\t|-----------------------------|\n");
                 printf("\t\t\t|         Attenzione!         |\n");
@@ -684,10 +686,10 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 printf("\t\t\t|      premere il tasto 0     |\n");
                 printf("\t\t\t|-----------------------------|\n");
                 consoleColor(COLOR_RESET);
-                
+
                 do {
                     do {
-                        if(!dataCorr) {
+                        if (!dataCorr) {
                             clearConsole();
                             titolo();
                             printf("\n----------");
@@ -696,11 +698,11 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             printf("Si prega di inserirla nuovamente.\n");
                             printf("----------\n\n");
                         }
-                        
+
                         printf("Inserisci la data d'");
                         printColor("inizio ", COLOR_CYAN);
                         printf("mostra\n");
-                        
+
                         do {
                             if (!dataCorrettaIn) {
                                 clearConsole();
@@ -710,49 +712,49 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                                 printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente.\n");
                                 printf("----------\n\n");
                             }
-                            
+
                             do {
                                 printf("Giorno: ");
                                 scanf("%d", &giornoIn);
-                                
-                                if(giornoIn == 0) {
+
+                                if (giornoIn == 0) {
                                     continuaModifica = false;
                                     flagDate = true;
                                     break;
                                 }
-                                
+
                             } while (giornoIn < 1 || giornoIn > 31);
-                            
-                            if(continuaModifica) {
-                                
+
+                            if (continuaModifica) {
+
                                 do {
                                     printf("Mese: ");
                                     scanf("%d", &meseIn);
                                 } while (meseIn < 1 || meseIn > 12);
-                                
+
                                 printf("Anno: ");
                                 scanf("%d", &annoIn);
-                                
+
                                 dataCorrettaIn = verificaData(giornoIn, meseIn, annoIn);
                             }
-                        
+
                         } while (!dataCorrettaIn);
-                        
-                        if(giornoIn == 0) {
+
+                        if (giornoIn == 0) {
                             continuaModifica = false;
                             flagDate = true;
                             break;
                         }
-                        
+
                         dataCorr = verificaDataCorrente(giornoIn, meseIn, annoIn);
                     } while (!dataCorr);
-                        
-                    if(continuaModifica) {
+
+                    if (continuaModifica) {
                         snprintf(dataIn, 11, "%d/%d/%d", giornoIn, meseIn, annoIn);
-                        
+
                         char *tok;
                         tok = strtok(temp->dataFine, "/");
-                        
+
                         while (tok) {
                             if (colonna == 0) {
                                 giornoFin = atoi(tok);
@@ -766,7 +768,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             tok = strtok(NULL, "/");
                             colonna++;
                         }
-                        
+
                         if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin)) {
                             flagDate = true;
                         } else {
@@ -779,7 +781,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             printf("----------\n\n");
                         }
                     }
-                        
+
                     if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
                         flagDate = true;
                     } else {
@@ -789,11 +791,11 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         printf("Si prega di inserire nuovamente le date.\n");
                         printf("----------\n\n");
                     }
-                
+
                 } while (!flagDate);
                 strcpy(temp->dataInizio, dataIn);
                 break;
-                
+
             case 6:
                 flagDate = false;
                 do {
@@ -809,40 +811,40 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             printf("La data inserita non e' corretta.\nSi prega di inserirla nuovamente.\n");
                             printf("----------\n\n");
                         }
-                        
+
                         do {
                             printf("Giorno: ");
                             scanf("%d", &giornoIn);
-                            
-                            if(giornoIn == 0) {
+
+                            if (giornoIn == 0) {
                                 continuaModifica = false;
                                 flagDate = true;
                                 break;
                             }
-                            
+
                         } while (giornoIn < 1 || giornoIn > 31);
-                        
-                        if(continuaModifica) {
+
+                        if (continuaModifica) {
                             do {
                                 printf("Mese: ");
                                 scanf("%d", &meseFin);
                             } while (meseFin < 1 || meseFin > 12);
-                            
+
                             printf("Anno: ");
                             scanf("%d", &annoFin);
-                            
+
                             dataCorrettaFin = verificaData(giornoFin, meseFin, annoFin);
                         }
-                        
+
                     } while (!dataCorrettaFin);
-                    
-                    if(continuaModifica) {
+
+                    if (continuaModifica) {
 
                         snprintf(dataFin, 11, "%d/%d/%d", giornoFin, meseFin, annoFin);
-                        
+
                         char *tok;
                         tok = strtok(temp->dataInizio, "/");
-                        
+
                         while (tok) {
                             if (colonna == 0) {
                                 giornoIn = atoi(tok);
@@ -856,7 +858,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             tok = strtok(NULL, "/");
                             colonna++;
                         }
-                        
+
                         if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
                             flagDate = true;
                         } else {
@@ -869,25 +871,25 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             printf("----------\n\n");
                         }
                     }
-                    
+
                 } while (!flagDate);
                 strcpy(temp->dataFine, dataFin);
                 break;
-              
+
             default:
                 break;
         }
-        
+
         if (scelta != 0 && continuaModifica) {
             do {
                 printf("----------\n");
                 printf("Vuoi modificare un altro campo? (s/n): ");
                 risposta = getchar();
                 while ('\n' != getchar());
-                
+
                 //rendo la risposta in maiuscolo per evitare errori
                 risposta = toupper(risposta);
-                
+
                 if (risposta == 'N') {
                     scriviMostre(testa);
                 }
@@ -896,12 +898,11 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
         } else {
             scriviMostre(testa);
         }
-        
+
         clearConsole();
         titolo();
     } while (risposta == 'S' && scelta != 0);
 }
-
 
 
 /**
@@ -960,10 +961,10 @@ void scriviMostre(Mostra *testa) {
     FILE *fp, *fpMO;
     fp = fopen("mostre.csv", "w"); //apertura file
     fpMO = fopen("mostreopere.csv", "w"); //apertura file
-    
+
     for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
         long size = ftell(fp);
-        
+
         if (size == 0) {
             //file vuoto.
             fprintf(fp, "%d,%s,%s,%s,%s,%s,%s", temp->id, temp->responsabile, temp->luogo, temp->citta,
@@ -976,7 +977,7 @@ void scriviMostre(Mostra *testa) {
 
         for (MostraOpera *tempMO = temp->opere; temp != NULL; tempMO = tempMO->nextOpera) {
             long size = ftell(fpMO);
-        
+
             if (size == 0) {
                 //file vuoto.
                 fprintf(fpMO, "%d,%d", temp->id, tempMO->opera->id);
@@ -1004,11 +1005,11 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
     char risposta;
     Mostra *curr, *prec;
     Mostra *temp = NULL;
-    
+
     temp = mostra;
     prec = NULL;
     curr = testa;
-    
+
     do {
         while ('\n' != getchar());
         printColor("ATTENZIONE!\n", COLOR_RED);
@@ -1016,21 +1017,21 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
         printf("Risposta (s/n): ");
         scanf("%c", &risposta);
         printf("\n");
-        
+
         //rendo la risposta tutta maiuscola per evitare errori
         risposta = toupper(risposta);
-        
+
     } while (risposta != 'S' && risposta != 'N');
-    
+
     clearConsole();
     titolo();
-    
+
     if (risposta == 'S') {
         while (curr != NULL && temp->id != curr->id) {
             prec = curr;
             curr = curr->nextMostra;
         }
-        
+
         if (temp->id == curr->id) {
             if (prec == NULL) { //elemento trovato in testa
                 testa = curr->nextMostra;
@@ -1039,7 +1040,7 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
             }
             free(curr);
         }
-        
+
         scriviMostre(testa);
         printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
     }
@@ -1054,15 +1055,15 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
         printf("Risposta (s/n): ");
         scanf("%c", &risposta);
         printf("\n");
-        
+
         //rendo la risposta tutta maiuscola per evitare errori
         risposta = toupper(risposta);
-        
+
     } while (risposta != 'S' && risposta != 'N');
-    
+
     clearConsole();
     titolo();
-    
+
     if (risposta == 'S') {
 
         MostraOpera *curr = mostra->opere, *prec = NULL;
@@ -1071,7 +1072,7 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
             prec = curr;
             curr = curr->nextOpera;
         }
-        
+
         if (idOpera == curr->opera->id) {
             if (prec == NULL) { //elemento trovato in testa
                 mostra->opere = curr->nextOpera;
@@ -1080,8 +1081,8 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
             }
             free(curr);
         }
-        
-        
+
+
         scriviMostre(testa);
         printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
     }
@@ -1101,7 +1102,7 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
     bool flag = false;
     Mostra *nuovoNodo = NULL;
     Mostra *temp;
-    
+
     for (temp = testa; temp != NULL; temp = temp->nextMostra) {
         if (temp->id == id) {
             nuovoNodo = temp;
@@ -1109,7 +1110,7 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
             break;
         }
     }
-    
+
     if (!flag) {
         clearConsole();
         titolo();
@@ -1118,7 +1119,7 @@ Mostra *ricercaMostra(Mostra *testa, int id) {
         printf("Mostra non trovata.\n");
         printf("----------\n\n");
     }
-    
+
     return nuovoNodo;
 }
 
@@ -1162,8 +1163,8 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
             printf("-> ");
             scanf("%d", &scelta);
 
-            switch(scelta) {
-                
+            switch (scelta) {
+
                 case 1:
                     mostreTrovate = 0;
                     clearConsole();
@@ -1207,7 +1208,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         }
                     }
                     break;
-                    
+
                 case 2:
                     mostreTrovate = 0;
                     clearConsole();
@@ -1251,7 +1252,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         }
                     }
                     break;
-                    
+
                 case 3:
                     mostreTrovate = 0;
                     clearConsole();
