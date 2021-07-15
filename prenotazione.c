@@ -394,9 +394,11 @@ void stampaPrenotazioniUtente(Prenotazione *testa, Utente *utente) {
 
     for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
         if (temp->utente->id == utente->id) {
-            stampaPrenotazione(temp);
-            trovato = true;
-            printf("----------\n");
+            if (differenzaDateOggiChar(temp->data) >= 0 ) {
+                stampaPrenotazione(temp);
+                trovato = true;
+                printf("----------\n");
+            }
         }
     }
     if (!trovato) {
@@ -553,5 +555,9 @@ void eliminaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
         printColor("Attenzione!\n", COLOR_RED);
         printf("I termini per la cancellazione della prenotazione sono scaduti.\n");
         printf("----------\n\n");
+        pausa();
+        clearConsole();
+        titolo();
+
     }
 }
