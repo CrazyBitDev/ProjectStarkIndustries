@@ -26,6 +26,5 @@ var functions_8c =
     [ "readPassword", "functions_8c.html#a72b8a9a69a000b9332a3757d286b4170", null ],
     [ "titolo", "functions_8c.html#a344fc8694610c76e62cab4a950172350", null ],
     [ "toUppercase", "functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f", null ],
-    [ "verificaData", "functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db", null ],
-    [ "verificaDataCorrente", "functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7", null ]
+    [ "verificaData", "functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db", null ]
 ];

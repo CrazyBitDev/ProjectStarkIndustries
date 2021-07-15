@@ -24,8 +24,6 @@ int differenzaDateOggi(int giorno, int mese, int anno);
 
 int differenzaDateOggiChar(char *dataTarget);
 
-bool verificaDataCorrente(int giorno, int mese, int anno);
-
 bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorno2);
 
 void notificaAnnulla(void);

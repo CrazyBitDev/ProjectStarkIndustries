@@ -154,7 +154,7 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 Function: accesso</h2>
 <p>Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato</p>
 <dl class="params"><dt>Parametri</dt><dd>
@@ -166,7 +166,7 @@ Function: accesso</h2>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>: se esiste utente con email o nickname uguale al valore del secondo argomento (char *text) e la password inserita corrisponde la funzione lo ritornerà, altrimenti il valore sarà uguale a NULL </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00436">436</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00432">432</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -214,13 +214,13 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md34"></a>
+<h2><a class="anchor" id="autotoc_md45"></a>
 Function: eliminaUtente</h2>
 <p>Dopo aver effettuato l'accesso al proprio profilo, permette di eliminarlo</p>
 <p>Utente *utenteLogin: utente che ha effettuato il login Utente *testa: lista utente</p>
 <p>returns: // </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00838">838</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00830">830</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -261,18 +261,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md39"></a>
 Function: letturaUtenti</h2>
 <p>Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: nome del file da cui leggere i dati, ovvero "utenti.csv"</td></tr>
+    <tr><td class="paramname">fp</td><td>: nome del file da cui leggere i dati, ovvero "utenti.csv" </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00022">22</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00020">20</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -309,13 +308,13 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2><a class="anchor" id="autotoc_md47"></a>
 Function: modificaPermessi</h2>
 <p>Permette all'utente che possiede i permessi di livello 2 (direttore) di modificare il livello dei permessi degli altri utenti</p>
 <p>Utente *testa: lista utente</p>
 <p>returns: // </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00929">929</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00921">921</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -368,19 +367,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 Function: modificaUtente</h2>
 <p>Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramname">utenteLogin</td><td>: utente che ha effettuato il login </td></tr>
-    <tr><td class="paramname">testa</td><td>: lista utente</td></tr>
+    <tr><td class="paramname">testa</td><td>: lista utente </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00537">537</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00529">529</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -425,18 +423,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md40"></a>
 Function: registrazioneUtente</h2>
 <p>Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista utente</td></tr>
+    <tr><td class="paramname">testa</td><td>: lista utente </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00104">104</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00100">100</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -493,7 +490,7 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
 Function: ricercaUtente</h2>
 <p>TODO: da finire</p>
 <dl class="params"><dt>Parametri</dt><dd>
@@ -505,7 +502,7 @@ Function: ricercaUtente</h2>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>: TODO: da finire </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00473">473</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00469">469</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -543,13 +540,13 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md35"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
 Function: scriviUtenti</h2>
 <p>Permette di salvare tutte le modifiche effettuate sul file "utenti.csv"</p>
 <p>Utente *testa: lista utente</p>
 <p>returns: // </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00898">898</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00890">890</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -580,18 +577,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md43"></a>
 Function: stampaUtente</h2>
 <p>Permette di stampare i dati personali di un determinato utente dopo che ha effettuato l'accesso al proprio profilo</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">utenteLogin</td><td>: utente che ha effettuato il login</td></tr>
+    <tr><td class="paramname">utenteLogin</td><td>: utente che ha effettuato il login </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: // </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00505">505</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00499">499</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">

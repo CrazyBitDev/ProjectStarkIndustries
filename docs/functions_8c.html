@@ -163,8 +163,6 @@ Funzioni</h2></td></tr>
 <tr class="separator:a8948eb043fad35898f4a8036e9ec85a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf34a2b141801e95e8b4293f44cf94b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9">differenzaDateOggiChar</a> (char *dataTarget)</td></tr>
 <tr class="separator:acf34a2b141801e95e8b4293f44cf94b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d71bdc5a4b1cfe78df4110cd1efa0e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8c.html#a6d71bdc5a4b1cfe78df4110cd1efa0e7">verificaDataCorrente</a> (int giorno, int mese, int anno)</td></tr>
-<tr class="separator:a6d71bdc5a4b1cfe78df4110cd1efa0e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ca377b7da9c3e1d370fff96131eaad0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0">dataInIntervallo</a> (int giorno, int mese, int anno, char *giorno1, char *giorno2)</td></tr>
 <tr class="separator:a9ca377b7da9c3e1d370fff96131eaad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e001744c29d449ddea95d5821e6896e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e">notificaAnnulla</a> ()</td></tr>
@@ -351,8 +349,18 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md5"></a>
+Function: annoBisestile</h2>
+<p>Controlla che l'anno passato come argomento sia bisestile o meno</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">anno</td><td>: anno (numerico)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>annoBis, booleano, true se l'anno passato come argomento è bisestile, altrimenti false </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00166">166</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00188">188</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -390,13 +398,11 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md0"></a>
+<h2><a class="anchor" id="autotoc_md3"></a>
 Function: clearConsole</h2>
-<p>Permette di pulire la console</p>
-<p>Params: //</p>
-<p>returns: // </p>
+<p>Pulisce la console completamente o solo parzialmente (solo la zona visualizzata) </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00121">121</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00135">135</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -443,8 +449,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md1"></a>
+Function: consoleColor</h2>
+<p>Cambia il colore alla console</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>: codice del colore da utilizzare. È possibile usare le constanti COLOR_* </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00058">58</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00073">73</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -493,13 +508,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Function: contaRighe</h2>
-<p>Conta quante righe sono presenti nel file</p>
-<p>char *file: nome del file sul quale si vogliono contare le righe presenti</p>
-<p>returns: totRighe -&gt; numero delle righe totali </p>
+<p>Conta le righe in un determinato file</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>: puntatore ad un array di char contenente il nome del file da controllare</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>numero di righe del file </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00235">235</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00257">257</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -560,8 +580,22 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md13"></a>
+Function: dataInIntervallo</h2>
+<p>Effettua un controllo tra la date passate come argomento, verifica che la prima data (valori passati singolarmente) è inclusa in un intervallo dato dalla seconda e terza data (puntatore all'array di char) Effettua una conversione degli array e successivamente richiama <a class="el" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db">verificaData()</a> e <a class="el" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate()</a></p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">giorno</td><td>: intero, giorno della prima data </td></tr>
+    <tr><td class="paramname">mese</td><td>: intero, mese della prima data </td></tr>
+    <tr><td class="paramname">anno</td><td>: intero, anno della prima data </td></tr>
+    <tr><td class="paramname">giorno1</td><td>: puntatore all'array di char contenente la seconda data (estremo sinistro dell'intervallo), formato gg/mm/aaaa </td></tr>
+    <tr><td class="paramname">giorno2</td><td>: puntatore all'array di char contenente la terza data (estremo destro dell'intervallo), formato gg/mm/aaaa</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>true se da prima data è inclusa nell'intervallo generato dalla seconda e terza data, altrimenti false </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00388">388</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00424">424</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -636,28 +670,44 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md9"></a>
+Function: differenzaDate</h2>
+<p>Effettua un controllo tra le due date passate come argomento per verificare se coincidono o quale delle due è successiva all'altra</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">giorno1</td><td>: intero, giorno della prima data </td></tr>
+    <tr><td class="paramname">mese1</td><td>: intero, mese della prima data </td></tr>
+    <tr><td class="paramname">anno1</td><td>: intero, anno della prima data </td></tr>
+    <tr><td class="paramname">giorno2</td><td>: intero, giorno della seconda data </td></tr>
+    <tr><td class="paramname">mese2</td><td>: intero, mese della seconda data </td></tr>
+    <tr><td class="paramname">anno2</td><td>: intero, anno della seconda data</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>0 se le date sono uguali, 1 se la seconda data è successivo alla prima, -1 se la prima data è successivo alla seconda </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00279">279</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00309">309</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="functions_8c_ac096aa03281c2c3e8ddf55084594cea0_icgraph.png" border="0" usemap="#afunctions_8c_ac096aa03281c2c3e8ddf55084594cea0_icgraph" alt=""/></div>
 <map name="afunctions_8c_ac096aa03281c2c3e8ddf55084594cea0_icgraph" id="afunctions_8c_ac096aa03281c2c3e8ddf55084594cea0_icgraph">
-<area shape="rect" title=" " alt="" coords="717,172,821,198"/>
-<area shape="rect" href="mostra_8c.html#a6054d842da40dda0a5db41ce77ae3df8" title=" " alt="" coords="549,45,659,72"/>
-<area shape="rect" href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0" title=" " alt="" coords="355,121,462,148"/>
-<area shape="rect" href="functions_8c.html#ad05827086fab31c2566d2dfc343d8f37" title=" " alt="" coords="539,172,669,198"/>
-<area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="539,234,669,261"/>
-<area shape="rect" href="mostra_8c.html#a7d3a352e2ff225f66193ffb8079ef593" title=" " alt="" coords="549,336,659,362"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,197,56,224"/>
-<area shape="rect" href="prenotazione_8c.html#a71966bdc8bd0e786ca32817cb636099b" title=" " alt="" coords="118,70,265,97"/>
-<area shape="rect" href="prenotazione_8c.html#ab07d2d12be50837b4cc9b27154286e70" title=" " alt="" coords="105,121,277,148"/>
-<area shape="rect" href="mostra_8c.html#ad5736677d229524b8d992abc5583a68b" title=" " alt="" coords="331,172,486,198"/>
-<area shape="rect" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="329,234,488,261"/>
-<area shape="rect" href="prenotazione_8c.html#a92b4bd4fc758534058542c91a59406a3" title=" " alt="" coords="327,298,491,325"/>
-<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="138,222,245,249"/>
-<area shape="rect" href="prenotazione_8c.html#abc68778ea7299fff88798e004da627c0" title=" " alt="" coords="104,273,279,300"/>
-<area shape="rect" href="prenotazione_8c.html#a044d7009e7bc51566879dd7daf529f55" title=" " alt="" coords="122,324,261,350"/>
+<area shape="rect" title=" " alt="" coords="717,171,821,197"/>
+<area shape="rect" href="mostra_8c.html#a6054d842da40dda0a5db41ce77ae3df8" title=" " alt="" coords="353,120,464,147"/>
+<area shape="rect" href="functions_8c.html#a9ca377b7da9c3e1d370fff96131eaad0" title=" " alt="" coords="355,56,462,83"/>
+<area shape="rect" href="functions_8c.html#ad05827086fab31c2566d2dfc343d8f37" title=" " alt="" coords="539,171,669,197"/>
+<area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="539,233,669,260"/>
+<area shape="rect" href="mostra_8c.html#a7d3a352e2ff225f66193ffb8079ef593" title=" " alt="" coords="353,335,464,361"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,208,56,235"/>
+<area shape="rect" href="prenotazione_8c.html#a71966bdc8bd0e786ca32817cb636099b" title=" " alt="" coords="118,56,265,83"/>
+<area shape="rect" href="prenotazione_8c.html#ab07d2d12be50837b4cc9b27154286e70" title=" " alt="" coords="105,5,277,32"/>
+<area shape="rect" href="mostra_8c.html#ad5736677d229524b8d992abc5583a68b" title=" " alt="" coords="331,171,486,197"/>
+<area shape="rect" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="329,233,488,260"/>
+<area shape="rect" href="prenotazione_8c.html#a92b4bd4fc758534058542c91a59406a3" title=" " alt="" coords="327,284,491,311"/>
+<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="138,208,245,235"/>
+<area shape="rect" href="mostra_8c.html#a5738e23d9c4045ee3c9c0ae13ea16994" title=" " alt="" coords="122,259,261,285"/>
+<area shape="rect" href="prenotazione_8c.html#abc68778ea7299fff88798e004da627c0" title=" " alt="" coords="104,309,279,336"/>
+<area shape="rect" href="prenotazione_8c.html#a044d7009e7bc51566879dd7daf529f55" title=" " alt="" coords="122,360,261,387"/>
 </map>
 </div>
 
@@ -688,8 +738,19 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md10"></a>
+Function: differenzaDateChar</h2>
+<p>Effettua un controllo tra le due date passate come argomento per verificare se coincidono o quale delle due è successiva all'altra. Effettua una conversione degli array di char e successivamente richiama <a class="el" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate()</a></p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data1</td><td>: puntatore ad un array di char contenente la prima data, formato gg/mm/aaaa </td></tr>
+    <tr><td class="paramname">data2</td><td>: puntatore ad un array di char contenente la seconda data, formato gg/mm/aaaa</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>0 se le date sono uguali, 1 se la seconda data è successivo alla prima, -1 se la prima data è successivo alla seconda </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00293">293</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00335">335</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -743,8 +804,20 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md11"></a>
+Function: differenzaDateOggi</h2>
+<p>Effettua un controllo tra la data passata come argomento e la data del giorno corrente per verificare se coincidono o quale delle due è successiva all'altra Dopo aver ricavato il giorno corrente, richiama <a class="el" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0">differenzaDate()</a></p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">giorno</td><td>: intero, giorno della data </td></tr>
+    <tr><td class="paramname">mese</td><td>: intero, mese della data </td></tr>
+    <tr><td class="paramname">anno</td><td>: intero, anno della data</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>0 se le date sono uguali, 1 se la seconda data è successivo al giorno corrente, -1 se è precedente al giorno corrente </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00314">314</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00368">368</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -759,13 +832,16 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="functions_8c_a8948eb043fad35898f4a8036e9ec85a2_icgraph.png" border="0" usemap="#afunctions_8c_a8948eb043fad35898f4a8036e9ec85a2_icgraph" alt=""/></div>
 <map name="afunctions_8c_a8948eb043fad35898f4a8036e9ec85a2_icgraph" id="afunctions_8c_a8948eb043fad35898f4a8036e9ec85a2_icgraph">
-<area shape="rect" title=" " alt="" coords="539,81,669,108"/>
-<area shape="rect" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="329,56,488,83"/>
-<area shape="rect" href="prenotazione_8c.html#a92b4bd4fc758534058542c91a59406a3" title=" " alt="" coords="327,107,491,133"/>
-<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="138,5,245,32"/>
-<area shape="rect" href="prenotazione_8c.html#abc68778ea7299fff88798e004da627c0" title=" " alt="" coords="104,56,279,83"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
-<area shape="rect" href="prenotazione_8c.html#a044d7009e7bc51566879dd7daf529f55" title=" " alt="" coords="122,107,261,133"/>
+<area shape="rect" title=" " alt="" coords="539,169,669,196"/>
+<area shape="rect" href="mostra_8c.html#a6054d842da40dda0a5db41ce77ae3df8" title=" " alt="" coords="353,30,464,57"/>
+<area shape="rect" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="329,118,488,145"/>
+<area shape="rect" href="mostra_8c.html#a7d3a352e2ff225f66193ffb8079ef593" title=" " alt="" coords="353,194,464,221"/>
+<area shape="rect" href="prenotazione_8c.html#a92b4bd4fc758534058542c91a59406a3" title=" " alt="" coords="327,245,491,272"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,118,56,145"/>
+<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="138,42,245,69"/>
+<area shape="rect" href="mostra_8c.html#a5738e23d9c4045ee3c9c0ae13ea16994" title=" " alt="" coords="122,93,261,120"/>
+<area shape="rect" href="prenotazione_8c.html#abc68778ea7299fff88798e004da627c0" title=" " alt="" coords="104,144,279,170"/>
+<area shape="rect" href="prenotazione_8c.html#a044d7009e7bc51566879dd7daf529f55" title=" " alt="" coords="122,245,261,272"/>
 </map>
 </div>
 
@@ -786,8 +862,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md12"></a>
+Function: differenzaDateOggiChar</h2>
+<p>Effettua un controllo tra la data passata come argomento e la data del giorno corrente per verificare se coincidono o quale delle due è successiva all'altra Effettua una conversione degli array e successivamente richiama <a class="el" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2">differenzaDateOggi()</a></p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataTarget</td><td>: puntatore all'array di char contenente la data da controllare, formato gg/mm/aaaa</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>0 se le date sono uguali, 1 se la seconda data è successivo al giorno corrente, -1 se è precedente al giorno corrente </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00328">328</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00392">392</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -803,10 +889,11 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="functions_8c_acf34a2b141801e95e8b4293f44cf94b9_icgraph.png" border="0" usemap="#afunctions_8c_acf34a2b141801e95e8b4293f44cf94b9_icgraph" alt=""/></div>
 <map name="afunctions_8c_acf34a2b141801e95e8b4293f44cf94b9_icgraph" id="afunctions_8c_acf34a2b141801e95e8b4293f44cf94b9_icgraph">
-<area shape="rect" title=" " alt="" coords="327,31,485,57"/>
+<area shape="rect" title=" " alt="" coords="327,56,485,83"/>
 <area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="138,5,245,32"/>
-<area shape="rect" href="prenotazione_8c.html#abc68778ea7299fff88798e004da627c0" title=" " alt="" coords="104,56,279,83"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,56,57"/>
+<area shape="rect" href="mostra_8c.html#a5738e23d9c4045ee3c9c0ae13ea16994" title=" " alt="" coords="122,56,261,83"/>
+<area shape="rect" href="prenotazione_8c.html#abc68778ea7299fff88798e004da627c0" title=" " alt="" coords="104,107,279,133"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
 </map>
 </div>
 
@@ -827,13 +914,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md2"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Function: letturaUltimoID</h2>
-<p>Verifica qual'e' l'ultimo ID inserito</p>
-<p>char *file: nome del file sul quale effettuare la verifica dell'ultimo ID</p>
-<p>returns: ultimoID -&gt; numero dell'ultimo ID presente nel file </p>
+<p>Verifica qual'è l'ultimo ID inserito</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>: puntatore ad un array di char contenente il nome del file da controllare</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>ultimo id presente nel file </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00193">193</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00215">215</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -874,13 +966,11 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Function: notificaAnnulla</h2>
-<p>Stampa a video un avviso per l'utente</p>
-<p>Params: //</p>
-<p>returns: // </p>
+<p>Stampa a video un avviso per l'utente </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00429">429</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00462">462</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -924,8 +1014,11 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md15"></a>
+Function: pausa</h2>
+<p>Stampa una stringa e attende che l'utente prema INVIO per continuare con l'esecuzione del software </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00440">440</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00478">478</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -971,8 +1064,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md0"></a>
+Function: printColor</h2>
+<p>Stampa in console del testo con un determinato colore</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>: testo da visualizzare in console </td></tr>
+    <tr><td class="paramname">color</td><td>: codice del colore da utilizzare. È possibile usare le constanti COLOR_* </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00023">23</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00031">31</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -1043,8 +1146,19 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md2"></a>
+Function: consoleColor</h2>
+<p>Permette all'utente di inserire del testo in console senza che venga visualizzato. Utile ed utilizzato nell'inserimento di password.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prompt</td><td>: testo da visualizzare prima dell'input </td></tr>
+    <tr><td class="paramname">password</td><td>: puntatore all'array di char utilizzato per memorizzare l'input </td></tr>
+    <tr><td class="paramname">checkLunghezza</td><td>: abilita il checkLunghezza, utile nell'input al momento della registrazione. Input lunghi meno di 6 caratteri richiederanno il reinserimento fino a condizione non superata </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00092">92</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00110">110</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -1075,13 +1189,11 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Function: titolo</h2>
-<p>Stampa a video del titolo</p>
-<p>Params: //</p>
-<p>returns: // </p>
+<p>Stampa a video il titolo del software </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00265">265</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00283">283</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -1137,8 +1249,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md16"></a>
+Function: toUppercase</h2>
+<p>Data una stringa, tutti i caratteri diventano maiuscoli</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stringa</td><td>: puntatore all'array di char contenete la stringa che diventerà tutta maiuscola </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00445">445</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00490">490</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -1184,13 +1305,20 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md1"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 Function: verificaData</h2>
-<p>Controlla che la data inserita sia corretta</p>
-<p>int giorno: giorno inserito int mese: mese inserito int anno: anno inserito</p>
-<p>returns: dataCorretta == true se tutti e tre i campi rispettano i criteri dataCorretta == false se la data inserita non e' corretta </p>
+<p>Controlla che la data sia corretta</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">giorno</td><td>: giorno (numerico) della data da verificare </td></tr>
+    <tr><td class="paramname">mese</td><td>: mese (numerico) della data da verificare </td></tr>
+    <tr><td class="paramname">anno</td><td>: anno (numerico) della data da verificare</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>dataCorretta, booleano, true se i campi rispettano i criteri e la data è reale, altrimenti false </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00141">141</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00154">154</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -1214,53 +1342,6 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 <area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,132,56,159"/>
 <area shape="rect" href="prenotazione_8c.html#a71966bdc8bd0e786ca32817cb636099b" title=" " alt="" coords="117,56,263,83"/>
 <area shape="rect" href="prenotazione_8c.html#ab07d2d12be50837b4cc9b27154286e70" title=" " alt="" coords="104,107,276,133"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a6d71bdc5a4b1cfe78df4110cd1efa0e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d71bdc5a4b1cfe78df4110cd1efa0e7">&#9670;&nbsp;</a></span>verificaDataCorrente()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool verificaDataCorrente </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>giorno</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>mese</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>anno</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definizione alla linea <a class="el" href="functions_8c_source.html#l00348">348</a> del file <a class="el" href="functions_8c_source.html">functions.c</a>.</p>
-<div class="dynheader">
-Questo è il grafo dei chiamanti di questa funzione:</div>
-<div class="dyncontent">
-<div class="center"><img src="functions_8c_a6d71bdc5a4b1cfe78df4110cd1efa0e7_icgraph.png" border="0" usemap="#afunctions_8c_a6d71bdc5a4b1cfe78df4110cd1efa0e7_icgraph" alt=""/></div>
-<map name="afunctions_8c_a6d71bdc5a4b1cfe78df4110cd1efa0e7_icgraph" id="afunctions_8c_a6d71bdc5a4b1cfe78df4110cd1efa0e7_icgraph">
-<area shape="rect" title=" " alt="" coords="263,31,400,57"/>
-<area shape="rect" href="mostra_8c.html#a6054d842da40dda0a5db41ce77ae3df8" title=" " alt="" coords="104,5,215,32"/>
-<area shape="rect" href="mostra_8c.html#a7d3a352e2ff225f66193ffb8079ef593" title=" " alt="" coords="104,56,215,83"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,56,57"/>
 </map>
 </div>
 

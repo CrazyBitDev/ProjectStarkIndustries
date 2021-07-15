@@ -336,7 +336,7 @@ void aggiungiMostra(Mostra *testa) {
 
                 } while (!dataCorrettaIn);
 
-                dataCorr = verificaDataCorrente(giornoIn, meseIn, annoIn);
+                dataCorr = (differenzaDateOggi(giornoIn, meseIn, annoIn) >= 0);
             } while (!dataCorr);
 
             while ('\n' != getchar());
@@ -751,7 +751,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                             break;
                         }
 
-                        dataCorr = verificaDataCorrente(giornoIn, meseIn, annoIn);
+                        dataCorr = ( differenzaDateOggi(giornoIn, meseIn, annoIn) >= 0 );
                     } while (!dataCorr);
 
                     if (continuaModifica) {

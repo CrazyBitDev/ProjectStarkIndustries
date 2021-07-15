@@ -20,6 +20,14 @@
 
 #endif
 
+/**
+ * Function: printColor
+ * ----------------------------
+ *   Stampa in console del testo con un determinato colore
+ *
+ *   @param text : testo da visualizzare in console
+ *   @param color : codice del colore da utilizzare. È possibile usare le constanti COLOR_*
+ */
 void printColor(char text[], int color) {
     #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -55,6 +63,13 @@ void printColor(char text[], int color) {
     #endif
 }
 
+/**
+ * Function: consoleColor
+ * ----------------------------
+ *   Cambia il colore alla console
+ *
+ *   @param color : codice del colore da utilizzare. È possibile usare le constanti COLOR_*
+ */
 void consoleColor(int color) {
     #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -82,13 +97,16 @@ void consoleColor(int color) {
     #endif
 }
 
-/*
-void readPassword() {
-    char password[32] = "";
-    readPassword("TEST: ", password, true);
-    printf("%s", password);
-}
-*/
+/**
+ * Function: consoleColor
+ * ----------------------------
+ *   Permette all'utente di inserire del testo in console senza che venga visualizzato.
+ *   Utile ed utilizzato nell'inserimento di password.
+ *
+ *   @param prompt : testo da visualizzare prima dell'input
+ *   @param password : puntatore all'array di char utilizzato per memorizzare l'input
+ *   @param checkLunghezza : abilita il checkLunghezza, utile nell'input al momento della registrazione. Input lunghi meno di 6 caratteri richiederanno il reinserimento fino a condizione non superata
+ */
 void readPassword(char prompt[], char *password, bool checkLunghezza) {
     do {
         #ifdef _WIN32
@@ -101,10 +119,10 @@ void readPassword(char prompt[], char *password, bool checkLunghezza) {
             scanf("%s", input);
             printf("\n");
             SetConsoleMode(hStdin, mode);
-            strcpy(password, /*md5(input)*/ input);
+            strcpy(password, input);
         #else
             char *input = getpass(prompt);
-            strcpy(password, /*md5(input)*/ input);
+            strcpy(password, input);
         #endif
     } while (checkLunghezza && strlen(password) < 6 && strlen(password) != 0);
 }
@@ -112,11 +130,7 @@ void readPassword(char prompt[], char *password, bool checkLunghezza) {
 /**
  * Function: clearConsole
  * ----------------------------
- *   Permette di pulire la console
- *
- *   Params: //
- *
- *   returns: //
+ *   Pulisce la console completamente o solo parzialmente (solo la zona visualizzata)
  */
 void clearConsole() {
     #ifdef _WIN32
@@ -129,14 +143,13 @@ void clearConsole() {
 /**
  * Function: verificaData
  * ----------------------------
- *   Controlla che la data inserita sia corretta
+ *   Controlla che la data sia corretta
  *
- *   int giorno: giorno inserito
- *   int mese: mese inserito
- *   int anno: anno inserito
- *
- *   returns: dataCorretta == true se tutti e tre i campi rispettano i criteri
- *            dataCorretta == false se la data inserita non e' corretta
+ *   @param giorno : giorno (numerico) della data da verificare
+ *   @param mese : mese (numerico) della data da verificare
+ *   @param anno : anno (numerico) della data da verificare
+ * 
+ *   @return dataCorretta, booleano, true se i campi rispettano i criteri e la data è reale, altrimenti false
  */
 bool verificaData(int giorno, int mese, int anno) {
     bool dataCorretta = false; //flag per verificare la correttezza della data di nascita
@@ -163,6 +176,15 @@ bool verificaData(int giorno, int mese, int anno) {
     return dataCorretta;
 }
 
+/**
+ * Function: annoBisestile
+ * ----------------------------
+ *   Controlla che l'anno passato come argomento sia bisestile o meno
+ *
+ *   @param anno : anno (numerico)
+ * 
+ *   @return annoBis, booleano, true se l'anno passato come argomento è bisestile, altrimenti false
+ */
 bool annoBisestile(int anno) {
     bool annoBis = false;
     if (anno % 4 == 0) {
@@ -184,11 +206,11 @@ bool annoBisestile(int anno) {
 /**
  * Function: letturaUltimoID
  * ----------------------------
- *   Verifica qual'e' l'ultimo ID inserito
+ *   Verifica qual'è l'ultimo ID inserito
  *
- *   char *file: nome del file sul quale effettuare la verifica dell'ultimo ID
- *
- *   returns: ultimoID -> numero dell'ultimo ID presente nel file
+ *   @param file : puntatore ad un array di char contenente il nome del file da controllare
+ * 
+ *   @return ultimo id presente nel file
  */
 int letturaUltimoID(char *file) {
     FILE *fp = NULL;
@@ -226,11 +248,11 @@ int letturaUltimoID(char *file) {
 /**
  * Function: contaRighe
  * ----------------------------
- *   Conta quante righe sono presenti nel file
+ *   Conta le righe in un determinato file
  *
- *   char *file: nome del file sul quale si vogliono contare le righe presenti
- *
- *   returns: totRighe -> numero delle righe totali
+ *   @param file : puntatore ad un array di char contenente il nome del file da controllare
+ * 
+ *   @return numero di righe del file
  */
 int contaRighe(char *file) {
     FILE *fp = NULL;
@@ -256,11 +278,7 @@ int contaRighe(char *file) {
 /**
  * Function: titolo
  * ----------------------------
- *   Stampa a video del titolo
- *
- *   Params: //
- *
- *   returns: //
+ *   Stampa a video il titolo del software
  */
 void titolo() {
     printf("\n");
@@ -274,7 +292,20 @@ void titolo() {
     printf("\n");
 }
 
-// 0 = giorni uguali, 1 = giorno 2 > giorno 1, -1 = giorno 1 > giorno 2
+/**
+ * Function: differenzaDate
+ * ----------------------------
+ *   Effettua un controllo tra le due date passate come argomento per verificare se coincidono o quale delle due è successiva all'altra
+ *
+ *   @param giorno1 : intero, giorno della prima data
+ *   @param mese1 : intero, mese della prima data
+ *   @param anno1 : intero, anno della prima data
+ *   @param giorno2 : intero, giorno della seconda data
+ *   @param mese2 : intero, mese della seconda data
+ *   @param anno2 : intero, anno della seconda data
+ * 
+ *   @return 0 se le date sono uguali, 1 se la seconda data è successivo alla prima, -1 se la prima data è successivo alla seconda
+ */
 int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, int anno2) {
 
     int differenza = 0;
@@ -289,6 +320,18 @@ int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, in
 }
 
 
+
+/**
+ * Function: differenzaDateChar
+ * ----------------------------
+ *   Effettua un controllo tra le due date passate come argomento per verificare se coincidono o quale delle due è successiva all'altra.
+ *   Effettua una conversione degli array di char e successivamente richiama differenzaDate()
+ *
+ *   @param data1 : puntatore ad un array di char contenente la prima data, formato gg/mm/aaaa
+ *   @param data2 : puntatore ad un array di char contenente la seconda data, formato gg/mm/aaaa
+ * 
+ *   @return 0 se le date sono uguali, 1 se la seconda data è successivo alla prima, -1 se la prima data è successivo alla seconda
+ */
 int differenzaDateChar(char *data1, char *data2) {
     char dataTemp1[11], dataTemp2[11];
 
@@ -310,6 +353,18 @@ int differenzaDateChar(char *data1, char *data2) {
                           data2Convertita[1], data2Convertita[2]);
 }
 
+/**
+ * Function: differenzaDateOggi
+ * ----------------------------
+ *   Effettua un controllo tra la data passata come argomento e la data del giorno corrente per verificare se coincidono o quale delle due è successiva all'altra
+ *   Dopo aver ricavato il giorno corrente, richiama differenzaDate()
+ *
+ *   @param giorno : intero, giorno della data
+ *   @param mese : intero, mese della data
+ *   @param anno : intero, anno della data
+ * 
+ *   @return 0 se le date sono uguali, 1 se la seconda data è successivo al giorno corrente, -1 se è precedente al giorno corrente
+ */
 int differenzaDateOggi(int giorno, int mese, int anno) {
     struct tm *ts;
     char annoCorrente[5], meseCorrente[3], giornoCorrente[3];
@@ -324,6 +379,16 @@ int differenzaDateOggi(int giorno, int mese, int anno) {
     return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), giorno, mese, anno);
 }
 
+/**
+ * Function: differenzaDateOggiChar
+ * ----------------------------
+ *   Effettua un controllo tra la data passata come argomento e la data del giorno corrente per verificare se coincidono o quale delle due è successiva all'altra
+ *   Effettua una conversione degli array e successivamente richiama differenzaDateOggi()
+ *
+ *   @param dataTarget : puntatore all'array di char contenente la data da controllare, formato gg/mm/aaaa
+ * 
+ *   @return 0 se le date sono uguali, 1 se la seconda data è successivo al giorno corrente, -1 se è precedente al giorno corrente
+ */
 int differenzaDateOggiChar(char *dataTarget) {
 
     char data[11];
@@ -340,50 +405,22 @@ int differenzaDateOggiChar(char *dataTarget) {
     }
 
     return differenzaDateOggi(dataConvertita[0], dataConvertita[1], dataConvertita[2]);
-
-    //return differenzaDate(atoi(giornoCorrente), atoi(meseCorrente), atoi(annoCorrente), dataConvertita[0], dataConvertita[1], dataConvertita[2]);
 }
 
-bool verificaDataCorrente(int giorno, int mese, int anno) {
-    bool dataCorrente;
-
-    time_t now;
-    struct tm *ts;
-
-    char giornoCorrente[3];
-    char meseCorrente[3];
-    char annoCorrente[5];
-    int giornoCorr, meseCorr, annoCorr;
-
-    //salvo data odierna
-    now = time(NULL);
-    ts = localtime(&now);
-
-    strftime(annoCorrente, sizeof(annoCorrente), "%Y", ts);
-    strftime(meseCorrente, sizeof(meseCorrente), "%m", ts);
-    strftime(giornoCorrente, sizeof(giornoCorrente), "%d", ts);
-
-    giornoCorr = atoi(giornoCorrente);
-    meseCorr = atoi(meseCorrente);
-    annoCorr = atoi(annoCorrente);
-
-    if ((giorno == giornoCorr) && (mese == meseCorr) && (anno == annoCorr)) {
-        //le date coincidono
-        dataCorrente = true;
-    } else {
-        if (anno < annoCorr || (anno == annoCorr && mese < meseCorr) ||
-            (anno == annoCorr && mese == meseCorr && giorno < giornoCorr)) {
-            //La data di inizio mostra precede la data odierna
-            dataCorrente = false;
-        } else {
-            //la data di inizio mostra e' successiva alla data odierna
-            dataCorrente = true;
-        }
-    }
-
-    return dataCorrente;
-}
-
+/**
+ * Function: dataInIntervallo
+ * ----------------------------
+ *   Effettua un controllo tra la date passate come argomento, verifica che la prima data (valori passati singolarmente) è inclusa in un intervallo dato dalla seconda e terza data (puntatore all'array di char)
+ *   Effettua una conversione degli array e successivamente richiama verificaData() e differenzaDate()
+ *
+ *   @param giorno : intero, giorno della prima data
+ *   @param mese : intero, mese della prima data
+ *   @param anno : intero, anno della prima data
+ *   @param giorno1 : puntatore all'array di char contenente la seconda data (estremo sinistro dell'intervallo), formato gg/mm/aaaa
+ *   @param giorno2 : puntatore all'array di char contenente la terza data (estremo destro dell'intervallo), formato gg/mm/aaaa
+ * 
+ *   @return true se da prima data è inclusa nell'intervallo generato dalla seconda e terza data, altrimenti false
+ */
 bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorno2) {
     bool inIntervallo = false;
     int giorno1conv[3], giorno2conv[3];
@@ -416,14 +453,11 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
     return inIntervallo;
 }
 
+//TODO: aggiungere il premi 0
 /**
  * Function: notificaAnnulla
  * ----------------------------
  *   Stampa a video un avviso per l'utente
- *
- *   Params: //
- *
- *   returns: //
  */
 void notificaAnnulla() {
     consoleColor(COLOR_RED);
@@ -436,126 +470,27 @@ void notificaAnnulla() {
     consoleColor(COLOR_RESET);
 }
 
+/**
+ * Function: pausa
+ * ----------------------------
+ *   Stampa una stringa e attende che l'utente prema INVIO per continuare con l'esecuzione del software
+ */
 void pausa() {
     printf("Premi INVIO per continuare\n");
     getchar();
 }
 
+/**
+ * Function: toUppercase
+ * ----------------------------
+ *   Data una stringa, tutti i caratteri diventano maiuscoli
+ *
+ *   @param stringa : puntatore all'array di char contenete la stringa che diventerà tutta maiuscola
+ */
 void toUppercase(char *stringa) {
-    // Convert to upper case
     char *s = stringa;
     while (*s) {
         *s = toupper((unsigned char) *s);
         s++;
     }
 }
-
-/*
-uint32_t leftrotate(uint32_t x, uint32_t c) {
-    return (((x) << (c)) | ((x) >> (32 - (c))));
-}
- 
-char *md5(char *initial_msg) {
-
-    size_t initial_len = strlen(initial_msg);
-
-    uint32_t h0, h1, h2, h3;
-    
-    uint8_t *p0, *p1, *p2, *p3;
-    char *md5result = (char*)malloc(32 * sizeof(char));
- 
-    uint8_t *msg = NULL;
- 
-    uint32_t r[] = {7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
-                    5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20,
-                    4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
-                    6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21};
-
-    uint32_t k[] = {
-        0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
-        0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
-        0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
-        0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,
-        0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa,
-        0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,
-        0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed,
-        0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a,
-        0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c,
-        0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70,
-        0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x04881d05,
-        0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665,
-        0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039,
-        0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1,
-        0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,
-        0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391};
- 
-    h0 = 0x67452301;
-    h1 = 0xefcdab89;
-    h2 = 0x98badcfe;
-    h3 = 0x10325476;
- 
-    int new_len = ((((initial_len + 8) / 64) + 1) * 64) - 8;
- 
-    msg = calloc(new_len + 64, 1);
-    
-    memcpy(msg, initial_msg, initial_len);
-    msg[initial_len] = 128;
- 
-    uint32_t bits_len = 8*initial_len;
-    memcpy(msg + new_len, &bits_len, 4);
- 
-    for(int offset=0; offset<new_len; offset += (512/8)) {
- 
-        uint32_t *w = (uint32_t *) (msg + offset);
- 
-        uint32_t a = h0;
-        uint32_t b = h1;
-        uint32_t c = h2;
-        uint32_t d = h3;
- 
-        uint32_t i;
-        for(i = 0; i<64; i++) {
- 
-            uint32_t f, g;
- 
-             if (i < 16) {
-                f = (b & c) | ((~b) & d);
-                g = i;
-            } else if (i < 32) {
-                f = (d & b) | ((~d) & c);
-                g = (5*i + 1) % 16;
-            } else if (i < 48) {
-                f = b ^ c ^ d;
-                g = (3*i + 5) % 16;
-            } else {
-                f = c ^ (b | (~d));
-                g = (7*i) % 16;
-            }
-
-            uint32_t temp = d;
-            d = c;
-            c = b;
-            b = b + leftrotate((a + f + k[i] + w[g]), r[i]);
-            a = temp;
-
-        }
- 
-        h0 += a;
-        h1 += b;
-        h2 += c;
-        h3 += d;
- 
-    }
-     
-    p0=(uint8_t *)&h0;
-    p1=(uint8_t *)&h1;
-    p2=(uint8_t *)&h2;
-    p3=(uint8_t *)&h3;
-    sprintf(md5result, "%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x%2.2x",
-            p0[0], p0[1], p0[2], p0[3],
-            p1[0], p1[1], p1[2], p1[3],
-            p2[0], p2[1], p2[2], p2[3],
-            p3[0], p3[1], p3[2], p3[3]);
-    return md5result;
- 
-}*/
