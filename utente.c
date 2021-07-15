@@ -16,8 +16,6 @@ struct utente {
  *   Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente
  *
  *   @param fp : nome del file da cui leggere i dati, ovvero "utenti.csv"
- *
- *   @returns: //
  */
 Utente *letturaUtenti(FILE *fp) {
 
@@ -98,8 +96,6 @@ Utente *letturaUtenti(FILE *fp) {
  *   Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente
  *
  *   @param testa : lista utente
- *
- *   @returns: //
  */
 void registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
@@ -499,8 +495,6 @@ Utente *ricercaUtente(Utente *testa, int id) {
  *   che ha effettuato l'accesso al proprio profilo
  *
  *   @param utenteLogin : utente che ha effettuato il login
- *
- *   @returns: //
  */
 void stampaUtente(Utente *utenteLogin) {
     Utente *temp = NULL;
@@ -531,8 +525,6 @@ void stampaUtente(Utente *utenteLogin) {
  *
  *   @param utenteLogin : utente che ha effettuato il login
  *   @param testa : lista utente
- *
- *   @returns: //
  */
 void modificaUtente(Utente *utenteLogin, Utente *testa) {
     int scelta, i;

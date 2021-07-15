@@ -15,8 +15,6 @@ struct prenotazione {
  *   @param fp : nome del file da cui leggere i dati, ovvero "prenotazioni.csv"
  *   @param testaUtente : lista utente
  *   @param testaMostra : lista mostra
- *
- *   @returns: //
  */
 Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMostra) {
     int colonna = 0;
@@ -83,8 +81,6 @@ Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMo
  *   @param testa : lista prenotazione
  *   @param utente : utente che ha effettuato il login
  *   @param mostra : mostra scelta
- *
- *   @returns: //
  */
 void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *mostra) {
 

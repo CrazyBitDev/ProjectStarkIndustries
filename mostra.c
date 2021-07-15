@@ -20,9 +20,7 @@ struct mostra {
  * ----------------------------
  *   Permette di leggere i dati dal file "mostre.csv" e salvarli all'interno della struct Mostra
  *
- *   @param fp: nome del file da cui leggere i dati, ovvero "mostre.csv"
- *
- *   @return //
+ *   @param fp : nome del file da cui leggere i dati, ovvero "mostre.csv"
  */
 Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
 
@@ -158,8 +156,6 @@ Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
  *   una nuova mostra, con salvatggio dei dati sul file "mostre.csv" e nella struct Mostra
  *
  *   @param testa : lista mostra
- *
- *   @returns: //
  */
 void aggiungiMostra(Mostra *testa) {
 
@@ -497,8 +493,6 @@ void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
  *
  *   @param testa : lista mostra
  *   @param mostra : mostra scelta per essere modificata
- *
- *   @returns: //
  */
 void modificaMostra(Mostra *testa, Mostra *mostra) {
     int scelta, colonna = 0, i;
@@ -922,8 +916,6 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
  *   Permette di stampare a video l'elenco delle mostre
  *
  *   @param testa : lista mostra
- *
- *   @returns: //
  */
 void stampaMostre(Mostra *testa) {
     for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
@@ -939,8 +931,6 @@ void stampaMostre(Mostra *testa) {
  *
  *   @param mostra : mostra scelta
  *   @param stampaOpere : mostra opere assegnate alla mostra se true
- *
- *   @returns: //
  */
 void stampaMostra(Mostra *mostra, bool stampaOpere) {
     printf("Mostra numero: %d \n", mostra->id);
@@ -965,8 +955,6 @@ void stampaMostra(Mostra *mostra, bool stampaOpere) {
  *   Permette di salvare tutte le modifiche effettuate sul file "mostre.csv"
  *
  *   @param testa : lista mostra
- *
- *   @returns: //
  */
 void scriviMostre(Mostra *testa) {
     FILE *fp, *fpMO;
@@ -1009,8 +997,6 @@ void scriviMostre(Mostra *testa) {
  *
  *   @param testa : lista mostra
  *   @param mostra : mostra da eliminare
- *
- *   @returns: //
  */
 void eliminaMostra(Mostra *testa, Mostra *mostra) {
     char risposta;

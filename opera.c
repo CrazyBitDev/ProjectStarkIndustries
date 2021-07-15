@@ -311,8 +311,6 @@ void aggiungiOpera(Opera *testa) {
  *
  *   @param testa : lista opera
  *   @param opera : opera scelta per essere modificata
- *
- *   @returns: //
  */
 void modificaOpera(Opera *testa, Opera *opera) {
 
@@ -601,8 +599,6 @@ void modificaOpera(Opera *testa, Opera *opera) {
  *   Permette di stampare a video l'elenco delle opere
  *
  *   @param testa : lista opera
- *
- *   @returns: //
  */
 void stampaOpere(Opera *testa) {
     for (Opera *temp = testa; temp != NULL; temp = temp->nextOpera) {
@@ -617,8 +613,6 @@ void stampaOpere(Opera *testa) {
  *   Permette di stampare i dettagli di un'opera
  *
  *   @param opera : opera scelta
- *
- *   @returns: //
  */
 void stampaOpera(Opera *opera) {
     printf("Id: %d\n", opera->id);
@@ -636,8 +630,6 @@ void stampaOpera(Opera *opera) {
  *   Permette di salvare tutte le modifiche effettuate sul file "opere.csv"
  *
  *   @param testa : lista opera
- *
- *   @returns: //
  */
 void scriviOpere(Opera *testa) {
     Opera *temp = NULL;
@@ -667,8 +659,6 @@ void scriviOpere(Opera *testa) {
  *
  *   @param testa : lista opera
  *   @param opera : opera da eliminare
- *
- *   @returns: //
  */
 void eliminaOpera(Opera *testa, Opera *opera) {
     char risposta;
