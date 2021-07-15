@@ -1,3 +1,6 @@
+//Definizione struct prenotazioni - da modificare
+typedef struct prenotazione Prenotazione;
+
 Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMostra);
 
 void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *mostra);

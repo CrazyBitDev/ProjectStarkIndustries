@@ -1,3 +1,6 @@
+//Definizione della struct Utente
+typedef struct utente Utente;
+
 Utente *letturaUtenti(FILE *fp);
 
 void registrazioneUtente(Utente *testa);

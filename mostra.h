@@ -1,3 +1,9 @@
+//Definizione struct mostraOpera
+typedef struct mostraOpera MostraOpera;
+
+//Definizione struct mostre
+typedef struct mostra Mostra;
+
 Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera);
 
 void aggiungiMostra(Mostra *testa);

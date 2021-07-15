@@ -1,3 +1,12 @@
+struct prenotazione {
+    int id;
+    Utente *utente;
+    Mostra *mostra;
+    char data[11];
+    char ora[6];
+    Prenotazione *nextPrenotazione;
+};
+
 /**
  * Function: letturaPrenotazioni
  * ----------------------------

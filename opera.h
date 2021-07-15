@@ -1,3 +1,6 @@
+//Definizione struct opera
+typedef struct opera Opera;
+
 Opera *letturaOpere(FILE *fp);
 
 void aggiungiOpera(Opera *testa);

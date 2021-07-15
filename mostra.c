@@ -1,3 +1,20 @@
+struct mostraOpera {
+    Opera *opera;
+    MostraOpera *nextOpera; //puntatore al prossimo nodo
+};
+
+struct mostra {
+    int id;
+    char responsabile[30];
+    char luogo[25];
+    char citta[20];
+    char indirizzo[30];
+    char dataInizio[11];
+    char dataFine[11];
+    MostraOpera *opere;
+    Mostra *nextMostra; //puntatore al prossimo nodo
+};
+
 /**
  * Function: letturaMostre
  * ----------------------------

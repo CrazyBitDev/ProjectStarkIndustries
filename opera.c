@@ -1,3 +1,14 @@
+struct opera {
+    int id;
+    char nome[30];
+    char autore[30];
+    char tipo[30];
+    char genere[30];
+    char periodo[20];
+    int anno;
+    Opera *nextOpera; //puntatore al prossimo nodo
+};
+
 /**
  * Function: letturaOpere
  * ----------------------------
