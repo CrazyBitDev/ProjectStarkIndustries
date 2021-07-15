@@ -580,6 +580,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         strcpy(temp->responsabile, responsabile);
                     }
                 } while (testInput);
+                break;
 
             case 2:
                 clearConsole();
