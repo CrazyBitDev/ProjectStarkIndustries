@@ -1,4 +1,7 @@
 <map id="stampaPrenotazioni" name="stampaPrenotazioni">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,143,32"/>
-<area shape="rect" id="node2" href="$prenotazione_8c.html#a82276a174c6fb741b1d5efef9fd00959" title=" " alt="" coords="191,5,332,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,143,57"/>
+<area shape="rect" id="node2" href="$functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="191,5,349,32"/>
+<area shape="rect" id="node5" href="$prenotazione_8c.html#a82276a174c6fb741b1d5efef9fd00959" title=" " alt="" coords="199,56,341,83"/>
+<area shape="rect" id="node3" href="$functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="397,5,528,32"/>
+<area shape="rect" id="node4" href="$functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="576,5,680,32"/>
 </map>

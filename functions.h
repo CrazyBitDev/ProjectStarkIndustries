@@ -26,7 +26,7 @@ int differenzaDateOggiChar(char *dataTarget);
 
 bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorno2);
 
-void notificaAnnulla(void);
+void notificaAnnulla(bool tastoNum);
 
 void pausa(void);
 

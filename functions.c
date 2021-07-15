@@ -453,19 +453,24 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
     return inIntervallo;
 }
 
-//TODO: aggiungere il premi 0
 /**
  * Function: notificaAnnulla
  * ----------------------------
  *   Stampa a video un avviso per l'utente
+ * 
+ *   @param tastoNum : true se l'utente deve premere il tasto 0, altrimenti tasto INVIO
  */
-void notificaAnnulla() {
+void notificaAnnulla(bool tastoNum) {
     consoleColor(COLOR_RED);
     printf("\t\t\t|-----------------------------|\n");
     printf("\t\t\t|         Attenzione!         |\n");
     printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
     printf("\t\t\t|       tornare al menu'      |\n");
-    printf("\t\t\t|   premere il tasto invio    |\n");
+    if (tastoNum) {
+        printf("\t\t\t|      premere il tasto 0     |\n");
+    } else {
+        printf("\t\t\t|   premere il tasto INVIO    |\n");
+    }
     printf("\t\t\t|-----------------------------|\n");
     consoleColor(COLOR_RESET);
 }

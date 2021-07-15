@@ -1,7 +1,8 @@
 <map id="stampaOpere" name="stampaOpere">
-<area shape="rect" id="node1" title=" " alt="" coords="412,56,512,83"/>
-<area shape="rect" id="node2" href="$mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="259,56,364,83"/>
-<area shape="rect" id="node3" href="$mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,5,211,32"/>
-<area shape="rect" id="node4" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,56,57"/>
-<area shape="rect" id="node5" href="$mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="105,107,210,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="565,56,665,83"/>
+<area shape="rect" id="node2" href="$opera_8c.html#a9ee9a89fb4ce015dbc97aa3cfc09c390" title=" " alt="" coords="260,5,363,32"/>
+<area shape="rect" id="node4" href="$mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="412,81,517,108"/>
+<area shape="rect" id="node3" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
+<area shape="rect" id="node5" href="$mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,107,211,133"/>
+<area shape="rect" id="node6" href="$mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="259,157,364,184"/>
 </map>

@@ -11,5 +11,5 @@ var searchData=
   ['stampaprenotazione_186',['stampaPrenotazione',['../prenotazione_8c.html#a82276a174c6fb741b1d5efef9fd00959',1,'stampaPrenotazione(Prenotazione *prenotazione):&#160;prenotazione.c'],['../prenotazione_8h.html#a82276a174c6fb741b1d5efef9fd00959',1,'stampaPrenotazione(Prenotazione *prenotazione):&#160;prenotazione.c']]],
   ['stampaprenotazioni_187',['stampaPrenotazioni',['../prenotazione_8c.html#a230abdf465e7e659cccfafda04135d92',1,'stampaPrenotazioni(Prenotazione *testa):&#160;prenotazione.c'],['../prenotazione_8h.html#a230abdf465e7e659cccfafda04135d92',1,'stampaPrenotazioni(Prenotazione *testa):&#160;prenotazione.c']]],
   ['stampaprenotazioniutente_188',['stampaPrenotazioniUtente',['../prenotazione_8c.html#abc68778ea7299fff88798e004da627c0',1,'prenotazione.c']]],
-  ['stampautente_189',['stampaUtente',['../utente_8c.html#ac9ff9092130dce22ed48300f14c2855a',1,'stampaUtente(Utente *utenteLogin):&#160;utente.c'],['../utente_8h.html#af717ed7e994144a268e115f1fd56cc81',1,'stampaUtente(Utente *testa):&#160;utente.c']]]
+  ['stampautente_189',['stampaUtente',['../utente_8c.html#a7d6d1851d1211451c0abd4ab7e0cf225',1,'stampaUtente(Utente *utente):&#160;utente.c'],['../utente_8h.html#af717ed7e994144a268e115f1fd56cc81',1,'stampaUtente(Utente *testa):&#160;utente.c']]]
 ];

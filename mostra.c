@@ -186,7 +186,7 @@ void aggiungiMostra(Mostra *testa) {
     FILE *fp;
     fp = fopen("mostre.csv", "a+"); //apertura file
 
-    notificaAnnulla();
+    notificaAnnulla(false);
 
     do {
         testInput = false;
@@ -553,7 +553,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 titolo();
 
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci il responsabile: ");
                     fgets(responsabile, 30, stdin);
@@ -589,7 +589,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 titolo();
 
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci il luogo: ");
                     fgets(luogo, 25, stdin);
@@ -625,7 +625,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 clearConsole();
                 titolo();
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci la citta': ");
                     fgets(citta, 20, stdin);
@@ -659,7 +659,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
             case 4:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
+                notificaAnnulla(false);
 
                 printf("Inserisci l'indirizzo: ");
                 fgets(indirizzo, 20, stdin);
@@ -680,15 +680,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
 
                 clearConsole();
                 titolo();
-
-                consoleColor(COLOR_RED);
-                printf("\t\t\t|-----------------------------|\n");
-                printf("\t\t\t|         Attenzione!         |\n");
-                printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
-                printf("\t\t\t|       tornare al menu'      |\n");
-                printf("\t\t\t|      premere il tasto 0     |\n");
-                printf("\t\t\t|-----------------------------|\n");
-                consoleColor(COLOR_RESET);
+                notificaAnnulla(true);
 
                 do {
                     do {
@@ -916,9 +908,11 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
  *   @param testa : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
  */
 void stampaMostre(Mostra *testa) {
-    for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
-        stampaMostra(temp, false);
-        printf("----------\n");
+    for (Mostra *mostra = testa; mostra != NULL; mostra = mostra->nextMostra) {
+        if (differenzaDateOggiChar(mostra->dataFine) == -1) {
+            stampaMostra(mostra, false);
+            printf("----------\n");
+        }
     }
 }
 
@@ -1185,6 +1179,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
             printf("1: Ricerca Mostra per responsabile\n");
             printf("2: Ricerca Mostra per luogo\n");
             printf("3: Ricerca Mostra per citta\n");
+            printf("9: Stampa tutte le mostre disponibili\n");
             printf("0: Annulla la ricerca\n");
             printf("-> ");
             scanf("%d", &scelta);
@@ -1322,6 +1317,15 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                         }
                     }
                     break;
+
+                case 9:
+                    clearConsole();
+                    titolo();
+                    stampaMostre(testa);
+                    while ('\n' != getchar());
+                    pausa();
+                    clearConsole();
+                    titolo();
 
                 case 0:
                     ricercaInCorso = false;

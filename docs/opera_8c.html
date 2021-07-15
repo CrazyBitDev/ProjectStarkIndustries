@@ -144,13 +144,17 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md28"></a>
-Function: aggiungiOpera</h2>
-<p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) la registrazione di una nuova opera, con salvatggio dei dati sul file "opere.csv" e nella struct Opera</p>
-<p>Opera *testa: lista opera</p>
-<p>returns: // </p>
+<h2><a class="anchor" id="autotoc_md30"></a>
+Function: letturaggiungiOperaaOpere</h2>
+<p>Permette la registrazione di una nuova opera, con salvatggio dei dati sul file "opere.csv" e nella struct Opera</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00097">97</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00094">94</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -159,7 +163,7 @@ Questo è il grafo delle chiamate per questa funzione:</div>
 <area shape="rect" title=" " alt="" coords="5,132,111,159"/>
 <area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="163,5,261,32"/>
 <area shape="rect" href="functions_8c.html#a6f0906ef349280dd8907ecbbece94b87" title=" " alt="" coords="159,56,265,83"/>
-<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="159,107,265,133"/>
+<area shape="rect" href="functions_8c.html#a61c68393f99b4d12d440e960996ff9e9" title=" " alt="" coords="159,107,265,133"/>
 <area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="183,157,241,184"/>
 <area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="173,208,251,235"/>
 <area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="187,259,237,285"/>
@@ -210,34 +214,35 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md35"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 Function: opereBrowser</h2>
-<p>Permette una vista approfondita delle opere con ricerca, possibilità di selezionare l'opera.</p>
+<p>Permette una vista approfondita delle opere con ricerca e possibilità di selezionare la mostra.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: TODO: finire </td></tr>
-    <tr><td class="paramname">testa</td><td>: TODO: finire </td></tr>
+    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
     <tr><td class="paramname">selezione</td><td>: se true permette di selezionare l'opera con return avvalorato</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>: se selezione == true l'opera selezionata, altrimenti NULL </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00756">756</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00744">744</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="opera_8c_a9ee9a89fb4ce015dbc97aa3cfc09c390_cgraph.png" border="0" usemap="#aopera_8c_a9ee9a89fb4ce015dbc97aa3cfc09c390_cgraph" alt=""/></div>
 <map name="aopera_8c_a9ee9a89fb4ce015dbc97aa3cfc09c390_cgraph" id="aopera_8c_a9ee9a89fb4ce015dbc97aa3cfc09c390_cgraph">
-<area shape="rect" title=" " alt="" coords="5,157,108,184"/>
+<area shape="rect" title=" " alt="" coords="5,183,108,209"/>
 <area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="157,5,255,32"/>
 <area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="177,56,235,83"/>
-<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="314,132,391,159"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="315,145,393,172"/>
 <area shape="rect" href="opera_8c.html#a7dad6f83036627b90dd06e77d6acaab4" title=" " alt="" coords="158,157,254,184"/>
-<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="156,208,256,235"/>
-<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="181,259,231,285"/>
-<area shape="rect" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f" title=" " alt="" coords="159,309,253,336"/>
-<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="304,259,401,285"/>
+<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="304,221,404,248"/>
+<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="156,259,256,285"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="181,309,231,336"/>
+<area shape="rect" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f" title=" " alt="" coords="159,360,253,387"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="305,309,403,336"/>
 </map>
 </div>
 <div class="dynheader">
@@ -277,18 +282,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md35"></a>
 Function: eliminaOpera</h2>
-<p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare l'opera scelta</p>
+<p>Permette di eliminare l'opera scelta e salvare i dati in "opera.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista opera </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
     <tr><td class="paramname">opera</td><td>: opera da eliminare </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00663">663</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00652">652</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -329,11 +334,16 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Function: letturaOpere</h2>
 <p>Permette di leggere i dati dal file "opere.csv" e salvarli all'interno della struct Opera</p>
-<p>FILE fp: nome del file da cui leggere i dati, ovvero "opere.csv"</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>puntatore alla variabile di tipo Opera, una lista contenente tutte le mostre e le opere associate </dd></dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00021">21</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
@@ -382,30 +392,30 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 Function: modificaOpera</h2>
-<p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi all'opera scelta</p>
+<p>Permette di modificare i dati relativi all'opera scelta</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista opera </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
     <tr><td class="paramname">opera</td><td>: opera scelta per essere modificata </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00315">315</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00311">311</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="opera_8c_abb90ab677b71b0faa8065c049d4c43bc_cgraph.png" border="0" usemap="#aopera_8c_abb90ab677b71b0faa8065c049d4c43bc_cgraph" alt=""/></div>
 <map name="aopera_8c_abb90ab677b71b0faa8065c049d4c43bc_cgraph" id="aopera_8c_abb90ab677b71b0faa8065c049d4c43bc_cgraph">
-<area shape="rect" title=" " alt="" coords="5,132,111,159"/>
+<area shape="rect" title=" " alt="" coords="5,107,111,133"/>
 <area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="163,5,261,32"/>
-<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="313,107,411,133"/>
-<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="159,107,265,133"/>
-<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="173,157,251,184"/>
-<area shape="rect" href="opera_8c.html#aae85f52f965c2332f3975653c4afeecd" title=" " alt="" coords="169,208,255,235"/>
-<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="187,259,237,285"/>
+<area shape="rect" href="functions_8c.html#a61c68393f99b4d12d440e960996ff9e9" title=" " alt="" coords="159,56,265,83"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="173,107,251,133"/>
+<area shape="rect" href="opera_8c.html#aae85f52f965c2332f3975653c4afeecd" title=" " alt="" coords="169,157,255,184"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="187,208,237,235"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="313,132,411,159"/>
 </map>
 </div>
 <div class="dynheader">
@@ -445,19 +455,19 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md34"></a>
+<h2><a class="anchor" id="autotoc_md36"></a>
 Function: ricercaOpera</h2>
-<p>TODO: da finire</p>
+<p>Effettua una ricerca di un opera con un determinato id all'interno della lista</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista opera </td></tr>
-    <tr><td class="paramname">id</td><td>: TODO: da finire</td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
+    <tr><td class="paramname">id</td><td>: id dell'opera da ricercare</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: TODO: da finire </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: opera ricercata, altrimenti NULL </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00719">719</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00708">708</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -496,17 +506,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 Function: scriviOpere</h2>
 <p>Permette di salvare tutte le modifiche effettuate sul file "opere.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista opera </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00634">634</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00623">623</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -536,29 +546,29 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md33"></a>
 Function: stampaOpera</h2>
 <p>Permette di stampare i dettagli di un'opera</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">opera</td><td>: opera scelta </td></tr>
+    <tr><td class="paramname">opera</td><td>: opera da stampare nel dettaglio </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00617">617</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00606">606</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="opera_8c_afb64e20346f2efa96ea1d1ccf0c0f0b1_icgraph.png" border="0" usemap="#aopera_8c_afb64e20346f2efa96ea1d1ccf0c0f0b1_icgraph" alt=""/></div>
 <map name="aopera_8c_afb64e20346f2efa96ea1d1ccf0c0f0b1_icgraph" id="aopera_8c_afb64e20346f2efa96ea1d1ccf0c0f0b1_icgraph">
-<area shape="rect" title=" " alt="" coords="560,49,660,76"/>
-<area shape="rect" href="opera_8c.html#a9ee9a89fb4ce015dbc97aa3cfc09c390" title=" " alt="" coords="260,5,363,32"/>
-<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="412,75,512,101"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,52,56,79"/>
-<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="259,100,364,127"/>
-<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,103,211,129"/>
-<area shape="rect" href="mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="105,153,210,180"/>
+<area shape="rect" title=" " alt="" coords="713,31,813,57"/>
+<area shape="rect" href="opera_8c.html#a9ee9a89fb4ce015dbc97aa3cfc09c390" title=" " alt="" coords="413,5,516,32"/>
+<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="565,56,665,83"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,43,56,69"/>
+<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="412,81,517,108"/>
+<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,93,211,120"/>
+<area shape="rect" href="mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="259,144,364,171"/>
 </map>
 </div>
 
@@ -579,17 +589,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 Function: stampaOpere</h2>
-<p>Permette di stampare a video l'elenco delle opere</p>
+<p>Permette di stampare a video l'elenco delle opere Richiama stampaOpera</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista opera </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00603">603</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="opera_8c_source.html#l00592">592</a> del file <a class="el" href="opera_8c_source.html">opera.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -604,11 +614,12 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="opera_8c_aa79bd349e83bfdcc271b7263e95efe6d_icgraph.png" border="0" usemap="#aopera_8c_aa79bd349e83bfdcc271b7263e95efe6d_icgraph" alt=""/></div>
 <map name="aopera_8c_aa79bd349e83bfdcc271b7263e95efe6d_icgraph" id="aopera_8c_aa79bd349e83bfdcc271b7263e95efe6d_icgraph">
-<area shape="rect" title=" " alt="" coords="412,56,512,83"/>
-<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="259,56,364,83"/>
-<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,5,211,32"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,56,57"/>
-<area shape="rect" href="mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="105,107,210,133"/>
+<area shape="rect" title=" " alt="" coords="565,56,665,83"/>
+<area shape="rect" href="opera_8c.html#a9ee9a89fb4ce015dbc97aa3cfc09c390" title=" " alt="" coords="260,5,363,32"/>
+<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="412,81,517,108"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
+<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,107,211,133"/>
+<area shape="rect" href="mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="259,157,364,184"/>
 </map>
 </div>
 

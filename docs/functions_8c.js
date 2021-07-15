@@ -20,7 +20,7 @@ var functions_8c =
     [ "differenzaDateOggi", "functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2", null ],
     [ "differenzaDateOggiChar", "functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9", null ],
     [ "letturaUltimoID", "functions_8c.html#a6f0906ef349280dd8907ecbbece94b87", null ],
-    [ "notificaAnnulla", "functions_8c.html#a1e001744c29d449ddea95d5821e6896e", null ],
+    [ "notificaAnnulla", "functions_8c.html#a61c68393f99b4d12d440e960996ff9e9", null ],
     [ "pausa", "functions_8c.html#ad3befffba77b3954d6bbea4d22afc517", null ],
     [ "printColor", "functions_8c.html#afca704d84c421deddcc822090a4cbce1", null ],
     [ "readPassword", "functions_8c.html#a72b8a9a69a000b9332a3757d286b4170", null ],

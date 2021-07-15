@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notificaannulla_166',['notificaAnnulla',['../functions_8c.html#a1e001744c29d449ddea95d5821e6896e',1,'notificaAnnulla():&#160;functions.c'],['../functions_8h.html#a5a066b976e205f6ada926f0d8877c396',1,'notificaAnnulla(void):&#160;functions.c']]]
+  ['notificaannulla_166',['notificaAnnulla',['../functions_8c.html#a61c68393f99b4d12d440e960996ff9e9',1,'notificaAnnulla(bool tastoNum):&#160;functions.c'],['../functions_8h.html#a61c68393f99b4d12d440e960996ff9e9',1,'notificaAnnulla(bool tastoNum):&#160;functions.c']]]
 ];

@@ -13,8 +13,10 @@ struct prenotazione {
  *   Permette di leggere i dati dal file "prenotazioni.csv" e salvarli all'interno della struct Prenotazione
  *
  *   @param fp : nome del file da cui leggere i dati, ovvero "prenotazioni.csv"
- *   @param testaUtente : lista utente
- *   @param testaMostra : lista mostra
+ *   @param testaUtente : puntatore alla variabile di tipo Utente, una lista contenente tutte gli utenti
+ *   @param testaMostra : puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
+ * 
+ *   @return puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
  */
 Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMostra) {
     int colonna = 0;
@@ -78,8 +80,8 @@ Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMo
  * ----------------------------
  *   Permette agli utenti di prenotare una visita ad una mostra in un determinato giorno e orario
  *
- *   @param testa : lista prenotazione
- *   @param utente : utente che ha effettuato il login
+ *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param utente : utente alla quale verrà assegnata la prenotazione
  *   @param mostra : mostra scelta
  */
 void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *mostra) {
@@ -101,15 +103,7 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
     fp = fopen("prenotazioni.csv", "a+"); //apertura file
 
 
-
-    consoleColor(COLOR_RED);
-    printf("\t\t\t|-----------------------------|\n");
-    printf("\t\t\t|         Attenzione!         |\n");
-    printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
-    printf("\t\t\t|       tornare al menu'      |\n");
-    printf("\t\t\t|      premere il tasto 0     |\n");
-    printf("\t\t\t|-----------------------------|\n");
-    consoleColor(COLOR_RESET);
+    notificaAnnulla(true);
 
     printf("Inserisci data di prenotazione\n");
 
@@ -206,6 +200,14 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
     }
 }
 
+/**
+ * Function: modificaPrenotazione
+ * ----------------------------
+ *   Modifica una prenotazione 
+ *
+ *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param prenotazione : prenotazione che verrà modificata
+ */
 void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
     int scelta;
     char risposta = '\0';
@@ -219,8 +221,7 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
 
         clearConsole();
         titolo();
-        //while ('\n' != getchar());
-
+        
         //elenco campi modificabili
         printf("Scegliere il campo da modificare\n");
         printf("----------\n");
@@ -248,14 +249,7 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
                 stampaPrenotazione(prenotazione);
                 printColor("--------------------------\n", COLOR_CYAN);
 
-                consoleColor(COLOR_RED);
-                printf("\t\t\t|-----------------------------|\n");
-                printf("\t\t\t|         Attenzione!         |\n");
-                printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
-                printf("\t\t\t|       tornare al menu'      |\n");
-                printf("\t\t\t|      premere il tasto 0     |\n");
-                printf("\t\t\t|-----------------------------|\n");
-                consoleColor(COLOR_RESET);
+                notificaAnnulla(true);
 
                 do {
                     continuaModifica = true;
@@ -316,15 +310,7 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
                 stampaPrenotazione(prenotazione);
                 printColor("--------------------------\n", COLOR_CYAN);
 
-                consoleColor(COLOR_RED);
-                printf("\t\t\t|-----------------------------|\n");
-                printf("\t\t\t|         Attenzione!         |\n");
-                printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
-                printf("\t\t\t|       tornare al menu'      |\n");
-                printf("\t\t\t|      premere il tasto 0     |\n");
-                printf("\t\t\t|-----------------------------|\n");
-                consoleColor(COLOR_RESET);
-
+                notificaAnnulla(true);
 
                 do {
                     printf("Ora (dalle 9 alle 22): ");
@@ -376,14 +362,32 @@ void modificaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
     } while (risposta == 'S' && scelta != 0);
 }
 
-//stampa a video
+/**
+ * Function: stampaPrenotazioni
+ * ----------------------------
+ *   Stampa nel dettaglio tutte le prenotazioni (con mostre del giorno corrente o future).
+ *   Richiama stampaPrenotazione()
+ *
+ *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ */
 void stampaPrenotazioni(Prenotazione *testa) {
     for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
-        stampaPrenotazione(temp);
-        printf("----------\n");
+        if (differenzaDateOggiChar(temp->data) >= 0 ) {
+            stampaPrenotazione(temp);
+            printf("----------\n");
+        }
     }
 }
 
+/**
+ * Function: stampaPrenotazioniUtente
+ * ----------------------------
+ *   Stampa nel dettaglio tutte le prenotazioni (con mostre del giorno corrente o future) di un determinato utente.
+ *   Richiama stampaPrenotazione()
+ *
+ *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param utente : utente di cui ricercare le prenotazioni
+ */
 void stampaPrenotazioniUtente(Prenotazione *testa, Utente *utente) {
     bool trovato = false;
 
@@ -404,6 +408,13 @@ void stampaPrenotazioniUtente(Prenotazione *testa, Utente *utente) {
     }
 }
 
+/**
+ * Function: stampaPrenotazione
+ * ----------------------------
+ *   Stampa nel dettaglio la prenotazione passata in argomento
+ *
+ *   @param prenotazione : prenotazione da stampare nel dettaglio
+ */
 void stampaPrenotazione(Prenotazione *prenotazione) {
     printf("Id: %d\n", prenotazione->id);
     printf("Utente: %s %s\n", prenotazione->utente->nome, prenotazione->utente->cognome);
@@ -412,7 +423,13 @@ void stampaPrenotazione(Prenotazione *prenotazione) {
     printf("Ora: %s\n", prenotazione->ora);
 }
 
-//scrittura su file
+/**
+ * Function: scriviPrenotazioni
+ * ----------------------------
+ *   Aggiorna il file prenotazioni.csv con le nuove prenotazioni
+ *
+ *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ */
 void scriviPrenotazioni(Prenotazione *testa) {
     FILE *fp;
     fp = fopen("prenotazioni.csv", "w"); //apertura file
@@ -429,7 +446,16 @@ void scriviPrenotazioni(Prenotazione *testa) {
     fclose(fp);
 }
 
-
+/**
+ * Function: ricercaPrenotazione
+ * ----------------------------
+ *   Effettua una ricerca tra le prenotazioni per trovare la prenotazione con un determinato id
+ *
+ *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param id : intero, identificatore della mostra da ricercare
+ * 
+ *   @return Prenotazione ricercata, se non trovata NULL
+ */
 Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id) {
     bool flag = false;
     Prenotazione *nuovoNodo = NULL;
@@ -452,6 +478,16 @@ Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id) {
     return nuovoNodo;
 }
 
+/**
+ * Function: prenotazioneModificabile
+ * ----------------------------
+ *   Controlla se una prenotazione è modificabile (o eliminabile) o meno.
+ *   Una prenotazione è modificabile prima di due giorni l'inizio della mostra
+ *
+ *   @param prenotazione : prenotazione da controllare se è modificabile
+ * 
+ *   @return true se la prenotazione è modificabile, quindi il giorno corrente è antecedente a due giorni prima dell'inizio della mostra, altrimenti false
+ */
 bool prenotazioneModificabile(Prenotazione *prenotazione) {
 
     int data[3];
@@ -495,6 +531,14 @@ bool prenotazioneModificabile(Prenotazione *prenotazione) {
     return (differenzaDateOggi(data[0], data[1], data[2]) == 1);
 }
 
+/**
+ * Function: eliminaPrenotazione
+ * ----------------------------
+ *   Elimina una prenotazione
+ *
+ *   @param testa : puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
+ *   @param prenotazione : prenotazione da eliminare
+ */
 void eliminaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
     char risposta;
     Prenotazione *curr, *prec;

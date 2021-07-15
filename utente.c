@@ -15,7 +15,9 @@ struct utente {
  * ----------------------------
  *   Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente
  *
- *   @param fp : nome del file da cui leggere i dati, ovvero "utenti.csv"
+ *   @param fp : puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file utenti.csv
+ * 
+ *   @return puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 Utente *letturaUtenti(FILE *fp) {
 
@@ -95,7 +97,7 @@ Utente *letturaUtenti(FILE *fp) {
  * ----------------------------
  *   Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente
  *
- *   @param testa : lista utente
+ *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 void registrazioneUtente(Utente *testa) {
     Utente *nuovoNodo = NULL;
@@ -118,7 +120,7 @@ void registrazioneUtente(Utente *testa) {
 
     while ('\n' != getchar());
 
-    notificaAnnulla();
+    notificaAnnulla(false);
 
     do {
         testInput = false;
@@ -421,13 +423,12 @@ void registrazioneUtente(Utente *testa) {
  * ----------------------------
  *   Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato
  *
- *   @param testa : lista utente
+ *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  *   @param text : testo inserito dall'utente per fare l'accesso (email o nickname)
- *
+ * 
  *   @returns:  se esiste utente con email o nickname uguale al valore del secondo argomento
  *            (char *text) e la password inserita corrisponde la funzione lo ritornerà,
  *            altrimenti il valore sarà uguale a NULL
- *
  */
 Utente *accesso(Utente *testa, char *text) {
     bool utenteTrovato = false;
@@ -455,16 +456,15 @@ Utente *accesso(Utente *testa, char *text) {
         return NULL;
 }
 
-
 /**
  * Function: ricercaUtente
  * ----------------------------
- *   TODO: da finire
+ *   Ricerca l'utente con un determinato id
  *
- *   @param testa : lista utente
- *   @param id : TODO: da finire
- *
- *   @returns: TODO: da finire
+ *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
+ *   @param id : id dell'utente da ricercare
+ * 
+ *   @returns: Utente con id corrispondende al parametro id, altrimenti NULL
  */
 Utente *ricercaUtente(Utente *testa, int id) {
     bool flag = false;
@@ -489,26 +489,23 @@ Utente *ricercaUtente(Utente *testa, int id) {
 }
 
 /**
- * Function: stampaUtente
+ * Function: ricercaUtente
  * ----------------------------
- *   Permette di stampare i dati personali di un determinato utente dopo
- *   che ha effettuato l'accesso al proprio profilo
+ *   Permette di stampare i dati personali di un determinato utente
  *
- *   @param utenteLogin : utente che ha effettuato il login
+ *   @param utente : utente da stampare nel dettaglio
  */
-void stampaUtente(Utente *utenteLogin) {
-    Utente *temp = NULL;
-    temp = utenteLogin;
+void stampaUtente(Utente *utente) {
 
     printColor("Elenco dati personali\n", COLOR_CYAN);
-    printf("Id: %d\n", temp->id);
-    printf("Nome: %s\n", temp->nome);
-    printf("Cognome: %s\n", temp->cognome);
-    printf("Nickname: %s\n", temp->nick);
-    printf("Email: %s\n", temp->email);
-    printf("Data di nascita: %s\n", temp->dataNascita);
+    printf("Id: %d\n", utente->id);
+    printf("Nome: %s\n", utente->nome);
+    printf("Cognome: %s\n", utente->cognome);
+    printf("Nickname: %s\n", utente->nick);
+    printf("Email: %s\n", utente->email);
+    printf("Data di nascita: %s\n", utente->dataNascita);
 
-    if (temp->permessi == 1) {
+    if (utente->permessi == 1) {
         printf("Permessi: utente base\n");
     } else {
         printf("Permessi: direttore\n");
@@ -523,10 +520,11 @@ void stampaUtente(Utente *utenteLogin) {
  * ----------------------------
  *   Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo
  *
- *   @param utenteLogin : utente che ha effettuato il login
- *   @param testa : lista utente
+ *   @param utente : utente da modificare
+ *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
-void modificaUtente(Utente *utenteLogin, Utente *testa) {
+//TODO: invertire
+void modificaUtente(Utente *utente, Utente *testa) {
     int scelta, i;
     char risposta = '\0';
 
@@ -543,7 +541,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
     Utente *temp = NULL;
     Utente *temp2 = NULL;
 
-    temp = utenteLogin;
+    temp = utente;
 
     do {
 
@@ -572,7 +570,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                 titolo();
 
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci il nuovo nome: ");
                     fgets(nome, 20, stdin);
@@ -609,7 +607,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                 clearConsole();
                 titolo();
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci il nuovo cognome: ");
                     fgets(cognome, 20, stdin);
@@ -645,10 +643,10 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
             case 3:
                 clearConsole();
                 titolo();
-                notificaAnnulla();
+                notificaAnnulla(false);
 
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     flag = false;
                     printf("Inserisci Email (non ti dimenticare la @): \n");
@@ -704,7 +702,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                 char psw[32], psw2[32];
 
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     printf("\n");
 
                     readPassword("Inserisci la nuova password (minimo 6 caratteri): ", psw, false);
@@ -733,14 +731,7 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
                 clearConsole();
                 titolo();
 
-                consoleColor(COLOR_RED);
-                printf("\t\t\t|-----------------------------|\n");
-                printf("\t\t\t|         Attenzione!         |\n");
-                printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
-                printf("\t\t\t|       tornare al menu'      |\n");
-                printf("\t\t\t|      premere il tasto 0     |\n");
-                printf("\t\t\t|-----------------------------|\n");
-                consoleColor(COLOR_RESET);
+                notificaAnnulla(true);
 
                 printf("Inserisci data di nascita\n");
 
@@ -820,19 +811,18 @@ void modificaUtente(Utente *utenteLogin, Utente *testa) {
 /**
  * Function: eliminaUtente
  * ----------------------------
- *   Dopo aver effettuato l'accesso al proprio profilo, permette di eliminarlo
+ *   Permette di eliminare un utente
  *
- *   Utente *utenteLogin: utente che ha effettuato il login
- *   Utente *testa: lista utente
- *
- *   returns: //
+ *   @param utente : utente da stampare nel dettaglio
+ *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
-void eliminaUtente(Utente *utenteLogin, Utente *testa) {
+//TODO: invertire
+void eliminaUtente(Utente *utente, Utente *testa) {
     char risposta;
     Utente *curr, *prec;
     Utente *temp = NULL;
 
-    temp = utenteLogin;
+    temp = utente;
     prec = NULL;
     curr = testa;
 
@@ -883,9 +873,7 @@ void eliminaUtente(Utente *utenteLogin, Utente *testa) {
  * ----------------------------
  *   Permette di salvare tutte le modifiche effettuate sul file "utenti.csv"
  *
- *   Utente *testa: lista utente
- *
- *   returns: //
+ *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 void scriviUtenti(Utente *testa) {
     Utente *temp = NULL;
@@ -909,17 +897,13 @@ void scriviUtenti(Utente *testa) {
 }
 
 /**
- * Function: modificaPermessi
+ * Function: eliminaUtente
  * ----------------------------
- *   Permette all'utente che possiede i permessi di livello 2 (direttore) di modificare
- *   il livello dei permessi degli altri utenti
+ *   Permette di modificare il permesso di un utente scelto
  *
- *   Utente *testa: lista utente
- *
- *   returns: //
+ *   @param testa : puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 void modificaPermessi(Utente *testa) {
-    Utente *temp = NULL;
     char idScelto, sceltaPerm;
     char risposta = '\0';
     bool modifica = true;
@@ -928,7 +912,7 @@ void modificaPermessi(Utente *testa) {
     do {
         do {
             printColor("Elenco utenti.\n", COLOR_CYAN);
-            for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+            for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
                 printf("Id: %d\n", temp->id);
                 printf("Nominativo: %s %s\n", temp->nome, temp->cognome);
                 if (temp->permessi == 1) {
@@ -940,7 +924,7 @@ void modificaPermessi(Utente *testa) {
 
             }
 
-            notificaAnnulla();
+            notificaAnnulla(false);
             printf("Scegli l'id dell'utente al quale vuoi cambiare i permessi: \n");
             printf("-> ");
             scanf(" %c", &idScelto);
@@ -965,7 +949,7 @@ void modificaPermessi(Utente *testa) {
                     break;
 
                 case 1:
-                    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+                    for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
                         if (temp->id == idScelto) {
                             trovato = true;
                             temp->permessi = 1;
@@ -974,7 +958,7 @@ void modificaPermessi(Utente *testa) {
                     break;
 
                 case 2:
-                    for (temp = testa; temp != NULL; temp = temp->nextUtente) {
+                    for (Utente *temp = testa; temp != NULL; temp = temp->nextUtente) {
                         if (temp->id == idScelto) {
                             trovato = true;
                             temp->permessi = 2;
@@ -1016,4 +1000,3 @@ void modificaPermessi(Utente *testa) {
         }
     } while (risposta == 'S' && modifica);
 }
-

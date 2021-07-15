@@ -10,7 +10,7 @@ var functions_8h =
     [ "differenzaDateOggi", "functions_8h.html#a8948eb043fad35898f4a8036e9ec85a2", null ],
     [ "differenzaDateOggiChar", "functions_8h.html#acf34a2b141801e95e8b4293f44cf94b9", null ],
     [ "letturaUltimoID", "functions_8h.html#a6f0906ef349280dd8907ecbbece94b87", null ],
-    [ "notificaAnnulla", "functions_8h.html#a5a066b976e205f6ada926f0d8877c396", null ],
+    [ "notificaAnnulla", "functions_8h.html#a61c68393f99b4d12d440e960996ff9e9", null ],
     [ "pausa", "functions_8h.html#a5d59d73fed763a09059f90613210151e", null ],
     [ "printColor", "functions_8h.html#afca704d84c421deddcc822090a4cbce1", null ],
     [ "readPassword", "functions_8h.html#a72b8a9a69a000b9332a3757d286b4170", null ],

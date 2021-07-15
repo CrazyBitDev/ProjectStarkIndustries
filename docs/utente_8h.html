@@ -180,19 +180,19 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md51"></a>
 Function: accesso</h2>
 <p>Permette di effettuare l'accesso al proprio profilo personale, precedentemente registrato</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista utente </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
     <tr><td class="paramname">text</td><td>: testo inserito dall'utente per fare l'accesso (email o nickname)</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>: se esiste utente con email o nickname uguale al valore del secondo argomento (char *text) e la password inserita corrisponde la funzione lo ritornerà, altrimenti il valore sarà uguale a NULL </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00432">432</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00433">433</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -225,7 +225,7 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
           <td class="memname">void eliminaUtente </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="utente_8h.html#a48b8a64e890f986d5e8a42f818d4ee29">Utente</a> *&#160;</td>
-          <td class="paramname"><em>utenteLogin</em>, </td>
+          <td class="paramname"><em>utente</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -240,13 +240,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md45"></a>
+<h2><a class="anchor" id="autotoc_md55"></a>
 Function: eliminaUtente</h2>
-<p>Dopo aver effettuato l'accesso al proprio profilo, permette di eliminarlo</p>
-<p>Utente *utenteLogin: utente che ha effettuato il login Utente *testa: lista utente</p>
-<p>returns: // </p>
+<p>Permette di eliminare un utente</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">utente</td><td>: utente da stampare nel dettaglio </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00830">830</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00820">820</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -287,17 +292,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md39"></a>
+<h2><a class="anchor" id="autotoc_md49"></a>
 Function: letturaUtenti</h2>
 <p>Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: nome del file da cui leggere i dati, ovvero "utenti.csv" </td></tr>
+    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file utenti.csv</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Restituisce</dt><dd>puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00020">20</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00022">22</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -334,13 +340,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md47"></a>
-Function: modificaPermessi</h2>
-<p>Permette all'utente che possiede i permessi di livello 2 (direttore) di modificare il livello dei permessi degli altri utenti</p>
-<p>Utente *testa: lista utente</p>
-<p>returns: // </p>
+<h2><a class="anchor" id="autotoc_md57"></a>
+Function: eliminaUtente</h2>
+<p>Permette di modificare il permesso di un utente scelto</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00921">921</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00906">906</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -348,7 +358,7 @@ Questo è il grafo delle chiamate per questa funzione:</div>
 <map name="autente_8h_a98f2344fd2dfea49fc9c35f8564c07fb_cgraph" id="autente_8h_a98f2344fd2dfea49fc9c35f8564c07fb_cgraph">
 <area shape="rect" title=" " alt="" coords="5,132,131,159"/>
 <area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="183,5,281,32"/>
-<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="179,56,285,83"/>
+<area shape="rect" href="functions_8c.html#a61c68393f99b4d12d440e960996ff9e9" title=" " alt="" coords="179,56,285,83"/>
 <area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="203,107,261,133"/>
 <area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="193,157,271,184"/>
 <area shape="rect" href="utente_8c.html#a5d86b530e0e17b3af5c63fdf367bf008" title=" " alt="" coords="189,208,275,235"/>
@@ -378,7 +388,7 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
           <td class="memname">void modificaUtente </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="utente_8h.html#a48b8a64e890f986d5e8a42f818d4ee29">Utente</a> *&#160;</td>
-          <td class="paramname"><em>utenteLogin</em>, </td>
+          <td class="paramname"><em>utente</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -393,33 +403,33 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md54"></a>
 Function: modificaUtente</h2>
 <p>Permette di modificare i dati personali dell'utente una volta effettuato l'accesso al proprio profilo</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">utenteLogin</td><td>: utente che ha effettuato il login </td></tr>
-    <tr><td class="paramname">testa</td><td>: lista utente </td></tr>
+    <tr><td class="paramname">utente</td><td>: utente da modificare </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00529">529</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00527">527</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="utente_8h_a624035ff057def966d8775a144800e9d_cgraph.png" border="0" usemap="#autente_8h_a624035ff057def966d8775a144800e9d_cgraph" alt=""/></div>
 <map name="autente_8h_a624035ff057def966d8775a144800e9d_cgraph" id="autente_8h_a624035ff057def966d8775a144800e9d_cgraph">
-<area shape="rect" title=" " alt="" coords="5,183,113,209"/>
+<area shape="rect" title=" " alt="" coords="5,157,113,184"/>
 <area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="166,5,263,32"/>
-<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="317,107,415,133"/>
-<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="161,107,268,133"/>
-<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="176,157,253,184"/>
-<area shape="rect" href="functions_8c.html#a72b8a9a69a000b9332a3757d286b4170" title=" " alt="" coords="163,208,267,235"/>
-<area shape="rect" href="utente_8c.html#a5d86b530e0e17b3af5c63fdf367bf008" title=" " alt="" coords="172,259,257,285"/>
-<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="189,309,240,336"/>
-<area shape="rect" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db" title=" " alt="" coords="171,360,259,387"/>
-<area shape="rect" href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="316,360,416,387"/>
+<area shape="rect" href="functions_8c.html#a61c68393f99b4d12d440e960996ff9e9" title=" " alt="" coords="161,56,268,83"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="176,107,253,133"/>
+<area shape="rect" href="functions_8c.html#a72b8a9a69a000b9332a3757d286b4170" title=" " alt="" coords="163,157,267,184"/>
+<area shape="rect" href="utente_8c.html#a5d86b530e0e17b3af5c63fdf367bf008" title=" " alt="" coords="172,208,257,235"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="189,259,240,285"/>
+<area shape="rect" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db" title=" " alt="" coords="171,309,259,336"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="317,157,415,184"/>
+<area shape="rect" href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="316,309,416,336"/>
 </map>
 </div>
 <div class="dynheader">
@@ -449,17 +459,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md50"></a>
 Function: registrazioneUtente</h2>
 <p>Permette la registrazione di un nuovo utente, con salvatggio dei dati sul file "utenti.csv" e nella struct Utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista utente </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00100">100</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00102">102</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -468,7 +478,7 @@ Questo è il grafo delle chiamate per questa funzione:</div>
 <area shape="rect" title=" " alt="" coords="5,183,140,209"/>
 <area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="193,5,290,32"/>
 <area shape="rect" href="functions_8c.html#a6f0906ef349280dd8907ecbbece94b87" title=" " alt="" coords="188,56,295,83"/>
-<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="188,107,295,133"/>
+<area shape="rect" href="functions_8c.html#a61c68393f99b4d12d440e960996ff9e9" title=" " alt="" coords="188,107,295,133"/>
 <area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="213,157,270,184"/>
 <area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="203,208,280,235"/>
 <area shape="rect" href="functions_8c.html#a72b8a9a69a000b9332a3757d286b4170" title=" " alt="" coords="189,259,293,285"/>
@@ -516,17 +526,17 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md52"></a>
 Function: ricercaUtente</h2>
-<p>TODO: da finire</p>
+<p>Ricerca l'utente con un determinato id</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista utente </td></tr>
-    <tr><td class="paramname">id</td><td>: TODO: da finire</td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+    <tr><td class="paramname">id</td><td>: id dell'utente da ricercare</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: TODO: da finire </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: Utente con id corrispondende al parametro id, altrimenti NULL </dd></dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00469">469</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
@@ -566,22 +576,26 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md46"></a>
+<h2><a class="anchor" id="autotoc_md56"></a>
 Function: scriviUtenti</h2>
 <p>Permette di salvare tutte le modifiche effettuate sul file "utenti.csv"</p>
-<p>Utente *testa: lista utente</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00890">890</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00878">878</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="utente_8h_a5d86b530e0e17b3af5c63fdf367bf008_icgraph.png" border="0" usemap="#autente_8h_a5d86b530e0e17b3af5c63fdf367bf008_icgraph" alt=""/></div>
 <map name="autente_8h_a5d86b530e0e17b3af5c63fdf367bf008_icgraph" id="autente_8h_a5d86b530e0e17b3af5c63fdf367bf008_icgraph">
 <area shape="rect" title=" " alt="" coords="277,56,363,83"/>
-<area shape="rect" href="utente_8c.html#a7d5afb423f2c814942623fb9f9c1a6b8" title=" " alt="" coords="116,5,217,32"/>
+<area shape="rect" href="utente_8c.html#a1bb0b5af7216359a9598a7fcd456a2bd" title=" " alt="" coords="116,5,217,32"/>
 <area shape="rect" href="utente_8c.html#a98f2344fd2dfea49fc9c35f8564c07fb" title=" " alt="" coords="104,56,229,83"/>
-<area shape="rect" href="utente_8c.html#a624035ff057def966d8775a144800e9d" title=" " alt="" coords="113,107,221,133"/>
+<area shape="rect" href="utente_8c.html#a762f8065648f578ac589bc457716058c" title=" " alt="" coords="113,107,221,133"/>
 <area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
 </map>
 </div>
@@ -598,22 +612,22 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
           <td class="memname">void stampaUtente </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="utente_8h.html#a48b8a64e890f986d5e8a42f818d4ee29">Utente</a> *&#160;</td>
-          <td class="paramname"><em>utenteLogin</em></td><td>)</td>
+          <td class="paramname"><em>utente</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md43"></a>
-Function: stampaUtente</h2>
-<p>Permette di stampare i dati personali di un determinato utente dopo che ha effettuato l'accesso al proprio profilo</p>
+<h2><a class="anchor" id="autotoc_md53"></a>
+Function: ricercaUtente</h2>
+<p>Permette di stampare i dati personali di un determinato utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">utenteLogin</td><td>: utente che ha effettuato il login </td></tr>
+    <tr><td class="paramname">utente</td><td>: utente da stampare nel dettaglio </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00499">499</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="utente_8c_source.html#l00498">498</a> del file <a class="el" href="utente_8c_source.html">utente.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">

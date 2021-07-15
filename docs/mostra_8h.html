@@ -196,15 +196,15 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 <h2><a class="anchor" id="autotoc_md18"></a>
 Function: aggiungiMostra</h2>
-<p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) la registrazione di una nuova mostra, con salvatggio dei dati sul file "mostre.csv" e nella struct Mostra</p>
+<p>Permette la registrazione di una nuova mostra Effettuata l'inserimento, verrà effettuato una scrittura del file "mostra.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00160">160</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00163">163</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -215,7 +215,7 @@ Questo è il grafo delle chiamate per questa funzione:</div>
 <area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="343,81,447,108"/>
 <area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="164,107,295,133"/>
 <area shape="rect" href="functions_8c.html#a6f0906ef349280dd8907ecbbece94b87" title=" " alt="" coords="176,157,283,184"/>
-<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="176,208,283,235"/>
+<area shape="rect" href="functions_8c.html#a61c68393f99b4d12d440e960996ff9e9" title=" " alt="" coords="176,208,283,235"/>
 <area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="201,259,258,285"/>
 <area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="191,309,268,336"/>
 <area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="204,360,255,387"/>
@@ -271,10 +271,16 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 <h2><a class="anchor" id="autotoc_md19"></a>
 Function: aggiungiOperaAMostra</h2>
 <p>Permette di aggiungere una opera ad una determinata mostra, controllando che nel periodo della mostra l'opera non è già occupata</p>
-<p>Mostra *testa: lista mostra Mostra *mostra: mostra scelta per essere modificata Opera *opera: opera scelta per essere aggiunta</p>
-<p>returns: // </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
+    <tr><td class="paramname">mostra</td><td>: mostra scelta per essere modificata </td></tr>
+    <tr><td class="paramname">opera</td><td>: opera scelta per essere aggiunta </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00451">451</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00452">452</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -329,39 +335,40 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Function: mostreBrowser</h2>
-<p>Permette una vista approfondita delle mostre con ricerca, possibilità di selezionare la mostra.</p>
+<p>Permette una vista approfondita delle mostre con ricerca e possibilità di selezionare la mostra.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: TODO: finire </td></tr>
-    <tr><td class="paramname">testa</td><td>: TODO: finire </td></tr>
+    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
     <tr><td class="paramname">selezione</td><td>: se true permette di selezionare l'opera con return avvalorato</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>: se selezione == true la mostra selezionata, altrimenti NULL </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01150">1150</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01159">1159</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="mostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_cgraph.png" border="0" usemap="#amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_cgraph" alt=""/></div>
 <map name="amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_cgraph" id="amostra_8h_ab43da72ce0d07897ea7bdf25efa0fc29_cgraph">
-<area shape="rect" title=" " alt="" coords="5,174,112,201"/>
-<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="383,10,481,37"/>
-<area shape="rect" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="160,200,319,226"/>
-<area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="211,250,268,277"/>
-<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="393,73,471,100"/>
-<area shape="rect" href="mostra_8c.html#a2b83b32d2db764aa87e3b5e8cdbf0720" title=" " alt="" coords="189,48,290,74"/>
-<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="407,124,457,150"/>
-<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="187,301,292,328"/>
-<area shape="rect" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f" title=" " alt="" coords="192,352,287,378"/>
-<area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="367,200,497,226"/>
-<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="545,200,649,226"/>
-<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="549,124,646,150"/>
-<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="382,301,482,328"/>
-<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="547,301,647,328"/>
+<area shape="rect" title=" " alt="" coords="5,195,112,221"/>
+<area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="344,5,441,32"/>
+<area shape="rect" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="313,195,472,221"/>
+<area shape="rect" href="functions_8c.html#ad3befffba77b3954d6bbea4d22afc517" title=" " alt="" coords="184,347,241,373"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="354,68,431,95"/>
+<area shape="rect" href="mostra_8c.html#a2b83b32d2db764aa87e3b5e8cdbf0720" title=" " alt="" coords="162,93,263,120"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="367,144,418,171"/>
+<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="340,271,445,297"/>
+<area shape="rect" href="mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="160,245,265,272"/>
+<area shape="rect" href="functions_8c.html#a3d83e5c4daff78d0cd4f15185b27409f" title=" " alt="" coords="165,397,260,424"/>
+<area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="520,195,651,221"/>
+<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="699,195,803,221"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="537,144,634,171"/>
+<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="535,271,635,297"/>
+<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="701,271,801,297"/>
 </map>
 </div>
 <div class="dynheader">
@@ -403,16 +410,16 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 </div><div class="memdoc">
 <h2><a class="anchor" id="autotoc_md24"></a>
 Function: eliminaMostra</h2>
-<p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) di eliminare la mostra scelta</p>
+<p>Permette di eliminare una mostra. Richiamerà <a class="el" href="mostra_8c.html#a5b9225c22b5acada60cc8057d42dec21">scriviMostre()</a> una volta completata l'eliminazione per aggiornare i file</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
     <tr><td class="paramname">mostra</td><td>: mostra da eliminare </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01000">1000</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00993">993</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -469,8 +476,19 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md25"></a>
+Function: eliminaOperaAMostra</h2>
+<p>Permette di modificare una mostra rimuovendone un opera associata</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
+    <tr><td class="paramname">mostra</td><td>: mostra da modificare </td></tr>
+    <tr><td class="paramname">idOpera</td><td>: id dell'opera da rimuovere dalla mostra </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01044">1044</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01046">1046</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -529,15 +547,18 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 </div><div class="memdoc">
 <h2><a class="anchor" id="autotoc_md17"></a>
 Function: letturaMostre</h2>
-<p>Permette di leggere i dati dal file "mostre.csv" e salvarli all'interno della struct Mostra</p>
+<p>Legge i dati dal file "mostre.csv" e il file "mostreopere.csv" salvando il tutto all'interno della struct Mostra e alla struct MostreOpere, contenuta all'interno di Mostra</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>: nome del file da cui leggere i dati, ovvero "mostre.csv" </td></tr>
+    <tr><td class="paramname">fp</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv </td></tr>
+    <tr><td class="paramname">fpMO</td><td>: puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostreopere.csv </td></tr>
+    <tr><td class="paramname">testaOpera</td><td>: puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Restituisce</dt><dd>puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00025">25</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00029">29</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -591,10 +612,10 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 </div><div class="memdoc">
 <h2><a class="anchor" id="autotoc_md20"></a>
 Function: modificaMostra</h2>
-<p>Permette agli utenti che possiedono i permessi di livello 2 (direttore) di modificare i dati relativi alla mostra scelta</p>
+<p>Permette di modificare i dati relativi ad una mostra scelta</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
     <tr><td class="paramname">mostra</td><td>: mostra scelta per essere modificata </td></tr>
   </table>
   </dd>
@@ -606,17 +627,17 @@ Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="mostra_8h_a7d3a352e2ff225f66193ffb8079ef593_cgraph.png" border="0" usemap="#amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_cgraph" alt=""/></div>
 <map name="amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_cgraph" id="amostra_8h_a7d3a352e2ff225f66193ffb8079ef593_cgraph">
-<area shape="rect" title=" " alt="" coords="5,208,116,235"/>
+<area shape="rect" title=" " alt="" coords="5,183,116,209"/>
 <area shape="rect" href="functions_8c.html#aff6c831918692405e75fc55c43424304" title=" " alt="" coords="181,5,278,32"/>
-<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="346,107,443,133"/>
-<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="343,284,447,311"/>
-<area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="164,360,295,387"/>
-<area shape="rect" href="functions_8c.html#a1e001744c29d449ddea95d5821e6896e" title=" " alt="" coords="176,107,283,133"/>
-<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="191,259,268,285"/>
-<area shape="rect" href="mostra_8c.html#a5b9225c22b5acada60cc8057d42dec21" title=" " alt="" coords="184,309,275,336"/>
-<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="204,157,255,184"/>
-<area shape="rect" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db" title=" " alt="" coords="185,411,273,437"/>
-<area shape="rect" href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="345,411,445,437"/>
+<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="343,81,447,108"/>
+<area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="164,107,295,133"/>
+<area shape="rect" href="functions_8c.html#a61c68393f99b4d12d440e960996ff9e9" title=" " alt="" coords="176,157,283,184"/>
+<area shape="rect" href="functions_8c.html#afca704d84c421deddcc822090a4cbce1" title=" " alt="" coords="191,208,268,235"/>
+<area shape="rect" href="mostra_8c.html#a5b9225c22b5acada60cc8057d42dec21" title=" " alt="" coords="184,259,275,285"/>
+<area shape="rect" href="functions_8c.html#a344fc8694610c76e62cab4a950172350" title=" " alt="" coords="204,309,255,336"/>
+<area shape="rect" href="functions_8c.html#a50f3dc2ba14a65e89829e6fd3bc4a1db" title=" " alt="" coords="185,360,273,387"/>
+<area shape="rect" href="functions_8c.html#af420b2cbdafa0652b9bc33119a57064b" title=" " alt="" coords="346,233,443,260"/>
+<area shape="rect" href="functions_8c.html#a6227f1e5ba34a8b10c19a89c406a608d" title=" " alt="" coords="345,360,445,387"/>
 </map>
 </div>
 <div class="dynheader">
@@ -656,8 +677,19 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md26"></a>
+Function: operaUsataInMostre</h2>
+<p>Verifica che un opera non sia esposta in una mostra del giorno corrente o futura</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
+    <tr><td class="paramname">idOpera</td><td>: id dell'opera da controllare</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>true se l'opera viene usata in una mostra del giorno corrente o futura </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01087">1087</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01098">1098</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -706,19 +738,19 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 Function: ricercaMostra</h2>
-<p>TODO: da finire</p>
+<p>Effettua una ricerca cercando una mostra con un determinato id</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
-    <tr><td class="paramname">id</td><td>: TODO: da finire</td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
+    <tr><td class="paramname">id</td><td>: id della mostra da ricercare</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>: TODO: da finire </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>: puntatore della mostra ricercata, o NULL se nessuna mostra trovata </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01113">1113</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l01124">1124</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -763,15 +795,15 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 </div><div class="memdoc">
 <h2><a class="anchor" id="autotoc_md23"></a>
 Function: scriviMostre</h2>
-<p>Permette di salvare tutte le modifiche effettuate sul file "mostre.csv"</p>
+<p>Permette di salvare tutte le modifiche effettuate sul file "mostre.csv" e "mostreopere.csv"</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00958">958</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00950">950</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
@@ -815,16 +847,16 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 </div><div class="memdoc">
 <h2><a class="anchor" id="autotoc_md22"></a>
 Function: stampaMostra</h2>
-<p>Permette di stampare i dettagli di una mostra</p>
+<p>Permette di stampare a video una mostra</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mostra</td><td>: mostra scelta </td></tr>
+    <tr><td class="paramname">mostra</td><td>: puntatore alla mostra da stampare a schermo </td></tr>
     <tr><td class="paramname">stampaOpere</td><td>: mostra opere assegnate alla mostra se true </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00935">935</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00927">927</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
@@ -840,10 +872,10 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="mostra_8h_a11ccea7f9bbff4109690de797399d499_icgraph.png" border="0" usemap="#amostra_8h_a11ccea7f9bbff4109690de797399d499_icgraph" alt=""/></div>
 <map name="amostra_8h_a11ccea7f9bbff4109690de797399d499_icgraph" id="amostra_8h_a11ccea7f9bbff4109690de797399d499_icgraph">
-<area shape="rect" title=" " alt="" coords="259,56,364,83"/>
-<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,5,211,32"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,56,57"/>
-<area shape="rect" href="mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="105,107,210,133"/>
+<area shape="rect" title=" " alt="" coords="412,22,517,48"/>
+<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,22,211,48"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,47,56,74"/>
+<area shape="rect" href="mostra_8c.html#a6d2e28fafca87d10f7ebbce462af1b7a" title=" " alt="" coords="259,22,364,48"/>
 </map>
 </div>
 
@@ -866,24 +898,37 @@ Questo è il grafo dei chiamanti di questa funzione:</div>
 </div><div class="memdoc">
 <h2><a class="anchor" id="autotoc_md21"></a>
 Function: stampaMostre</h2>
-<p>Permette di stampare a video l'elenco delle mostre</p>
+<p>Permette di stampare a video l'elenco delle mostre Richiama <a class="el" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499">stampaMostra()</a></p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">testa</td><td>: lista mostra </td></tr>
+    <tr><td class="paramname">testa</td><td>: puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00920">920</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="mostra_8c_source.html#l00910">910</a> del file <a class="el" href="mostra_8c_source.html">mostra.c</a>.</p>
 <div class="dynheader">
 Questo è il grafo delle chiamate per questa funzione:</div>
 <div class="dyncontent">
 <div class="center"><img src="mostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_cgraph.png" border="0" usemap="#amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_cgraph" alt=""/></div>
 <map name="amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_cgraph" id="amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,111,32"/>
-<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="159,5,264,32"/>
-<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="312,5,412,32"/>
-<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="460,5,560,32"/>
+<area shape="rect" title=" " alt="" coords="5,31,111,57"/>
+<area shape="rect" href="functions_8c.html#acf34a2b141801e95e8b4293f44cf94b9" title=" " alt="" coords="159,5,317,32"/>
+<area shape="rect" href="mostra_8c.html#a11ccea7f9bbff4109690de797399d499" title=" " alt="" coords="185,56,291,83"/>
+<area shape="rect" href="functions_8c.html#a8948eb043fad35898f4a8036e9ec85a2" title=" " alt="" coords="365,5,496,32"/>
+<area shape="rect" href="functions_8c.html#ac096aa03281c2c3e8ddf55084594cea0" title=" " alt="" coords="544,5,648,32"/>
+<area shape="rect" href="opera_8c.html#aa79bd349e83bfdcc271b7263e95efe6d" title=" " alt="" coords="381,56,481,83"/>
+<area shape="rect" href="opera_8c.html#afb64e20346f2efa96ea1d1ccf0c0f0b1" title=" " alt="" coords="546,56,646,83"/>
+</map>
+</div>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dyncontent">
+<div class="center"><img src="mostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_icgraph.png" border="0" usemap="#amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_icgraph" alt=""/></div>
+<map name="amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_icgraph" id="amostra_8h_a6d2e28fafca87d10f7ebbce462af1b7a_icgraph">
+<area shape="rect" title=" " alt="" coords="259,5,364,32"/>
+<area shape="rect" href="mostra_8c.html#ab43da72ce0d07897ea7bdf25efa0fc29" title=" " alt="" coords="104,5,211,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>
 </div>
 

@@ -112,7 +112,7 @@ void aggiungiOpera(Opera *testa) {
 
     while ('\n' != getchar());
 
-    notificaAnnulla();
+    notificaAnnulla(false);
 
     do {
         testInput = false;
@@ -361,7 +361,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
                 titolo();
 
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci il Nome dell'Opera: ");
                     fgets(nome, 30, stdin);
@@ -397,7 +397,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
                 clearConsole();
                 titolo();
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci l'Autore: ");
                     fgets(autore, 30, stdin);
@@ -432,7 +432,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
                 titolo();
 
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     printf("Inserisci la Tipologia dell'Opera: ");
                     fgets(tipo, 30, stdin);
                     tipo[strlen(tipo) - 1] = 0;
@@ -466,7 +466,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
                 clearConsole();
                 titolo();
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci il Genere (es. ritratto): ");
                     fgets(genere, 30, stdin);
@@ -501,7 +501,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
                 clearConsole();
                 titolo();
                 do {
-                    notificaAnnulla();
+                    notificaAnnulla(false);
                     testInput = false;
                     printf("Inserisci il Periodo Storico (es. Barocco): ");
                     fgets(periodo, 20, stdin);
@@ -535,15 +535,7 @@ void modificaOpera(Opera *testa, Opera *opera) {
             case 6:
                 clearConsole();
                 titolo();
-
-                consoleColor(COLOR_RED);
-                printf("\t\t\t|-----------------------------|\n");
-                printf("\t\t\t|         Attenzione!         |\n");
-                printf("\t\t\t|   Se hai sbagliato e vuoi   |\n");
-                printf("\t\t\t|       tornare al menu'      |\n");
-                printf("\t\t\t|      premere il tasto 0     |\n");
-                printf("\t\t\t|-----------------------------|\n");
-                consoleColor(COLOR_RESET);
+                notificaAnnulla(true);
 
                 do {
                     printf("Inserisci l'Anno: ");
@@ -609,7 +601,7 @@ void stampaOpere(Opera *testa) {
  * ----------------------------
  *   Permette di stampare i dettagli di un'opera
  *
- *   @param testa : opera da stampare nel dettaglio
+ *   @param opera : opera da stampare nel dettaglio
  */
 void stampaOpera(Opera *opera) {
     printf("Id: %d\n", opera->id);
@@ -777,6 +769,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
             printf("4: Ricerca Opera per genere\n");
             printf("5: Ricerca Opera per periodo\n");
             printf("6: Ricerca Opera per anno\n");
+            printf("9: Stampa tutte le opere\n");
             printf("0: Annulla la ricerca\n");
             printf("-> ");
             scanf("%d", &scelta);
@@ -1165,6 +1158,15 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     if (operaSelezionata == NULL) {
                         ricercaInCorso = true;
                     }
+
+                case 9:
+                    clearConsole();
+                    titolo();
+                    stampaOpere(testa);
+                    while ('\n' != getchar());
+                    pausa();
+                    clearConsole();
+                    titolo();
 
                 default:
                     break;
