@@ -1059,7 +1059,6 @@ void eliminaMostra(Mostra *testa, Mostra *mostra) {
 void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
     char risposta;
     do {
-        while ('\n' != getchar());
         printColor("ATTENZIONE!\n", COLOR_RED);
         printf("Sei sicuro/a di voler eliminare l'opera dalla mostra?\n");
         printf("Risposta (s/n): ");
@@ -1078,23 +1077,27 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
 
         MostraOpera *curr = mostra->opere, *prec = NULL;
 
+
+        printf("%d\n", curr->opera->id);
+        printf("%d\n", idOpera);
         while (curr != NULL && curr->opera->id != idOpera) {
             prec = curr;
             curr = curr->nextOpera;
         }
 
-        if (idOpera == curr->opera->id) {
-            if (prec == NULL) { //elemento trovato in testa
-                mostra->opere = curr->nextOpera;
-            } else { //elemento al centro della lista
-                prec->nextOpera = curr->nextOpera;
+        if (curr != NULL) {
+            if (idOpera == curr->opera->id) {
+                if (prec == NULL) { //elemento trovato in testa
+                    mostra->opere = curr->nextOpera;
+                } else { //elemento al centro della lista
+                    prec->nextOpera = curr->nextOpera;
+                }
+                free(curr);
             }
-            free(curr);
+
+            scriviMostre(testa);
+            printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
         }
-
-
-        scriviMostre(testa);
-        printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
     }
 }
 

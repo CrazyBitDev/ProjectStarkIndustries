@@ -255,8 +255,7 @@ int main() {
                                                 }
                                                 break;
 
-                                            case 6:;
-                                                char sceltaIdOpera;
+                                            case 6:
                                                 mostraScelta = browserMostra(fpM, testaMostra, true);
 
                                                 if (mostraScelta != NULL) {
@@ -266,9 +265,11 @@ int main() {
                                                                COLOR_CYAN);
                                                     printf("Digitare l'ID dell'opera da rimuovere dalla mostra:\n");
                                                     printf("-> ");
-                                                    scanf("%c", &sceltaIdOpera);
-                                                    sceltaIdOpera = (int) sceltaIdOpera - 48;
-                                                    eliminaOperaAMostra(testaMostra, mostraScelta, sceltaIdOpera);
+                                                    fgets(input, 30, stdin);
+                                                    input[strlen(input) - 1] = 0;
+                                                    if (strlen(input) != 0) {
+                                                        eliminaOperaAMostra(testaMostra, mostraScelta, atoi(input));
+                                                    }
                                                 }
 
                                             default:
