@@ -15,50 +15,50 @@
 #include "prenotazione.h"
 
 int main() {
-
+    
     titolo();
-
+    
     char scelta, scelta2;
     char sceltaGestP, sceltaGestM, sceltaGestO;
     char email[60];
     char input[30];
-
+    
     Utente *testaUtente = NULL;
     Mostra *testaMostra = NULL;
     Opera *testaOpera = NULL;
     Prenotazione *testaPrenotazione = NULL;
-
+    
     Utente *utenteLogin = NULL; //utente che avrà eseguito il login
     Mostra *mostraScelta = NULL;
     Opera *operaScelta = NULL;
-
+    
     //Lettura utenti dal file
     FILE *fpU;
     fpU = fopen("utenti.csv", "r");
-
+    
     //Lettura opere dal file
     FILE *fpO;
     fpO = fopen("opere.csv", "r");
-
+    
     //Lettura mostre dal file
     FILE *fpM;
     fpM = fopen("mostre.csv", "r");
-
+    
     //Lettura mostre dal file
     FILE *fpMO;
     fpMO = fopen("mostreopere.csv", "r");
-
+    
     //Lettura prenotazioni dal file
     FILE *fpP;
     fpP = fopen("prenotazioni.csv", "r");
-
+    
     testaUtente = letturaUtenti(fpU);
     testaOpera = letturaOpere(fpO);
     testaMostra = letturaMostre(fpM, fpMO, testaOpera);
     testaPrenotazione = letturaPrenotazioni(fpP, testaUtente, testaMostra);
-
+    
     do {
-
+        
         printf("---HOME---\n");
         printf("1: Login\n");
         printf("2: Registrazione\n");
@@ -66,39 +66,39 @@ int main() {
         printf("----------\n");
         printf("-> ");
         scanf(" %c", &scelta);
-
+        
         //ripulisco la schermata
         clearConsole();
         titolo();
-
+        
         scelta = (int) scelta - 48;
-
+        
         switch (scelta) {
-
+                
             case 1:
                 while ('\n' != getchar());
-
+                
                 fseek(fpU, 0, SEEK_END);
                 long sizeU = ftell(fpU);
-
+                
                 if (sizeU == 0) { //file vuoto - nessun utente registrato
-
+                    
                     printColor("Attenzione!\n", COLOR_RED);
                     printf("Non ci sono utenti registrati.\n");
-
+                    
                 } else { //file pieno - utenti registrati presenti
-
+                    
                     printf("Email o nickname: ");
                     fgets(email, 60, stdin);
                     email[strlen(email) - 1] = 0;
-
+                    
                     utenteLogin = accesso(testaUtente, email);
                     char *valore = (char *) utenteLogin;
-
+                    
                     if (valore != NULL) {
                         clearConsole();
                         titolo();
-
+                        
                         printColor("Benvenuto/a ", COLOR_CYAN);
                         printColor(utenteLogin->nome, COLOR_CYAN);
                         printColor(" nella sezione privata del tuo account\n", COLOR_CYAN);
@@ -107,38 +107,38 @@ int main() {
                             printf("\n---MENU'---\n");
                             printf("1: Visualizza informazioni personali\n");
                             printf("2: Gestione profilo\n");
-
+                            
                             if (utenteLogin->permessi == 2) {
                                 //operazioni che può effettuare il dirigente
                                 printf("3: Gestione mostre\n");
                                 printf("4: Gestione opere\n");
                                 printf("5: Gestione prenotazione\n");
                                 printf("6: Modifica permessi\n");
-
+                                
                             } else {
                                 //operazioni che può effettuare l'utente base
                                 printf("3: Visualizza mostre\n");
                                 printf("4: Mostra opere\n");
                                 printf("5: Gestione prenotazione\n");
                             }
-
-
+                            
+                            
                             printf("9: Logout\n");
                             printf("0: Chiudi Applicazione\n");
                             printf("----------\n");
                             printf("-> ");
                             scanf(" %c", &scelta2);
-
+                            
                             scelta2 = (int) scelta2 - 48;
-
+                            
                             switch (scelta2) {
-
+                                    
                                 case 0:
                                     scelta = 0;
                                     clearConsole();
                                     titolo();
                                     break;
-
+                                    
                                 case 1:
                                     clearConsole();
                                     titolo();
@@ -148,7 +148,7 @@ int main() {
                                     clearConsole();
                                     titolo();
                                     break;
-
+                                    
                                 case 2:
                                     clearConsole();
                                     titolo();
@@ -160,34 +160,34 @@ int main() {
                                     printf("----------\n");
                                     printf("-> ");
                                     scanf("%c", &sceltaGestP);
-
+                                    
                                     sceltaGestP = (int) sceltaGestP - 48;
-
+                                    
                                     clearConsole();
                                     titolo();
-
+                                    
                                     switch (sceltaGestP) {
                                         case 1:
                                             while ('\n' != getchar());
                                             stampaUtente(utenteLogin);
                                             modificaUtente(utenteLogin, testaUtente);
                                             break;
-
+                                            
                                         case 2:
                                             eliminaUtente(utenteLogin, testaUtente);
                                             break;
-
+                                            
                                         default:
                                             break;
                                     }
                                     break;
-
+                                    
                                 case 3:
                                     clearConsole();
                                     titolo();
-
+                                    
                                     while ('\n' != getchar());
-
+                                    
                                     if (utenteLogin->permessi == 2) {
                                         printColor("Gestione mostra\n", COLOR_CYAN);
                                         printf("1: Sfoglia le mostre\n");
@@ -200,61 +200,59 @@ int main() {
                                         printf("----------\n");
                                         printf("-> ");
                                         scanf("%c", &sceltaGestM);
-
+                                        
                                         sceltaGestM = (int) sceltaGestM - 48;
-
+                                        
                                         clearConsole();
                                         titolo();
-
+                                        
                                         switch (sceltaGestM) {
-
+                                                
                                             case 1:
                                                 browserMostra(fpM, testaMostra, false);
                                                 break;
-
+                                                
                                             case 2:
                                                 while ('\n' != getchar());
                                                 aggiungiMostra(testaMostra);
                                                 clearConsole();
                                                 titolo();
                                                 break;
-
+                                                
                                             case 3:
                                                 mostraScelta = browserMostra(fpM, testaMostra, true);
-
+                                                
                                                 if (mostraScelta != NULL) {
                                                     modificaMostra(testaMostra, mostraScelta);
                                                 }
                                                 break;
-
+                                                
                                             case 4:
                                                 mostraScelta = browserMostra(fpM, testaMostra, true);
-
+                                                
                                                 if (mostraScelta != NULL) {
                                                     eliminaMostra(testaMostra, mostraScelta);
                                                 }
                                                 break;
-
+                                                
                                             case 5:
                                                 mostraScelta = browserMostra(fpM, testaMostra, true);
-
+                                                
                                                 if (mostraScelta != NULL) {
                                                     operaScelta = browserOpere(fpO, testaOpera, true);
-
                                                     if (operaScelta != NULL) {
                                                         aggiungiOperaAMostra(testaMostra, mostraScelta, operaScelta);
                                                     }
                                                 }
                                                 break;
-
+                                                
                                             case 6:
                                                 mostraScelta = browserMostra(fpM, testaMostra, true);
-
+                                                
                                                 if (mostraScelta != NULL) {
                                                     printColor("Dettagli mostra scelta.\n", COLOR_CYAN);
                                                     stampaMostra(mostraScelta, true);
-                                                    printColor("---------------------------------------------------\n",
-                                                               COLOR_CYAN);
+                                                    printColor("---------------------------------------------------\n", COLOR_CYAN);
                                                     printf("Digitare l'ID dell'opera da rimuovere dalla mostra:\n");
                                                     printf("-> ");
                                                     fgets(input, 30, stdin);
@@ -263,25 +261,25 @@ int main() {
                                                         eliminaOperaAMostra(testaMostra, mostraScelta, atoi(input));
                                                     }
                                                 }
-
+                                                
                                             default:
                                                 break;
                                         }
-
+                                        
                                     } else {
                                         browserMostra(fpM, testaMostra, false);
                                     }
-
+                                    
                                     break;
-
+                                    
                                 case 4:
                                     clearConsole();
                                     titolo();
-
+                                    
                                     while ('\n' != getchar());
-
+                                    
                                     if (utenteLogin->permessi == 2) {
-
+                                        
                                         printColor("Gestione opera\n", COLOR_CYAN);
                                         printf("1: Sfoglia le opere\n");
                                         printf("2: Aggiungi dati opera\n");
@@ -291,30 +289,30 @@ int main() {
                                         printf("----------\n");
                                         printf("-> ");
                                         scanf("%c", &sceltaGestO);
-
+                                        
                                         sceltaGestO = (int) sceltaGestO - 48;
-
+                                        
                                         clearConsole();
                                         titolo();
-
+                                        
                                         switch (sceltaGestO) {
                                             case 1:
                                                 browserOpere(fpO, testaOpera, false);
                                                 break;
-
+                                                
                                             case 2:
                                                 //while ('\n' != getchar());
                                                 aggiungiOpera(testaOpera);
                                                 break;
-
+                                                
                                             case 3:
                                                 operaScelta = browserOpere(fpO, testaOpera, true);
-
+                                                
                                                 if (operaScelta != NULL) {
                                                     modificaOpera(testaOpera, operaScelta);
                                                 }
                                                 break;
-
+                                                
                                             case 4:
                                                 operaScelta = browserOpere(fpO, testaOpera, true);
                                                 if (operaScelta != NULL) {
@@ -331,23 +329,23 @@ int main() {
                                                     }
                                                 }
                                                 break;
-
+                                                
                                             default:
                                                 break;
                                         }
-
+                                        
                                     } else {
                                         browserOpere(fpO, testaOpera, false);
                                     }
                                     break;
-
+                                    
                                 case 5:
-
+                                    
                                     clearConsole();
                                     titolo();
                                     while ('\n' != getchar());
-
-
+                                    
+                                    
                                     printColor("Gestione prenotazioni\n", COLOR_CYAN);
                                     printf("1: Le tue prenotazioni\n");
                                     printf("2: Nuova prenotazione\n");
@@ -360,12 +358,12 @@ int main() {
                                     printf("----------\n");
                                     printf("-> ");
                                     scanf("%c", &sceltaGestO);
-
+                                    
                                     sceltaGestO = (int) sceltaGestO - 48;
-
+                                    
                                     clearConsole();
                                     titolo();
-
+                                    
                                     switch (sceltaGestO) {
                                         case 1:
                                             while ('\n' != getchar());
@@ -374,7 +372,7 @@ int main() {
                                             clearConsole();
                                             titolo();
                                             break;
-
+                                            
                                         case 2:
                                             printf("Scegli la mostra alla quale vuoi prenotare la visita\n");
                                             mostraScelta = browserMostra(fpM, testaMostra, true);
@@ -384,7 +382,7 @@ int main() {
                                                 registrazionePrenotazione(testaPrenotazione, utenteLogin, mostraScelta);
                                             }
                                             break;
-
+                                            
                                         case 3:
                                             while ('\n' != getchar());
                                             stampaPrenotazioniUtente(testaPrenotazione, utenteLogin);
@@ -392,12 +390,10 @@ int main() {
                                             fgets(input, 30, stdin);
                                             input[strlen(input) - 1] = 0;
                                             if (strlen(input) != 0) {
-                                                modificaPrenotazione(testaPrenotazione,
-                                                                     ricercaPrenotazione(testaPrenotazione,
-                                                                                         atoi(input)));
+                                                modificaPrenotazione(testaPrenotazione, ricercaPrenotazione(testaPrenotazione, atoi(input)));
                                             }
                                             break;
-
+                                            
                                         case 4:
                                             while ('\n' != getchar());
                                             stampaPrenotazioniUtente(testaPrenotazione, utenteLogin);
@@ -405,52 +401,50 @@ int main() {
                                             fgets(input, 30, stdin);
                                             input[strlen(input) - 1] = 0;
                                             if (strlen(input) != 0) {
-                                                eliminaPrenotazione(testaPrenotazione,
-                                                                    ricercaPrenotazione(testaPrenotazione,
-                                                                                        atoi(input)));
+                                                eliminaPrenotazione(testaPrenotazione, ricercaPrenotazione(testaPrenotazione, atoi(input)));
                                             }
                                             break;
-
+                                            
                                         default:
                                             break;
                                     }
                                     break;
-
+                                    
                                 case 6:
                                     if (utenteLogin->permessi == 2) {
                                         modificaPermessi(testaUtente);
                                     }
-
+                                    
                                 case 9:
                                     clearConsole();
                                     titolo();
                                     break;
-
+                                    
                                 default:
                                     break;
                             }
-
+                            
                         } while (scelta2 != 9 && sceltaGestP != 2 && scelta2 != 0);
                     }
                 }
                 break;
-
+                
             case 2:
                 printColor("Benvenuto! \nCrea il tuo account\n", COLOR_CYAN);
                 registrazioneUtente(testaUtente);
                 clearConsole();
                 titolo();
                 break;
-
+                
             default:
                 clearConsole();
                 titolo();
                 break;
         }
         printColor("-----------------------------\n", COLOR_CYAN);
-
+        
     } while (scelta != 0);
-
+    
     printf("\n");
     return 0;
 }

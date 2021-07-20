@@ -16,7 +16,7 @@ struct utente {
  *   Permette di leggere i dati dal file "utenti.csv" e salvarli all'interno della struct Utente
  *
  *   @param fp puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file utenti.csv
- * 
+ *
  *   @return puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  */
 Utente *letturaUtenti(FILE *fp) {
@@ -425,7 +425,7 @@ void registrazioneUtente(Utente *testa) {
  *
  *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  *   @param text testo inserito dall'utente per fare l'accesso (email o nickname)
- * 
+ *
  *   @return  se esiste utente con email o nickname uguale al valore del secondo argomento
  *            (char *text) e la password inserita corrisponde la funzione lo ritornerà,
  *            altrimenti il valore sarà uguale a NULL
@@ -448,6 +448,9 @@ Utente *accesso(Utente *testa, char *text) {
 
     if (!utenteTrovato) {
         printColor("\nEmail/Nickname e/o Password errati!\n\n", COLOR_RED);
+        pausa();
+        clearConsole();
+        titolo();
     }
 
     if (utenteTrovato)
@@ -463,7 +466,7 @@ Utente *accesso(Utente *testa, char *text) {
  *
  *   @param testa puntatore alla variabile di tipo Utenti, una lista contenente tutte gli utenti
  *   @param id id dell'utente da ricercare
- * 
+ *
  *   @return Utente con id corrispondende al parametro id, altrimenti NULL
  */
 Utente *ricercaUtente(Utente *testa, int id) {
@@ -799,8 +802,6 @@ void modificaUtente(Utente *utente, Utente *testa) {
                 }
 
             } while (risposta != 'S' && risposta != 'N');
-        } else {
-            scriviUtenti(testa);
         }
 
         clearConsole();
@@ -861,10 +862,18 @@ void eliminaUtente(Utente *utente, Utente *testa) {
 
         scriviUtenti(testa);
         printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
+        while ('\n' != getchar());
+        pausa();
+        clearConsole();
+        titolo();
     } else {
         printColor("-----------------------------\n", COLOR_CYAN);
         printf("%s siamo contenti che tu abbia deciso di rimanere con noi!\n", temp->nome);
         printf("Se vuoi puoi riaccedere al tuo profilo facendo il login.\n");
+        while ('\n' != getchar());
+        pausa();
+        clearConsole();
+        titolo();
     }
 }
 

@@ -15,7 +15,7 @@ struct opera {
  *   Permette di leggere i dati dal file "opere.csv" e salvarli all'interno della struct Opera
  *
  *   @param fp puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file opere.csv
- * 
+ *
  *   @return puntatore alla variabile di tipo Opera, una lista contenente tutte le mostre e le opere associate
  */
 Opera *letturaOpere(FILE *fp) {
@@ -1017,6 +1017,8 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                         switch (scelta) {
                             case 0:
                                 ricercaInCorso = false;
+                                clearConsole();
+                                titolo();
                                 break;
 
                             case 1:
@@ -1057,6 +1059,9 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                         clearConsole();
                                         titolo();
                                         printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                                        pausa();
+                                        clearConsole();
+                                        titolo();
                                     }
                                 }
                                 break;
@@ -1099,6 +1104,9 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                         clearConsole();
                                         titolo();
                                         printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                                        pausa();
+                                        clearConsole();
+                                        titolo();
                                     }
                                 }
                                 break;
@@ -1144,9 +1152,11 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                                         }
                                     } else {
                                         clearConsole();
-                                        printf("%d\n", scelta);
                                         titolo();
                                         printColor("Nessuna opera corrisponde alla ricerca, riprovare\n\n", COLOR_RED);
+                                        pausa();
+                                        clearConsole();
+                                        titolo();
                                     }
                                 }
                                 break;
@@ -1158,6 +1168,7 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     if (operaSelezionata == NULL) {
                         ricercaInCorso = true;
                     }
+                    break;
 
                 case 9:
                     clearConsole();

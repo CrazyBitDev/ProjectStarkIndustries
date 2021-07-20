@@ -15,7 +15,7 @@ struct prenotazione {
  *   @param fp nome del file da cui leggere i dati, ovvero "prenotazioni.csv"
  *   @param testaUtente puntatore alla variabile di tipo Utente, una lista contenente tutte gli utenti
  *   @param testaMostra puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre
- * 
+ *
  *   @return puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
  */
 Prenotazione *letturaPrenotazioni(FILE *fp, Utente *testaUtente, Mostra *testaMostra) {
@@ -196,14 +196,17 @@ void registrazionePrenotazione(Prenotazione *testa, Utente *utente, Mostra *most
         clearConsole();
         titolo();
         printColor("Prenotazione avvenuta con successo.\n", COLOR_GREEN);
+        while ('\n' != getchar());
         pausa();
+        clearConsole();
+        titolo();
     }
 }
 
 /**
  * Function: modificaPrenotazione
  * ----------------------------
- *   Modifica una prenotazione 
+ *   Modifica una prenotazione
  *
  *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
  *   @param prenotazione prenotazione che verrà modificata
@@ -390,16 +393,23 @@ void stampaPrenotazioni(Prenotazione *testa) {
  */
 void stampaPrenotazioniUtente(Prenotazione *testa, Utente *utente) {
     bool trovato = false;
-
-    for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
-        if (temp->utente->id == utente->id) {
-            if (differenzaDateOggiChar(temp->data) >= 0 ) {
-                stampaPrenotazione(temp);
-                trovato = true;
-                printf("----------\n");
+    FILE *fp;
+    fp = fopen("prenotazioni.csv", "r");
+    fseek(fp, 0, SEEK_END);
+    long size = ftell(fp);
+    
+    if(size != 0) {
+        for (Prenotazione *temp = testa; temp != NULL; temp = temp->nextPrenotazione) {
+            if (temp->utente->id == utente->id) {
+                if (differenzaDateOggiChar(temp->data) >= 0 ) {
+                    stampaPrenotazione(temp);
+                    trovato = true;
+                    printf("----------\n");
+                }
             }
         }
     }
+    
     if (!trovato) {
         printf("\n----------\n");
         printColor("Attenzione!\n", COLOR_RED);
@@ -453,7 +463,7 @@ void scriviPrenotazioni(Prenotazione *testa) {
  *
  *   @param testa puntatore alla variabile di tipo Prenotazione, una lista contenente tutte le prenotazioni
  *   @param id intero, identificatore della mostra da ricercare
- * 
+ *
  *   @return Prenotazione ricercata, se non trovata NULL
  */
 Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id) {
@@ -485,7 +495,7 @@ Prenotazione *ricercaPrenotazione(Prenotazione *testa, int id) {
  *   Una prenotazione è modificabile prima di due giorni l'inizio della mostra
  *
  *   @param prenotazione prenotazione da controllare se è modificabile
- * 
+ *
  *   @return true se la prenotazione è modificabile, quindi il giorno corrente è antecedente a due giorni prima dell'inizio della mostra, altrimenti false
  */
 bool prenotazioneModificabile(Prenotazione *prenotazione) {
@@ -586,6 +596,9 @@ void eliminaPrenotazione(Prenotazione *testa, Prenotazione *prenotazione) {
             }
             scriviPrenotazioni(testa);
             printColor("Eliminazione completata con successo!\n", COLOR_GREEN);
+            pausa();
+            clearConsole();
+            titolo();
 
         }
     } else {

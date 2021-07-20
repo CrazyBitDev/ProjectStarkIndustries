@@ -23,7 +23,7 @@ struct mostra {
  *   @param fp puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostre.csv
  *   @param fpMO puntatore alla variabile di tipo FILE, precedentemente configurata, che punta al file mostreopere.csv
  *   @param testaOpera puntatore alla variabile di tipo Opera, una lista contenente tutte le opere precedentemente caricate
- * 
+ *
  *   @return puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
  */
 Mostra *letturaMostre(FILE *fp, FILE *fpMO, Opera *testaOpera) {
@@ -277,7 +277,7 @@ void aggiungiMostra(Mostra *testa) {
         do {
             testInput = false;
             printf("Inserisci Indirizzo: ");
-            fgets(nuovoNodo->indirizzo, 20, stdin);
+            fgets(nuovoNodo->indirizzo, 30, stdin);
             nuovoNodo->indirizzo[strlen(nuovoNodo->indirizzo) - 1] = 0;
             nuovoNodo->indirizzo[0] = toupper(nuovoNodo->indirizzo[0]);
 
@@ -389,7 +389,7 @@ void aggiungiMostra(Mostra *testa) {
             } else {
                 clearConsole();
                 titolo();
-                printf("\n----------");
+                printf("\n----------\n");
                 printColor("Attenzione!\n", COLOR_RED);
                 printf("La data di fine mostra deve susseguire la data d'inizio.\n");
                 printf("Si prega di inserire nuovamente le date.\n");
@@ -452,14 +452,13 @@ void aggiungiMostra(Mostra *testa) {
 void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
     bool operaLibera = true;
     for (Mostra *tempMostra = testa; tempMostra != NULL; tempMostra = tempMostra->nextMostra) {
-        if (differenzaDateChar(mostra->dataInizio, tempMostra->dataFine) >= 0 &&
-            differenzaDateChar(mostra->dataFine, tempMostra->dataInizio) <= 0)
-            for (MostraOpera *tempMostraOpera = tempMostra->opere;
-                 tempMostraOpera != NULL; tempMostraOpera = tempMostraOpera->nextOpera) {
+        if (differenzaDateChar(mostra->dataInizio, tempMostra->dataFine) >= 0 && differenzaDateChar(mostra->dataFine, tempMostra->dataInizio) <= 0)
+            for (MostraOpera *tempMostraOpera = tempMostra->opere; tempMostraOpera != NULL; tempMostraOpera = tempMostraOpera->nextOpera) {
                 if (opera->id == tempMostraOpera->opera->id) {
                     operaLibera = false;
                 }
             }
+        
     }
     if (operaLibera) {
         bool operaNonInserita = true;
@@ -662,7 +661,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 notificaAnnulla(false);
 
                 printf("Inserisci l'indirizzo: ");
-                fgets(indirizzo, 20, stdin);
+                fgets(indirizzo, 30, stdin);
                 indirizzo[strlen(indirizzo) - 1] = 0;
                 indirizzo[0] = toupper(indirizzo[0]);
 
@@ -769,7 +768,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                         } else {
                             clearConsole();
                             titolo();
-                            printf("\n----------");
+                            printf("\n----------\n");
                             printColor("Attenzione!\n", COLOR_RED);
                             printf("La data di fine mostra deve susseguire la data d'inizio.\n");
                             printf("Si prega di inserire nuovamente le date.\n");
@@ -780,7 +779,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                     if (differenzaDate(giornoIn, meseIn, annoIn, giornoFin, meseFin, annoFin) >= 0) {
                         flagDate = true;
                     } else {
-                        printf("\n----------");
+                        printf("\n----------\n");
                         printColor("Attenzione!\n", COLOR_RED);
                         printf("La data di fine mostra deve susseguire la data d'inizio.\n");
                         printf("Si prega di inserire nuovamente le date.\n");
@@ -886,12 +885,11 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
                 risposta = toupper(risposta);
 
                 if (risposta == 'N') {
+                    printf("prima \n");
                     scriviMostre(testa);
                 }
 
             } while (risposta != 'S' && risposta != 'N');
-        } else {
-            scriviMostre(testa);
         }
 
         clearConsole();
@@ -909,7 +907,7 @@ void modificaMostra(Mostra *testa, Mostra *mostra) {
  */
 void stampaMostre(Mostra *testa) {
     for (Mostra *mostra = testa; mostra != NULL; mostra = mostra->nextMostra) {
-        if (differenzaDateOggiChar(mostra->dataFine) == -1) {
+        if (differenzaDateOggiChar(mostra->dataFine) == 1) {
             stampaMostra(mostra, false);
             printf("----------\n");
         }
@@ -925,19 +923,26 @@ void stampaMostre(Mostra *testa) {
  *   @param stampaOpere mostra opere assegnate alla mostra se true
  */
 void stampaMostra(Mostra *mostra, bool stampaOpere) {
+    FILE *fpMO;
+    fpMO = fopen("mostreopere.csv", "w"); //apertura file
+    
     printf("Mostra numero: %d \n", mostra->id);
     printf("Responsabile: %s \n", mostra->responsabile);
     printf("Luogo di esposizione: %s \n", mostra->luogo);
     printf("Luogo: %s - %s\n", mostra->citta, mostra->indirizzo);
     printf("Durata: dal %s al %s\n", mostra->dataInizio, mostra->dataFine);
-    if (stampaOpere) {
-        if (mostra->opere != NULL) {
-            printf("Opere nella mostra:\n");
-            for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
-                printf("\tID %d - %s di %s\n", temp->opera->id, temp->opera->nome, temp->opera->autore);
+    
+    //long sizeMO = ftell(fpMO);
+    //if(sizeMO != 0) {
+        if (stampaOpere) {
+            if (mostra->opere != NULL) {
+                printf("Opere nella mostra:\n");
+                for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
+                    printf("\tID %d - %s di %s\n", temp->opera->id, temp->opera->nome, temp->opera->autore);
+                }
             }
         }
-    }
+    //}
 }
 
 /**
@@ -965,7 +970,7 @@ void scriviMostre(Mostra *testa) {
                     temp->indirizzo, temp->dataInizio, temp->dataFine);
         }
 
-        for (MostraOpera *tempMO = temp->opere; tempMO != NULL; tempMO = tempMO->nextOpera) {;
+        for (MostraOpera *tempMO = temp->opere; tempMO != NULL; tempMO = tempMO->nextOpera) {
             long size = ftell(fpMO);
 
             if (size == 0) {
@@ -1092,7 +1097,7 @@ void eliminaOperaAMostra(Mostra *testa, Mostra *mostra, int idOpera) {
  *
  *   @param testa puntatore alla variabile di tipo Mostra, una lista contenente tutte le mostre e le opere associate
  *   @param idOpera id dell'opera da controllare
- * 
+ *
  *   @return true se l'opera viene usata in una mostra del giorno corrente o futura
  */
 bool operaUsataInMostre(Mostra *testa, int idOpera) {
@@ -1169,6 +1174,9 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
     if (size == 0) { //non ci sono opere registrate
         printColor("Attenzione!\n", COLOR_RED);
         printf("Non ci sono mostre registrate.\n");
+        pausa();
+        clearConsole();
+        titolo();
     } else {
 
         clearConsole();
@@ -1287,7 +1295,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
 
                     if (strlen(input) != 0) {
                         for (Mostra *temp = testa; temp != NULL; temp = temp->nextMostra) {
-                            strcpy(tempName, temp->luogo);
+                            strcpy(tempName, temp->citta);
                             toUppercase(tempName);
                             if (strstr(tempName, input) != NULL && differenzaDateOggiChar(temp->dataFine) >= 0) {
                                 mostreTrovate++;
