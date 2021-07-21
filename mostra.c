@@ -948,7 +948,7 @@ void stampaMostra(Mostra *mostra, bool stampaOpere) {
     //long sizeMO = ftell(fpMO);
     //if(sizeMO != 0) {
         if (stampaOpere) {
-            if (mostra->opere != NULL) {
+            if (mostra->opere != NULL && mostra->opere->opera != NULL) {
                 printf("Opere nella mostra:\n");
                 for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
                     printf("\tID %d - %s di %s\n", temp->opera->id, temp->opera->nome, temp->opera->autore);
