@@ -333,19 +333,23 @@ int differenzaDate(int giorno1, int mese1, int anno1, int giorno2, int mese2, in
  *   @return 0 se le date sono uguali, 1 se la seconda data è successivo alla prima, -1 se la prima data è successivo alla seconda
  */
 int differenzaDateChar(char *data1, char *data2) {
+
     char dataTemp1[11], dataTemp2[11];
 
     strcpy(dataTemp1, data1);
     strcpy(dataTemp2, data2);
-
+    
     int data1Convertita[3], data2Convertita[3];
 
     char *tok1 = strtok(dataTemp1, "/");
-    char *tok2 = strtok(dataTemp2, "/");
     for (int i = 0; i < 3; i++) {
         data1Convertita[i] = atoi(tok1);
-        data2Convertita[i] = atoi(tok2);
         tok1 = strtok(NULL, "/");
+    }
+
+    char *tok2 = strtok(dataTemp2, "/");
+    for (int i = 0; i < 3; i++) {
+        data2Convertita[i] = atoi(tok2);
         tok2 = strtok(NULL, "/");
     }
 

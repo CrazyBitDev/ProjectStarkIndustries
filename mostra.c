@@ -450,6 +450,7 @@ void aggiungiMostra(Mostra *testa) {
  *   @param opera opera scelta per essere aggiunta
  */
 void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
+
     bool operaLibera = true;
     for (Mostra *tempMostra = testa; tempMostra != NULL; tempMostra = tempMostra->nextMostra) {
         if (differenzaDateChar(mostra->dataInizio, tempMostra->dataFine) >= 0 && differenzaDateChar(mostra->dataFine, tempMostra->dataInizio) <= 0)
@@ -496,6 +497,7 @@ void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
 
         fclose(fp);
     }
+
 }
 
 /**
@@ -936,26 +938,20 @@ void stampaMostre(Mostra *testa) {
  *   @param stampaOpere mostra opere assegnate alla mostra se true
  */
 void stampaMostra(Mostra *mostra, bool stampaOpere) {
-    FILE *fpMO;
-    fpMO = fopen("mostreopere.csv", "w"); //apertura file
-    
     printf("Mostra numero: %d \n", mostra->id);
     printf("Responsabile: %s \n", mostra->responsabile);
     printf("Luogo di esposizione: %s \n", mostra->luogo);
     printf("Luogo: %s - %s\n", mostra->citta, mostra->indirizzo);
     printf("Durata: dal %s al %s\n", mostra->dataInizio, mostra->dataFine);
     
-    //long sizeMO = ftell(fpMO);
-    //if(sizeMO != 0) {
-        if (stampaOpere) {
-            if (mostra->opere != NULL && mostra->opere->opera != NULL) {
-                printf("Opere nella mostra:\n");
-                for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
-                    printf("\tID %d - %s di %s\n", temp->opera->id, temp->opera->nome, temp->opera->autore);
-                }
+    if (stampaOpere) {
+        if (mostra->opere != NULL && mostra->opere->opera != NULL) {
+            printf("Opere nella mostra:\n");
+            for (MostraOpera *temp = mostra->opere; temp != NULL; temp = temp->nextOpera) {
+                printf("\tID %d - %s di %s\n", temp->opera->id, temp->opera->nome, temp->opera->autore);
             }
         }
-    //}
+    }
 }
 
 /**
