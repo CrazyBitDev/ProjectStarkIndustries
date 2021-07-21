@@ -1175,9 +1175,21 @@ Opera *browserOpere(FILE *fp, Opera *testa, bool selezione) {
                     titolo();
                     stampaOpere(testa);
                     while ('\n' != getchar());
-                    pausa();
-                    clearConsole();
-                    titolo();
+                    if (selezione) {
+                        printf("Digitare l'ID dell'opera da selezionare: ");
+                        fgets(input, 30, stdin);
+                        input[strlen(input) - 1] = 0;
+                        printf("---------------------\n");
+                        if (strlen(input) != 0) {
+                            scelta = atoi(input);
+                            operaSelezionata = ricercaOpera(testa, scelta);
+                            ricercaInCorso = false;
+                        }
+                    } else {
+                        pausa();
+                        clearConsole();
+                        titolo();
+                    }
 
                 default:
                     break;

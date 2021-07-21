@@ -1331,9 +1331,20 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
                     titolo();
                     stampaMostre(testa);
                     while ('\n' != getchar());
-                    pausa();
-                    clearConsole();
-                    titolo();
+                    if (selezione) {
+                        printf("Digitare l'ID della mostra da selezionare: ");
+                        fgets(input, 30, stdin);
+                        input[strlen(input) - 1] = 0;
+                        if (strlen(input) != 0) {
+                            scelta = atoi(input);
+                            mostraSelezionata = ricercaMostra(testa, scelta);
+                            ricercaInCorso = false;
+                        }
+                    } else {
+                        pausa();
+                        clearConsole();
+                        titolo();
+                    }
 
                 case 0:
                     ricercaInCorso = false;
