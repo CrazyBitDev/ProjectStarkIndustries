@@ -481,7 +481,20 @@ void aggiungiOperaAMostra(Mostra *testa, Mostra *mostra, Opera *opera) {
                 tempMostraOpera = tempMostraOpera->nextOpera;
             }
         } while (operaNonInserita);
-        scriviMostre(testa);
+
+        //verifico se nel file ci sono già delle mmostre registrate o meno
+        FILE *fp;
+        fp = fopen("mostreopere.csv", "a+"); //apertura file
+        fseek(fp, 0, SEEK_END);
+        long size = ftell(fp);
+
+        if (size == 0) { //file vuoto
+            fprintf(fp, "%d,%d", mostra->id, opera->id);
+        } else { //file pieno
+            fprintf(fp, "\n%d,%d", mostra->id, opera->id);
+        }
+
+        fclose(fp);
     }
 }
 
@@ -971,9 +984,9 @@ void scriviMostre(Mostra *testa) {
         }
 
         for (MostraOpera *tempMO = temp->opere; tempMO != NULL; tempMO = tempMO->nextOpera) {
-            long size = ftell(fpMO);
+            long sizeMO = ftell(fpMO);
 
-            if (size == 0) {
+            if (sizeMO == 0) {
                 //file vuoto.
                 fprintf(fpMO, "%d,%d", temp->id, tempMO->opera->id);
             } else {
@@ -1174,6 +1187,7 @@ Mostra *browserMostra(FILE *fp, Mostra *testa, bool selezione) {
     if (size == 0) { //non ci sono opere registrate
         printColor("Attenzione!\n", COLOR_RED);
         printf("Non ci sono mostre registrate.\n");
+        while ('\n' != getchar());
         pausa();
         clearConsole();
         titolo();
