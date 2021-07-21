@@ -351,9 +351,6 @@ int main() {
                                     printf("2: Nuova prenotazione\n");
                                     printf("3: Modifica prenotazione\n");
                                     printf("4: Elimina prenotazione\n");
-                                    if (utenteLogin->permessi == 2) {
-                                        printf("5: Visualizza le prenotazioni\n");
-                                    }
                                     printf("0: Torna indietro\n");
                                     printf("----------\n");
                                     printf("-> ");
