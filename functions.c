@@ -453,7 +453,6 @@ bool dataInIntervallo(int giorno, int mese, int anno, char *giorno1, char *giorn
             inIntervallo = true;
         }
     }
-    printf("data in intervallo: %d\n", inIntervallo);
     return inIntervallo;
 }
 
